@@ -1,0 +1,636 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppBarActionComponent",
+            "id": "component-AppBarActionComponent-1dae00dca958a4476709093ac3f578876a505596e238583b61a4b090f3cdc1c4423c4094aba3568fdfd8158e9cef29f53ee90171028cac35e2dcce92c3117ae8",
+            "file": "packages/shell/src/lib/app-bar/app-bar-action.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-app-bar-action",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<ng-template #template>\n  <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label\">\n    <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\">\n    </div>\n    <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName\"></fui-icon>\n  </a>\n</ng-template>\n<ng-template #mobileTemplate>\n  <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label\">\n    <div class=\"self-center text-xs font-semibold px-2\">{{label}}</div>\n    <div class=\"h-6 w-6\">\n        <fui-icon [name]=\"iconName\"></fui-icon>\n    </div>\n  </a>\n</ng-template>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "iconName",
+                    "defaultValue": "'default'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nThe name of the icon to show for this action in the app bar.",
+                    "description": "<p>The name of the icon to show for this action in the app bar.</p>\n",
+                    "line": 29,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nThe label of the action to show in the action dropdown in case of mobile screen layout.",
+                    "description": "<p>The label of the action to show in the action dropdown in case of mobile screen layout.</p>\n",
+                    "line": 32,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "tap",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nAn event called if the action is tapped.",
+                    "description": "<p>An event called if the action is tapped.</p>\n",
+                    "line": 35,
+                    "type": "EventEmitter<void>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "_mobileTemplate",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TemplateRef<>",
+                    "optional": false,
+                    "description": "",
+                    "line": 39,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'mobileTemplate', {static: true}"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "_template",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TemplateRef<>",
+                    "optional": false,
+                    "description": "",
+                    "line": 38,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'template', {static: true}"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "_onClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 41,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FuiIconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FuiIconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-bar-action',\r\n  standalone: true,\r\n  imports: [CommonModule, FuiIconComponent],\r\n  template: `\r\n    <ng-template #template>\r\n      <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label\">\r\n        <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\">\r\n        </div>\r\n        <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName\"></fui-icon>\r\n      </a>\r\n    </ng-template>\r\n    <ng-template #mobileTemplate>\r\n      <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label\">\r\n        <div class=\"self-center text-xs font-semibold px-2\">{{label}}</div>\r\n        <div class=\"h-6 w-6\">\r\n            <fui-icon [name]=\"iconName\"></fui-icon> \r\n        </div>\r\n      </a>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class AppBarActionComponent {\r\n  /** The name of the icon to show for this action in the app bar. */\r\n  @Input() iconName = 'default';\r\n\r\n  /** The label of the action to show in the action dropdown in case of mobile screen layout. */\r\n  @Input() label = '';\r\n\r\n  /** An event called if the action is tapped. */\r\n  @Output() tap: EventEmitter<void> = new EventEmitter<void>();\r\n\r\n  // The templates used by the app bar to render this action\r\n  @ViewChild('template', {static: true})  _template!: TemplateRef<unknown>;\r\n  @ViewChild('mobileTemplate', {static: true}) _mobileTemplate!: TemplateRef<unknown>;\r\n\r\n  _onClick() {\r\n    this.tap.next();\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "AppBarComponent",
+            "id": "component-AppBarComponent-0b69de46443adb5ab3be6fa3ea3dbca953ac0e8ae7eee59044b1d027cf7f4082e3e51c88fba33e64ba62894bc7ec554bbe9b07b6ae693b6fc383dac0508ea18b",
+            "file": "packages/shell/src/lib/app-bar/app-bar.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-app-bar",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./app-bar.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "showBackButton",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nFlag to indicate weather the back button shall be shown.\n",
+                    "description": "<p>Flag to indicate weather the back button shall be shown.</p>\n",
+                    "line": 22,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "'View Title'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nTitle within the AppBar.\n",
+                    "description": "<p>Title within the AppBar.</p>\n",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_documentClickSubscription",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Subscription | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 33,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "_template",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TemplateRef<>",
+                    "optional": false,
+                    "description": "",
+                    "line": 25,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'template', {static: true}"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "_viewActionsDropdownIsOpen",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 32,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "_viewHeaderActions",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "QueryList<AppBarActionComponent>",
+                    "optional": false,
+                    "description": "",
+                    "line": 29,
+                    "decorators": [
+                        {
+                            "name": "ContentChildren",
+                            "stringifiedArguments": "AppBarActionComponent"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "_closeActionsDropdown",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "_navigateBack",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 50,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "_openActionsDropdown",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 37,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FuiIconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, ContentChildren, Input, QueryList, TemplateRef, ViewChild } from '@angular/core';\r\nimport { CommonModule, Location } from '@angular/common';\r\nimport { fromEvent, skip, Subscription } from 'rxjs';\r\nimport { AppBarActionComponent } from './app-bar-action.component';\r\nimport { FuiIconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-bar',\r\n  standalone: true,\r\n  imports: [CommonModule, FuiIconComponent],\r\n  templateUrl: './app-bar.component.html'\r\n})\r\nexport class AppBarComponent {\r\n  /**\r\n   * Title within the AppBar.\r\n   */\r\n  @Input() title = 'View Title';\r\n\r\n  /**\r\n   * Flag to indicate weather the back button shall be shown.\r\n   */\r\n  @Input() showBackButton = true;\r\n\r\n  @ViewChild('template', {static: true})\r\n  _template!: TemplateRef<unknown>;\r\n\r\n  // The view header actions\r\n  @ContentChildren(AppBarActionComponent) \r\n  _viewHeaderActions!: QueryList<AppBarActionComponent>;\r\n\r\n  // State to save if actions dropdown is open\r\n  public _viewActionsDropdownIsOpen = false;\r\n  private _documentClickSubscription: Subscription | null = null;\r\n\r\n  constructor(private _location: Location) {}\r\n\r\n  _openActionsDropdown(): void {\r\n    this._viewActionsDropdownIsOpen = true;\r\n    if(!this._documentClickSubscription) {\r\n      this._documentClickSubscription = fromEvent(document, 'click').pipe(skip(1)).subscribe(() => this._closeActionsDropdown() );\r\n    }\r\n  }\r\n\r\n  _closeActionsDropdown(): void {\r\n    this._viewActionsDropdownIsOpen = false;\r\n    this._documentClickSubscription?.unsubscribe();\r\n    this._documentClickSubscription = null;\r\n  }\r\n\r\n  _navigateBack(): void {\r\n    this._location.back();\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "_location",
+                        "type": "Location",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 33,
+                "jsdoctags": [
+                    {
+                        "name": "_location",
+                        "type": "Location",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "<div class=\"h-16 z-10 flex justify-between\">\r\n  <div class=\"flex items-center group-[.shell]:-ml-rim min-w-0\">\r\n    <!-- Back navigation button -->\r\n    <a *ngIf=\"showBackButton\" class=\"w-hover h-hover flex flex-none justify-center items-center\" (click)=\"_navigateBack()\">\r\n      <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n      <fui-icon class=\"h-icon w-icon\" name=\"back\"></fui-icon>\r\n    </a>\r\n    <!-- View title -->\r\n    <div class=\"ml-element mb-1 text-xl min-w-0 truncate\">{{ title }}</div>\r\n  </div>\r\n\r\n  <!-- Global View Actions as icons in header -->\r\n  <div class=\"hidden flex-none sm:flex items-center h-full group-[.shell]:-mr-3\">\r\n    <ng-container *ngFor=\"let action of _viewHeaderActions\" [ngTemplateOutlet]=\"action._template\"></ng-container>\r\n  </div>\r\n\r\n  <!-- Global View Actions within dropdown -->\r\n  <div class=\"sm:hidden flex-none flex items-center h-full group-[.shell]:-mr-3\" *ngIf=\"_viewHeaderActions.toArray() as actions\">\r\n    <!-- Always show first icon -->\r\n    <ng-container *ngIf=\"actions.length >= 1\" [ngTemplateOutlet]=\"actions[0]._template\"></ng-container>\r\n    <!-- Always show second icon -->\r\n    <ng-container *ngIf=\"actions.length >= 2\" [ngTemplateOutlet]=\"actions[1]._template\"></ng-container>\r\n    <!-- Show econd third button only if not more -->\r\n    <ng-container *ngIf=\"actions.length === 3\" [ngTemplateOutlet]=\"actions[2]._template\"></ng-container>\r\n    <!-- Show more button in case of more than 3 actions-->\r\n    <a *ngIf=\"actions.length > 3\" class=\"w-hover h-hover flex justify-center relative\" (click)=\"_openActionsDropdown()\">\r\n      <div class=\"absolute z-0 w-hover h-hover bg-gray rounded-xl transition-all duration-500 opacity-0 hover:bg-hover\"></div>\r\n      <fui-icon class=\"h-icon w-icon self-center\" name=\"more\"></fui-icon>\r\n    </a>\r\n\r\n    <!-- Dropdown Menu -->\r\n    <div\r\n      *ngIf=\"actions.length > 3 && _viewActionsDropdownIsOpen\"\r\n      class=\"absolute right-2 top-14 rounded bg-background shadow animate-fadeIn\">\r\n      <div class=\"\">\r\n        <ng-container *ngFor=\"let action of actions | slice : 2\" [ngTemplateOutlet]=\"action._mobileTemplate\"></ng-container>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "FuiIconComponent",
+            "id": "component-FuiIconComponent-800780e1bda6ce7d72a56e2fe9fe2a682630bf20c2b8ef99e5b0d3fb34ddff69bd0669b6dc40e96da1aacde04bcd493bf8fd1bcc97e49612c77c3dad76e546ff",
+            "file": "packages/core/src/lib/fui-icon/fui-icon.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-icon",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<ng-icon [name]=\"name()\"></ng-icon>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "name",
+                    "defaultValue": "input.required<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "NgIconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, input } from '@angular/core';\nimport { NgIconComponent } from '@ng-icons/core';\n\n@Component({\n  selector: 'fui-icon',\n  standalone: true,\n  imports: [NgIconComponent],\n  template: `<ng-icon [name]=\"name()\"></ng-icon>`\n})\nexport class FuiIconComponent {\n  name = input.required<string>();\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        }
+    ],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title',\r\n    showBackButton: true\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "config",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/.storybook/main.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "StorybookConfig",
+                "defaultValue": "{\n  stories: ['../../../packages/*/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)', '../../../packages/*/src/lib/**/*.mdx', '../doc/**/*.mdx'],\n  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<AppBarComponent>",
+                "defaultValue": "{\r\n  title: 'Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent]\r\n    }),\r\n    //...fancyUiHarness()\r\n  ],\r\n}"
+            },
+            {
+                "name": "MoreThanThreeActions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: UpToThreeActions.args,\r\n  parameters: {\r\n    ...UpToThreeActions.parameters,\r\n    action4Label: 'Action 4',\r\n    action5Label: 'Action 5',\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action4Label\" (tap)=\"onTap(action4Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action5Label\" (tap)=\"onTap(action5Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters }) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    userEvent.click(action2);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    userEvent.click(action3);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n\r\n    const action4 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action4Label']});\r\n    userEvent.click(action4);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action4Label']);\r\n\r\n    const action5 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action5Label']});\r\n    userEvent.click(action5);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action5Label']);\r\n  }\r\n}"
+            },
+            {
+                "name": "parameters",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/.storybook/preview.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n    options: {\r\n      storySort: {\r\n        order: ['Intro', ['Introduction'], 'Shell', 'Content', 'Data', 'Controls'],\r\n      },\r\n    },\r\n    actions: { argTypesRegex: \"^on[A-Z].*\" },\r\n  }"
+            },
+            {
+                "name": "UpToThreeActions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    userEvent.click(action2);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    userEvent.click(action3);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
+            }
+        ],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<AppBarComponent>",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            "packages/shell/src/lib/app-bar/app-bar.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title',\r\n    showBackButton: true\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<AppBarComponent>",
+                    "defaultValue": "{\r\n  title: 'Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent]\r\n    }),\r\n    //...fancyUiHarness()\r\n  ],\r\n}"
+                },
+                {
+                    "name": "MoreThanThreeActions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: UpToThreeActions.args,\r\n  parameters: {\r\n    ...UpToThreeActions.parameters,\r\n    action4Label: 'Action 4',\r\n    action5Label: 'Action 5',\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action4Label\" (tap)=\"onTap(action4Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action5Label\" (tap)=\"onTap(action5Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters }) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    userEvent.click(action2);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    userEvent.click(action3);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n\r\n    const action4 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action4Label']});\r\n    userEvent.click(action4);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action4Label']);\r\n\r\n    const action5 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action5Label']});\r\n    userEvent.click(action5);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action5Label']);\r\n  }\r\n}"
+                },
+                {
+                    "name": "UpToThreeActions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    userEvent.click(action2);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    userEvent.click(action3);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
+                }
+            ],
+            "apps/storybook-host/.storybook/main.ts": [
+                {
+                    "name": "config",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/.storybook/main.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "StorybookConfig",
+                    "defaultValue": "{\n  stories: ['../../../packages/*/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)', '../../../packages/*/src/lib/**/*.mdx', '../doc/**/*.mdx'],\n  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
+                }
+            ],
+            "apps/storybook-host/.storybook/preview.ts": [
+                {
+                    "name": "parameters",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/.storybook/preview.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n    options: {\r\n      storySort: {\r\n        order: ['Intro', ['Introduction'], 'Shell', 'Content', 'Data', 'Controls'],\r\n      },\r\n    },\r\n    actions: { argTypesRegex: \"^on[A-Z].*\" },\r\n  }"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "packages/shell/src/lib/app-bar/app-bar.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<AppBarComponent>",
+                    "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ]
+        }
+    },
+    "routes": [],
+    "coverage": {
+        "count": 6,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "apps/storybook-host/.storybook/main.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "config",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "apps/storybook-host/.storybook/preview.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "parameters",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/core/src/lib/fui-icon/fui-icon.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "FuiIconComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/shell/src/lib/app-bar/app-bar-action.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppBarActionComponent",
+                "coveragePercent": 42,
+                "coverageCount": "3/7",
+                "status": "medium"
+            },
+            {
+                "filePath": "packages/shell/src/lib/app-bar/app-bar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppBarComponent",
+                "coveragePercent": 18,
+                "coverageCount": "2/11",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MoreThanThreeActions",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "UpToThreeActions",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

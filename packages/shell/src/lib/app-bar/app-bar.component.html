@@ -1,0 +1,40 @@
+<div class="h-16 z-10 flex justify-between">
+  <div class="flex items-center group-[.shell]:-ml-rim min-w-0">
+    <!-- Back navigation button -->
+    <a *ngIf="showBackButton" class="w-hover h-hover flex flex-none justify-center items-center" (click)="_navigateBack()">
+      <div class="absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover"></div>
+      <fui-icon class="h-icon w-icon" name="back"></fui-icon>
+    </a>
+    <!-- View title -->
+    <div class="ml-element mb-1 text-xl min-w-0 truncate">{{ title }}</div>
+  </div>
+
+  <!-- Global View Actions as icons in header -->
+  <div class="hidden flex-none sm:flex items-center h-full group-[.shell]:-mr-3">
+    <ng-container *ngFor="let action of _viewHeaderActions" [ngTemplateOutlet]="action._template"></ng-container>
+  </div>
+
+  <!-- Global View Actions within dropdown -->
+  <div class="sm:hidden flex-none flex items-center h-full group-[.shell]:-mr-3" *ngIf="_viewHeaderActions.toArray() as actions">
+    <!-- Always show first icon -->
+    <ng-container *ngIf="actions.length >= 1" [ngTemplateOutlet]="actions[0]._template"></ng-container>
+    <!-- Always show second icon -->
+    <ng-container *ngIf="actions.length >= 2" [ngTemplateOutlet]="actions[1]._template"></ng-container>
+    <!-- Show econd third button only if not more -->
+    <ng-container *ngIf="actions.length === 3" [ngTemplateOutlet]="actions[2]._template"></ng-container>
+    <!-- Show more button in case of more than 3 actions-->
+    <a *ngIf="actions.length > 3" class="w-hover h-hover flex justify-center relative" (click)="_openActionsDropdown()">
+      <div class="absolute z-0 w-hover h-hover bg-gray rounded-xl transition-all duration-500 opacity-0 hover:bg-hover"></div>
+      <fui-icon class="h-icon w-icon self-center" name="more"></fui-icon>
+    </a>
+
+    <!-- Dropdown Menu -->
+    <div
+      *ngIf="actions.length > 3 && _viewActionsDropdownIsOpen"
+      class="absolute right-2 top-14 rounded bg-background shadow animate-fadeIn">
+      <div class="">
+        <ng-container *ngFor="let action of actions | slice : 2" [ngTemplateOutlet]="action._mobileTemplate"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>

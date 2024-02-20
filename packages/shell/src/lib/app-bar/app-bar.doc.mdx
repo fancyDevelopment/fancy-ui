@@ -1,0 +1,18 @@
+
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/blocks';
+
+import { AppBarComponent } from './app-bar.component';
+
+import * as AppBarStories from './app-bar.stories';
+
+<Meta of={AppBarStories} />
+
+# App Bar
+
+Foo Bar
+
+<Canvas>
+<Story of={AppBarStories.Basic} />
+</Canvas>
+
+<ArgsTable of={AppBarComponent} />
