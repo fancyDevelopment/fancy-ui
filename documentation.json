@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "AppBarActionComponent",
-            "id": "component-AppBarActionComponent-1dae00dca958a4476709093ac3f578876a505596e238583b61a4b090f3cdc1c4423c4094aba3568fdfd8158e9cef29f53ee90171028cac35e2dcce92c3117ae8",
+            "id": "component-AppBarActionComponent-e42d15c47a256c2fdbe51a7db71cac41cc59508fa9256a14820b98651d58b65aa448859d0964e07ef99b1d3edf68a5af3e42cbaad47c01c042f2686d6401f5ab",
             "file": "packages/shell/src/lib/app-bar/app-bar-action.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -19,7 +19,7 @@
             "selector": "fui-app-bar-action",
             "styleUrls": [],
             "styles": [],
-            "template": "<ng-template #template>\n  <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label\">\n    <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\">\n    </div>\n    <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName\"></fui-icon>\n  </a>\n</ng-template>\n<ng-template #mobileTemplate>\n  <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label\">\n    <div class=\"self-center text-xs font-semibold px-2\">{{label}}</div>\n    <div class=\"h-6 w-6\">\n        <fui-icon [name]=\"iconName\"></fui-icon>\n    </div>\n  </a>\n</ng-template>\n",
+            "template": "<ng-template #template>\n  <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label\">\n    <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\n    <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName\"></fui-icon>\n  </a>\n</ng-template>\n<ng-template #mobileTemplate>\n  <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label\">\n    <div class=\"self-center text-xs font-semibold px-2\">{{label}}</div>\n    <div class=\"h-6 w-6\">\n        <fui-icon [name]=\"iconName\"></fui-icon>\n    </div>\n  </a>\n</ng-template>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -31,7 +31,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nThe name of the icon to show for this action in the app bar.",
                     "description": "<p>The name of the icon to show for this action in the app bar.</p>\n",
-                    "line": 29,
+                    "line": 27,
                     "type": "string",
                     "decorators": []
                 },
@@ -42,7 +42,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nThe label of the action to show in the action dropdown in case of mobile screen layout.",
                     "description": "<p>The label of the action to show in the action dropdown in case of mobile screen layout.</p>\n",
-                    "line": 32,
+                    "line": 30,
                     "type": "string",
                     "decorators": []
                 }
@@ -55,46 +55,30 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nAn event called if the action is tapped.",
                     "description": "<p>An event called if the action is tapped.</p>\n",
-                    "line": 35,
+                    "line": 33,
                     "type": "EventEmitter<void>"
                 }
             ],
             "propertiesClass": [
                 {
                     "name": "_mobileTemplate",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('mobileTemplate')",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "TemplateRef<>",
+                    "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 39,
-                    "decorators": [
-                        {
-                            "name": "ViewChild",
-                            "stringifiedArguments": "'mobileTemplate', {static: true}"
-                        }
-                    ],
-                    "modifierKind": [
-                        170
-                    ]
+                    "line": 37
                 },
                 {
                     "name": "_template",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('template')",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "TemplateRef<>",
+                    "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 38,
-                    "decorators": [
-                        {
-                            "name": "ViewChild",
-                            "stringifiedArguments": "'template', {static: true}"
-                        }
-                    ],
-                    "modifierKind": [
-                        170
-                    ]
+                    "line": 36
                 }
             ],
             "methodsClass": [
@@ -104,7 +88,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -116,18 +100,14 @@
             "standalone": true,
             "imports": [
                 {
-                    "name": "CommonModule",
-                    "type": "module"
-                },
-                {
-                    "name": "FuiIconComponent",
+                    "name": "IconComponent",
                     "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FuiIconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-bar-action',\r\n  standalone: true,\r\n  imports: [CommonModule, FuiIconComponent],\r\n  template: `\r\n    <ng-template #template>\r\n      <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label\">\r\n        <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\">\r\n        </div>\r\n        <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName\"></fui-icon>\r\n      </a>\r\n    </ng-template>\r\n    <ng-template #mobileTemplate>\r\n      <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label\">\r\n        <div class=\"self-center text-xs font-semibold px-2\">{{label}}</div>\r\n        <div class=\"h-6 w-6\">\r\n            <fui-icon [name]=\"iconName\"></fui-icon> \r\n        </div>\r\n      </a>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class AppBarActionComponent {\r\n  /** The name of the icon to show for this action in the app bar. */\r\n  @Input() iconName = 'default';\r\n\r\n  /** The label of the action to show in the action dropdown in case of mobile screen layout. */\r\n  @Input() label = '';\r\n\r\n  /** An event called if the action is tapped. */\r\n  @Output() tap: EventEmitter<void> = new EventEmitter<void>();\r\n\r\n  // The templates used by the app bar to render this action\r\n  @ViewChild('template', {static: true})  _template!: TemplateRef<unknown>;\r\n  @ViewChild('mobileTemplate', {static: true}) _mobileTemplate!: TemplateRef<unknown>;\r\n\r\n  _onClick() {\r\n    this.tap.next();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output, TemplateRef, viewChild } from '@angular/core';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-bar-action',\r\n  standalone: true,\r\n  imports: [IconComponent],\r\n  template: `\r\n    <ng-template #template>\r\n      <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label\">\r\n        <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n        <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName\"></fui-icon>\r\n      </a>\r\n    </ng-template>\r\n    <ng-template #mobileTemplate>\r\n      <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label\">\r\n        <div class=\"self-center text-xs font-semibold px-2\">{{label}}</div>\r\n        <div class=\"h-6 w-6\">\r\n            <fui-icon [name]=\"iconName\"></fui-icon> \r\n        </div>\r\n      </a>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class AppBarActionComponent {\r\n  /** The name of the icon to show for this action in the app bar. */\r\n  @Input() iconName = 'default';\r\n\r\n  /** The label of the action to show in the action dropdown in case of mobile screen layout. */\r\n  @Input() label = '';\r\n\r\n  /** An event called if the action is tapped. */\r\n  @Output() tap: EventEmitter<void> = new EventEmitter<void>();\r\n\r\n  // The templates used by the app bar to render this action\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n  _mobileTemplate = viewChild<TemplateRef<unknown>>('mobileTemplate');\r\n\r\n  _onClick() {\r\n    this.tap.next();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -135,7 +115,7 @@
         },
         {
             "name": "AppBarComponent",
-            "id": "component-AppBarComponent-0b69de46443adb5ab3be6fa3ea3dbca953ac0e8ae7eee59044b1d027cf7f4082e3e51c88fba33e64ba62894bc7ec554bbe9b07b6ae693b6fc383dac0508ea18b",
+            "id": "component-AppBarComponent-5034a86af463ca7e5d4e79daca0122c73c2fa3d2cf03ea09a916871e7353a09419ef8812ba853b6574e5701ff458ce2e0f04583d5d1f8f65d58165b3aa05573e",
             "file": "packages/shell/src/lib/app-bar/app-bar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -150,30 +130,7 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "showBackButton",
-                    "defaultValue": "true",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nFlag to indicate weather the back button shall be shown.\n",
-                    "description": "<p>Flag to indicate weather the back button shall be shown.</p>\n",
-                    "line": 22,
-                    "type": "boolean",
-                    "decorators": []
-                },
-                {
-                    "name": "title",
-                    "defaultValue": "'View Title'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nTitle within the AppBar.\n",
-                    "description": "<p>Title within the AppBar.</p>\n",
-                    "line": 17,
-                    "type": "string",
-                    "decorators": []
-                }
-            ],
+            "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
                 {
@@ -184,27 +141,22 @@
                     "type": "Subscription | null",
                     "optional": false,
                     "description": "",
-                    "line": 33,
+                    "line": 31,
                     "modifierKind": [
                         123
                     ]
                 },
                 {
-                    "name": "_template",
+                    "name": "_location",
+                    "defaultValue": "inject(Location)",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "TemplateRef<>",
+                    "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 25,
-                    "decorators": [
-                        {
-                            "name": "ViewChild",
-                            "stringifiedArguments": "'template', {static: true}"
-                        }
-                    ],
+                    "line": 27,
                     "modifierKind": [
-                        170
+                        123
                     ]
                 },
                 {
@@ -215,28 +167,42 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 32,
+                    "line": 30,
                     "modifierKind": [
                         125
                     ]
                 },
                 {
                     "name": "_viewHeaderActions",
+                    "defaultValue": "contentChildren(AppBarActionComponent)",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "QueryList<AppBarActionComponent>",
+                    "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 29,
-                    "decorators": [
-                        {
-                            "name": "ContentChildren",
-                            "stringifiedArguments": "AppBarActionComponent"
-                        }
-                    ],
-                    "modifierKind": [
-                        170
-                    ]
+                    "line": 25
+                },
+                {
+                    "name": "showBackButton",
+                    "defaultValue": "input(false)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Flag to indicate weather the back button shall be shown.</p>\n",
+                    "line": 22,
+                    "rawdescription": "\n\nFlag to indicate weather the back button shall be shown.\n"
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "input('View Title')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Title within the AppBar.</p>\n",
+                    "line": 17,
+                    "rawdescription": "\n\nTitle within the AppBar.\n"
                 }
             ],
             "methodsClass": [
@@ -246,7 +212,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44,
+                    "line": 40,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -256,7 +222,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 50,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -266,7 +232,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 37,
+                    "line": 33,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -278,54 +244,31 @@
             "standalone": true,
             "imports": [
                 {
-                    "name": "CommonModule",
-                    "type": "module"
+                    "name": "NgTemplateOutlet"
                 },
                 {
-                    "name": "FuiIconComponent",
+                    "name": "IconComponent",
                     "type": "component"
+                },
+                {
+                    "name": "SlicePipe",
+                    "type": "pipe"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, ContentChildren, Input, QueryList, TemplateRef, ViewChild } from '@angular/core';\r\nimport { CommonModule, Location } from '@angular/common';\r\nimport { fromEvent, skip, Subscription } from 'rxjs';\r\nimport { AppBarActionComponent } from './app-bar-action.component';\r\nimport { FuiIconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-bar',\r\n  standalone: true,\r\n  imports: [CommonModule, FuiIconComponent],\r\n  templateUrl: './app-bar.component.html'\r\n})\r\nexport class AppBarComponent {\r\n  /**\r\n   * Title within the AppBar.\r\n   */\r\n  @Input() title = 'View Title';\r\n\r\n  /**\r\n   * Flag to indicate weather the back button shall be shown.\r\n   */\r\n  @Input() showBackButton = true;\r\n\r\n  @ViewChild('template', {static: true})\r\n  _template!: TemplateRef<unknown>;\r\n\r\n  // The view header actions\r\n  @ContentChildren(AppBarActionComponent) \r\n  _viewHeaderActions!: QueryList<AppBarActionComponent>;\r\n\r\n  // State to save if actions dropdown is open\r\n  public _viewActionsDropdownIsOpen = false;\r\n  private _documentClickSubscription: Subscription | null = null;\r\n\r\n  constructor(private _location: Location) {}\r\n\r\n  _openActionsDropdown(): void {\r\n    this._viewActionsDropdownIsOpen = true;\r\n    if(!this._documentClickSubscription) {\r\n      this._documentClickSubscription = fromEvent(document, 'click').pipe(skip(1)).subscribe(() => this._closeActionsDropdown() );\r\n    }\r\n  }\r\n\r\n  _closeActionsDropdown(): void {\r\n    this._viewActionsDropdownIsOpen = false;\r\n    this._documentClickSubscription?.unsubscribe();\r\n    this._documentClickSubscription = null;\r\n  }\r\n\r\n  _navigateBack(): void {\r\n    this._location.back();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, contentChildren, inject, input } from '@angular/core';\r\nimport { Location, NgTemplateOutlet, SlicePipe } from '@angular/common';\r\nimport { fromEvent, skip, Subscription } from 'rxjs';\r\nimport { AppBarActionComponent } from './app-bar-action.component';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-bar',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, IconComponent, SlicePipe],\r\n  templateUrl: './app-bar.component.html'\r\n})\r\nexport class AppBarComponent {\r\n  /**\r\n   * Title within the AppBar.\r\n   */\r\n  title = input('View Title');\r\n\r\n  /**\r\n   * Flag to indicate weather the back button shall be shown.\r\n   */\r\n  showBackButton = input(false);\r\n\r\n  // The view header actions\r\n  _viewHeaderActions = contentChildren(AppBarActionComponent)\r\n\r\n  private _location = inject(Location);\r\n\r\n  // State to save if actions dropdown is open\r\n  public _viewActionsDropdownIsOpen = false;\r\n  private _documentClickSubscription: Subscription | null = null;\r\n\r\n  _openActionsDropdown(): void {\r\n    this._viewActionsDropdownIsOpen = true;\r\n    if(!this._documentClickSubscription) {\r\n      this._documentClickSubscription = fromEvent(document, 'click').pipe(skip(1)).subscribe(() => this._closeActionsDropdown() );\r\n    }\r\n  }\r\n\r\n  _closeActionsDropdown(): void {\r\n    this._viewActionsDropdownIsOpen = false;\r\n    this._documentClickSubscription?.unsubscribe();\r\n    this._documentClickSubscription = null;\r\n  }\r\n\r\n  _navigateBack(): void {\r\n    this._location.back();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "_location",
-                        "type": "Location",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 33,
-                "jsdoctags": [
-                    {
-                        "name": "_location",
-                        "type": "Location",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
             "extends": [],
-            "templateData": "<div class=\"h-16 z-10 flex justify-between\">\r\n  <div class=\"flex items-center group-[.shell]:-ml-rim min-w-0\">\r\n    <!-- Back navigation button -->\r\n    <a *ngIf=\"showBackButton\" class=\"w-hover h-hover flex flex-none justify-center items-center\" (click)=\"_navigateBack()\">\r\n      <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n      <fui-icon class=\"h-icon w-icon\" name=\"back\"></fui-icon>\r\n    </a>\r\n    <!-- View title -->\r\n    <div class=\"ml-element mb-1 text-xl min-w-0 truncate\">{{ title }}</div>\r\n  </div>\r\n\r\n  <!-- Global View Actions as icons in header -->\r\n  <div class=\"hidden flex-none sm:flex items-center h-full group-[.shell]:-mr-3\">\r\n    <ng-container *ngFor=\"let action of _viewHeaderActions\" [ngTemplateOutlet]=\"action._template\"></ng-container>\r\n  </div>\r\n\r\n  <!-- Global View Actions within dropdown -->\r\n  <div class=\"sm:hidden flex-none flex items-center h-full group-[.shell]:-mr-3\" *ngIf=\"_viewHeaderActions.toArray() as actions\">\r\n    <!-- Always show first icon -->\r\n    <ng-container *ngIf=\"actions.length >= 1\" [ngTemplateOutlet]=\"actions[0]._template\"></ng-container>\r\n    <!-- Always show second icon -->\r\n    <ng-container *ngIf=\"actions.length >= 2\" [ngTemplateOutlet]=\"actions[1]._template\"></ng-container>\r\n    <!-- Show econd third button only if not more -->\r\n    <ng-container *ngIf=\"actions.length === 3\" [ngTemplateOutlet]=\"actions[2]._template\"></ng-container>\r\n    <!-- Show more button in case of more than 3 actions-->\r\n    <a *ngIf=\"actions.length > 3\" class=\"w-hover h-hover flex justify-center relative\" (click)=\"_openActionsDropdown()\">\r\n      <div class=\"absolute z-0 w-hover h-hover bg-gray rounded-xl transition-all duration-500 opacity-0 hover:bg-hover\"></div>\r\n      <fui-icon class=\"h-icon w-icon self-center\" name=\"more\"></fui-icon>\r\n    </a>\r\n\r\n    <!-- Dropdown Menu -->\r\n    <div\r\n      *ngIf=\"actions.length > 3 && _viewActionsDropdownIsOpen\"\r\n      class=\"absolute right-2 top-14 rounded bg-background shadow animate-fadeIn\">\r\n      <div class=\"\">\r\n        <ng-container *ngFor=\"let action of actions | slice : 2\" [ngTemplateOutlet]=\"action._mobileTemplate\"></ng-container>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"h-16 z-10 flex justify-between bg-background\">\r\n  <div class=\"flex items-center group-[.shell]:-ml-rim min-w-0\">\r\n    <!-- Back navigation button -->\r\n    @if(showBackButton()) {\r\n      <a class=\"w-hover h-hover flex flex-none justify-center items-center\" (click)=\"_navigateBack()\">\r\n        <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n        <fui-icon class=\"h-icon w-icon\" name=\"heroArrowLeft\" />\r\n      </a>\r\n    }\r\n    <!-- View title -->\r\n    <div class=\"ml-element mb-1 text-xl min-w-0 truncate\">{{ title() }}</div>\r\n  </div>\r\n\r\n  <!-- Global View Actions as icons in header -->\r\n  <div class=\"hidden flex-none sm:flex items-center h-full group-[.shell]:-mr-3\">\r\n    @for(action of _viewHeaderActions(); track $index) {\r\n      <ng-container [ngTemplateOutlet]=\"action._template() ?? null\" />\r\n    }\r\n  </div>\r\n\r\n  @if(_viewHeaderActions(); as actions) {\r\n    <!-- Global View Actions within dropdown -->\r\n    <div class=\"sm:hidden flex-none flex items-center h-full group-[.shell]:-mr-3\">\r\n      @if(actions.length >= 1) {\r\n        <!-- Always show first icon -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[0]._template() ?? null\" />\r\n      }\r\n      @if(actions.length >= 2) {\r\n        <!-- Always show second icon -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[1]._template() ?? null\" />\r\n      }\r\n      @if(actions.length === 3) {\r\n        <!-- Show econd third button only if not more -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[2]._template() ?? null\" />\r\n      }\r\n      <!-- Show more button in case of more than 3 actions-->\r\n      @if(actions.length > 3) {\r\n        <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_openActionsDropdown()\">\r\n          <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n          <fui-icon class=\"h-6 w-6 self-center\" name=\"matMoreVertOutline\"></fui-icon>\r\n        </a>\r\n      }\r\n\r\n      <!-- Dropdown Menu -->\r\n      @if(actions.length > 3 && _viewActionsDropdownIsOpen) {\r\n        <div class=\"absolute right-2 top-20 rounded bg-background shadow animate-fadeIn\">\r\n          <div>\r\n            @for(action of actions | slice : 2; track $index) {\r\n              <ng-container [ngTemplateOutlet]=\"action._mobileTemplate() ?? null\" />\r\n            }\r\n          </div>\r\n        </div>\r\n      }\r\n    </div>\r\n  }\r\n</div>\r\n"
         },
         {
-            "name": "FuiIconComponent",
-            "id": "component-FuiIconComponent-800780e1bda6ce7d72a56e2fe9fe2a682630bf20c2b8ef99e5b0d3fb34ddff69bd0669b6dc40e96da1aacde04bcd493bf8fd1bcc97e49612c77c3dad76e546ff",
-            "file": "packages/core/src/lib/fui-icon/fui-icon.component.ts",
+            "name": "IconComponent",
+            "id": "component-IconComponent-ae6cb612d97f983eea5b32bdfc8445fad5fd174cd6c00a344b04afa58b87239416a81cc7f40a053f93442411b29330ac0e4376a119c753fd6406d382b00f48ba",
+            "file": "packages/core/src/lib/icon/icon.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -367,7 +310,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, input } from '@angular/core';\nimport { NgIconComponent } from '@ng-icons/core';\n\n@Component({\n  selector: 'fui-icon',\n  standalone: true,\n  imports: [NgIconComponent],\n  template: `<ng-icon [name]=\"name()\"></ng-icon>`\n})\nexport class FuiIconComponent {\n  name = input.required<string>();\n}\n",
+            "sourceCode": "import { Component, input } from '@angular/core';\nimport { NgIconComponent } from '@ng-icons/core';\n\n@Component({\n  selector: 'fui-icon',\n  standalone: true,\n  imports: [NgIconComponent],\n  template: `<ng-icon [name]=\"name()\"></ng-icon>`\n})\nexport class IconComponent {\n  name = input.required<string>();\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -385,7 +328,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title',\r\n    showBackButton: true\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title' as any,\r\n    showBackButton: true as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "config",
@@ -405,7 +348,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<AppBarComponent>",
-                "defaultValue": "{\r\n  title: 'Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent]\r\n    }),\r\n    //...fancyUiHarness()\r\n  ],\r\n}"
+                "defaultValue": "{\r\n  title: 'Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "MoreThanThreeActions",
@@ -415,7 +358,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: UpToThreeActions.args,\r\n  parameters: {\r\n    ...UpToThreeActions.parameters,\r\n    action4Label: 'Action 4',\r\n    action5Label: 'Action 5',\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action4Label\" (tap)=\"onTap(action4Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action5Label\" (tap)=\"onTap(action5Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters }) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    userEvent.click(action2);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    userEvent.click(action3);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n\r\n    const action4 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action4Label']});\r\n    userEvent.click(action4);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action4Label']);\r\n\r\n    const action5 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action5Label']});\r\n    userEvent.click(action5);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action5Label']);\r\n  }\r\n}"
+                "defaultValue": "{\r\n  args: UpToThreeActions.args,\r\n  parameters: {\r\n    ...UpToThreeActions.parameters,\r\n    action4Label: 'Action 4',\r\n    action5Label: 'Action 5',\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"matHomeOutline\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"heroUsers\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"matSettingsOutline\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n        <fui-app-bar-action iconName=\"matArchiveOutline\" [label]=\"action4Label\" (tap)=\"onTap(action4Label)\" />\r\n        <fui-app-bar-action iconName=\"matCloudDoneOutline\" [label]=\"action5Label\" (tap)=\"onTap(action5Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters }) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    userEvent.click(action2);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    userEvent.click(action3);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n\r\n    const action4 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action4Label']});\r\n    userEvent.click(action4);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action4Label']);\r\n\r\n    const action5 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action5Label']});\r\n    userEvent.click(action5);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action5Label']);\r\n  }\r\n}"
             },
             {
                 "name": "parameters",
@@ -435,7 +378,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    userEvent.click(action2);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    userEvent.click(action3);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
+                "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"matHomeOutline\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"heroUsers\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"matSettingsOutline\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    // const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    // userEvent.click(action2);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    // const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    // userEvent.click(action3);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
             }
         ],
         "functions": [],
@@ -463,7 +406,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title',\r\n    showBackButton: true\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title' as any,\r\n    showBackButton: true as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
                 },
                 {
                     "name": "meta",
@@ -473,7 +416,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<AppBarComponent>",
-                    "defaultValue": "{\r\n  title: 'Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent]\r\n    }),\r\n    //...fancyUiHarness()\r\n  ],\r\n}"
+                    "defaultValue": "{\r\n  title: 'Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 },
                 {
                     "name": "MoreThanThreeActions",
@@ -483,7 +426,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: UpToThreeActions.args,\r\n  parameters: {\r\n    ...UpToThreeActions.parameters,\r\n    action4Label: 'Action 4',\r\n    action5Label: 'Action 5',\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action4Label\" (tap)=\"onTap(action4Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action5Label\" (tap)=\"onTap(action5Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters }) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    userEvent.click(action2);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    userEvent.click(action3);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n\r\n    const action4 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action4Label']});\r\n    userEvent.click(action4);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action4Label']);\r\n\r\n    const action5 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action5Label']});\r\n    userEvent.click(action5);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action5Label']);\r\n  }\r\n}"
+                    "defaultValue": "{\r\n  args: UpToThreeActions.args,\r\n  parameters: {\r\n    ...UpToThreeActions.parameters,\r\n    action4Label: 'Action 4',\r\n    action5Label: 'Action 5',\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"matHomeOutline\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"heroUsers\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"matSettingsOutline\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n        <fui-app-bar-action iconName=\"matArchiveOutline\" [label]=\"action4Label\" (tap)=\"onTap(action4Label)\" />\r\n        <fui-app-bar-action iconName=\"matCloudDoneOutline\" [label]=\"action5Label\" (tap)=\"onTap(action5Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters }) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    userEvent.click(action2);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    userEvent.click(action3);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n\r\n    const action4 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action4Label']});\r\n    userEvent.click(action4);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action4Label']);\r\n\r\n    const action5 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action5Label']});\r\n    userEvent.click(action5);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action5Label']);\r\n  }\r\n}"
                 },
                 {
                     "name": "UpToThreeActions",
@@ -493,7 +436,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [renderSelf]=\"renderSelf\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"menu\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    userEvent.click(action2);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    userEvent.click(action3);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
+                    "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"matHomeOutline\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"heroUsers\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"matSettingsOutline\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    // const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    // userEvent.click(action2);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    // const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    // userEvent.click(action3);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
                 }
             ],
             "apps/storybook-host/.storybook/main.ts": [
@@ -565,10 +508,10 @@
                 "status": "low"
             },
             {
-                "filePath": "packages/core/src/lib/fui-icon/fui-icon.component.ts",
+                "filePath": "packages/core/src/lib/icon/icon.component.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "FuiIconComponent",
+                "name": "IconComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
                 "status": "low"
@@ -587,8 +530,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "AppBarComponent",
-                "coveragePercent": 18,
-                "coverageCount": "2/11",
+                "coveragePercent": 20,
+                "coverageCount": "2/10",
                 "status": "low"
             },
             {

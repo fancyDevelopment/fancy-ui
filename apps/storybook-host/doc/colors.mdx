@@ -1,0 +1,164 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Intro/Colors" />
+
+# Colors
+
+The following diagram displays the color palette specfied by the individual design tokens.
+
+<div className="grid grid-cols-6">
+
+  <div className="bg-primary-background h-16 p-2 flex items-end">
+    <span className="text-on-primary-background">Primary Background</span>
+  </div>
+  <div className="bg-primary-container h-16 p-2 flex items-end">
+    <span className="text-on-primary-container">Primary Container</span>
+  </div>
+  <div className="bg-primary h-16 p-2 flex items-end">
+    <span className="text-on-primary">Primary</span>
+  </div>
+  <div className="bg-on-primary h-16 p-2 flex items-end">
+    <span className="text-primary">On Primary</span>
+  </div>
+  <div className="bg-on-primary-background h-16 p-2 flex items-end">
+    <span className="text-primary-background">On Primary Background</span>
+  </div>
+  <div className="bg-on-primary-container h-16 p-2 flex items-end">
+    <span className="text-primary-container">On Primary Container</span>
+  </div>
+
+  <div className="bg-secondary-background h-16 p-2 flex items-end">
+    <span className="text-on-secondary-background">Secondary Background</span>
+  </div>
+  <div className="bg-secondary-container h-16 p-2 flex items-end">
+    <span className="text-on-secondary-container">Secondary Container</span>
+  </div>
+  <div className="bg-secondary h-16 p-2 flex items-end">
+    <span className="text-on-secondary">Secondary</span>
+  </div>
+  <div className="bg-on-secondary h-16 p-2 flex items-end">
+    <span className="text-secondary">On Secondary</span>
+  </div>
+  <div className="bg-on-secondary-background h-16 p-2 flex items-end">
+    <span className="text-secondary-background">On Secondary Background</span>
+  </div>
+  <div className="bg-on-secondary-container h-16 p-2 flex items-end">
+    <span className="text-secondary-container">On Secondary Container</span>
+  </div>
+
+  
+  <div className="bg-accent-background h-16 p-2 flex items-end">
+    <span className="text-on-accent-background">Accent Background</span>
+  </div>
+  <div className="bg-accent-container h-16 p-2 flex items-end">
+    <span className="text-on-accent-container">Accent Container</span>
+  </div>
+  <div className="bg-accent h-16 p-2 flex items-end">
+    <span className="text-on-accent">Accent</span>
+  </div>
+  <div className="bg-on-accent h-16 p-2 flex items-end">
+    <span className="text-accent">On Accent</span>
+  </div>
+  <div className="bg-on-accent-background h-16 p-2 flex items-end">
+    <span className="text-accent-background">On Accent Background</span>
+  </div>
+  <div className="bg-on-accent-container h-16 p-2 flex items-end">
+    <span className="text-accent-container">On Accent Container</span>
+  </div>
+
+  <div className="bg-shade h-16 p-2 flex items-end col-span-2">
+    <span className="text-on-primary-background">Shade</span>
+  </div>
+  <div className="bg-tint h-16 p-2 flex items-end col-span-2">
+    <span className="text-on-primary-background">Tint</span>
+  </div>
+  <div className="bg-success h-16 p-2 flex items-end">
+    <span className="text-on-primary">Success</span>
+  </div>
+  <div className="bg-error h-16 p-2 flex items-end">
+    <span className="text-on-primary">Error</span>
+  </div>
+
+  <div className="bg-background h-16 p-2 flex items-end col-span-2">
+    <span className="text-on-primary-background">Background</span>
+  </div>
+  <div className="bg-background-variant h-16 p-2 flex items-end col-span-2">
+    <span className="text-on-primary-background">Background Variant</span>
+  </div>
+  <div className="bg-outline h-16 p-2 flex items-end">
+    <span className="text-on-primary">Outline</span>
+  </div>
+  <div className="bg-hover h-16 p-2 flex items-end">
+    <span className="text-on-primary">Hover</span>
+  </div>
+
+</div>
+
+# How to use
+
+The main colors can be reference by a matris about meaning of the content (primary, secondary, accent) and target of the usage (background, container, default). Each
+of those colors also provides a color which is intendet to be used on top the this color with the `on` prefix. Besides those colors, there are also other colors for 
+special purposes.
+
+## Meaning of Content
+
+- Primary
+
+  Use the primary color for content and controls which is the most importand on the current view. 
+
+- Secondary
+
+  Use the secondary color for content and controls wich supplement the primary content and controls. 
+
+- Accent
+
+  Use the accent color if you want to set an accent to a specific item on your view or to catch the focus of the user for special items on the view.
+
+## Target of the usage
+
+- Background
+
+  Use the background type of the color if you want to use it as background.
+
+- Container
+
+  Use the container type of the color if you want to use it as a container for content, for instance a card, table or other controls which can contain content.
+
+- default
+
+  Use the default type of the color for small items which are intented to get the focus of the user, for instance buttons, checkboxes, etc.
+
+
+## Other Colors
+
+- Shade
+
+  Use this color to shade the background at the place you use this color
+
+- Tint
+
+  Use this color to tint the background at the place you use this color
+
+- Succsss
+
+  Use this color for success notifications and hints
+
+- Error
+
+  Use this color for error notifications and hints
+
+- Background
+
+  This color is automatically used as the main background color for the entire application
+
+- Background Variant
+
+  This color is used for containers which need to be some kind of a layer above the background
+
+- Outline
+
+  This color is used for outlining content
+
+- Hover
+
+  This color is used to shade the background on hovering an item. 

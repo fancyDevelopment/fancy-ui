@@ -7,6 +7,6 @@ import { NgIconComponent } from '@ng-icons/core';
   imports: [NgIconComponent],
   template: `<ng-icon [name]="name()"></ng-icon>`
 })
-export class FuiIconComponent {
+export class IconComponent {
   name = input.required<string>();
 }

@@ -1,1 +1,3 @@
-export * from './lib/fui-icon/fui-icon.component';
+export * from './lib/icon/icon.component';
+
+export * from './lib/provide';
