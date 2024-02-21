@@ -1,0 +1,21 @@
+<div class="flex bg-background absolute inset-0 group fui-shell group shell" [ngClass]="{ 'with-left-template': _leftTemplate() }">
+  <div>
+    @if(_leftTemplate()) {
+      <ng-container [ngTemplateOutlet]="_leftTemplate() ?? null" />
+    }
+  </div>
+  <div class="flex-1 min-w-0">
+    <div class="flex flex-col h-full">
+      <div class="flex-grow overflow-hidden md:pl-0">
+        @if(_mainContentTemplate()) {
+          <ng-container [ngTemplateOutlet]="_mainContentTemplate() ?? null" />
+        }
+      </div>
+      <div>
+        @if(_bottomTemplate()) {
+          <ng-container [ngTemplateOutlet]="_bottomTemplate() ?? null" />
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FuiIconComponent } from 'fancy-ui-core';
+import { IconComponent } from 'fancy-ui-core';
 import { AppBarActionComponent, AppBarComponent } from 'fancy-ui-shell';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, FuiIconComponent, AppBarComponent, AppBarActionComponent],
+  imports: [RouterModule, IconComponent, AppBarComponent, AppBarActionComponent],
   selector: 'org-root',
   templateUrl: './app.component.html',
 })

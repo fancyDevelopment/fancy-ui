@@ -1,0 +1,16 @@
+<div class="flex flex-col h-full w-20">
+    <div class="grow">
+        <!-- Navrail top -->
+    </div>
+    <div class="flex flex-col">
+        <!-- Navrail center -->
+        @for(item of _navrailItems(); track $index) {
+            <div class="my-[calc(theme(spacing.element)*2)]">
+                <ng-contianer [ngTemplateOutlet]="item._template() ?? null" />
+            </div>
+        }
+    </div>
+    <div class="grow">
+        <!-- Navrail bottom -->
+    </div>
+</div>

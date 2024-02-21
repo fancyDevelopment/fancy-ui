@@ -1,27 +1,27 @@
-import { Component, contentChildren, effect} from '@angular/core';
+import { Component, contentChildren, effect } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
-import { NavBarItemComponent } from './nav-bar-item.component';
+import { NavRailItemComponent } from './nav-rail-item.component';
 
 @Component({
-  selector: 'fui-nav-bar',
+  selector: 'fui-nav-rail',
   standalone: true,
   imports: [NgTemplateOutlet],
-  templateUrl: './nav-bar.component.html'
+  templateUrl: './nav-rail.component.html'
 })
-export class NavBarComponent {
-  _navBarItems = contentChildren(NavBarItemComponent);
-  _activeItem: NavBarItemComponent | null = null;
+export class NavRailComponent {
+  _navrailItems = contentChildren(NavRailItemComponent);
+  _activeItem: NavRailItemComponent | null = null;
 
   constructor() {
     effect(() => {
-      const navBarItems = this._navBarItems();
+      const navrailItems = this._navrailItems();
 
       if(this._activeItem === null) {
         // Initialize first element as active item
-        this._activeItem = navBarItems[0];
+        this._activeItem = navrailItems[0];
       } else {
         // Find new active item
-        for(const item of navBarItems) {
+        for(const item of navrailItems) {
           if(item.isActive() && item !== this._activeItem) {
             this._activeItem = item;
             break;
@@ -30,7 +30,7 @@ export class NavBarComponent {
       }
 
       // Update state of all childs
-      for(const item of navBarItems) {
+      for(const item of navrailItems) {
         if(item.isActive() && item !== this._activeItem) item.isActive.set(false);
         if(!item.isActive() && item === this._activeItem) item.isActive.set(true);
       }

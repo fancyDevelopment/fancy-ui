@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavBarItemComponent } from './nav-bar-item.component';
+import { ShellComponent } from './shell.component';
 
-describe('NavBarItemComponent', () => {
-  let component: NavBarItemComponent;
-  let fixture: ComponentFixture<NavBarItemComponent>;
+describe('ShellComponent', () => {
+  let component: ShellComponent;
+  let fixture: ComponentFixture<ShellComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavBarItemComponent],
+      imports: [ShellComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NavBarItemComponent);
+    fixture = TestBed.createComponent(ShellComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
