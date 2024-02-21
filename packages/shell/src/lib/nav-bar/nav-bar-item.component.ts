@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, TemplateRef, input, signal, viewChild } from '@angular/core';
+import { Component, TemplateRef, input, model, viewChild } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { IconComponent } from 'fancy-ui-core';
 import { Router } from '@angular/router';
@@ -32,15 +32,14 @@ export class NavBarItemComponent {
 
   routerLink = input<string | string[] | null>(null);
 
-  isActive = signal(false);
+  isActive = model(false);
 
   _template = viewChild<TemplateRef<unknown>>('template');
-
-  @Output() tap = new EventEmitter<void>();
 
   constructor(private router: Router) {}
 
   onTap() {
+    this.isActive.set(!this.isActive())
     const routerLink = this.routerLink();
     if(routerLink != null) {
       if(typeof routerLink === 'string') {
@@ -49,6 +48,5 @@ export class NavBarItemComponent {
         this.router.navigate(routerLink);
       }
     }
-    this.tap.emit();
   }
 }

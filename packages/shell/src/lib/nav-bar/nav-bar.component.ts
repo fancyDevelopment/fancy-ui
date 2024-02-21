@@ -10,29 +10,30 @@ import { NavBarItemComponent } from './nav-bar-item.component';
 })
 export class NavBarComponent {
   _navrailItems = contentChildren(NavBarItemComponent);
+  _activeItem: NavBarItemComponent | null = null;
 
   constructor() {
     effect(() => {
       const navrailItems = this._navrailItems();
 
-      if(navrailItems) {
+      if(this._activeItem === null) {
+        // Initialize first element as active item
+        this._activeItem = navrailItems[0];
+      } else {
+        // Find new active item
         for(const item of navrailItems) {
-          item.tap.subscribe(() => this.onItemTapped(item));
+          if(item.isActive() && item !== this._activeItem) {
+            this._activeItem = item;
+            break;
+          }
         }
       }
-    });
-  }
 
-  onItemTapped(tappedItem: NavBarItemComponent) {
-    const navrailItems = this._navrailItems();
-    if(navrailItems) {
+      // Update state of all childs
       for(const item of navrailItems) {
-        if(item === tappedItem) {
-          item.isActive.set(true);
-        } else {
-          item.isActive.set(false);
-        }
+        if(item.isActive() && item !== this._activeItem) item.isActive.set(false);
+        if(!item.isActive() && item === this._activeItem) item.isActive.set(true);
       }
-    }
+    }, { allowSignalWrites: true});
   }
 }
