@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'fui-card-content',
   standalone: true,
   template: `
-    <div>
+    <div class="py-element">
       <ng-content />
     </div>
   `

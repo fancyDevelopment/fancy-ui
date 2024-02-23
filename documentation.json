@@ -380,7 +380,7 @@
         },
         {
             "name": "CardActionsComponent",
-            "id": "component-CardActionsComponent-f9672131ea61776b8918a57dc2b5fea66f7a90e171ea3f4117503e5052a27de51689baf65bcb6876d42201c9bcb33e75f45f2517eef320c78fb0b611d3792aaf",
+            "id": "component-CardActionsComponent-dcf7880f4016518e9f8d290afb440638513a062b1bdb9df6da82900277c841cd8a14268c7b65717195a91dae42da1fee0885e2b81035a7579e59fb021ee14ffd",
             "file": "packages/content/src/lib/card/card-actions.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -390,7 +390,7 @@
             "selector": "fui-card-actions",
             "styleUrls": [],
             "styles": [],
-            "template": "<div class=\"-mx-component border-t border-shade h-component\"></div>\n<ng-content />\n",
+            "template": "<div class=\"border-t border-shade h-component\"></div>\n<ng-content />\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -407,7 +407,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'fui-card-actions',\n  standalone: true,\n  template:`\n    <div class=\"-mx-component border-t border-shade h-component\"></div>\n    <ng-content />\n  `\n})\nexport class CardActionsComponent {}\n",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'fui-card-actions',\n  standalone: true,\n  template:`\n    <div class=\"border-t border-shade h-component\"></div>\n    <ng-content />\n  `\n})\nexport class CardActionsComponent {}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -448,11 +448,11 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"rounded bg-primary-container text-on-primary-container p-element grid grid-cols-1 gap-component\">\n    <ng-content></ng-content>\n</div>\n"
+            "templateData": "<div class=\"rounded bg-primary-container text-on-primary-container p-element grid grid-cols-1 gap-element\">\n    <ng-content></ng-content>\n</div>\n"
         },
         {
             "name": "CardContentComponent",
-            "id": "component-CardContentComponent-6cfc171dee27fa4253ae02d18dcc69b4b5e0803b26283918a7529b1e1c1032c41021117e79b98b7774369e0911d5b38a0f3328e16b353f8bc284846639c80b46",
+            "id": "component-CardContentComponent-cf45f53bd75e80305cfcd87dd9f19ec7f4204107bb968b1ae3f0da3ce6b482cfc581cdc551327c3c26a5b5283fb8f5ed371849339fb34e39415147df116fccfb",
             "file": "packages/content/src/lib/card/card-content.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -462,7 +462,7 @@
             "selector": "fui-card-content",
             "styleUrls": [],
             "styles": [],
-            "template": "<div>\n  <ng-content />\n</div>\n",
+            "template": "<div class=\"py-element\">\n  <ng-content />\n</div>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -479,7 +479,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'fui-card-content',\n  standalone: true,\n  template: `\n    <div>\n      <ng-content />\n    </div>\n  `\n})\nexport class CardContentComponent {}\n",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'fui-card-content',\n  standalone: true,\n  template: `\n    <div class=\"py-element\">\n      <ng-content />\n    </div>\n  `\n})\nexport class CardContentComponent {}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -487,7 +487,7 @@
         },
         {
             "name": "CardHeaderComponent",
-            "id": "component-CardHeaderComponent-c25fe37f3cfbcb1a9e47e0dedc15acaee3fd4931ed07d5ab1db87faf21ca4a0db99e4a49581d2a25d84902ea2d57ac8b68a585a942a55209c078b8ccd465079f",
+            "id": "component-CardHeaderComponent-cdcdd721e71e2076dc3efba4070204d8be261e2c4c94df58f3b6e86722718cb0e755c8c7cd9f8188c13775e559146101c1185378bb2738682c20d7fc4d444222",
             "file": "packages/content/src/lib/card/card-header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -582,7 +582,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-card-header',\n  standalone: true,\n  imports: [NgTemplateOutlet, IconComponent],\n  template: `\n  <div class=\"flex\">\n    @if(imageSrc()) {\n      <div class=\"pr-element\">\n        <img class=\"object-cover rounded-element \n                    h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                    w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n      </div>\n    }\n    <div class=\"flex-1\">\n      <div class=\"flex items-center\">\n        <div class=\"flex-1\">\n          <div class=\"text-title font-light\">\n            @if(titleTemplateRef()) {\n              <ng-container *ngIf=\"titleTemplateRef\" [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n            }\n            @if(!titleTemplateRef() && title()) {\n              <span>{{title()}}</span>\n            }\n          </div>\n        </div>\n        @if(moreTap.observers.length) {\n          <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n          <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n          </div>\n          <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\"></fui-icon>\n        </a>\n        }\n      </div>\n      @if(subtitleTemplateRef() || subtitle()) {\n        <div class=\"text-subtitle\">\n          @if(subtitleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n          }\n          @if(!subtitleTemplateRef()) {\n            <span>{{subtitle()}}</span>\n          }\n        </div>\n      }\n    </div>\n  </div>\n  `\n})\nexport class CardHeaderComponent {\n\n  titleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  title = input('');\n\n  subtitleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  subtitle = input('');\n\n  imageSrc = input<string | null>(null);\n  \n  @Output()\n  moreTap = new EventEmitter();\n}\n\n",
+            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-card-header',\n  standalone: true,\n  imports: [NgTemplateOutlet, IconComponent],\n  template: `\n  <div class=\"flex\">\n    @if(imageSrc()) {\n      <div class=\"pr-element\">\n        <img class=\"object-cover rounded-element \n                    h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                    w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n      </div>\n    }\n    <div class=\"flex-1\">\n      <div class=\"flex items-center\">\n        <div class=\"flex-1\">\n          <div class=\"text-title font-light\">\n            @if(titleTemplateRef()) {\n              <ng-container *ngIf=\"titleTemplateRef\" [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n            }\n            @if(!titleTemplateRef() && title()) {\n              <span>{{title()}}</span>\n            }\n          </div>\n        </div>\n        @if(moreTap.observers.length) {\n          <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n          <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n          </div>\n          <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\"></fui-icon>\n        </a>\n        }\n      </div>\n      @if(subtitleTemplateRef() || subtitle()) {\n        <div class=\"text-subtitle\">\n          @if(subtitleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n          }\n          @if(!subtitleTemplateRef()) {\n            <span>{{subtitle()}}</span>\n          }\n        </div>\n      }\n    </div>\n  </div>\n  `\n})\nexport class CardHeaderComponent {\n\n  titleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  title = input('');\n\n  subtitleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  subtitle = input('');\n\n  imageSrc = input<string | null>(null);\n  \n  @Output()\n  moreTap = new EventEmitter();\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -590,7 +590,7 @@
         },
         {
             "name": "CardImageComponent",
-            "id": "component-CardImageComponent-13a65d14b34c793446d786a9b85489e24eb86124c2741a7e33f0071f997a100c4f8ebe163e20982b76fcfeb88feba3a6b0d42dabc7932bd8ba36893e93ce7f06",
+            "id": "component-CardImageComponent-ba88471139cc2d5bd4d52d8ead66c23430918e530111acb9ac4e176f4186826853b276440466ff102473e7b791bbc336b4f4948b27b1747d8cce106462b71166",
             "file": "packages/content/src/lib/card/card-image.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -600,7 +600,7 @@
             "selector": "fui-card-image",
             "styleUrls": [],
             "styles": [],
-            "template": "<div class=\"group-first:-mt-element group-first:-ml-element group-first:-mr-element group-last:-mb-element relative group-last:-ml-element group-last:-mr-element\">\n   <img class=\"object-cover w-full h-full rounded-component [:not(:first-child)]:px-element group-first:rounded-t group-last:rounded-b\" [src]=\"src()\">\n     <div class=\"absolute top-0 left-0 right-0 p-component\">\n       <div class=\"flex items-center\">\n         <div class=\"flex-1\">\n           <div class=\"text-title font-light\">{{title()}}</div>\n         </div>\n         @if(moreTap.observers.length) {\n           <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n             <div class=\"absolute w-hover h-hover rounded transition-all duration-500 hover:bg-hover\"></div>\n             <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n           </a>\n         }\n       </div>\n       @if(subtitle()) {\n         <div class=\"text-subtitle\">{{subtitle()}}</div>\n       }\n     </div>\n </div>\n",
+            "template": "<div class=\"group-first:-mt-element group-first:-ml-element group-first:-mr-element group-last:-mb-element relative group-last:-ml-element group-last:-mr-element\">\n   <img class=\"object-cover w-full h-full rounded-component [:not(:first-child)]:px-element group-first:rounded-t group-last:rounded-b\" [src]=\"src()\">\n     <div class=\"absolute top-0 left-0 right-0 p-element\">\n       <div class=\"flex items-center\">\n         <div class=\"flex-1\">\n           <div class=\"text-title font-light\">{{title()}}</div>\n         </div>\n         @if(moreTap.observers.length) {\n           <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n             <div class=\"absolute w-hover h-hover rounded transition-all duration-500 hover:bg-hover\"></div>\n             <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n           </a>\n         }\n       </div>\n       @if(subtitle()) {\n         <div class=\"text-subtitle\">{{subtitle()}}</div>\n       }\n     </div>\n </div>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -691,7 +691,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, HostBinding, Output, input } from '@angular/core';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-card-image',\n  standalone: true,\n  imports: [IconComponent],\n  template:`\n    \t<div class=\"group-first:-mt-element group-first:-ml-element group-first:-mr-element group-last:-mb-element relative group-last:-ml-element group-last:-mr-element\">\n        <img class=\"object-cover w-full h-full rounded-component [:not(:first-child)]:px-element group-first:rounded-t group-last:rounded-b\" [src]=\"src()\">\n          <div class=\"absolute top-0 left-0 right-0 p-component\">\n            <div class=\"flex items-center\">\n              <div class=\"flex-1\">\n                <div class=\"text-title font-light\">{{title()}}</div>\n              </div>\n              @if(moreTap.observers.length) {\n                <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n                  <div class=\"absolute w-hover h-hover rounded transition-all duration-500 hover:bg-hover\"></div>\n                  <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n                </a>\n              }\n            </div>\n            @if(subtitle()) {\n              <div class=\"text-subtitle\">{{subtitle()}}</div>\n            }\n          </div>\n      </div>\n  `\n})\nexport class CardImageComponent {\n  src = input('');\n  title = input('');\n  subtitle = input('');\n  @Output()\n  moreTap = new EventEmitter();\n  @HostBinding('class')\n  classes = 'group'\n}\n",
+            "sourceCode": "import { Component, EventEmitter, HostBinding, Output, input } from '@angular/core';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-card-image',\n  standalone: true,\n  imports: [IconComponent],\n  template:`\n    \t<div class=\"group-first:-mt-element group-first:-ml-element group-first:-mr-element group-last:-mb-element relative group-last:-ml-element group-last:-mr-element\">\n        <img class=\"object-cover w-full h-full rounded-component [:not(:first-child)]:px-element group-first:rounded-t group-last:rounded-b\" [src]=\"src()\">\n          <div class=\"absolute top-0 left-0 right-0 p-element\">\n            <div class=\"flex items-center\">\n              <div class=\"flex-1\">\n                <div class=\"text-title font-light\">{{title()}}</div>\n              </div>\n              @if(moreTap.observers.length) {\n                <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n                  <div class=\"absolute w-hover h-hover rounded transition-all duration-500 hover:bg-hover\"></div>\n                  <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n                </a>\n              }\n            </div>\n            @if(subtitle()) {\n              <div class=\"text-subtitle\">{{subtitle()}}</div>\n            }\n          </div>\n      </div>\n  `\n})\nexport class CardImageComponent {\n  src = input('');\n  title = input('');\n  subtitle = input('');\n  @Output()\n  moreTap = new EventEmitter();\n  @HostBinding('class')\n  classes = 'group'\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1473,21 +1473,21 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-rail>\r\n        <fui-nav-rail-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-rail>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-rail>\r\n        <fui-nav-rail-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-rail>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -1510,6 +1510,26 @@
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-view class=\"block h-screen\">\r\n        <fui-view-header>\r\n          <div class=\"bg-secondary text-on-secondary h-full flex justify-around p-5\">\r\n            Header\r\n          </div>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          <div class=\"bg-primary text-on-primary h-full flex justify-around p-5\">\r\n            Main Content\r\n          </div>\r\n        </fui-view-main-content>\r\n        <fui-view-footer>\r\n          <div class=\"bg-accent text-on-accent flex justify-around p-5\">\r\n            Footer\r\n          </div>\r\n        </fui-view-footer>\r\n      </fui-view>\r\n    `\r\n  })\r\n}"
             },
             {
+                "name": "CardGrid",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-3 lg:grid-cols-6 gap-component\">\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "CardInContent",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid gap-component\">\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n              <fui-card class=\"max-w-md\">\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+            },
+            {
                 "name": "config",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1527,7 +1547,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card [meaning]=\"meaning\">\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" imageSrc=\"https://placehold.co/300x200?text=YI\" (moreTap)=\"onMoreTap()\" />\r\n        <fui-card-content>Some Content</fui-card-content>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" imageSrc=\"https://placehold.co/300x200?text=YI\" (moreTap)=\"onMoreTap()\" />\r\n        <fui-card-content>Some Content</fui-card-content>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "HeadingImage",
@@ -1537,7 +1557,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card [meaning]=\"meaning\">\r\n        <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "ImageInBetween",
@@ -1547,7 +1567,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card [meaning]=\"meaning\">\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\" />\r\n        <fui-card-image src=\"https://placehold.co/300x200?text=Your+Image\" />\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\" />\r\n        <fui-card-image src=\"https://placehold.co/300x200?text=Your+Image\" />\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "meta",
@@ -1567,7 +1587,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<ShellComponent>",
-                "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, ButtonComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -1603,21 +1623,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<NavRailComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Shell/Nav Rail',\r\n  component: NavRailComponent,\r\n  subcomponents: { NavRailItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavRailComponent, NavRailItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<NavBarComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<NavRailComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Shell/Nav Rail',\r\n  component: NavRailComponent,\r\n  subcomponents: { NavRailItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavRailComponent, NavRailItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -1660,16 +1680,6 @@
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <fui-nav-bar>\r\n          <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n          <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n          <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n        </fui-nav-bar>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
-                "name": "NavBarOnly",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <fui-nav-bar>\r\n          <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n          <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n          <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n        </fui-nav-bar>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
-            },
-            {
                 "name": "NavRailOnly",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1680,30 +1690,10 @@
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
-                "name": "NavRailOnly",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
-            },
-            {
                 "name": "NoNavs",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            Main Content here!\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "NoNavs",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -1740,16 +1730,6 @@
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
-                "name": "ResponsiveNavs",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
-            },
-            {
                 "name": "UpToThreeActions",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1767,7 +1747,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card [meaning]=\"meaning\">\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
             }
         ],
         "functions": [],
@@ -1831,8 +1811,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<NavRailComponent>",
-                "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
+                "rawtype": "StoryObj<NavBarComponent>",
+                "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1842,8 +1822,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<NavBarComponent>",
-                "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                "rawtype": "StoryObj<NavRailComponent>",
+                "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1893,7 +1873,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card [meaning]=\"meaning\">\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" imageSrc=\"https://placehold.co/300x200?text=YI\" (moreTap)=\"onMoreTap()\" />\r\n        <fui-card-content>Some Content</fui-card-content>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" imageSrc=\"https://placehold.co/300x200?text=YI\" (moreTap)=\"onMoreTap()\" />\r\n        <fui-card-content>Some Content</fui-card-content>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
                 },
                 {
                     "name": "HeadingImage",
@@ -1903,7 +1883,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card [meaning]=\"meaning\">\r\n        <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
                 },
                 {
                     "name": "ImageInBetween",
@@ -1913,7 +1893,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card [meaning]=\"meaning\">\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\" />\r\n        <fui-card-image src=\"https://placehold.co/300x200?text=Your+Image\" />\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\" />\r\n        <fui-card-image src=\"https://placehold.co/300x200?text=Your+Image\" />\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
                 },
                 {
                     "name": "meta",
@@ -1933,7 +1913,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card [meaning]=\"meaning\">\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
                 }
             ],
             "packages/core/src/lib/button/button.stories.ts": [
@@ -2000,28 +1980,6 @@
                     "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"matHomeOutline\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"heroUsers\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"matSettingsOutline\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    // const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    // userEvent.click(action2);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    // const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    // userEvent.click(action3);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
                 }
             ],
-            "packages/shell/src/lib/nav-rail/nav-rail.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-rail>\r\n        <fui-nav-rail-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-rail>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<NavRailComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Rail',\r\n  component: NavRailComponent,\r\n  subcomponents: { NavRailItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavRailComponent, NavRailItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
             "packages/shell/src/lib/nav-bar/nav-bar.stories.ts": [
                 {
                     "name": "Basic",
@@ -2042,6 +2000,28 @@
                     "deprecationMessage": "",
                     "type": "Meta<NavBarComponent>",
                     "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
+            "packages/shell/src/lib/nav-rail/nav-rail.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-rail>\r\n        <fui-nav-rail-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-rail>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<NavRailComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Rail',\r\n  component: NavRailComponent,\r\n  subcomponents: { NavRailItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavRailComponent, NavRailItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/shell/src/lib/shell/shell.stories.ts": [
@@ -2096,6 +2076,38 @@
                     "deprecationMessage": "",
                     "type": "Meta<ViewComponent>",
                     "defaultValue": "{\r\n  title: 'Components/Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
+            "apps/storybook-host/stories/compositions.card-layouts.stories.ts": [
+                {
+                    "name": "CardGrid",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-3 lg:grid-cols-6 gap-component\">\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "CardInContent",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid gap-component\">\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n              <fui-card class=\"max-w-md\">\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ShellComponent>",
+                    "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, ButtonComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "apps/storybook-host/.storybook/main.ts": [
@@ -2156,58 +2168,6 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
-                }
-            ],
-            "apps/storybook-host/stories/compositions.card-layouts.stories.ts": [
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<ShellComponent>",
-                    "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
-                },
-                {
-                    "name": "NavBarOnly",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <fui-nav-bar>\r\n          <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n          <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n          <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n        </fui-nav-bar>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "NavRailOnly",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "NoNavs",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            Main Content here!\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "ResponsiveNavs",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -2295,19 +2255,6 @@
                     "kind": 183
                 }
             ],
-            "packages/shell/src/lib/nav-rail/nav-rail.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<NavRailComponent>",
-                    "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "packages/shell/src/lib/nav-bar/nav-bar.stories.ts": [
                 {
                     "name": "Story",
@@ -2315,6 +2262,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<NavBarComponent>",
                     "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/shell/src/lib/nav-rail/nav-rail.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<NavRailComponent>",
+                    "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -2429,47 +2389,27 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "CardGrid",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CardInContent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "meta",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "NavBarOnly",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "NavRailOnly",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "NoNavs",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "ResponsiveNavs",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

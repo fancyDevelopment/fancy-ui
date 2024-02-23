@@ -53,7 +53,7 @@ module.exports = {
         'rim/2': '4px',
         'component': '10px',
         'component/2': '5px',
-        'element': '12px',
+        'element': '10px',
         'icon': '24px',
         'iconX2': '48px',
         'hover': '48px',

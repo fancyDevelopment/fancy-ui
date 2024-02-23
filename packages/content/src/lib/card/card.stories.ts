@@ -53,7 +53,7 @@ export const WithActions: Story = {
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
     template: `
-      <fui-card [meaning]="meaning">
+      <fui-card>
         <fui-card-header [title]="title" [subtitle]="subtitle" (moreTap)="onMoreTap()"/>
         <fui-card-content>Some Content</fui-card-content>
         <fui-card-actions><fui-button label="Button" /></fui-card-actions>
@@ -71,7 +71,7 @@ export const HeaderWithImage: Story = {
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
     template: `
-      <fui-card [meaning]="meaning">
+      <fui-card>
         <fui-card-header [title]="title" [subtitle]="subtitle" imageSrc="https://placehold.co/300x200?text=YI" (moreTap)="onMoreTap()" />
         <fui-card-content>Some Content</fui-card-content>
       </fui-card>
@@ -88,7 +88,7 @@ export const HeadingImage: Story = {
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
     template: `
-      <fui-card [meaning]="meaning">
+      <fui-card>
         <fui-card-image src="https://placehold.co/300x150?text=Your+Image" [title]="title" [subtitle]="subtitle" (moreTap)="onMoreTap()"/>
         <fui-card-content>Some Content</fui-card-content>
         <fui-card-actions><fui-button label="Button" /></fui-card-actions>
@@ -106,7 +106,7 @@ export const ImageInBetween: Story = {
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
     template: `
-      <fui-card [meaning]="meaning">
+      <fui-card>
         <fui-card-header [title]="title" [subtitle]="subtitle" (moreTap)="onMoreTap()" />
         <fui-card-image src="https://placehold.co/300x200?text=Your+Image" />
         <fui-card-content>Some Content</fui-card-content>
