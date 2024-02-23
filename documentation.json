@@ -262,7 +262,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"h-16 z-10 flex justify-between bg-background\">\r\n  <div class=\"flex items-center group-[.shell]:-ml-rim min-w-0\">\r\n    <!-- Back navigation button -->\r\n    @if(showBackButton()) {\r\n      <a class=\"w-hover h-hover flex flex-none justify-center items-center\" (click)=\"_navigateBack()\">\r\n        <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n        <fui-icon class=\"h-icon w-icon\" name=\"heroArrowLeft\" />\r\n      </a>\r\n    }\r\n    <!-- View title -->\r\n    <div class=\"ml-element mb-1 text-xl min-w-0 truncate\">{{ title() }}</div>\r\n  </div>\r\n\r\n  <!-- Global View Actions as icons in header -->\r\n  <div class=\"hidden flex-none sm:flex items-center h-full group-[.shell]:-mr-3\">\r\n    @for(action of _viewHeaderActions(); track $index) {\r\n      <ng-container [ngTemplateOutlet]=\"action._template() ?? null\" />\r\n    }\r\n  </div>\r\n\r\n  @if(_viewHeaderActions(); as actions) {\r\n    <!-- Global View Actions within dropdown -->\r\n    <div class=\"sm:hidden flex-none flex items-center h-full group-[.shell]:-mr-3\">\r\n      @if(actions.length >= 1) {\r\n        <!-- Always show first icon -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[0]._template() ?? null\" />\r\n      }\r\n      @if(actions.length >= 2) {\r\n        <!-- Always show second icon -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[1]._template() ?? null\" />\r\n      }\r\n      @if(actions.length === 3) {\r\n        <!-- Show econd third button only if not more -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[2]._template() ?? null\" />\r\n      }\r\n      <!-- Show more button in case of more than 3 actions-->\r\n      @if(actions.length > 3) {\r\n        <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_openActionsDropdown()\">\r\n          <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n          <fui-icon class=\"h-6 w-6 self-center\" name=\"matMoreVertOutline\"></fui-icon>\r\n        </a>\r\n      }\r\n\r\n      <!-- Dropdown Menu -->\r\n      @if(actions.length > 3 && _viewActionsDropdownIsOpen) {\r\n        <div class=\"absolute right-2 top-20 rounded bg-background shadow animate-fadeIn\">\r\n          <div>\r\n            @for(action of actions | slice : 2; track $index) {\r\n              <ng-container [ngTemplateOutlet]=\"action._mobileTemplate() ?? null\" />\r\n            }\r\n          </div>\r\n        </div>\r\n      }\r\n    </div>\r\n  }\r\n</div>\r\n"
+            "templateData": "<div class=\"h-16 z-10 flex justify-between bg-background\">\r\n  <div class=\"flex items-center group-[.shell]:-ml-rim min-w-0\">\r\n    <!-- Back navigation button -->\r\n    @if(showBackButton()) {\r\n      <a class=\"w-hover h-hover flex flex-none justify-center items-center\" (click)=\"_navigateBack()\">\r\n        <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n        <fui-icon class=\"h-icon w-icon\" name=\"heroArrowLeft\" />\r\n      </a>\r\n    }\r\n    <!-- View title -->\r\n    <div class=\"mb-1 text-xl min-w-0 truncate\">{{ title() }}</div>\r\n  </div>\r\n\r\n  <!-- Global View Actions as icons in header -->\r\n  <div class=\"hidden flex-none sm:flex items-center h-full group-[.shell]:-mr-3\">\r\n    @for(action of _viewHeaderActions(); track $index) {\r\n      <ng-container [ngTemplateOutlet]=\"action._template() ?? null\" />\r\n    }\r\n  </div>\r\n\r\n  @if(_viewHeaderActions(); as actions) {\r\n    <!-- Global View Actions within dropdown -->\r\n    <div class=\"sm:hidden flex-none flex items-center h-full group-[.shell]:-mr-3\">\r\n      @if(actions.length >= 1) {\r\n        <!-- Always show first icon -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[0]._template() ?? null\" />\r\n      }\r\n      @if(actions.length >= 2) {\r\n        <!-- Always show second icon -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[1]._template() ?? null\" />\r\n      }\r\n      @if(actions.length === 3) {\r\n        <!-- Show econd third button only if not more -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[2]._template() ?? null\" />\r\n      }\r\n      <!-- Show more button in case of more than 3 actions-->\r\n      @if(actions.length > 3) {\r\n        <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_openActionsDropdown()\">\r\n          <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n          <fui-icon class=\"h-6 w-6 self-center\" name=\"matMoreVertOutline\"></fui-icon>\r\n        </a>\r\n      }\r\n\r\n      <!-- Dropdown Menu -->\r\n      @if(actions.length > 3 && _viewActionsDropdownIsOpen) {\r\n        <div class=\"absolute right-2 top-20 rounded bg-background shadow animate-fadeIn\">\r\n          <div>\r\n            @for(action of actions | slice : 2; track $index) {\r\n              <ng-container [ngTemplateOutlet]=\"action._mobileTemplate() ?? null\" />\r\n            }\r\n          </div>\r\n        </div>\r\n      }\r\n    </div>\r\n  }\r\n</div>\r\n"
         },
         {
             "name": "IconComponent",
@@ -317,7 +317,7 @@
         },
         {
             "name": "NavBarComponent",
-            "id": "component-NavBarComponent-ee76068f2f673779f5a36d5074ee42f8b8e513f94b7b1d15965d5045e7970c2aca29cf16426d5568a93b9fa0cce396b3b7de2efc20bf2a3c5967595a249df005",
+            "id": "component-NavBarComponent-6ae928b6c3896f9cb9a6d1645f469becf498ba0b1e24be4555e2bd9723cf545a8f4c87cde14fdec217b78139919cbdbc026583fef1288f3f84435d701f96088c",
             "file": "packages/shell/src/lib/nav-bar/nav-bar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -335,16 +335,6 @@
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
-                {
-                    "name": "_activeItem",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "NavBarItemComponent | null",
-                    "optional": false,
-                    "description": "",
-                    "line": 13
-                },
                 {
                     "name": "_navBarItems",
                     "defaultValue": "contentChildren(NavBarItemComponent)",
@@ -370,24 +360,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, contentChildren, effect} from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { NavBarItemComponent } from './nav-bar-item.component';\n\n@Component({\n  selector: 'fui-nav-bar',\n  standalone: true,\n  imports: [NgTemplateOutlet],\n  templateUrl: './nav-bar.component.html'\n})\nexport class NavBarComponent {\n  _navBarItems = contentChildren(NavBarItemComponent);\n  _activeItem: NavBarItemComponent | null = null;\n\n  constructor() {\n    effect(() => {\n      const navBarItems = this._navBarItems();\n\n      if(this._activeItem === null) {\n        // Initialize first element as active item\n        this._activeItem = navBarItems[0];\n      } else {\n        // Find new active item\n        for(const item of navBarItems) {\n          if(item.isActive() && item !== this._activeItem) {\n            this._activeItem = item;\n            break;\n          }\n        }\n      }\n\n      // Update state of all childs\n      for(const item of navBarItems) {\n        if(item.isActive() && item !== this._activeItem) item.isActive.set(false);\n        if(!item.isActive() && item === this._activeItem) item.isActive.set(true);\n      }\n    }, { allowSignalWrites: true});\n  }\n}\n",
+            "sourceCode": "import { Component, contentChildren } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { NavBarItemComponent } from './nav-bar-item.component';\n\n@Component({\n  selector: 'fui-nav-bar',\n  standalone: true,\n  imports: [NgTemplateOutlet],\n  templateUrl: './nav-bar.component.html'\n})\nexport class NavBarComponent {\n  _navBarItems = contentChildren(NavBarItemComponent);\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 13
-            },
             "extends": [],
-            "templateData": "<div class=\"flex justify-around pt-3 pb-rim bg-background-variant\">\n    @for(item of _navrailItems(); track $index) {\n        <div>\n            <ng-contianer [ngTemplateOutlet]=\"item._template() ?? null\" />\n        </div>\n    }\n</div>\n"
+            "templateData": "<div class=\"flex justify-around pt-3 pb-rim bg-background-variant\">\n    @for(item of _navBarItems(); track $index) {\n        <div>\n            <ng-contianer [ngTemplateOutlet]=\"item._template() ?? null\" />\n        </div>\n    }\n</div>\n"
         },
         {
             "name": "NavBarItemComponent",
-            "id": "component-NavBarItemComponent-ba7a87c323494098b7a88595d1b1ea19d14487192749abf125f285da0be0d3f7f5eb6ae79dd124bd1a52847cf130da53e46c4653ad37ae8a9e233b429cf5c7f2",
+            "id": "component-NavBarItemComponent-02385dfe5844799a69f36435b6dea2e3fbf10a2fab0ce272c130acf6c80e207adee1430f4ef6327d4d65fee1942ca1d9395a11fa5a14580dfd3a9fbf60d9c186",
             "file": "packages/shell/src/lib/nav-bar/nav-bar-item.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -412,7 +394,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 37
+                    "line": 38
                 },
                 {
                     "name": "iconName",
@@ -422,7 +404,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 29
+                    "line": 30
                 },
                 {
                     "name": "isActive",
@@ -432,7 +414,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 35
+                    "line": 36
                 },
                 {
                     "name": "label",
@@ -442,7 +424,27 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 31
+                    "line": 32
+                },
+                {
+                    "name": "navService",
+                    "defaultValue": "inject(NavService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 41
+                },
+                {
+                    "name": "router",
+                    "defaultValue": "inject(Router)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 40
                 },
                 {
                     "name": "routerLink",
@@ -452,17 +454,37 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 33
+                    "line": 34
                 }
             ],
             "methodsClass": [
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 47,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
                 {
                     "name": "onTap",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -484,41 +506,19 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, TemplateRef, input, model, viewChild } from '@angular/core';\nimport { NgClass } from '@angular/common';\nimport { IconComponent } from 'fancy-ui-core';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'fui-nav-bar-item',\n  standalone: true,\n  imports: [NgClass, IconComponent],\n  template: `\n    <ng-template #template>\n      <div class=\"group/navitem flex flex-col justify-center\" (click)=\"onTap()\">\n        <div class=\"relative grid justify-items-center items-center\">\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] rounded-full transition-all duration-500\" [ngClass]=\"{ 'w-0': !isActive(), 'w-[calc(theme(spacing.hover)*1.1)] bg-shade': isActive() }\">\n          </div>\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] w-[calc(theme(spacing.hover)*1.1)] rounded-full transition-all duration-500  group-hover/navitem:bg-hover\">\n          </div>\n          <div class=\"h-icon w-icon z-10\">\n            <fui-icon [name]=\"iconName()\" [ngClass]=\"{ 'text-gray': !isActive() }\"/>\n          </div>\n        </div>\n        <div class=\"text-center text-xs font-semibold mt-element transition-all duration-500\" [ngClass]=\"{ 'text-gray': !isActive() }\">{{label()}}</div>\n      </div>\n    </ng-template>\n  `\n})\nexport class NavBarItemComponent {\n\n  iconName = input('');\n\n  label = input('');\n\n  routerLink = input<string | string[] | null>(null);\n\n  isActive = model(false);\n\n  _template = viewChild<TemplateRef<unknown>>('template');\n\n  constructor(private router: Router) {}\n\n  onTap() {\n    this.isActive.set(!this.isActive())\n    const routerLink = this.routerLink();\n    if(routerLink != null) {\n      if(typeof routerLink === 'string') {\n        this.router.navigate([routerLink]);\n      } else {\n        this.router.navigate(routerLink);\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import { Component, OnDestroy, OnInit, TemplateRef, inject, input, model, viewChild } from '@angular/core';\nimport { NgClass } from '@angular/common';\nimport { IconComponent } from 'fancy-ui-core';\nimport { Router } from '@angular/router';\nimport { NavService } from '../nav.service';\n\n@Component({\n  selector: 'fui-nav-bar-item',\n  standalone: true,\n  imports: [NgClass, IconComponent],\n  template: `\n    <ng-template #template>\n      <div class=\"group/navitem flex flex-col justify-center\" (click)=\"onTap()\">\n        <div class=\"relative grid justify-items-center items-center\">\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] rounded-full transition-all duration-500\" [ngClass]=\"{ 'w-0': !isActive(), 'w-[calc(theme(spacing.hover)*1.1)] bg-shade': isActive() }\">\n          </div>\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] w-[calc(theme(spacing.hover)*1.1)] rounded-full transition-all duration-500  group-hover/navitem:bg-hover\">\n          </div>\n          <div class=\"h-icon w-icon z-10\">\n            <fui-icon [name]=\"iconName()\" [ngClass]=\"{ 'text-gray': !isActive() }\"/>\n          </div>\n        </div>\n        <div class=\"text-center text-xs font-semibold mt-element transition-all duration-500\" [ngClass]=\"{ 'text-gray': !isActive() }\">{{label()}}</div>\n      </div>\n    </ng-template>\n  `\n})\nexport class NavBarItemComponent implements OnInit, OnDestroy {\n\n  iconName = input('');\n\n  label = input('');\n\n  routerLink = input<string | string[] | null>(null);\n\n  isActive = model(false);\n\n  _template = viewChild<TemplateRef<unknown>>('template');\n\n  router = inject(Router);\n  navService = inject(NavService);\n\n  ngOnInit(): void {\n    this.navService.registerNavBarItem(this);\n  }\n\n  ngOnDestroy(): void {\n    this.navService.unregisterNavBarItem(this);\n  }\n\n  onTap() {\n    this.isActive.set(!this.isActive())\n    const routerLink = this.routerLink();\n    if(routerLink != null) {\n      if(typeof routerLink === 'string') {\n        this.router.navigate([routerLink]);\n      } else {\n        this.router.navigate(routerLink);\n      }\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 37,
-                "jsdoctags": [
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "extends": []
+            "extends": [],
+            "implements": [
+                "OnInit",
+                "OnDestroy"
+            ]
         },
         {
             "name": "NavRailComponent",
-            "id": "component-NavRailComponent-97d18804b939eff2bbe08d17971cbd9586ebd2c020bbed63d19bbab0988595bec60e7800b8bd67e5df4629b380199dc0d8de09d64ca6fc808b3a450d3b928b3d",
+            "id": "component-NavRailComponent-334122fd5b123465e62dfbf3c18260fdac2d52af6190511f4762f56069007d55d41b8d388f5de6f74da51dad8a47558a7c714c551bfcc3ff169405aa87e173b4",
             "file": "packages/shell/src/lib/nav-rail/nav-rail.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -536,16 +536,6 @@
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
-                {
-                    "name": "_activeItem",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "NavRailItemComponent | null",
-                    "optional": false,
-                    "description": "",
-                    "line": 13
-                },
                 {
                     "name": "_navrailItems",
                     "defaultValue": "contentChildren(NavRailItemComponent)",
@@ -571,24 +561,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, contentChildren, effect } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { NavRailItemComponent } from './nav-rail-item.component';\n\n@Component({\n  selector: 'fui-nav-rail',\n  standalone: true,\n  imports: [NgTemplateOutlet],\n  templateUrl: './nav-rail.component.html'\n})\nexport class NavRailComponent {\n  _navrailItems = contentChildren(NavRailItemComponent);\n  _activeItem: NavRailItemComponent | null = null;\n\n  constructor() {\n    effect(() => {\n      const navrailItems = this._navrailItems();\n\n      if(this._activeItem === null) {\n        // Initialize first element as active item\n        this._activeItem = navrailItems[0];\n      } else {\n        // Find new active item\n        for(const item of navrailItems) {\n          if(item.isActive() && item !== this._activeItem) {\n            this._activeItem = item;\n            break;\n          }\n        }\n      }\n\n      // Update state of all childs\n      for(const item of navrailItems) {\n        if(item.isActive() && item !== this._activeItem) item.isActive.set(false);\n        if(!item.isActive() && item === this._activeItem) item.isActive.set(true);\n      }\n    }, { allowSignalWrites: true});\n  }\n}\n",
+            "sourceCode": "import { Component, contentChildren } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { NavRailItemComponent } from './nav-rail-item.component';\n\n@Component({\n  selector: 'fui-nav-rail',\n  standalone: true,\n  imports: [NgTemplateOutlet],\n  templateUrl: './nav-rail.component.html'\n})\nexport class NavRailComponent {\n  _navrailItems = contentChildren(NavRailItemComponent);\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 13
-            },
             "extends": [],
             "templateData": "<div class=\"flex flex-col h-full w-20\">\n    <div class=\"grow\">\n        <!-- Navrail top -->\n    </div>\n    <div class=\"flex flex-col\">\n        <!-- Navrail center -->\n        @for(item of _navrailItems(); track $index) {\n            <div class=\"my-[calc(theme(spacing.element)*2)]\">\n                <ng-contianer [ngTemplateOutlet]=\"item._template() ?? null\" />\n            </div>\n        }\n    </div>\n    <div class=\"grow\">\n        <!-- Navrail bottom -->\n    </div>\n</div>\n"
         },
         {
             "name": "NavRailItemComponent",
-            "id": "component-NavRailItemComponent-b042a780ba0f9efe273b4ada0e36d6f3787f09132ff14f684dbeefc6f16f7852462083a2ff3eefa3544232656a93f0f574adc624323405bd62edb16ec2a14eed",
+            "id": "component-NavRailItemComponent-f29ccefe5f2bc03ff53eba73832dd93a645cf03017a9d5350c11aef041e94376c1d9d2126c4bb11e4c80ec2c1c91cdab512940982b0ef6dac7b0df5713c3ecd4",
             "file": "packages/shell/src/lib/nav-rail/nav-rail-item.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -613,7 +595,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 34
+                    "line": 35
                 },
                 {
                     "name": "iconName",
@@ -623,7 +605,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 28
+                    "line": 29
                 },
                 {
                     "name": "isActive",
@@ -633,7 +615,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 32
+                    "line": 33
                 },
                 {
                     "name": "label",
@@ -643,7 +625,17 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 29
+                    "line": 30
+                },
+                {
+                    "name": "navService",
+                    "defaultValue": "inject(NavService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 38
                 },
                 {
                     "name": "router",
@@ -653,10 +645,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 36,
-                    "modifierKind": [
-                        123
-                    ]
+                    "line": 37
                 },
                 {
                     "name": "routerLink",
@@ -666,17 +655,37 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 30
+                    "line": 31
                 }
             ],
             "methodsClass": [
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 40,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
                 {
                     "name": "onTap",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 38,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -698,11 +707,15 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, TemplateRef, inject, input, model, viewChild } from '@angular/core';\nimport { IconComponent } from 'fancy-ui-core';\nimport { Router } from '@angular/router';\nimport { NgClass } from '@angular/common';\n\n@Component({\n  selector: 'fui-nav-rail-item',\n  standalone: true,\n  imports: [NgClass, IconComponent],\n  template: `\n    <ng-template #template>\n      <div class=\"group/navitem flex flex-col justify-center\" (click)=\"onTap()\">\n        <div class=\"relative grid justify-items-center items-center\">\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] rounded-full transition-all duration-500\" [ngClass]=\"{ 'w-0': !isActive(), 'w-[calc(theme(spacing.hover)*1.1)] bg-background-variant': isActive() }\">\n          </div>\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] w-[calc(theme(spacing.hover)*1.1)] rounded-full transition-all duration-500  group-hover/navitem:bg-hover\">\n          </div>\n          <div class=\"h-icon w-icon z-10\">\n            <fui-icon [name]=\"iconName()\" [ngClass]=\"{ 'text-gray': !isActive() }\"/>\n          </div>\n        </div>\n        <div class=\"text-center text-xs font-semibold mt-element transition-all duration-500\" [ngClass]=\"{ 'text-gray': !isActive() }\">{{label()}}</div>\n      </div>\n    </ng-template>\n  `\n})\nexport class NavRailItemComponent {\n  iconName = input('');\n  label = input('');\n  routerLink = input<string | string[] | null>(null);\n\n  isActive = model(false);\n\n  _template = viewChild<TemplateRef<unknown>>('template');\n\n  private router = inject(Router);\n\n  onTap() {\n    this.isActive.set(!this.isActive())\n    const routerLink = this.routerLink();\n    if(routerLink != null) {\n      if(typeof routerLink === 'string') {\n        this.router.navigate([routerLink]);\n      } else {\n        this.router.navigate(routerLink);\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import { Component, OnDestroy, OnInit, TemplateRef, inject, input, model, viewChild } from '@angular/core';\nimport { IconComponent } from 'fancy-ui-core';\nimport { Router } from '@angular/router';\nimport { NgClass } from '@angular/common';\nimport { NavService } from '../nav.service';\n\n@Component({\n  selector: 'fui-nav-rail-item',\n  standalone: true,\n  imports: [NgClass, IconComponent],\n  template: `\n    <ng-template #template>\n      <div class=\"group/navitem flex flex-col justify-center\" (click)=\"onTap()\">\n        <div class=\"relative grid justify-items-center items-center\">\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] rounded-full transition-all duration-500\" [ngClass]=\"{ 'w-0': !isActive(), 'w-[calc(theme(spacing.hover)*1.1)] bg-background-variant': isActive() }\">\n          </div>\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] w-[calc(theme(spacing.hover)*1.1)] rounded-full transition-all duration-500  group-hover/navitem:bg-hover\">\n          </div>\n          <div class=\"h-icon w-icon z-10\">\n            <fui-icon [name]=\"iconName()\" [ngClass]=\"{ 'text-gray': !isActive() }\"/>\n          </div>\n        </div>\n        <div class=\"text-center text-xs font-semibold mt-element transition-all duration-500\" [ngClass]=\"{ 'text-gray': !isActive() }\">{{label()}}</div>\n      </div>\n    </ng-template>\n  `\n})\nexport class NavRailItemComponent implements OnInit, OnDestroy {\n  iconName = input('');\n  label = input('');\n  routerLink = input<string | string[] | null>(null);\n\n  isActive = model(false);\n\n  _template = viewChild<TemplateRef<unknown>>('template');\n\n  router = inject(Router);\n  navService = inject(NavService);\n\n  ngOnInit(): void {\n    this.navService.registerNavRailItem(this);\n  }\n\n  ngOnDestroy(): void {\n    this.navService.unregisterNavRailItem(this);\n  }\n\n  onTap() {\n    this.isActive.set(!this.isActive())\n    const routerLink = this.routerLink();\n    if(routerLink != null) {\n      if(typeof routerLink === 'string') {\n        this.router.navigate([routerLink]);\n      } else {\n        this.router.navigate(routerLink);\n      }\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "extends": []
+            "extends": [],
+            "implements": [
+                "OnInit",
+                "OnDestroy"
+            ]
         },
         {
             "name": "ShellComponent",
@@ -777,7 +790,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"flex bg-background absolute inset-0 group fui-shell group shell\" [ngClass]=\"{ 'with-left-template': _leftTemplate() }\">\n  <div>\n    @if(_leftTemplate()) {\n      <ng-container [ngTemplateOutlet]=\"_leftTemplate() ?? null\" />\n    }\n  </div>\n  <div class=\"flex-1 min-w-0\">\n    <div class=\"flex flex-col h-full\">\n      <div class=\"flex-grow overflow-hidden md:pl-0\">\n        @if(_mainContentTemplate()) {\n          <ng-container [ngTemplateOutlet]=\"_mainContentTemplate() ?? null\" />\n        }\n      </div>\n      <div>\n        @if(_bottomTemplate()) {\n          <ng-container [ngTemplateOutlet]=\"_bottomTemplate() ?? null\" />\n        }\n      </div>\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"flex bg-background absolute inset-0 group fui-shell group\" [ngClass]=\"{ 'with-left-template': _leftTemplate() }\">\n  <div>\n    @if(_leftTemplate()) {\n      <ng-container [ngTemplateOutlet]=\"_leftTemplate() ?? null\" />\n    }\n  </div>\n  <div class=\"flex-1 min-w-0\">\n    <div class=\"flex flex-col h-full\">\n      <div class=\"flex-grow overflow-hidden md:pl-0\">\n        @if(_mainContentTemplate()) {\n          <ng-container [ngTemplateOutlet]=\"_mainContentTemplate() ?? null\" />\n        }\n      </div>\n      <div>\n        @if(_bottomTemplate()) {\n          <ng-container [ngTemplateOutlet]=\"_bottomTemplate() ?? null\" />\n        }\n      </div>\n    </div>\n  </div>\n</div>\n"
         },
         {
             "name": "ViewComponent",
@@ -997,16 +1010,6 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "apps/storybook-host/stories/view-composition.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"home\" label=\"Test1\" routerLink=\"card-view\"/>\r\n            <fui-nav-rail-item iconName=\"back\" label=\"Test2\" routerLink=\"fullscreen-view\"/>\r\n            <fui-nav-rail-item iconName=\"more\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        <router-outlet />\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"home\" label=\"Test1\" routerLink=\"card-view\"/>\r\n            <fui-nav-bar-item iconName=\"back\" label=\"Test2\" routerLink=\"fullscreen-view\"/>\r\n            <fui-nav-bar-item iconName=\"more\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1027,21 +1030,21 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/shell/src/lib/shell/shell.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-shell>\r\n        <ng-template #leftTemplate>\r\n          <div class=\"bg-secondary text-on-secondary h-full flex items-center p-5\">\r\n            Left Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #mainContentTemplate>\r\n          <div class=\"bg-primary text-on-primary h-full flex items-center justify-around\">\r\n            Main Content Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #bottomTemplate>\r\n          <div class=\"bg-accent text-on-accent flex justify-around p-5\">\r\n            Bottom Template\r\n          </div>\r\n        </ng-template>\r\n      </fui-shell>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-rail>\r\n        <fui-nav-rail-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-rail>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/shell/shell.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-shell>\r\n        <ng-template #leftTemplate>\r\n          <div class=\"bg-secondary text-on-secondary h-full flex items-center p-5\">\r\n            Left Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #mainContentTemplate>\r\n          <div class=\"bg-primary text-on-primary h-full flex items-center justify-around\">\r\n            Main Content Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #bottomTemplate>\r\n          <div class=\"bg-accent text-on-accent flex justify-around p-5\">\r\n            Bottom Template\r\n          </div>\r\n        </ng-template>\r\n      </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -1067,11 +1070,11 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "apps/storybook-host/stories/view-composition.stories.ts",
+                "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<ShellComponent>",
-                "defaultValue": "{\r\n  title: 'View Compositions',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, ViewBundle],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "defaultValue": "{\r\n  title: 'Compositions/Basic Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -1081,7 +1084,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<AppBarComponent>",
-                "defaultValue": "{\r\n  title: 'Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "defaultValue": "{\r\n  title: 'Components/Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -1091,17 +1094,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<NavBarComponent>",
-                "defaultValue": "{\r\n  title: 'Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/shell/src/lib/shell/shell.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<ShellComponent>",
-                "defaultValue": "{\r\n  title: 'Shell/Shell',\r\n  component: ShellComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -1111,7 +1104,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<NavRailComponent>",
-                "defaultValue": "{\r\n  title: 'Shell/Nav Rail',\r\n  component: NavRailComponent,\r\n  subcomponents: { NavRailItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavRailComponent, NavRailItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "defaultValue": "{\r\n  title: 'Components/Shell/Nav Rail',\r\n  component: NavRailComponent,\r\n  subcomponents: { NavRailItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavRailComponent, NavRailItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/shell/shell.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ShellComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Shell/Shell',\r\n  component: ShellComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -1121,7 +1124,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<ViewComponent>",
-                "defaultValue": "{\r\n  title: 'Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "defaultValue": "{\r\n  title: 'Components/Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "MoreThanThreeActions",
@@ -1134,6 +1137,36 @@
                 "defaultValue": "{\r\n  args: UpToThreeActions.args,\r\n  parameters: {\r\n    ...UpToThreeActions.parameters,\r\n    action4Label: 'Action 4',\r\n    action5Label: 'Action 5',\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"matHomeOutline\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"heroUsers\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"matSettingsOutline\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n        <fui-app-bar-action iconName=\"matArchiveOutline\" [label]=\"action4Label\" (tap)=\"onTap(action4Label)\" />\r\n        <fui-app-bar-action iconName=\"matCloudDoneOutline\" [label]=\"action5Label\" (tap)=\"onTap(action5Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters }) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    userEvent.click(action2);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    userEvent.click(action3);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n\r\n    const action4 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action4Label']});\r\n    userEvent.click(action4);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action4Label']);\r\n\r\n    const action5 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action5Label']});\r\n    userEvent.click(action5);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action5Label']);\r\n  }\r\n}"
             },
             {
+                "name": "NavBarOnly",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <fui-nav-bar>\r\n          <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n          <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n          <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n        </fui-nav-bar>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "NavRailOnly",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "NoNavs",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            Main Content here!\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+            },
+            {
                 "name": "parameters",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1141,7 +1174,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n    options: {\r\n      storySort: {\r\n        order: ['Intro', ['Introduction'], 'Shell', 'Content', 'Data', 'Controls'],\r\n      },\r\n    },\r\n    actions: { argTypesRegex: \"^on[A-Z].*\" },\r\n  }"
+                "defaultValue": "{\r\n    options: {\r\n      storySort: {\r\n        order: ['Intro', ['Introduction'], 'Components', 'Compositions'],\r\n      },\r\n    },\r\n    actions: { argTypesRegex: \"^on[A-Z].*\" },\r\n  }"
             },
             {
                 "name": "Responsive",
@@ -1152,6 +1185,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-shell>\r\n        <ng-template #leftTemplate>\r\n          <div class=\"hidden md:flex bg-secondary text-on-secondary h-full items-center p-5\">\r\n            Left Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #mainContentTemplate>\r\n          <div class=\"bg-primary text-on-primary h-full flex items-center justify-around\">\r\n            Main Content Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #bottomTemplate>\r\n          <div class=\"md:hidden bg-accent text-on-accent flex justify-around p-5\">\r\n            Bottom Template\r\n          </div>\r\n        </ng-template>\r\n      </fui-shell>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "ResponsiveNavs",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "UpToThreeActions",
@@ -1171,7 +1214,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "StoryObj<ShellComponent>",
-                "file": "apps/storybook-host/stories/view-composition.stories.ts",
+                "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1203,8 +1246,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<ShellComponent>",
-                "file": "packages/shell/src/lib/shell/shell.stories.ts",
+                "rawtype": "StoryObj<NavRailComponent>",
+                "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1214,8 +1257,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<NavRailComponent>",
-                "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
+                "rawtype": "StoryObj<ShellComponent>",
+                "file": "packages/shell/src/lib/shell/shell.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1235,28 +1278,6 @@
         ],
         "enumerations": [],
         "groupedVariables": {
-            "apps/storybook-host/stories/view-composition.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "apps/storybook-host/stories/view-composition.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"home\" label=\"Test1\" routerLink=\"card-view\"/>\r\n            <fui-nav-rail-item iconName=\"back\" label=\"Test2\" routerLink=\"fullscreen-view\"/>\r\n            <fui-nav-rail-item iconName=\"more\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        <router-outlet />\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"home\" label=\"Test1\" routerLink=\"card-view\"/>\r\n            <fui-nav-bar-item iconName=\"back\" label=\"Test2\" routerLink=\"fullscreen-view\"/>\r\n            <fui-nav-bar-item iconName=\"more\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "apps/storybook-host/stories/view-composition.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<ShellComponent>",
-                    "defaultValue": "{\r\n  title: 'View Compositions',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, ViewBundle],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
             "packages/shell/src/lib/app-bar/app-bar.stories.ts": [
                 {
                     "name": "Basic",
@@ -1276,7 +1297,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<AppBarComponent>",
-                    "defaultValue": "{\r\n  title: 'Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                    "defaultValue": "{\r\n  title: 'Components/Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 },
                 {
                     "name": "MoreThanThreeActions",
@@ -1318,39 +1339,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<NavBarComponent>",
-                    "defaultValue": "{\r\n  title: 'Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
-            "packages/shell/src/lib/shell/shell.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/shell/src/lib/shell/shell.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-shell>\r\n        <ng-template #leftTemplate>\r\n          <div class=\"bg-secondary text-on-secondary h-full flex items-center p-5\">\r\n            Left Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #mainContentTemplate>\r\n          <div class=\"bg-primary text-on-primary h-full flex items-center justify-around\">\r\n            Main Content Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #bottomTemplate>\r\n          <div class=\"bg-accent text-on-accent flex justify-around p-5\">\r\n            Bottom Template\r\n          </div>\r\n        </ng-template>\r\n      </fui-shell>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/shell/src/lib/shell/shell.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<ShellComponent>",
-                    "defaultValue": "{\r\n  title: 'Shell/Shell',\r\n  component: ShellComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-                },
-                {
-                    "name": "Responsive",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/shell/src/lib/shell/shell.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-shell>\r\n        <ng-template #leftTemplate>\r\n          <div class=\"hidden md:flex bg-secondary text-on-secondary h-full items-center p-5\">\r\n            Left Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #mainContentTemplate>\r\n          <div class=\"bg-primary text-on-primary h-full flex items-center justify-around\">\r\n            Main Content Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #bottomTemplate>\r\n          <div class=\"md:hidden bg-accent text-on-accent flex justify-around p-5\">\r\n            Bottom Template\r\n          </div>\r\n        </ng-template>\r\n      </fui-shell>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/shell/src/lib/nav-rail/nav-rail.stories.ts": [
@@ -1372,7 +1361,39 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<NavRailComponent>",
-                    "defaultValue": "{\r\n  title: 'Shell/Nav Rail',\r\n  component: NavRailComponent,\r\n  subcomponents: { NavRailItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavRailComponent, NavRailItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Rail',\r\n  component: NavRailComponent,\r\n  subcomponents: { NavRailItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavRailComponent, NavRailItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
+            "packages/shell/src/lib/shell/shell.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/shell/shell.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-shell>\r\n        <ng-template #leftTemplate>\r\n          <div class=\"bg-secondary text-on-secondary h-full flex items-center p-5\">\r\n            Left Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #mainContentTemplate>\r\n          <div class=\"bg-primary text-on-primary h-full flex items-center justify-around\">\r\n            Main Content Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #bottomTemplate>\r\n          <div class=\"bg-accent text-on-accent flex justify-around p-5\">\r\n            Bottom Template\r\n          </div>\r\n        </ng-template>\r\n      </fui-shell>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/shell/shell.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ShellComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Shell/Shell',\r\n  component: ShellComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                },
+                {
+                    "name": "Responsive",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/shell/shell.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-shell>\r\n        <ng-template #leftTemplate>\r\n          <div class=\"hidden md:flex bg-secondary text-on-secondary h-full items-center p-5\">\r\n            Left Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #mainContentTemplate>\r\n          <div class=\"bg-primary text-on-primary h-full flex items-center justify-around\">\r\n            Main Content Template\r\n          </div>\r\n        </ng-template>\r\n        <ng-template #bottomTemplate>\r\n          <div class=\"md:hidden bg-accent text-on-accent flex justify-around p-5\">\r\n            Bottom Template\r\n          </div>\r\n        </ng-template>\r\n      </fui-shell>\r\n    `\r\n  })\r\n}"
                 }
             ],
             "packages/shell/src/lib/view/view.stories.ts": [
@@ -1394,7 +1415,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<ViewComponent>",
-                    "defaultValue": "{\r\n  title: 'Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                    "defaultValue": "{\r\n  title: 'Components/Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "apps/storybook-host/.storybook/main.ts": [
@@ -1409,6 +1430,58 @@
                     "defaultValue": "{\n  stories: ['../../../packages/*/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)', '../../../packages/*/src/lib/**/*.mdx', '../stories/**/*.stories.ts', '../doc/**/*.mdx'],\n  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
                 }
             ],
+            "apps/storybook-host/stories/compositions.basic-layouts.stories.ts": [
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ShellComponent>",
+                    "defaultValue": "{\r\n  title: 'Compositions/Basic Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                },
+                {
+                    "name": "NavBarOnly",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <fui-nav-bar>\r\n          <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n          <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n          <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n        </fui-nav-bar>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "NavRailOnly",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "NoNavs",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            Main Content here!\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "ResponsiveNavs",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                }
+            ],
             "apps/storybook-host/.storybook/preview.ts": [
                 {
                     "name": "parameters",
@@ -1418,20 +1491,20 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n    options: {\r\n      storySort: {\r\n        order: ['Intro', ['Introduction'], 'Shell', 'Content', 'Data', 'Controls'],\r\n      },\r\n    },\r\n    actions: { argTypesRegex: \"^on[A-Z].*\" },\r\n  }"
+                    "defaultValue": "{\r\n    options: {\r\n      storySort: {\r\n        order: ['Intro', ['Introduction'], 'Components', 'Compositions'],\r\n      },\r\n    },\r\n    actions: { argTypesRegex: \"^on[A-Z].*\" },\r\n  }"
                 }
             ]
         },
         "groupedFunctions": {},
         "groupedEnumerations": {},
         "groupedTypeAliases": {
-            "apps/storybook-host/stories/view-composition.stories.ts": [
+            "apps/storybook-host/stories/compositions.basic-layouts.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "StoryObj<ShellComponent>",
-                    "file": "apps/storybook-host/stories/view-composition.stories.ts",
+                    "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -1464,19 +1537,6 @@
                     "kind": 183
                 }
             ],
-            "packages/shell/src/lib/shell/shell.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<ShellComponent>",
-                    "file": "packages/shell/src/lib/shell/shell.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "packages/shell/src/lib/nav-rail/nav-rail.stories.ts": [
                 {
                     "name": "Story",
@@ -1484,6 +1544,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<NavRailComponent>",
                     "file": "packages/shell/src/lib/nav-rail/nav-rail.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/shell/src/lib/shell/shell.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ShellComponent>",
+                    "file": "packages/shell/src/lib/shell/shell.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -1507,7 +1580,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 2,
+        "count": 1,
         "status": "low",
         "files": [
             {
@@ -1531,21 +1604,51 @@
                 "status": "low"
             },
             {
-                "filePath": "apps/storybook-host/stories/view-composition.stories.ts",
+                "filePath": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Basic",
+                "name": "meta",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "apps/storybook-host/stories/view-composition.stories.ts",
+                "filePath": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "meta",
+                "name": "NavBarOnly",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NavRailOnly",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NoNavs",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ResponsiveNavs",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1623,7 +1726,7 @@
                 "linktype": "component",
                 "name": "NavBarItemComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/11",
                 "status": "low"
             },
             {
@@ -1632,7 +1735,7 @@
                 "linktype": "component",
                 "name": "NavBarComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/2",
                 "status": "low"
             },
             {
@@ -1661,7 +1764,7 @@
                 "linktype": "component",
                 "name": "NavRailItemComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/11",
                 "status": "low"
             },
             {
@@ -1670,7 +1773,7 @@
                 "linktype": "component",
                 "name": "NavRailComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/2",
                 "status": "low"
             },
             {

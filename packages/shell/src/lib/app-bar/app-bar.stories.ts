@@ -12,7 +12,7 @@ import { matArchiveOutline, matCloudDoneOutline, matHomeOutline, matSettingsOutl
 
 
 const meta: Meta<AppBarComponent> = {
-  title: 'Shell/App Bar',
+  title: 'Components/Shell/App Bar',
   component: AppBarComponent,
   subcomponents: { AppBarActionComponent },
   parameters: { 

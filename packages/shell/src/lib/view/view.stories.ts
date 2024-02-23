@@ -8,7 +8,7 @@ import { ViewFooterComponent } from './view-footer.component';
 import { provideFancyUi } from 'fancy-ui-core';
 
 const meta: Meta<ViewComponent> = {
-  title: 'Shell/View',
+  title: 'Components/Shell/View',
   component: ViewComponent,
   subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },
   parameters: { layout: 'fullscreen'},

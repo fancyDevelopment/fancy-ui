@@ -3,7 +3,7 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { ShellComponent } from './shell.component';
 
 const meta: Meta<ShellComponent> = {
-  title: 'Shell/Shell',
+  title: 'Components/Shell/Shell',
   component: ShellComponent,
   decorators: [
     moduleMetadata({

@@ -1,4 +1,4 @@
-<div class="flex bg-background absolute inset-0 group fui-shell group shell" [ngClass]="{ 'with-left-template': _leftTemplate() }">
+<div class="flex bg-background absolute inset-0 group fui-shell group" [ngClass]="{ 'with-left-template': _leftTemplate() }">
   <div>
     @if(_leftTemplate()) {
       <ng-container [ngTemplateOutlet]="_leftTemplate() ?? null" />

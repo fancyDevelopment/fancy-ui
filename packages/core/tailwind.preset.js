@@ -49,10 +49,10 @@ module.exports = {
         }
       },
       spacing:  {
-        'rim': '16px',
-        'rim/2': '8px',
-        'component': '12px',
-        'component/2': '6px',
+        'rim': '8px',
+        'rim/2': '4px',
+        'component': '10px',
+        'component/2': '5px',
         'element': '10px',
         'icon': '24px',
         'iconX2': '48px',

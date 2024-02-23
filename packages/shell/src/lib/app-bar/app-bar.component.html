@@ -1,5 +1,5 @@
 <div class="h-16 z-10 flex justify-between bg-background">
-  <div class="flex items-center group-[.shell]:-ml-rim min-w-0">
+  <div class="flex items-center min-w-0">
     <!-- Back navigation button -->
     @if(showBackButton()) {
       <a class="w-hover h-hover flex flex-none justify-center items-center" (click)="_navigateBack()">
@@ -8,7 +8,7 @@
       </a>
     }
     <!-- View title -->
-    <div class="ml-element mb-1 text-xl min-w-0 truncate">{{ title() }}</div>
+    <div class="mb-1 text-xl min-w-0 truncate">{{ title() }}</div>
   </div>
 
   <!-- Global View Actions as icons in header -->

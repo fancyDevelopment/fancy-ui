@@ -7,7 +7,7 @@ import { provideIcons } from '@ng-icons/core';
 import { matHomeOutline, matSettingsOutline, matArchiveOutline } from '@ng-icons/material-icons/outline';
 
 const meta: Meta<NavRailComponent> = {
-  title: 'Shell/Nav Rail',
+  title: 'Components/Shell/Nav Rail',
   component: NavRailComponent,
   subcomponents: { NavRailItemComponent },
   decorators: [

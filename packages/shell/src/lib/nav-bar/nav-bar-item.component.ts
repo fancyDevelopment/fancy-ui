@@ -1,7 +1,8 @@
-import { Component, TemplateRef, input, model, viewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, inject, input, model, viewChild } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { IconComponent } from 'fancy-ui-core';
 import { Router } from '@angular/router';
+import { NavService } from '../nav.service';
 
 @Component({
   selector: 'fui-nav-bar-item',
@@ -24,7 +25,7 @@ import { Router } from '@angular/router';
     </ng-template>
   `
 })
-export class NavBarItemComponent {
+export class NavBarItemComponent implements OnInit, OnDestroy {
 
   iconName = input('');
 
@@ -36,7 +37,16 @@ export class NavBarItemComponent {
 
   _template = viewChild<TemplateRef<unknown>>('template');
 
-  constructor(private router: Router) {}
+  router = inject(Router);
+  navService = inject(NavService);
+
+  ngOnInit(): void {
+    this.navService.registerNavBarItem(this);
+  }
+
+  ngOnDestroy(): void {
+    this.navService.unregisterNavBarItem(this);
+  }
 
   onTap() {
     this.isActive.set(!this.isActive())

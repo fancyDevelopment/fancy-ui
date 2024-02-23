@@ -6,7 +6,7 @@ import { provideIcons } from '@ng-icons/core';
 import { matArchiveOutline, matHomeOutline, matSettingsOutline } from '@ng-icons/material-icons/outline';
 
 const meta: Meta<NavBarComponent> = {
-  title: 'Shell/Nav Bar',
+  title: 'Components/Shell/Nav Bar',
   component: NavBarComponent,
   subcomponents: { NavBarItemComponent },
   decorators: [
