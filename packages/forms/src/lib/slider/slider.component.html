@@ -1,0 +1,11 @@
+<div class="mui-slider w-full">
+
+    <div class="flex justify-between">
+      @if(label()) {
+        <label *ngIf="label">{{label()}}</label>
+      }      
+    </div>
+  
+    <input class="w-full h-1 bg-outline accent-secondary appearance-none outline-none" type="range" [min]="rangeMin()" [max]="rangeMax()" (input)="_onInput()" [(ngModel)]="_currentValue">
+  
+  </div>

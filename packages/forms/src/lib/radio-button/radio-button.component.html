@@ -1,0 +1,13 @@
+<div class="flex items-center mt-layout my-layout">
+
+    <label class="flex items-center cursor-pointer text-gray select-none" [for]="name() + value()">
+  
+        <input class="hidden overflow-hidden peer" [name]="name()" [id]="name() + value()" [value]="value()" type="radio" (change)="_onChange()" [(ngModel)]="_currentValue">
+  
+        <!-- dot -->
+        <span class="inline-block mr-2 w-5 h-5 rounded-full border border-outline transition-all duration-500 peer-checked:bg-secondary peer-checked:border-secondary peer-checked:shadow-[0px_0px_0px_2px_white_inset]"></span>
+        {{label()}}
+  
+    </label>
+  
+  </div>

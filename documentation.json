@@ -415,7 +415,7 @@
         },
         {
             "name": "CardComponent",
-            "id": "component-CardComponent-9cb632eaede960b1053bf622d65532f8cb704f216827b99467486f5e501f477aec19dc45553fb7e64d5c9a5e2944922bbbc88e8390addb2402d7827a85def3c7",
+            "id": "component-CardComponent-c941810449ef41a1a590e5ef9f3717f6a990b4b320908219aaf5121b45987f28047d069f9ca1e48fff9bb242eed4ec072d37ae1823a77bb23a206b52221ecce0",
             "file": "packages/content/src/lib/card/card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -432,23 +432,53 @@
             "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "classes",
+                    "defaultValue": "'flex flex-col'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'class'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
             "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
-            "hostBindings": [],
+            "hostBindings": [
+                {
+                    "name": "class",
+                    "defaultValue": "'flex flex-col'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
             "hostListeners": [],
             "standalone": true,
             "imports": [],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'fui-card',\n  standalone: true,\n  templateUrl: './card.component.html'\n})\nexport class CardComponent {\n}\n",
+            "sourceCode": "import { Component, HostBinding } from '@angular/core';\n\n@Component({\n  selector: 'fui-card',\n  standalone: true,\n  templateUrl: './card.component.html'\n})\nexport class CardComponent {\n  @HostBinding('class')\n  classes = 'flex flex-col';\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"rounded bg-primary-container text-on-primary-container p-element grid grid-cols-1 gap-element\">\n    <ng-content></ng-content>\n</div>\n"
+            "templateData": "<div class=\"rounded bg-primary-container text-on-primary-container p-element grow flex flex-col\">\n    <ng-content></ng-content>\n</div>\n"
         },
         {
             "name": "CardContentComponent",
@@ -480,6 +510,71 @@
             "rawdescription": "\n",
             "type": "component",
             "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'fui-card-content',\n  standalone: true,\n  template: `\n    <div class=\"py-element\">\n      <ng-content />\n    </div>\n  `\n})\nexport class CardContentComponent {}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "CardGrowComponent",
+            "id": "component-CardGrowComponent-334bd2bd76985c24a4a3007bfff0680cb7cecbd970804270e6a04d9bd11f36ed3d943ea763c457378492970d6a45aa1578317b4cc8b13a4eb77337b1c119e055",
+            "file": "packages/content/src/lib/card/card-grow.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-card-grow",
+            "styleUrls": [],
+            "styles": [],
+            "template": "",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "classes",
+                    "defaultValue": "'grow'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'class'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [
+                {
+                    "name": "class",
+                    "defaultValue": "'grow'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, HostBinding } from '@angular/core';\n\n@Component({\n  selector: 'fui-card-grow',\n  standalone: true,\n  template: ``\n})\nexport class CardGrowComponent {\n  @HostBinding('class')\n  classes = 'grow';\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1151,6 +1246,97 @@
             ]
         },
         {
+            "name": "RadioButtonComponent",
+            "id": "component-RadioButtonComponent-f06cbe70fab4d5d95d9fb7108e9650cf1859fcee834291994da88acf803834145f911c9722bd685b4eb67f4267a4c3a1597575fec24d562b5f7f401ba08995c2",
+            "file": "packages/forms/src/lib/radio-button/radio-button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: RadioButtonComponent, multi: true\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "fui-radio-button",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./radio-button.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "name",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "_onChange",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, input } from '@angular/core';\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\nimport { FormControlBase } from '../form-control.base';\n\n@Component({\n  selector: 'fui-radio-button',\n  standalone: true,\n  imports: [FormsModule],\n  templateUrl: './radio-button.component.html',\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: RadioButtonComponent,\n      multi: true\n    }\n  ]\n})\nexport class RadioButtonComponent extends FormControlBase<string> {\n\n  label = input('');\n\n  name = input('');\n\n  value = input('');\n\n  _onChange() {\n    this.onChanged();\n    this.onTouched();\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [
+                "FormControlBase"
+            ],
+            "templateData": "<div class=\"flex items-center mt-layout my-layout\">\n\n    <label class=\"flex items-center cursor-pointer text-gray select-none\" [for]=\"name() + value()\">\n  \n        <input class=\"hidden overflow-hidden peer\" [name]=\"name()\" [id]=\"name() + value()\" [value]=\"value()\" type=\"radio\" (change)=\"_onChange()\" [(ngModel)]=\"_currentValue\">\n  \n        <!-- dot -->\n        <span class=\"inline-block mr-2 w-5 h-5 rounded-full border border-outline transition-all duration-500 peer-checked:bg-secondary peer-checked:border-secondary peer-checked:shadow-[0px_0px_0px_2px_white_inset]\"></span>\n        {{label()}}\n  \n    </label>\n  \n  </div>\n"
+        },
+        {
             "name": "ShellComponent",
             "id": "component-ShellComponent-719e49d243ce9c38f2178cba2e7f6b0d865be677b2a7e515c8f6b5d2c20f78d75b8759b4f7d40d86a675bdc503ae6d37f40872bc23b753c0a4b7307f44a8a92c",
             "file": "packages/shell/src/lib/shell/shell.component.ts",
@@ -1224,6 +1410,295 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<div class=\"flex bg-background absolute inset-0 group fui-shell group\" [ngClass]=\"{ 'with-left-template': _leftTemplate() }\">\n  <div>\n    @if(_leftTemplate()) {\n      <ng-container [ngTemplateOutlet]=\"_leftTemplate() ?? null\" />\n    }\n  </div>\n  <div class=\"flex-1 min-w-0\">\n    <div class=\"flex flex-col h-full\">\n      <div class=\"flex-grow overflow-hidden md:pl-0\">\n        @if(_mainContentTemplate()) {\n          <ng-container [ngTemplateOutlet]=\"_mainContentTemplate() ?? null\" />\n        }\n      </div>\n      <div>\n        @if(_bottomTemplate()) {\n          <ng-container [ngTemplateOutlet]=\"_bottomTemplate() ?? null\" />\n        }\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        {
+            "name": "SliderComponent",
+            "id": "component-SliderComponent-1fadd02f1a0a71215a1c2759ea36971df5c2400f9336c84ceab249df1566307881719493542107a09de569fefffca6e1cd3d557805bcf8d72655a12d988e2f18",
+            "file": "packages/forms/src/lib/slider/slider.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: SliderComponent, multi: true\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "fui-slider",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./slider.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "rangeMax",
+                    "defaultValue": "input(100)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                },
+                {
+                    "name": "rangeMin",
+                    "defaultValue": "input(0)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "_onInput",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\nimport { FormControlBase } from '../form-control.base';\n\n@Component({\n  selector: 'fui-slider',\n  standalone: true,\n  imports: [CommonModule, FormsModule],\n  templateUrl: './slider.component.html',\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: SliderComponent,\n      multi: true\n    }\n  ]\n})\nexport class SliderComponent extends FormControlBase<number> {\n  label = input('');\n  rangeMin = input(0);\n  rangeMax = input(100);\n\n  _onInput() {\n    this.onChanged();\n    this.onTouched();\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [
+                "FormControlBase"
+            ],
+            "templateData": "<div class=\"mui-slider w-full\">\n\n    <div class=\"flex justify-between\">\n      @if(label()) {\n        <label *ngIf=\"label\">{{label()}}</label>\n      }      \n    </div>\n  \n    <input class=\"w-full h-1 bg-outline accent-secondary appearance-none outline-none\" type=\"range\" [min]=\"rangeMin()\" [max]=\"rangeMax()\" (input)=\"_onInput()\" [(ngModel)]=\"_currentValue\">\n  \n  </div>\n"
+        },
+        {
+            "name": "SwitchComponent",
+            "id": "component-SwitchComponent-028512fc74d2cc0eed151b0f7b363e4d22b098f56138ee1a411f3ca14534fa5107a884f19d7d36c4f23b7d51db0a5f23a0ef70a60875131a1dd9821702194792",
+            "file": "packages/forms/src/lib/switch/switch.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: SwitchComponent, multi: true\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "fui-switch",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./switch.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "hintOff",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                },
+                {
+                    "name": "hintOn",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "_onInput",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 30,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, input } from '@angular/core';\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\nimport { FormControlBase } from '../form-control.base';\n\n@Component({\n  selector: 'fui-switch',\n  standalone: true,\n  imports: [FormsModule],\n  templateUrl: './switch.component.html',\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: SwitchComponent,\n      multi: true\n    }\n  ]\n})\nexport class SwitchComponent extends FormControlBase<boolean> {\n  label = input('');\n\n  hintOff = input('');\n\n  hintOn = input('');\n\n  constructor() {\n    super();\n    this._currentValue = false;\n  }\n\n  _onInput() {\n    this.onChanged();\n    this.onTouched();\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 23
+            },
+            "extends": [
+                "FormControlBase"
+            ],
+            "templateData": "<label class=\"flex items-center\">\n\n    @if(label()) {\n      <!-- label -->\n      <label class=\"mr-element flex-grow\">{{label()}}</label>\n    }\n  \n    <div class=\"flex cursor-pointer\">\n  \n      @if(hintOff()) {\n        <!-- hint off -->\n        <div class=\"mr-element self-center text-xs\">{{hintOff()}}</div>\n      }\n  \n      <!-- toggle -->\n      <div class=\"relative py-2\">\n        <!-- input -->\n        <input class=\"sr-only peer\" type=\"checkbox\" (input)=\"_onInput()\" [(ngModel)]=\"_currentValue\" />\n        <!-- line -->\n        <div class=\"w-iconX2 h-4 rounded-full shadow-inner transition bg-on-secondary peer-checked:bg-outline\"></div>\n        <!-- dot -->\n        <div class=\"absolute w-icon h-icon bg-outline rounded-full oritin-top-left top-1 shadow transition peer-checked:bg-secondary peer-checked:translate-x-full\"></div>\n      </div>\n  \n      @if(hintOn()) {\n        <!-- hint on -->\n        <div class=\"ml-element self-center text-xs\">{{hintOn()}}</div>\n      }\n      \n    </div>\n</label>\n"
+        },
+        {
+            "name": "TextBoxComponent",
+            "id": "component-TextBoxComponent-60c41b32c01912fe1f0d7727d1041fcd922ed1c81a49036b6eb0f4882af67aadd0f5e441ba7b1572db9cbc057e19c0eded407c0cd580d9ccc644419fb59f844b",
+            "file": "packages/forms/src/lib/text-box/text-box.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: TextBoxComponent, multi: true\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "fui-text-box",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./text-box.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_id",
+                    "defaultValue": "uuidv4()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
+                },
+                {
+                    "name": "hint",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "_onInput",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControlBase } from '../form-control.base';\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\n\n@Component({\n  selector: 'fui-text-box',\n  standalone: true,\n  imports: [CommonModule, FormsModule],\n  templateUrl: './text-box.component.html',\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: TextBoxComponent,\n      multi: true\n    }\n  ]\n})\nexport class TextBoxComponent extends FormControlBase<string>{\n  label = input('');\n\n  hint = input('');\n\n  _id = uuidv4();\n\n  _onInput() {\n    this.onChanged();\n    this.onTouched();\n  }\n}\nfunction uuidv4() {\n  return 'id'+ Math.random();\n}\n\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [
+                "FormControlBase"
+            ],
+            "templateData": "<div class=\"relative pt-[calc(theme(fontSize.label)*theme(lineHeight.normal))]\">\n  <input\n    class=\"block w-full border border-transparent appearance-none focus:outline-none bg-transparent peer\"\n    [id]=\"_id\"\n    type=\"text\"\n    placeholder=\" \"\n    (input)=\"_onInput()\"\n    [(ngModel)]=\"_currentValue\"\n  />\n  <label\n    class=\"absolute top-0 origin-top-left cursor-text text-label\n    transform duration-300 \n    peer-focus:text-primary \n    peer-focus:cursor-default \n    peer-[:not(:focus):placeholder-shown]:scale-[1.45]\n    peer-[:not(:focus):placeholder-shown]:translate-y-[calc(theme(fontSize.label)*theme(lineHeight.normal))]\n    peer-[:not(:placeholder-shown)]:cursor-default\"\n    [for]=\"_id\">{{ label() }}</label\n  >\n  <div\n    class=\"border-t border-b border-t-outline border-b-transparent \n    transition duration-500 \n    [fui-text-box.ng-touched.ng-valid_&]:border-t-success \n    [fui-text-box.ng-touched.ng-invalid_&]:border-t-error \n    peer-focus:!border-t-primary \n    peer-focus:!border-b-primary \n    peer-focus:shadow\"\n  ></div>\n  <p class=\"text-xs pt-1 [fui-text-box.ng-touched.ng-valid_&]:text-success [fui-text-box.ng-touched.ng-invalid_&]:text-error\">\n    {{ hint() }}\n  </p>\n</div>\n"
         },
         {
             "name": "ViewComponent",
@@ -1463,21 +1938,21 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title' as any,\r\n    showBackButton: true as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title' as any,\r\n    showBackButton: true as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -1510,6 +1985,46 @@
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-view class=\"block h-screen\">\r\n        <fui-view-header>\r\n          <div class=\"bg-secondary text-on-secondary h-full flex justify-around p-5\">\r\n            Header\r\n          </div>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          <div class=\"bg-primary text-on-primary h-full flex justify-around p-5\">\r\n            Main Content\r\n          </div>\r\n        </fui-view-main-content>\r\n        <fui-view-footer>\r\n          <div class=\"bg-accent text-on-accent flex justify-around p-5\">\r\n            Footer\r\n          </div>\r\n        </fui-view-footer>\r\n      </fui-view>\r\n    `\r\n  })\r\n}"
             },
             {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Radio Button Label' as any,\r\n    name: 'Ragio Button Group Name' as any,\r\n    value: 'Value1' as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Marked'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-radio-button [label]=\"label\" [name]=\"name\" [value]=\"value\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Slider Label' as any,\r\n    rangeMin: 10 as any,\r\n    rangeMax: 90 as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Slided'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-slider [label]=\"label\" [rangeMin]=\"rangeMin\" [rangeMax]=\"rangeMax\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Switch' as any,\r\n  },\r\n  parameters: {\r\n    model: false,\r\n    onModelChange: jest.fn(action('Switched'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-switch [label]=\"label\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Label' as any,\r\n    hint: 'Hint Text' as any,\r\n  },\r\n  parameters: {\r\n    value: '',\r\n    onModelChange: jest.fn((val) => action(\"Value Changed\")(val))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-text-box [label]=\"label\" [hint]=\"hint\" minlength=\"3\" [ngModel]=\"value\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
                 "name": "CardGrid",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1517,7 +2032,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-3 lg:grid-cols-6 gap-component\">\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-3 lg:grid-cols-6 gap-component\">\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "CardInContent",
@@ -1527,7 +2042,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid gap-component\">\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n              <fui-card class=\"max-w-md\">\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card in Content\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid gap-component\">\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n              <fui-card class=\"max-w-md\">\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "config",
@@ -1538,6 +2053,26 @@
                 "deprecationMessage": "",
                 "type": "StorybookConfig",
                 "defaultValue": "{\n  stories: ['../../../packages/*/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)', '../../../packages/*/src/lib/**/*.mdx', '../stories/**/*.stories.ts', '../doc/**/*.mdx'],\n  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
+            },
+            {
+                "name": "FormCards",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-2 lg:grid-cols-4 gap-component\">\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                    <div>\r\n                      <label class=\"my-element\">Radios</label>\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label1\"  value=\"value1\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label2\"  value=\"value2\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label3\"  value=\"value3\" />\r\n                    </div>\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Group",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    name: 'Ragio Button Group Name' as any,\r\n  },\r\n  parameters: {\r\n    label1: 'Radio Button Label 1',\r\n    value1: 'Value1',\r\n    label2: 'Radio Button Label 2',\r\n    value2: 'Value2',\r\n    label3: 'Radio Button Label 3',\r\n    value3: 'Value3',\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Marked'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-radio-button [name]=\"name\" [label]=\"label1\"  [value]=\"value1\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n      <fui-radio-button [name]=\"name\" [label]=\"label2\"  [value]=\"value2\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n      <fui-radio-button [name]=\"name\" [label]=\"label3\"  [value]=\"value3\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "HeaderWithImage",
@@ -1587,7 +2122,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<ShellComponent>",
-                "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, ButtonComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -1613,21 +2148,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<AppBarComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<NavBarComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<AppBarComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -1658,6 +2193,46 @@
                 "deprecationMessage": "",
                 "type": "Meta<ViewComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<RadioButtonComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Forms/Radio Button',\r\n  component: RadioButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [RadioButtonComponent, FormsModule]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<SliderComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Forms/Slider',\r\n  component: SliderComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SliderComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<SwitchComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Forms/Switch',\r\n  component: SwitchComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwitchComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<TextBoxComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Forms/TextBox',\r\n  component: TextBoxComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TextBoxComponent, FormsModule],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ]\r\n}"
             },
             {
                 "name": "MoreThanThreeActions",
@@ -1748,9 +2323,30 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "WithHints",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Switch' as any,\r\n    hintOff: 'Off' as any,\r\n    hintOn: 'On' as any\r\n  },\r\n  parameters: {\r\n    model: false,\r\n    onModelChange: jest.fn(action('Switched'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-switch [label]=\"label\" [hintOff]=\"hintOff\" [hintOn]=\"hintOn\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
             }
         ],
-        "functions": [],
+        "functions": [
+            {
+                "name": "uuidv4",
+                "file": "packages/forms/src/lib/text-box/text-box.component.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": []
+            }
+        ],
         "typealiases": [
             {
                 "name": "Story",
@@ -1800,8 +2396,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<AppBarComponent>",
-                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "rawtype": "StoryObj<NavBarComponent>",
+                "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1811,8 +2407,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<NavBarComponent>",
-                "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                "rawtype": "StoryObj<AppBarComponent>",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1846,6 +2442,50 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<ViewComponent>",
                 "file": "packages/shell/src/lib/view/view.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<RadioButtonComponent>",
+                "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<SliderComponent>",
+                "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<SwitchComponent>",
+                "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<TextBoxComponent>",
+                "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -1938,6 +2578,28 @@
                     "defaultValue": "{\r\n  title: 'Components/Core/Button',\r\n  component: ButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ButtonComponent]\r\n    })\r\n  ],\r\n}"
                 }
             ],
+            "packages/shell/src/lib/nav-bar/nav-bar.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<NavBarComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
             "packages/shell/src/lib/app-bar/app-bar.stories.ts": [
                 {
                     "name": "Basic",
@@ -1978,28 +2640,6 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"matHomeOutline\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"heroUsers\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"matSettingsOutline\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    // const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    // userEvent.click(action2);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    // const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    // userEvent.click(action3);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
-                }
-            ],
-            "packages/shell/src/lib/nav-bar/nav-bar.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<NavBarComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/shell/src/lib/nav-rail/nav-rail.stories.ts": [
@@ -2078,6 +2718,114 @@
                     "defaultValue": "{\r\n  title: 'Components/Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
+            "packages/forms/src/lib/radio-button/radio-button.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Radio Button Label' as any,\r\n    name: 'Ragio Button Group Name' as any,\r\n    value: 'Value1' as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Marked'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-radio-button [label]=\"label\" [name]=\"name\" [value]=\"value\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "Group",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    name: 'Ragio Button Group Name' as any,\r\n  },\r\n  parameters: {\r\n    label1: 'Radio Button Label 1',\r\n    value1: 'Value1',\r\n    label2: 'Radio Button Label 2',\r\n    value2: 'Value2',\r\n    label3: 'Radio Button Label 3',\r\n    value3: 'Value3',\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Marked'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-radio-button [name]=\"name\" [label]=\"label1\"  [value]=\"value1\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n      <fui-radio-button [name]=\"name\" [label]=\"label2\"  [value]=\"value2\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n      <fui-radio-button [name]=\"name\" [label]=\"label3\"  [value]=\"value3\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<RadioButtonComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Forms/Radio Button',\r\n  component: RadioButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [RadioButtonComponent, FormsModule]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
+            "packages/forms/src/lib/slider/slider.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Slider Label' as any,\r\n    rangeMin: 10 as any,\r\n    rangeMax: 90 as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Slided'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-slider [label]=\"label\" [rangeMin]=\"rangeMin\" [rangeMax]=\"rangeMax\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<SliderComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Forms/Slider',\r\n  component: SliderComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SliderComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+                }
+            ],
+            "packages/forms/src/lib/switch/switch.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Switch' as any,\r\n  },\r\n  parameters: {\r\n    model: false,\r\n    onModelChange: jest.fn(action('Switched'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-switch [label]=\"label\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<SwitchComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Forms/Switch',\r\n  component: SwitchComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwitchComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+                },
+                {
+                    "name": "WithHints",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Switch' as any,\r\n    hintOff: 'Off' as any,\r\n    hintOn: 'On' as any\r\n  },\r\n  parameters: {\r\n    model: false,\r\n    onModelChange: jest.fn(action('Switched'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-switch [label]=\"label\" [hintOff]=\"hintOff\" [hintOn]=\"hintOn\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                }
+            ],
+            "packages/forms/src/lib/text-box/text-box.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Label' as any,\r\n    hint: 'Hint Text' as any,\r\n  },\r\n  parameters: {\r\n    value: '',\r\n    onModelChange: jest.fn((val) => action(\"Value Changed\")(val))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-text-box [label]=\"label\" [hint]=\"hint\" minlength=\"3\" [ngModel]=\"value\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<TextBoxComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Forms/TextBox',\r\n  component: TextBoxComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TextBoxComponent, FormsModule],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ]\r\n}"
+                }
+            ],
             "apps/storybook-host/stories/compositions.card-layouts.stories.ts": [
                 {
                     "name": "CardGrid",
@@ -2087,7 +2835,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-3 lg:grid-cols-6 gap-component\">\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-3 lg:grid-cols-6 gap-component\">\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
                 },
                 {
                     "name": "CardInContent",
@@ -2097,7 +2845,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid gap-component\">\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n              <fui-card class=\"max-w-md\">\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card in Content\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid gap-component\">\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n              <fui-card class=\"max-w-md\">\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <p>\r\n                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\r\n              </p>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "FormCards",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-2 lg:grid-cols-4 gap-component\">\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                    <div>\r\n                      <label class=\"my-element\">Radios</label>\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label1\"  value=\"value1\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label2\"  value=\"value2\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label3\"  value=\"value3\" />\r\n                    </div>\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
                 },
                 {
                     "name": "meta",
@@ -2107,7 +2865,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<ShellComponent>",
-                    "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, ButtonComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                    "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "apps/storybook-host/.storybook/main.ts": [
@@ -2187,7 +2945,20 @@
                 }
             ]
         },
-        "groupedFunctions": {},
+        "groupedFunctions": {
+            "packages/forms/src/lib/text-box/text-box.component.ts": [
+                {
+                    "name": "uuidv4",
+                    "file": "packages/forms/src/lib/text-box/text-box.component.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": []
+                }
+            ]
+        },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
             "apps/storybook-host/stories/compositions.basic-layouts.stories.ts": [
@@ -2242,19 +3013,6 @@
                     "kind": 183
                 }
             ],
-            "packages/shell/src/lib/app-bar/app-bar.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<AppBarComponent>",
-                    "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "packages/shell/src/lib/nav-bar/nav-bar.stories.ts": [
                 {
                     "name": "Story",
@@ -2262,6 +3020,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<NavBarComponent>",
                     "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/shell/src/lib/app-bar/app-bar.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<AppBarComponent>",
+                    "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -2301,6 +3072,58 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<ViewComponent>",
                     "file": "packages/shell/src/lib/view/view.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/forms/src/lib/radio-button/radio-button.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<RadioButtonComponent>",
+                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/forms/src/lib/slider/slider.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<SliderComponent>",
+                    "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/forms/src/lib/switch/switch.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<SwitchComponent>",
+                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/forms/src/lib/text-box/text-box.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<TextBoxComponent>",
+                    "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -2409,6 +3232,16 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "FormCards",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "meta",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
@@ -2430,6 +3263,15 @@
                 "name": "CardContentComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/card/card-grow.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CardGrowComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -2456,7 +3298,7 @@
                 "linktype": "component",
                 "name": "CardComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -2555,6 +3397,152 @@
                 "name": "IconComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/radio-button/radio-button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "RadioButtonComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Group",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/slider/slider.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SliderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/slider/slider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/slider/slider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/switch/switch.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SwitchComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/switch/switch.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/switch/switch.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/switch/switch.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithHints",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/text-box/text-box.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TextBoxComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/text-box/text-box.component.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "uuidv4",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

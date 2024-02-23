@@ -1,0 +1,31 @@
+<label class="flex items-center">
+
+    @if(label()) {
+      <!-- label -->
+      <label class="mr-element flex-grow">{{label()}}</label>
+    }
+  
+    <div class="flex cursor-pointer">
+  
+      @if(hintOff()) {
+        <!-- hint off -->
+        <div class="mr-element self-center text-xs">{{hintOff()}}</div>
+      }
+  
+      <!-- toggle -->
+      <div class="relative py-2">
+        <!-- input -->
+        <input class="sr-only peer" type="checkbox" (input)="_onInput()" [(ngModel)]="_currentValue" />
+        <!-- line -->
+        <div class="w-iconX2 h-4 rounded-full shadow-inner transition bg-on-secondary peer-checked:bg-outline"></div>
+        <!-- dot -->
+        <div class="absolute w-icon h-icon bg-outline rounded-full oritin-top-left top-1 shadow transition peer-checked:bg-secondary peer-checked:translate-x-full"></div>
+      </div>
+  
+      @if(hintOn()) {
+        <!-- hint on -->
+        <div class="ml-element self-center text-xs">{{hintOn()}}</div>
+      }
+      
+    </div>
+</label>

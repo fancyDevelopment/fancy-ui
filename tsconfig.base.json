@@ -17,6 +17,7 @@
     "paths": {
       "fancy-ui-content": ["packages/content/src/index.ts"],
       "fancy-ui-core": ["packages/core/src/index.ts"],
+      "fancy-ui-forms": ["packages/forms/src/index.ts"],
       "fancy-ui-shell": ["packages/shell/src/index.ts"]
     }
   },

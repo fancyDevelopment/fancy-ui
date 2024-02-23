@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'fui-card',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './card.component.html'
 })
 export class CardComponent {
+  @HostBinding('class')
+  classes = 'flex flex-col';
 }

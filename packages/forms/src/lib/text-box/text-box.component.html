@@ -1,0 +1,32 @@
+<div class="relative pt-[calc(theme(fontSize.label)*theme(lineHeight.normal))]">
+  <input
+    class="block w-full border border-transparent appearance-none focus:outline-none bg-transparent peer"
+    [id]="_id"
+    type="text"
+    placeholder=" "
+    (input)="_onInput()"
+    [(ngModel)]="_currentValue"
+  />
+  <label
+    class="absolute top-0 origin-top-left cursor-text text-label
+    transform duration-300 
+    peer-focus:text-primary 
+    peer-focus:cursor-default 
+    peer-[:not(:focus):placeholder-shown]:scale-[1.45]
+    peer-[:not(:focus):placeholder-shown]:translate-y-[calc(theme(fontSize.label)*theme(lineHeight.normal))]
+    peer-[:not(:placeholder-shown)]:cursor-default"
+    [for]="_id">{{ label() }}</label
+  >
+  <div
+    class="border-t border-b border-t-outline border-b-transparent 
+    transition duration-500 
+    [fui-text-box.ng-touched.ng-valid_&]:border-t-success 
+    [fui-text-box.ng-touched.ng-invalid_&]:border-t-error 
+    peer-focus:!border-t-primary 
+    peer-focus:!border-b-primary 
+    peer-focus:shadow"
+  ></div>
+  <p class="text-xs pt-1 [fui-text-box.ng-touched.ng-valid_&]:text-success [fui-text-box.ng-touched.ng-invalid_&]:text-error">
+    {{ hint() }}
+  </p>
+</div>

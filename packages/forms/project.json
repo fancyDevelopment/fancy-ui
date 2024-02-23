@@ -1,0 +1,26 @@
+{
+  "name": "forms",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/forms/src",
+  "prefix": "lib",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/forms/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/forms/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/forms/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  }
+}
