@@ -6,9 +6,9 @@ import { IconComponent } from 'fancy-ui-core';
   standalone: true,
   imports: [IconComponent],
   template:`
-    	<div class="-mx-component group-first:-mt-component group-last:-mb-component relative">
-        <img class="object-cover w-full h-full group-first:rounded-t group-last:rounded-b" [src]="src()">
-          <div class="absolute top-0 left-0 right-0 p-component">
+    	<div class="group-first:-mt-element group-first:-ml-element group-first:-mr-element group-last:-mb-element relative group-last:-ml-element group-last:-mr-element">
+        <img class="object-cover w-full h-full rounded-component [:not(:first-child)]:px-element group-first:rounded-t group-last:rounded-b" [src]="src()">
+          <div class="absolute top-0 left-0 right-0 p-element">
             <div class="flex items-center">
               <div class="flex-1">
                 <div class="text-title font-light">{{title()}}</div>
@@ -16,7 +16,7 @@ import { IconComponent } from 'fancy-ui-core';
               @if(moreTap.observers.length) {
                 <a (click)="moreTap.emit()" class=" w-hover flex justify-center items-center">
                   <div class="absolute w-hover h-hover rounded transition-all duration-500 hover:bg-hover"></div>
-                  <fui-icon class="h-icon w-icon" name="more" />
+                  <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />
                 </a>
               }
             </div>

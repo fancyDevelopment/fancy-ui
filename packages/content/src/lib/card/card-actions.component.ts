@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'fui-card-actions',
   standalone: true,
   template:`
-    <div class="-mx-component border-t border-shade h-component"></div>
+    <div class="border-t border-shade h-component"></div>
     <ng-content />
   `
 })

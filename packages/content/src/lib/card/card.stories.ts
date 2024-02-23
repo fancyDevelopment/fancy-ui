@@ -7,7 +7,7 @@ import { CardImageComponent } from './card-image.component';
 import { CardContentComponent } from './card-content.component';
 import { CardActionsComponent } from './card-actions.component';
 
-import { ButtonComponent } from 'fancy-ui-core';
+import { ButtonComponent, provideFancyUi } from 'fancy-ui-core';
 
 const meta: Meta<CardComponent> = {
   title: 'Components/Content/Card',
@@ -15,7 +15,10 @@ const meta: Meta<CardComponent> = {
   subcomponents: { CardHeaderComponent, CardImageComponent, CardContentComponent, CardActionsComponent },
   decorators: [
     moduleMetadata({
-      imports: [CardComponent, CardHeaderComponent, CardImageComponent, CardContentComponent, CardActionsComponent, ButtonComponent]
+      imports: [CardComponent, CardHeaderComponent, CardImageComponent, CardContentComponent, CardActionsComponent, ButtonComponent],
+      providers: [
+        provideFancyUi()
+      ]
     }),
     componentWrapperDecorator((story) => `<div class="max-w-[400px]">${story}</div>`)
   ],
@@ -51,7 +54,7 @@ export const WithActions: Story = {
     props: { ...args, ...context.parameters },
     template: `
       <fui-card [meaning]="meaning">
-        <fui-card-header [title]="title" [subtitle]="subtitle" />
+        <fui-card-header [title]="title" [subtitle]="subtitle" (moreTap)="onMoreTap()"/>
         <fui-card-content>Some Content</fui-card-content>
         <fui-card-actions><fui-button label="Button" /></fui-card-actions>
       </fui-card>
@@ -105,7 +108,7 @@ export const ImageInBetween: Story = {
     template: `
       <fui-card [meaning]="meaning">
         <fui-card-header [title]="title" [subtitle]="subtitle" (moreTap)="onMoreTap()" />
-        <fui-card-image src="https://placehold.co/300x200?text=Your+Image" (moreTap)="onMoreTap()"/>
+        <fui-card-image src="https://placehold.co/300x200?text=Your+Image" />
         <fui-card-content>Some Content</fui-card-content>
         <fui-card-actions><fui-button label="Button" /></fui-card-actions>
       </fui-card>

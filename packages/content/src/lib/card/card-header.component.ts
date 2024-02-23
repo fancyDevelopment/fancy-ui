@@ -9,8 +9,8 @@ import { IconComponent } from 'fancy-ui-core';
   template: `
   <div class="flex">
     @if(imageSrc()) {
-      <div class="pr-component">
-        <img class="object-cover rounded 
+      <div class="pr-element">
+        <img class="object-cover rounded-element 
                     h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]
                     w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]" [src]="imageSrc()">
       </div>
@@ -31,7 +31,7 @@ import { IconComponent } from 'fancy-ui-core';
           <a (click)="moreTap.emit()" class=" w-hover flex justify-center items-center">
           <div class="absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover">
           </div>
-          <fui-icon class="h-icon w-icon" name="more"></fui-icon>
+          <fui-icon class="h-icon w-icon" name="matMoreVertOutline"></fui-icon>
         </a>
         }
       </div>
