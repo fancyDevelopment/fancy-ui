@@ -1,0 +1,18 @@
+
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/blocks';
+
+import { ButtonComponent } from './button.component';
+
+import * as ButtonStories from './button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+A basic button for generall actions.
+
+<Canvas>
+<Story of={ButtonStories.Basic} />
+</Canvas>
+
+<ArgsTable of={ButtonComponent} />

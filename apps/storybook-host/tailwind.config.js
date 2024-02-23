@@ -6,7 +6,7 @@ const fuiTailwindConfig = require('../../packages/core/tailwind.preset');
 module.exports = {
   presets: [fuiTailwindConfig],
   content: [
-    join(__dirname, '../../packages/**/!(*.stories|*.spec|).{ts,html}'),
+    join(__dirname, '../../packages/**/!(*.spec|).{ts,html}'),
     join(__dirname, 'stories/*.stories.ts'),
     join(__dirname, 'doc/*.mdx'),
     ...createGlobPatternsForDependencies(__dirname),
