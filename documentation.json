@@ -582,7 +582,7 @@
         },
         {
             "name": "CardHeaderComponent",
-            "id": "component-CardHeaderComponent-cdcdd721e71e2076dc3efba4070204d8be261e2c4c94df58f3b6e86722718cb0e755c8c7cd9f8188c13775e559146101c1185378bb2738682c20d7fc4d444222",
+            "id": "component-CardHeaderComponent-c9c54a9bd6a6dc6fc3aa280653e05d989a5bd62165de2e714bcb739c34a555ff6e2f67674494cd4d3f3c2f1e1b4b69ca66301e8e5ad73f4ed98a56488565d375",
             "file": "packages/content/src/lib/card/card-header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -592,7 +592,7 @@
             "selector": "fui-card-header",
             "styleUrls": [],
             "styles": [],
-            "template": "<div class=\"flex\">\n  @if(imageSrc()) {\n    <div class=\"pr-element\">\n      <img class=\"object-cover rounded-element\n                  h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                  w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n    </div>\n  }\n  <div class=\"flex-1\">\n    <div class=\"flex items-center\">\n      <div class=\"flex-1\">\n        <div class=\"text-title font-light\">\n          @if(titleTemplateRef()) {\n            <ng-container *ngIf=\"titleTemplateRef\" [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n          }\n          @if(!titleTemplateRef() && title()) {\n            <span>{{title()}}</span>\n          }\n        </div>\n      </div>\n      @if(moreTap.observers.length) {\n        <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n        <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n        </div>\n        <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\"></fui-icon>\n      </a>\n      }\n    </div>\n    @if(subtitleTemplateRef() || subtitle()) {\n      <div class=\"text-subtitle\">\n        @if(subtitleTemplateRef()) {\n          <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n        }\n        @if(!subtitleTemplateRef()) {\n          <span>{{subtitle()}}</span>\n        }\n      </div>\n    }\n  </div>\n</div>\n",
+            "template": "<div class=\"flex\">\n  @if(imageSrc()) {\n    <div class=\"pr-element\">\n      <img class=\"object-cover rounded-element\n                  h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                  w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n    </div>\n  }\n  <div class=\"flex-1\">\n    <div class=\"flex items-center\">\n      <div class=\"flex-1\">\n        <div class=\"text-title font-light\">\n          @if(titleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n          }\n          @if(!titleTemplateRef() && title()) {\n            <span>{{title()}}</span>\n          }\n        </div>\n      </div>\n      @if(moreTap.observers.length) {\n        <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n        <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n        </div>\n        <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n      </a>\n      }\n    </div>\n    @if(subtitleTemplateRef() || subtitle()) {\n      <div class=\"text-subtitle\">\n        @if(subtitleTemplateRef()) {\n          <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n        }\n        @if(!subtitleTemplateRef()) {\n          <span>{{subtitle()}}</span>\n        }\n      </div>\n    }\n  </div>\n</div>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -677,7 +677,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-card-header',\n  standalone: true,\n  imports: [NgTemplateOutlet, IconComponent],\n  template: `\n  <div class=\"flex\">\n    @if(imageSrc()) {\n      <div class=\"pr-element\">\n        <img class=\"object-cover rounded-element \n                    h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                    w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n      </div>\n    }\n    <div class=\"flex-1\">\n      <div class=\"flex items-center\">\n        <div class=\"flex-1\">\n          <div class=\"text-title font-light\">\n            @if(titleTemplateRef()) {\n              <ng-container *ngIf=\"titleTemplateRef\" [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n            }\n            @if(!titleTemplateRef() && title()) {\n              <span>{{title()}}</span>\n            }\n          </div>\n        </div>\n        @if(moreTap.observers.length) {\n          <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n          <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n          </div>\n          <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\"></fui-icon>\n        </a>\n        }\n      </div>\n      @if(subtitleTemplateRef() || subtitle()) {\n        <div class=\"text-subtitle\">\n          @if(subtitleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n          }\n          @if(!subtitleTemplateRef()) {\n            <span>{{subtitle()}}</span>\n          }\n        </div>\n      }\n    </div>\n  </div>\n  `\n})\nexport class CardHeaderComponent {\n\n  titleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  title = input('');\n\n  subtitleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  subtitle = input('');\n\n  imageSrc = input<string | null>(null);\n  \n  @Output()\n  moreTap = new EventEmitter();\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-card-header',\n  standalone: true,\n  imports: [NgTemplateOutlet, IconComponent],\n  template: `\n  <div class=\"flex\">\n    @if(imageSrc()) {\n      <div class=\"pr-element\">\n        <img class=\"object-cover rounded-element \n                    h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                    w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n      </div>\n    }\n    <div class=\"flex-1\">\n      <div class=\"flex items-center\">\n        <div class=\"flex-1\">\n          <div class=\"text-title font-light\">\n            @if(titleTemplateRef()) {\n              <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n            }\n            @if(!titleTemplateRef() && title()) {\n              <span>{{title()}}</span>\n            }\n          </div>\n        </div>\n        @if(moreTap.observers.length) {\n          <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n          <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n          </div>\n          <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n        </a>\n        }\n      </div>\n      @if(subtitleTemplateRef() || subtitle()) {\n        <div class=\"text-subtitle\">\n          @if(subtitleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n          }\n          @if(!subtitleTemplateRef()) {\n            <span>{{subtitle()}}</span>\n          }\n        </div>\n      }\n    </div>\n  </div>\n  `\n})\nexport class CardHeaderComponent {\n\n  titleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  title = input('');\n\n  subtitleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  subtitle = input('');\n\n  imageSrc = input<string | null>(null);\n  \n  @Output()\n  moreTap = new EventEmitter();\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -791,6 +791,555 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": []
+        },
+        {
+            "name": "DatasetCardheaderComponent",
+            "id": "component-DatasetCardheaderComponent-f18aa4e65868dcffd2cae1af261166e7920ac4a36f43520f50693d3a5f99e9df87f27b900c13023df408e51f144099c174727400dc07c9b37d4e9d2f42811ab2",
+            "file": "packages/data/src/lib/dataset/dataset-cardheader.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-dataset-cardheader",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<ng-template #template let-data>\n  <fui-card-header [titleTemplateRef]=\"titleTemplateWrapper\" [subtitleTemplateRef]=\"subtitleTemplateWrapper\" [imageSrc]=\"getImageSrc(data)\">\n    <ng-template #titleTemplateWrapper>\n      <ng-container *ngTemplateOutlet=\"_titleTemplate() ?? null; context: { $implicit: data }\" />\n    </ng-template>\n    <ng-template #subtitleTemplateWrapper>\n      <ng-container *ngTemplateOutlet=\"_subtitleTemplate() ?? null; context: { $implicit: data }\" />\n    </ng-template>\n  </fui-card-header>\n</ng-template>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_subtitleTemplate",
+                    "defaultValue": "contentChild<TemplateRef<unknown>>('subtitleTemplate')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                },
+                {
+                    "name": "_template",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('template')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 26
+                },
+                {
+                    "name": "_titleTemplate",
+                    "defaultValue": "contentChild<TemplateRef<unknown>>('titleTemplate')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 28
+                },
+                {
+                    "name": "imageSrcKeyPath",
+                    "defaultValue": "input<string | null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getImageSrc",
+                    "args": [
+                        {
+                            "name": "data",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string | null",
+                    "typeParameters": [],
+                    "line": 31,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "data",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "NgTemplateOutlet"
+                },
+                {
+                    "name": "CardHeaderComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, TemplateRef, input, viewChild, contentChild } from '@angular/core';\nimport { CardHeaderComponent } from 'fancy-ui-content';\nimport { DatasetHelpers } from './dataset.helpers';\nimport { NgTemplateOutlet } from '@angular/common';\n\n@Component({\n  selector: 'fui-dataset-cardheader',\n  standalone: true,\n  imports: [NgTemplateOutlet, CardHeaderComponent],\n  template: `\n    <ng-template #template let-data>\n      <fui-card-header [titleTemplateRef]=\"titleTemplateWrapper\" [subtitleTemplateRef]=\"subtitleTemplateWrapper\" [imageSrc]=\"getImageSrc(data)\">\n        <ng-template #titleTemplateWrapper>\n          <ng-container *ngTemplateOutlet=\"_titleTemplate() ?? null; context: { $implicit: data }\" />\n        </ng-template>\n        <ng-template #subtitleTemplateWrapper>\n          <ng-container *ngTemplateOutlet=\"_subtitleTemplate() ?? null; context: { $implicit: data }\" />\n        </ng-template>\n      </fui-card-header>\n    </ng-template>\n  `\n})\nexport class DatasetCardheaderComponent {\n  imageSrcKeyPath = input<string | null>(null);\n\n  _template = viewChild<TemplateRef<unknown>>('template');\n\n  _titleTemplate = contentChild<TemplateRef<unknown>>('titleTemplate');\n  _subtitleTemplate = contentChild<TemplateRef<unknown>>('subtitleTemplate');\n\n  getImageSrc(data: unknown): string | null {\n    const keyPath = this.imageSrcKeyPath();\n    if(!keyPath) return null;\n    return DatasetHelpers.getKeyPathValue(data, keyPath);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "DatasetComponent",
+            "id": "component-DatasetComponent-dca1f75e14980ce9f994f203688094ff6c43f5656fec7abc3d24778f379b2e0bc03c118515b3e0c42bced6db9a651dfb9aa6c93f1d6c8f01d6b12c38ca43abc9",
+            "file": "packages/data/src/lib/dataset/dataset.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-dataset",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./dataset.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_datasetCardHeader",
+                    "defaultValue": "contentChild(DatasetCardheaderComponent)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "_datasetCardItems",
+                    "defaultValue": "computed(() => this._datasetItems().filter(item => item.target() === 'Card'|| item.target() === 'TableAndCard'))",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                },
+                {
+                    "name": "_datasetItems",
+                    "defaultValue": "contentChildren(DatasetItemBase)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "_datasetTableItems",
+                    "defaultValue": "computed(() => this._datasetItems().filter(item => item.target() === 'Table' || item.target() === 'TableAndCard'))",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "dataSource",
+                    "defaultValue": "input<Array<unknown>>([])",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "NgTemplateOutlet"
+                },
+                {
+                    "name": "CardComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "CardContentComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, computed, contentChild, contentChildren, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { DatasetItemBase } from './dataset-item.base';\nimport { DatasetCardheaderComponent } from './dataset-cardheader.component';\n\nimport { CardComponent, CardContentComponent } from 'fancy-ui-content';\n\n@Component({\n  selector: 'fui-dataset',\n  standalone: true,\n  imports: [NgTemplateOutlet,  CardComponent, CardContentComponent],\n  templateUrl: './dataset.component.html'\n})\nexport class DatasetComponent {\n  dataSource = input<Array<unknown>>([]);\n\n  _datasetItems = contentChildren(DatasetItemBase);\n  _datasetCardHeader = contentChild(DatasetCardheaderComponent);\n\n  _datasetTableItems = computed(() => this._datasetItems().filter(item => item.target() === 'Table' || item.target() === 'TableAndCard'));\n  _datasetCardItems = computed(() => this._datasetItems().filter(item => item.target() === 'Card'|| item.target() === 'TableAndCard'))\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "@if(dataSource(); as data) {\n    <div class=\"md:hidden grid gap-component\">\n        @for(cardData of data; track $index) {\n            <fui-card>\n                @if(_datasetCardHeader(); as cardHeader) {\n                    <ng-container [ngTemplateOutlet]=\"cardHeader._template() ?? null\"\n                                  [ngTemplateOutletContext]=\"{ $implicit: cardData }\"/>\n                }\n                <fui-card-content>\n                    <div class=\"grid grid-cols-12\">\n                        @for(item of _datasetCardItems(); track $index) {\n                            <ng-container [ngTemplateOutlet]=\"item.cardTemplate ?? null\"\n                                          [ngTemplateOutletContext]=\"{ $implicit: cardData }\" />\n                        }\n                    </div>\n                </fui-card-content>\n            </fui-card>\n        }\n    </div>\n\n    <table class=\"w-full hidden md:table\">\n        <thead>\n            <tr>\n                @for(item of _datasetTableItems(); track $index) {\n                    <th class=\"text-left\">{{ item.label() }}</th>\n                }\n            </tr>\n        </thead>\n        <tbody>\n            @for(rowData of data; track $index) {\n                <tr>\n                    @for(item of _datasetTableItems(); track $index) {\n                        <td>\n                            <ng-container [ngTemplateOutlet]=\"item.tableTemplate ?? null\"\n                                          [ngTemplateOutletContext]=\"{ $implicit: rowData }\" />\n                        </td>\n                    }\n                </tr>\n            }\n        </tbody>\n    </table>\n}\n"
+        },
+        {
+            "name": "DatasetItemImageComponent",
+            "id": "component-DatasetItemImageComponent-feef9cdab7839fe6d3616f8d9eb852ecfeae011e4135c3f7422dc9ab27e92cf2c6356349a41c5be8c56df7717e05c9d93edc5dde31c898f80725b4479ad47276",
+            "file": "packages/data/src/lib/dataset/dataset-item-image.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{ provide: DatasetItemBase, useExisting: DatasetItemImageComponent }",
+                    "type": "component"
+                }
+            ],
+            "selector": "fui-dataset-item-image",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<ng-template #cardTemplate let-rowData>\n  <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\n                    'col-span-6': cardLineWidth() === 'Half',\n                    'col-span-12': cardLineWidth() === 'Full'}\">\n    <label class=\"text-label font-label\">{{label()}}</label>\n    <div class=\"flex\">\n      <img class=\"rounded\" [src]=\"getImageSrc(rowData)\">\n      <span class=\"self-center ml-component\">\n        <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\n      </span>\n    </div>\n  </span>\n</ng-template>\n<ng-template #tableTemplate let-rowData>\n  <div class=\"flex\">\n    <img [src]=\"getImageSrc(rowData)\">\n    <span class=\"self-center ml-component\">\n      <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\n    </span>\n  </div>\n</ng-template>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_cardTemplate",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('cardTemplate')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 44
+                },
+                {
+                    "name": "_tableTemplate",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('tableTemplate')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 45
+                },
+                {
+                    "name": "_valueTemplate",
+                    "defaultValue": "contentChild<TemplateRef<unknown>>(TemplateRef)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 42
+                },
+                {
+                    "name": "imageSrcKeyPath",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 40
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getImageSrc",
+                    "args": [
+                        {
+                            "name": "data",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string | null",
+                    "typeParameters": [],
+                    "line": 55,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "data",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "NgClass"
+                },
+                {
+                    "name": "NgTemplateOutlet"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { NgClass, NgTemplateOutlet } from '@angular/common';\nimport { Component, TemplateRef, input, contentChild, viewChild } from '@angular/core';\nimport { DatasetItemBase } from './dataset-item.base';\nimport { DatasetHelpers } from './dataset.helpers';\n\n\n@Component({\n  selector: 'fui-dataset-item-image',\n  standalone: true,\n  imports: [NgClass, NgTemplateOutlet],\n  template: `\n    <ng-template #cardTemplate let-rowData>\n      <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\n                        'col-span-6': cardLineWidth() === 'Half',\n                        'col-span-12': cardLineWidth() === 'Full'}\">\n        <label class=\"text-label font-label\">{{label()}}</label>\n        <div class=\"flex\">\n          <img class=\"rounded\" [src]=\"getImageSrc(rowData)\">\n          <span class=\"self-center ml-component\">\n            <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\n          </span>\n        </div>\n      </span>\n    </ng-template>\n    <ng-template #tableTemplate let-rowData>\n      <div class=\"flex\">\n        <img [src]=\"getImageSrc(rowData)\">\n        <span class=\"self-center ml-component\">\n          <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\n        </span>\n      </div>\n    </ng-template>\n  `,\n  providers: [\n    { provide: DatasetItemBase, useExisting: DatasetItemImageComponent }\n  ],\n})\nexport class DatasetItemImageComponent extends DatasetItemBase {\n\n  imageSrcKeyPath = input('');\n\n  _valueTemplate = contentChild<TemplateRef<unknown>>(TemplateRef);\n\n  _cardTemplate = viewChild<TemplateRef<unknown>>('cardTemplate');\n  _tableTemplate = viewChild<TemplateRef<unknown>>('tableTemplate');\n\n  get cardTemplate(): TemplateRef<unknown> | undefined{\n    return this._cardTemplate();\n  }\n\n  get tableTemplate(): TemplateRef<unknown> | undefined {\n    return this._tableTemplate();\n  }\n\n  getImageSrc(data: unknown): string | null {\n    if(!this.imageSrcKeyPath) return null;\n    return DatasetHelpers.getKeyPathValue(data, this.imageSrcKeyPath());\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [
+                "DatasetItemBase"
+            ],
+            "accessors": {
+                "cardTemplate": {
+                    "name": "cardTemplate",
+                    "getSignature": {
+                        "name": "cardTemplate",
+                        "type": "",
+                        "returnType": "TemplateRef | undefined",
+                        "line": 47
+                    }
+                },
+                "tableTemplate": {
+                    "name": "tableTemplate",
+                    "getSignature": {
+                        "name": "tableTemplate",
+                        "type": "",
+                        "returnType": "TemplateRef | undefined",
+                        "line": 51
+                    }
+                }
+            }
+        },
+        {
+            "name": "DatasetItemTemplateComponent",
+            "id": "component-DatasetItemTemplateComponent-ad64dde2d260eb4fb6fc80210dfa80fbcc18c386e965883993fb72ca835369a3a0a9222f012c364ef31e457cbd5dcde8cf892af026b867a2bb16fafdc89734c4",
+            "file": "packages/data/src/lib/dataset/dataset-item-template.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{ provide: DatasetItemBase, useExisting: DatasetItemTemplateComponent }",
+                    "type": "component"
+                }
+            ],
+            "selector": "fui-dataset-item-template",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<ng-template #cardTemplate let-rowData>\n  <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\n                    'col-span-6': cardLineWidth() === 'Half',\n                    'col-span-12': cardLineWidth() === 'Full'}\">\n    <label class=\"text-label font-label\">{{label()}}</label>\n    <div><ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" /></div>\n  </span>\n</ng-template>\n<ng-template #tableTemplate let-rowData>\n  <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\n</ng-template>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_cardTemplate",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('cardTemplate')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 31
+                },
+                {
+                    "name": "_tableTemplate",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('tableTemplate')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 32
+                },
+                {
+                    "name": "_valueTemplate",
+                    "defaultValue": "contentChild<TemplateRef<unknown>>(TemplateRef)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "NgTemplateOutlet"
+                },
+                {
+                    "name": "NgClass"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { NgClass, NgTemplateOutlet } from '@angular/common';\nimport { Component, TemplateRef, viewChild, contentChild } from '@angular/core';\nimport { DatasetItemBase } from './dataset-item.base';\n\n\n@Component({\n  selector: 'fui-dataset-item-template',\n  standalone: true,\n  imports: [NgTemplateOutlet, NgClass],\n  template: `\n    <ng-template #cardTemplate let-rowData>\n      <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\n                        'col-span-6': cardLineWidth() === 'Half',\n                        'col-span-12': cardLineWidth() === 'Full'}\">\n        <label class=\"text-label font-label\">{{label()}}</label>\n        <div><ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" /></div>\n      </span>\n    </ng-template>\n    <ng-template #tableTemplate let-rowData>\n      <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\n    </ng-template>\n  `,\n  providers: [\n    { provide: DatasetItemBase, useExisting: DatasetItemTemplateComponent }\n  ],\n})\nexport class DatasetItemTemplateComponent extends DatasetItemBase {\n\n  _valueTemplate = contentChild<TemplateRef<unknown>>(TemplateRef)\n\n  _cardTemplate = viewChild<TemplateRef<unknown>>('cardTemplate');\n  _tableTemplate = viewChild<TemplateRef<unknown>>('tableTemplate');\n\n  get cardTemplate(): TemplateRef<unknown> | undefined{\n    return this._cardTemplate();\n  }\n\n  get tableTemplate(): TemplateRef<unknown> | undefined {\n    return this._tableTemplate();\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [
+                "DatasetItemBase"
+            ],
+            "accessors": {
+                "cardTemplate": {
+                    "name": "cardTemplate",
+                    "getSignature": {
+                        "name": "cardTemplate",
+                        "type": "",
+                        "returnType": "TemplateRef | undefined",
+                        "line": 34
+                    }
+                },
+                "tableTemplate": {
+                    "name": "tableTemplate",
+                    "getSignature": {
+                        "name": "tableTemplate",
+                        "type": "",
+                        "returnType": "TemplateRef | undefined",
+                        "line": 38
+                    }
+                }
+            }
+        },
+        {
+            "name": "DatasetItemValueComponent",
+            "id": "component-DatasetItemValueComponent-0b1c3296b49e53f621d9c2e7dff0c98f43660dec9b134322c52bc2dfab5c0b9207b9a794c4f86b85a5cf9a59906f4dd33c890157680dbe3ebd97ae9304eac98e",
+            "file": "packages/data/src/lib/dataset/dataset-item-value.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{ provide: DatasetItemBase, useExisting: DatasetItemValueComponent }",
+                    "type": "component"
+                }
+            ],
+            "selector": "fui-dataset-item-value",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<ng-template #cardTemplate let-rowData>\n  <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\n                    'col-span-6': cardLineWidth() === 'Half',\n                    'col-span-12': cardLineWidth() === 'Full'}\">\n    <label class=\"text-label font-label\">{{label()}}</label>\n    <div>{{ rowData[key()] }}</div>\n  </span>\n</ng-template>\n<ng-template #tableTemplate let-rowData>{{ rowData[key()] }}</ng-template>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_cardTemplate",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('cardTemplate')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                },
+                {
+                    "name": "_tableTemplate",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('tableTemplate')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 30
+                },
+                {
+                    "name": "key",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 27
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "NgClass"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { NgClass } from '@angular/common';\nimport { Component, TemplateRef, input, viewChild } from '@angular/core';\n\nimport { DatasetItemBase } from './dataset-item.base'\n\n@Component({\n  selector: 'fui-dataset-item-value',\n  standalone: true,\n  imports: [NgClass],\n  template: `\n    <ng-template #cardTemplate let-rowData>\n      <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\n                        'col-span-6': cardLineWidth() === 'Half',\n                        'col-span-12': cardLineWidth() === 'Full'}\">\n        <label class=\"text-label font-label\">{{label()}}</label>\n        <div>{{ rowData[key()] }}</div>\n      </span>\n    </ng-template>\n    <ng-template #tableTemplate let-rowData>{{ rowData[key()] }}</ng-template>\n  `,\n  providers: [\n    { provide: DatasetItemBase, useExisting: DatasetItemValueComponent }\n  ],\n})\nexport class DatasetItemValueComponent extends DatasetItemBase {\n\n  key = input('');\n\n  _cardTemplate = viewChild<TemplateRef<unknown>>('cardTemplate');\n  _tableTemplate = viewChild<TemplateRef<unknown>>('tableTemplate');\n\n  get cardTemplate(): TemplateRef<unknown> | undefined{\n    return this._cardTemplate();\n  }\n\n  get tableTemplate(): TemplateRef<unknown> | undefined {\n    return this._tableTemplate();\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [
+                "DatasetItemBase"
+            ],
+            "accessors": {
+                "cardTemplate": {
+                    "name": "cardTemplate",
+                    "getSignature": {
+                        "name": "cardTemplate",
+                        "type": "",
+                        "returnType": "TemplateRef | undefined",
+                        "line": 32
+                    }
+                },
+                "tableTemplate": {
+                    "name": "tableTemplate",
+                    "getSignature": {
+                        "name": "tableTemplate",
+                        "type": "",
+                        "returnType": "TemplateRef | undefined",
+                        "line": 36
+                    }
+                }
+            }
         },
         {
             "name": "IconComponent",
@@ -1918,6 +2467,16 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "packages/content/src/lib/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1938,21 +2497,21 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title' as any,\r\n    showBackButton: true as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -2055,6 +2614,36 @@
                 "defaultValue": "{\n  stories: ['../../../packages/*/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)', '../../../packages/*/src/lib/**/*.mdx', '../stories/**/*.stories.ts', '../doc/**/*.mdx'],\n  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
             },
             {
+                "name": "DatasetOnly",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  parameters: {\r\n    dataSource1\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Dataset\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n          Foo\r\n            <fui-dataset [dataSource]=\"dataSource1\">\r\n              <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n                <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n                <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n              </fui-dataset-cardheader>\r\n              <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n              <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n                <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n              </fui-dataset-item-image>\r\n              <fui-dataset-item-template label=\"Score\">\r\n                <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n              </fui-dataset-item-template>\r\n            </fui-dataset>\r\n            bar\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "dataSource",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
+            },
+            {
+                "name": "dataSource1",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
+            },
+            {
                 "name": "FormCards",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2062,7 +2651,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-2 lg:grid-cols-4 gap-component\">\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                    <div>\r\n                      <label class=\"my-element\">Radios</label>\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label1\"  value=\"value1\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label2\"  value=\"value2\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label3\"  value=\"value3\" />\r\n                    </div>\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-2 lg:grid-cols-4 gap-component\">\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                    <div>\r\n                      <label class=\"my-element\">Radios</label>\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label1\"  value=\"value1\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label2\"  value=\"value2\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label3\"  value=\"value3\" />\r\n                    </div>\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Group",
@@ -2128,6 +2717,26 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ShellComponent>",
+                "defaultValue": "{\r\n  title: 'Compositions/Dataset Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, DatasetBundle, CardBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<DatasetComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  subcomponents: { DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "packages/content/src/lib/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -2148,21 +2757,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<NavBarComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<AppBarComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<NavBarComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -2374,6 +2983,28 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<ShellComponent>",
+                "file": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<DatasetComponent>",
+                "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<CardComponent>",
                 "file": "packages/content/src/lib/card/card.stories.ts",
                 "deprecated": false,
@@ -2396,8 +3027,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<NavBarComponent>",
-                "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                "rawtype": "StoryObj<AppBarComponent>",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2407,8 +3038,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<AppBarComponent>",
-                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "rawtype": "StoryObj<NavBarComponent>",
+                "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -2494,6 +3125,38 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "packages/data/src/lib/dataset/dataset.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "dataSource",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<DatasetComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  subcomponents: { DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
             "packages/content/src/lib/card/card.stories.ts": [
                 {
                     "name": "Basic",
@@ -2578,28 +3241,6 @@
                     "defaultValue": "{\r\n  title: 'Components/Core/Button',\r\n  component: ButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ButtonComponent]\r\n    })\r\n  ],\r\n}"
                 }
             ],
-            "packages/shell/src/lib/nav-bar/nav-bar.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<NavBarComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
             "packages/shell/src/lib/app-bar/app-bar.stories.ts": [
                 {
                     "name": "Basic",
@@ -2640,6 +3281,28 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"matHomeOutline\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"heroUsers\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"matSettingsOutline\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    // const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    // userEvent.click(action2);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    // const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    // userEvent.click(action3);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
+                }
+            ],
+            "packages/shell/src/lib/nav-bar/nav-bar.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<NavBarComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/shell/src/lib/nav-rail/nav-rail.stories.ts": [
@@ -2855,7 +3518,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-2 lg:grid-cols-4 gap-component\">\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                    <div>\r\n                      <label class=\"my-element\">Radios</label>\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label1\"  value=\"value1\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label2\"  value=\"value2\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label3\"  value=\"value3\" />\r\n                    </div>\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-2 lg:grid-cols-4 gap-component\">\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                    <div>\r\n                      <label class=\"my-element\">Radios</label>\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label1\"  value=\"value1\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label2\"  value=\"value2\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label3\"  value=\"value3\" />\r\n                    </div>\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
                 },
                 {
                     "name": "meta",
@@ -2878,6 +3541,38 @@
                     "deprecationMessage": "",
                     "type": "StorybookConfig",
                     "defaultValue": "{\n  stories: ['../../../packages/*/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)', '../../../packages/*/src/lib/**/*.mdx', '../stories/**/*.stories.ts', '../doc/**/*.mdx'],\n  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
+                }
+            ],
+            "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts": [
+                {
+                    "name": "DatasetOnly",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  parameters: {\r\n    dataSource1\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Dataset\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n          Foo\r\n            <fui-dataset [dataSource]=\"dataSource1\">\r\n              <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n                <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n                <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n              </fui-dataset-cardheader>\r\n              <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n              <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n                <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n              </fui-dataset-item-image>\r\n              <fui-dataset-item-template label=\"Score\">\r\n                <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n              </fui-dataset-item-template>\r\n            </fui-dataset>\r\n            bar\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "dataSource1",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ShellComponent>",
+                    "defaultValue": "{\r\n  title: 'Compositions/Dataset Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, DatasetBundle, CardBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "apps/storybook-host/stories/compositions.basic-layouts.stories.ts": [
@@ -2987,6 +3682,32 @@
                     "kind": 183
                 }
             ],
+            "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ShellComponent>",
+                    "file": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/data/src/lib/dataset/dataset.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<DatasetComponent>",
+                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "packages/content/src/lib/card/card.stories.ts": [
                 {
                     "name": "Story",
@@ -3013,19 +3734,6 @@
                     "kind": 183
                 }
             ],
-            "packages/shell/src/lib/nav-bar/nav-bar.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<NavBarComponent>",
-                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "packages/shell/src/lib/app-bar/app-bar.stories.ts": [
                 {
                     "name": "Story",
@@ -3033,6 +3741,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<AppBarComponent>",
                     "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/shell/src/lib/nav-bar/nav-bar.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<NavBarComponent>",
+                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -3248,6 +3969,36 @@
                 "status": "low"
             },
             {
+                "filePath": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DatasetOnly",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "dataSource1",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "packages/content/src/lib/card/card-actions.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -3397,6 +4148,81 @@
                 "name": "IconComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/data/src/lib/dataset/dataset-cardheader.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DatasetCardheaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/data/src/lib/dataset/dataset-item-image.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DatasetItemImageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/data/src/lib/dataset/dataset-item-template.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DatasetItemTemplateComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/data/src/lib/dataset/dataset-item-value.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DatasetItemValueComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/data/src/lib/dataset/dataset.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DatasetComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "dataSource",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

@@ -20,7 +20,7 @@ import { IconComponent } from 'fancy-ui-core';
         <div class="flex-1">
           <div class="text-title font-light">
             @if(titleTemplateRef()) {
-              <ng-container *ngIf="titleTemplateRef" [ngTemplateOutlet]="titleTemplateRef()"/>
+              <ng-container [ngTemplateOutlet]="titleTemplateRef()"/>
             }
             @if(!titleTemplateRef() && title()) {
               <span>{{title()}}</span>
@@ -31,7 +31,7 @@ import { IconComponent } from 'fancy-ui-core';
           <a (click)="moreTap.emit()" class=" w-hover flex justify-center items-center">
           <div class="absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover">
           </div>
-          <fui-icon class="h-icon w-icon" name="matMoreVertOutline"></fui-icon>
+          <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />
         </a>
         }
       </div>

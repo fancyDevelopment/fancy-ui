@@ -1,0 +1,42 @@
+@if(dataSource(); as data) {
+    <div class="md:hidden grid gap-component">
+        @for(cardData of data; track $index) {
+            <fui-card>
+                @if(_datasetCardHeader(); as cardHeader) {
+                    <ng-container [ngTemplateOutlet]="cardHeader._template() ?? null"
+                                  [ngTemplateOutletContext]="{ $implicit: cardData }"/>
+                }
+                <fui-card-content>
+                    <div class="grid grid-cols-12">
+                        @for(item of _datasetCardItems(); track $index) {
+                            <ng-container [ngTemplateOutlet]="item.cardTemplate ?? null"
+                                          [ngTemplateOutletContext]="{ $implicit: cardData }" />
+                        }
+                    </div>
+                </fui-card-content>
+            </fui-card>
+        }
+    </div>
+
+    <table class="w-full hidden md:table">
+        <thead>
+            <tr>
+                @for(item of _datasetTableItems(); track $index) {
+                    <th class="text-left">{{ item.label() }}</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for(rowData of data; track $index) {
+                <tr>
+                    @for(item of _datasetTableItems(); track $index) {
+                        <td>
+                            <ng-container [ngTemplateOutlet]="item.tableTemplate ?? null"
+                                          [ngTemplateOutletContext]="{ $implicit: rowData }" />
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
