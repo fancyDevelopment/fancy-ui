@@ -1,0 +1,10 @@
+<div class="flex" [style.--activeTabIndex]="activeTabIndex">
+    @for(item of _items(); track $index) {
+        <div class="relative basis-0 grow hover:bg-hover text-center" (click)="activateTab($index)">
+            {{item.label()}}
+            @if($index === 0) {
+                <div class="absolute w-full transition-all duration-700 border-b-2 left-[calc(100%*var(--activeTabIndex))]"></div>
+            }
+        </div>
+    }
+</div>

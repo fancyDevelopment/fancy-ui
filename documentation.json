@@ -907,7 +907,7 @@
         },
         {
             "name": "DatasetComponent",
-            "id": "component-DatasetComponent-dca1f75e14980ce9f994f203688094ff6c43f5656fec7abc3d24778f379b2e0bc03c118515b3e0c42bced6db9a651dfb9aa6c93f1d6c8f01d6b12c38ca43abc9",
+            "id": "component-DatasetComponent-dd96be106544236d4f956ce44e66a094419ebdb08262aabb4af9c9d52808ba63656a13249e3ae28eeaced2eb575317298a46c994c3195463b70ef08823afbdd4",
             "file": "packages/data/src/lib/dataset/dataset.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -998,10 +998,18 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, computed, contentChild, contentChildren, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { DatasetItemBase } from './dataset-item.base';\nimport { DatasetCardheaderComponent } from './dataset-cardheader.component';\n\nimport { CardComponent, CardContentComponent } from 'fancy-ui-content';\n\n@Component({\n  selector: 'fui-dataset',\n  standalone: true,\n  imports: [NgTemplateOutlet,  CardComponent, CardContentComponent],\n  templateUrl: './dataset.component.html'\n})\nexport class DatasetComponent {\n  dataSource = input<Array<unknown>>([]);\n\n  _datasetItems = contentChildren(DatasetItemBase);\n  _datasetCardHeader = contentChild(DatasetCardheaderComponent);\n\n  _datasetTableItems = computed(() => this._datasetItems().filter(item => item.target() === 'Table' || item.target() === 'TableAndCard'));\n  _datasetCardItems = computed(() => this._datasetItems().filter(item => item.target() === 'Card'|| item.target() === 'TableAndCard'))\n}\n",
+            "sourceCode": "import { Component, computed, contentChild, contentChildren, effect, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { DatasetItemBase } from './dataset-item.base';\nimport { DatasetCardheaderComponent } from './dataset-cardheader.component';\n\nimport { CardComponent, CardContentComponent } from 'fancy-ui-content';\n\n@Component({\n  selector: 'fui-dataset',\n  standalone: true,\n  imports: [NgTemplateOutlet,  CardComponent, CardContentComponent],\n  templateUrl: './dataset.component.html'\n})\nexport class DatasetComponent {\n  dataSource = input<Array<unknown>>([]);\n\n  _datasetItems = contentChildren(DatasetItemBase);\n  _datasetCardHeader = contentChild(DatasetCardheaderComponent);\n\n  _datasetTableItems = computed(() => this._datasetItems().filter(item => item.target() === 'Table' || item.target() === 'TableAndCard'));\n  _datasetCardItems = computed(() => this._datasetItems().filter(item => item.target() === 'Card'|| item.target() === 'TableAndCard'));\n\n  constructor() {\n    effect(() => console.log('Datasource: ', this.dataSource()));\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 21
+            },
             "extends": [],
             "templateData": "@if(dataSource(); as data) {\n    <div class=\"md:hidden grid gap-component\">\n        @for(cardData of data; track $index) {\n            <fui-card>\n                @if(_datasetCardHeader(); as cardHeader) {\n                    <ng-container [ngTemplateOutlet]=\"cardHeader._template() ?? null\"\n                                  [ngTemplateOutletContext]=\"{ $implicit: cardData }\"/>\n                }\n                <fui-card-content>\n                    <div class=\"grid grid-cols-12\">\n                        @for(item of _datasetCardItems(); track $index) {\n                            <ng-container [ngTemplateOutlet]=\"item.cardTemplate ?? null\"\n                                          [ngTemplateOutletContext]=\"{ $implicit: cardData }\" />\n                        }\n                    </div>\n                </fui-card-content>\n            </fui-card>\n        }\n    </div>\n\n    <table class=\"w-full hidden md:table\">\n        <thead>\n            <tr>\n                @for(item of _datasetTableItems(); track $index) {\n                    <th class=\"text-left\">{{ item.label() }}</th>\n                }\n            </tr>\n        </thead>\n        <tbody>\n            @for(rowData of data; track $index) {\n                <tr>\n                    @for(item of _datasetTableItems(); track $index) {\n                        <td>\n                            <ng-container [ngTemplateOutlet]=\"item.tableTemplate ?? null\"\n                                          [ngTemplateOutletContext]=\"{ $implicit: rowData }\" />\n                        </td>\n                    }\n                </tr>\n            }\n        </tbody>\n    </table>\n}\n"
         },
@@ -2155,6 +2163,139 @@
             "templateData": "<label class=\"flex items-center\">\n\n    @if(label()) {\n      <!-- label -->\n      <label class=\"mr-element flex-grow\">{{label()}}</label>\n    }\n  \n    <div class=\"flex cursor-pointer\">\n  \n      @if(hintOff()) {\n        <!-- hint off -->\n        <div class=\"mr-element self-center text-xs\">{{hintOff()}}</div>\n      }\n  \n      <!-- toggle -->\n      <div class=\"relative py-2\">\n        <!-- input -->\n        <input class=\"sr-only peer\" type=\"checkbox\" (input)=\"_onInput()\" [(ngModel)]=\"_currentValue\" />\n        <!-- line -->\n        <div class=\"w-iconX2 h-4 rounded-full shadow-inner transition bg-on-secondary peer-checked:bg-outline\"></div>\n        <!-- dot -->\n        <div class=\"absolute w-icon h-icon bg-outline rounded-full oritin-top-left top-1 shadow transition peer-checked:bg-secondary peer-checked:translate-x-full\"></div>\n      </div>\n  \n      @if(hintOn()) {\n        <!-- hint on -->\n        <div class=\"ml-element self-center text-xs\">{{hintOn()}}</div>\n      }\n      \n    </div>\n</label>\n"
         },
         {
+            "name": "TabsComponent",
+            "id": "component-TabsComponent-bbefea8e3d03cf970ece531736da4749ed4e76ec0b7f069b0f8983c7577ef9e1f96b834d026f12f44b4896bf07225f99eadd598a3767fa10a5b558fad41314c4",
+            "file": "packages/content/src/lib/tabs/tabs.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-tabs",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./tabs.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_items",
+                    "defaultValue": "contentChildren(TabsItemComponent)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "activeTabIndex",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "onTabClick",
+                    "args": [
+                        {
+                            "name": "index",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "index",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, contentChildren } from '@angular/core';\nimport { TabsItemComponent } from './tabs-item.component';\n\n@Component({\n  selector: 'fui-tabs',\n  standalone: true,\n  imports: [],\n  templateUrl: './tabs.component.html'\n})\nexport class TabsComponent {\n  _items = contentChildren(TabsItemComponent);\n  activeTabIndex = 0;\n  onTabClick(index: number) {\n    this.activeTabIndex = index;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"flex justify-stretch\" [style.--activeTabIndex]=\"activeTabIndex\">\n    @for(item of _items(); track $index) {\n        <div class=\"relative basis-0 grow hover:bg-hover text-center\" (click)=\"onTabClick($index)\">\n            {{item.label()}}\n            @if($index === 0) {\n                <div class=\"absolute w-full transition-all duration-700 border-b-2 left-[calc(100%*var(--activeTabIndex))]\"></div>\n            }\n        </div>\n    }\n</div>\n"
+        },
+        {
+            "name": "TabsItemComponent",
+            "id": "component-TabsItemComponent-9094238b3dc9d9e33b816b2282e3d5743a73781353b9f62450fa98a688580f9cf41c01f2fffd85dedb680acf2d999b4969bb6061fec7d7f88197f8d0cb4f00d8",
+            "file": "packages/content/src/lib/tabs/tabs-item.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-tabs-item",
+            "styleUrls": [],
+            "styles": [],
+            "template": "",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, input } from '@angular/core';\n\n@Component({\n  selector: 'fui-tabs-item',\n  standalone: true,\n  template: `\n  `\n})\nexport class TabsItemComponent {\n  label = input('');\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        },
+        {
             "name": "TextBoxComponent",
             "id": "component-TextBoxComponent-60c41b32c01912fe1f0d7727d1041fcd922ed1c81a49036b6eb0f4882af67aadd0f5e441ba7b1572db9cbc057e19c0eded407c0cd580d9ccc644419fb59f844b",
             "file": "packages/forms/src/lib/text-box/text-box.component.ts",
@@ -2467,21 +2608,21 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/data/src/lib/dataset/dataset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/content/src/lib/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card [meaning]=\"meaning\">\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" />\r\n        <fui-card-content>Some Content</fui-card-content>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/content/src/lib/tabs/tabs.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  parameters: {\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-tabs>\r\n        <fui-tabs-item label=\"Foo\" />\r\n        <fui-tabs-item label=\"Bar\" />\r\n        <fui-tabs-item label=\"Baz\" />\r\n        <fui-tabs-item label=\"Foz\" />\r\n      </fui-tabs>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -2497,11 +2638,51 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title' as any,\r\n    showBackButton: true as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Radio Button Label' as any,\r\n    name: 'Ragio Button Group Name' as any,\r\n    value: 'Value1' as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Marked'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-radio-button [label]=\"label\" [name]=\"name\" [value]=\"value\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Switch' as any,\r\n  },\r\n  parameters: {\r\n    model: false,\r\n    onModelChange: jest.fn(action('Switched'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-switch [label]=\"label\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Slider Label' as any,\r\n    rangeMin: 10 as any,\r\n    rangeMax: 90 as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Slided'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-slider [label]=\"label\" [rangeMin]=\"rangeMin\" [rangeMax]=\"rangeMax\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Label' as any,\r\n    hint: 'Hint Text' as any,\r\n  },\r\n  parameters: {\r\n    value: '',\r\n    onModelChange: jest.fn((val) => action(\"Value Changed\")(val))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-text-box [label]=\"label\" [hint]=\"hint\" minlength=\"3\" [ngModel]=\"value\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -2512,6 +2693,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title' as any,\r\n    showBackButton: true as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -2542,46 +2733,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-view class=\"block h-screen\">\r\n        <fui-view-header>\r\n          <div class=\"bg-secondary text-on-secondary h-full flex justify-around p-5\">\r\n            Header\r\n          </div>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          <div class=\"bg-primary text-on-primary h-full flex justify-around p-5\">\r\n            Main Content\r\n          </div>\r\n        </fui-view-main-content>\r\n        <fui-view-footer>\r\n          <div class=\"bg-accent text-on-accent flex justify-around p-5\">\r\n            Footer\r\n          </div>\r\n        </fui-view-footer>\r\n      </fui-view>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    label: 'Radio Button Label' as any,\r\n    name: 'Ragio Button Group Name' as any,\r\n    value: 'Value1' as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Marked'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-radio-button [label]=\"label\" [name]=\"name\" [value]=\"value\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/forms/src/lib/slider/slider.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    label: 'Slider Label' as any,\r\n    rangeMin: 10 as any,\r\n    rangeMax: 90 as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Slided'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-slider [label]=\"label\" [rangeMin]=\"rangeMin\" [rangeMax]=\"rangeMax\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/forms/src/lib/switch/switch.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    label: 'Switch' as any,\r\n  },\r\n  parameters: {\r\n    model: false,\r\n    onModelChange: jest.fn(action('Switched'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-switch [label]=\"label\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    label: 'Label' as any,\r\n    hint: 'Hint Text' as any,\r\n  },\r\n  parameters: {\r\n    value: '',\r\n    onModelChange: jest.fn((val) => action(\"Value Changed\")(val))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-text-box [label]=\"label\" [hint]=\"hint\" minlength=\"3\" [ngModel]=\"value\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "CardGrid",
@@ -2621,23 +2772,23 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  parameters: {\r\n    dataSource1\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Dataset\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n          Foo\r\n            <fui-dataset [dataSource]=\"dataSource1\">\r\n              <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n                <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n                <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n              </fui-dataset-cardheader>\r\n              <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n              <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n                <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n              </fui-dataset-item-image>\r\n              <fui-dataset-item-template label=\"Score\">\r\n                <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n              </fui-dataset-item-template>\r\n            </fui-dataset>\r\n            bar\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  parameters: {\r\n    dataSource\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Dataset\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <fui-dataset [dataSource]=\"dataSource\">\r\n              <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n                <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n                <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n              </fui-dataset-cardheader>\r\n              <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n              <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n                <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n              </fui-dataset-item-image>\r\n              <fui-dataset-item-template label=\"Score\">\r\n                <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n              </fui-dataset-item-template>\r\n            </fui-dataset>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "dataSource",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' },\r\n  {id: 5, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 6, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 7, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 8, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' },\r\n  {id: 9, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 10, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 11, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 12, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
             },
             {
                 "name": "dataSource",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "packages/data/src/lib/dataset/dataset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "[]",
-                "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
-            },
-            {
-                "name": "dataSource1",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "[]",
@@ -2727,21 +2878,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/data/src/lib/dataset/dataset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<DatasetComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  subcomponents: { DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/content/src/lib/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<CardComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Content/Card',\r\n  component: CardComponent,\r\n  subcomponents: { CardHeaderComponent, CardImageComponent, CardContentComponent, CardActionsComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [CardComponent, CardHeaderComponent, CardImageComponent, CardContentComponent, CardActionsComponent, ButtonComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/content/src/lib/tabs/tabs.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<TabsComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Content/Tabs',\r\n  component: TabsComponent,\r\n  subcomponents: { TabsItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TabsComponent, TabsItemComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -2757,11 +2908,51 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<AppBarComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "type": "Meta<RadioButtonComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Forms/Radio Button',\r\n  component: RadioButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [RadioButtonComponent, FormsModule]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<SwitchComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Forms/Switch',\r\n  component: SwitchComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwitchComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<SliderComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Forms/Slider',\r\n  component: SliderComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SliderComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<TextBoxComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Forms/TextBox',\r\n  component: TextBoxComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TextBoxComponent, FormsModule],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ]\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<DatasetComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  subcomponents: { DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -2772,6 +2963,16 @@
                 "deprecationMessage": "",
                 "type": "Meta<NavBarComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<AppBarComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -2802,46 +3003,6 @@
                 "deprecationMessage": "",
                 "type": "Meta<ViewComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<RadioButtonComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Forms/Radio Button',\r\n  component: RadioButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [RadioButtonComponent, FormsModule]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/forms/src/lib/slider/slider.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<SliderComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Forms/Slider',\r\n  component: SliderComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SliderComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/forms/src/lib/switch/switch.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<SwitchComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Forms/Switch',\r\n  component: SwitchComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwitchComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<TextBoxComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Forms/TextBox',\r\n  component: TextBoxComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TextBoxComponent, FormsModule],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ]\r\n}"
             },
             {
                 "name": "MoreThanThreeActions",
@@ -2994,8 +3155,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<DatasetComponent>",
-                "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "rawtype": "StoryObj<CardComponent>",
+                "file": "packages/content/src/lib/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3005,8 +3166,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<CardComponent>",
-                "file": "packages/content/src/lib/card/card.stories.ts",
+                "rawtype": "StoryObj<TabsComponent>",
+                "file": "packages/content/src/lib/tabs/tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3027,8 +3188,52 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<AppBarComponent>",
-                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                "rawtype": "StoryObj<RadioButtonComponent>",
+                "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<SwitchComponent>",
+                "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<SliderComponent>",
+                "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<TextBoxComponent>",
+                "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<DatasetComponent>",
+                "file": "packages/data/src/lib/dataset/dataset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3040,6 +3245,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<NavBarComponent>",
                 "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<AppBarComponent>",
+                "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3077,86 +3293,10 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<RadioButtonComponent>",
-                "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<SliderComponent>",
-                "file": "packages/forms/src/lib/slider/slider.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<SwitchComponent>",
-                "file": "packages/forms/src/lib/switch/switch.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<TextBoxComponent>",
-                "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
             }
         ],
         "enumerations": [],
         "groupedVariables": {
-            "packages/data/src/lib/dataset/dataset.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "dataSource",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "[]",
-                    "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<DatasetComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  subcomponents: { DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
             "packages/content/src/lib/card/card.stories.ts": [
                 {
                     "name": "Basic",
@@ -3219,6 +3359,28 @@
                     "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
                 }
             ],
+            "packages/content/src/lib/tabs/tabs.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/content/src/lib/tabs/tabs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  parameters: {\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-tabs>\r\n        <fui-tabs-item label=\"Foo\" />\r\n        <fui-tabs-item label=\"Bar\" />\r\n        <fui-tabs-item label=\"Baz\" />\r\n        <fui-tabs-item label=\"Foz\" />\r\n      </fui-tabs>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/content/src/lib/tabs/tabs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<TabsComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Content/Tabs',\r\n  component: TabsComponent,\r\n  subcomponents: { TabsItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TabsComponent, TabsItemComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
             "packages/core/src/lib/button/button.stories.ts": [
                 {
                     "name": "Basic",
@@ -3239,6 +3401,168 @@
                     "deprecationMessage": "",
                     "type": "Meta<ButtonComponent>",
                     "defaultValue": "{\r\n  title: 'Components/Core/Button',\r\n  component: ButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ButtonComponent]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
+            "packages/forms/src/lib/radio-button/radio-button.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Radio Button Label' as any,\r\n    name: 'Ragio Button Group Name' as any,\r\n    value: 'Value1' as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Marked'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-radio-button [label]=\"label\" [name]=\"name\" [value]=\"value\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "Group",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    name: 'Ragio Button Group Name' as any,\r\n  },\r\n  parameters: {\r\n    label1: 'Radio Button Label 1',\r\n    value1: 'Value1',\r\n    label2: 'Radio Button Label 2',\r\n    value2: 'Value2',\r\n    label3: 'Radio Button Label 3',\r\n    value3: 'Value3',\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Marked'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-radio-button [name]=\"name\" [label]=\"label1\"  [value]=\"value1\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n      <fui-radio-button [name]=\"name\" [label]=\"label2\"  [value]=\"value2\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n      <fui-radio-button [name]=\"name\" [label]=\"label3\"  [value]=\"value3\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<RadioButtonComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Forms/Radio Button',\r\n  component: RadioButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [RadioButtonComponent, FormsModule]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
+            "packages/forms/src/lib/switch/switch.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Switch' as any,\r\n  },\r\n  parameters: {\r\n    model: false,\r\n    onModelChange: jest.fn(action('Switched'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-switch [label]=\"label\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<SwitchComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Forms/Switch',\r\n  component: SwitchComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwitchComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+                },
+                {
+                    "name": "WithHints",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Switch' as any,\r\n    hintOff: 'Off' as any,\r\n    hintOn: 'On' as any\r\n  },\r\n  parameters: {\r\n    model: false,\r\n    onModelChange: jest.fn(action('Switched'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-switch [label]=\"label\" [hintOff]=\"hintOff\" [hintOn]=\"hintOn\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                }
+            ],
+            "packages/forms/src/lib/slider/slider.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Slider Label' as any,\r\n    rangeMin: 10 as any,\r\n    rangeMax: 90 as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Slided'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-slider [label]=\"label\" [rangeMin]=\"rangeMin\" [rangeMax]=\"rangeMax\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<SliderComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Forms/Slider',\r\n  component: SliderComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SliderComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+                }
+            ],
+            "packages/forms/src/lib/text-box/text-box.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Label' as any,\r\n    hint: 'Hint Text' as any,\r\n  },\r\n  parameters: {\r\n    value: '',\r\n    onModelChange: jest.fn((val) => action(\"Value Changed\")(val))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-text-box [label]=\"label\" [hint]=\"hint\" minlength=\"3\" [ngModel]=\"value\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<TextBoxComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Forms/TextBox',\r\n  component: TextBoxComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TextBoxComponent, FormsModule],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ]\r\n}"
+                }
+            ],
+            "packages/data/src/lib/dataset/dataset.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "dataSource",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<DatasetComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  subcomponents: { DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
+            "packages/shell/src/lib/nav-bar/nav-bar.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<NavBarComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/shell/src/lib/app-bar/app-bar.stories.ts": [
@@ -3281,28 +3605,6 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"matHomeOutline\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"heroUsers\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"matSettingsOutline\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    // const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    // userEvent.click(action2);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    // const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    // userEvent.click(action3);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
-                }
-            ],
-            "packages/shell/src/lib/nav-bar/nav-bar.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<NavBarComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/shell/src/lib/nav-rail/nav-rail.stories.ts": [
@@ -3381,114 +3683,6 @@
                     "defaultValue": "{\r\n  title: 'Components/Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
-            "packages/forms/src/lib/radio-button/radio-button.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    label: 'Radio Button Label' as any,\r\n    name: 'Ragio Button Group Name' as any,\r\n    value: 'Value1' as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Marked'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-radio-button [label]=\"label\" [name]=\"name\" [value]=\"value\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "Group",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    name: 'Ragio Button Group Name' as any,\r\n  },\r\n  parameters: {\r\n    label1: 'Radio Button Label 1',\r\n    value1: 'Value1',\r\n    label2: 'Radio Button Label 2',\r\n    value2: 'Value2',\r\n    label3: 'Radio Button Label 3',\r\n    value3: 'Value3',\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Marked'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-radio-button [name]=\"name\" [label]=\"label1\"  [value]=\"value1\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n      <fui-radio-button [name]=\"name\" [label]=\"label2\"  [value]=\"value2\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n      <fui-radio-button [name]=\"name\" [label]=\"label3\"  [value]=\"value3\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<RadioButtonComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Forms/Radio Button',\r\n  component: RadioButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [RadioButtonComponent, FormsModule]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
-            "packages/forms/src/lib/slider/slider.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/forms/src/lib/slider/slider.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    label: 'Slider Label' as any,\r\n    rangeMin: 10 as any,\r\n    rangeMax: 90 as any\r\n  },\r\n  parameters: {\r\n    model: 'Value',\r\n    onModelChange: jest.fn(action('Slided'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-slider [label]=\"label\" [rangeMin]=\"rangeMin\" [rangeMax]=\"rangeMax\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/forms/src/lib/slider/slider.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<SliderComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Forms/Slider',\r\n  component: SliderComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SliderComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
-                }
-            ],
-            "packages/forms/src/lib/switch/switch.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    label: 'Switch' as any,\r\n  },\r\n  parameters: {\r\n    model: false,\r\n    onModelChange: jest.fn(action('Switched'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-switch [label]=\"label\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<SwitchComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Forms/Switch',\r\n  component: SwitchComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwitchComponent, FormsModule]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
-                },
-                {
-                    "name": "WithHints",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    label: 'Switch' as any,\r\n    hintOff: 'Off' as any,\r\n    hintOn: 'On' as any\r\n  },\r\n  parameters: {\r\n    model: false,\r\n    onModelChange: jest.fn(action('Switched'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-switch [label]=\"label\" [hintOff]=\"hintOff\" [hintOn]=\"hintOn\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
-                }
-            ],
-            "packages/forms/src/lib/text-box/text-box.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    label: 'Label' as any,\r\n    hint: 'Hint Text' as any,\r\n  },\r\n  parameters: {\r\n    value: '',\r\n    onModelChange: jest.fn((val) => action(\"Value Changed\")(val))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-text-box [label]=\"label\" [hint]=\"hint\" minlength=\"3\" [ngModel]=\"value\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<TextBoxComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Forms/TextBox',\r\n  component: TextBoxComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TextBoxComponent, FormsModule],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ]\r\n}"
-                }
-            ],
             "apps/storybook-host/stories/compositions.card-layouts.stories.ts": [
                 {
                     "name": "CardGrid",
@@ -3552,17 +3746,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  parameters: {\r\n    dataSource1\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Dataset\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n          Foo\r\n            <fui-dataset [dataSource]=\"dataSource1\">\r\n              <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n                <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n                <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n              </fui-dataset-cardheader>\r\n              <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n              <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n                <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n              </fui-dataset-item-image>\r\n              <fui-dataset-item-template label=\"Score\">\r\n                <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n              </fui-dataset-item-template>\r\n            </fui-dataset>\r\n            bar\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  parameters: {\r\n    dataSource\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Dataset\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <fui-dataset [dataSource]=\"dataSource\">\r\n              <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n                <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n                <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n              </fui-dataset-cardheader>\r\n              <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n              <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n                <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n              </fui-dataset-item-image>\r\n              <fui-dataset-item-template label=\"Score\">\r\n                <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n              </fui-dataset-item-template>\r\n            </fui-dataset>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
                 },
                 {
-                    "name": "dataSource1",
+                    "name": "dataSource",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
+                    "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' },\r\n  {id: 5, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 6, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 7, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 8, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' },\r\n  {id: 9, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 10, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 11, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 12, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
                 },
                 {
                     "name": "meta",
@@ -3695,19 +3889,6 @@
                     "kind": 183
                 }
             ],
-            "packages/data/src/lib/dataset/dataset.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<DatasetComponent>",
-                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "packages/content/src/lib/card/card.stories.ts": [
                 {
                     "name": "Story",
@@ -3715,6 +3896,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<CardComponent>",
                     "file": "packages/content/src/lib/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/content/src/lib/tabs/tabs.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<TabsComponent>",
+                    "file": "packages/content/src/lib/tabs/tabs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -3734,13 +3928,65 @@
                     "kind": 183
                 }
             ],
-            "packages/shell/src/lib/app-bar/app-bar.stories.ts": [
+            "packages/forms/src/lib/radio-button/radio-button.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<AppBarComponent>",
-                    "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
+                    "rawtype": "StoryObj<RadioButtonComponent>",
+                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/forms/src/lib/switch/switch.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<SwitchComponent>",
+                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/forms/src/lib/slider/slider.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<SliderComponent>",
+                    "file": "packages/forms/src/lib/slider/slider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/forms/src/lib/text-box/text-box.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<TextBoxComponent>",
+                    "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/data/src/lib/dataset/dataset.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<DatasetComponent>",
+                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -3754,6 +4000,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<NavBarComponent>",
                     "file": "packages/shell/src/lib/nav-bar/nav-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/shell/src/lib/app-bar/app-bar.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<AppBarComponent>",
+                    "file": "packages/shell/src/lib/app-bar/app-bar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -3793,58 +4052,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<ViewComponent>",
                     "file": "packages/shell/src/lib/view/view.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "packages/forms/src/lib/radio-button/radio-button.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<RadioButtonComponent>",
-                    "file": "packages/forms/src/lib/radio-button/radio-button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "packages/forms/src/lib/slider/slider.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<SliderComponent>",
-                    "file": "packages/forms/src/lib/slider/slider.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "packages/forms/src/lib/switch/switch.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<SwitchComponent>",
-                    "file": "packages/forms/src/lib/switch/switch.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "packages/forms/src/lib/text-box/text-box.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<TextBoxComponent>",
-                    "file": "packages/forms/src/lib/text-box/text-box.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -3983,7 +4190,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "dataSource1",
+                "name": "dataSource",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -4113,6 +4320,44 @@
                 "status": "low"
             },
             {
+                "filePath": "packages/content/src/lib/tabs/tabs-item.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TabsItemComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/tabs/tabs.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TabsComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/tabs/tabs.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/tabs/tabs.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "packages/core/src/lib/button/button.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -4192,7 +4437,7 @@
                 "linktype": "component",
                 "name": "DatasetComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
