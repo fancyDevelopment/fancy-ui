@@ -15,7 +15,7 @@
       <!-- toggle -->
       <div class="relative py-2">
         <!-- input -->
-        <input class="sr-only peer" type="checkbox" (input)="_onInput()" [(ngModel)]="_currentValue" />
+        <input class="sr-only peer" type="checkbox" [ngModel]="_currentValue" (ngModelChange)="_onSwitch($event)" />
         <!-- line -->
         <div class="w-iconX2 h-4 rounded-full shadow-inner transition bg-on-secondary peer-checked:bg-outline"></div>
         <!-- dot -->

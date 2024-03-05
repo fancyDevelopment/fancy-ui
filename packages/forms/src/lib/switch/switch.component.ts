@@ -27,8 +27,9 @@ export class SwitchComponent extends FormControlBase<boolean> {
     this._currentValue = false;
   }
 
-  _onInput() {
-    this.onChanged();
+  _onSwitch(event: boolean) {
+    this._currentValue = event;
     this.onTouched();
+    this.onChanged();
   }
 }

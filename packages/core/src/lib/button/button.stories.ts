@@ -24,13 +24,36 @@ export const Basic: Story = {
     label: 'Primary Button' as any,
   },
   parameters: {
-    lab: 'foo',
     tapped: jest.fn(action('tapped'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
     template:`
       <fui-button [label]="label" (onTap)="tapped()"></fui-button>
+    `
+  }),
+  play: async ({canvasElement, parameters, args}) => {
+    const canvas = within(canvasElement);
+
+    const button = canvas.getByRole('button', { name: (args.label as any) });
+    userEvent.click(button);
+
+    expect(parameters['tapped']).toHaveBeenCalled();
+  }
+};
+
+export const Disabled: Story = {
+  args: {
+    label: 'Primary Button' as any,
+    disabled: true as any
+  },
+  parameters: {
+    tapped: jest.fn(action('tapped'))
+  },
+  render: (args, context) => ({
+    props: { ...args, ...context.parameters },
+    template:`
+      <fui-button [label]="label" [disabled]="disabled" (onTap)="tapped()"></fui-button>
     `
   }),
   play: async ({canvasElement, parameters, args}) => {

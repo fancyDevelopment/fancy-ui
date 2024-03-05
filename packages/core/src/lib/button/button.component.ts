@@ -11,6 +11,8 @@ import { timer } from 'rxjs';
 export class ButtonComponent {
   /** The label of the Button. */
   label = input('');
+  /** Flag to show the butto in a disabled state. */
+  disabled = input(false);
   /** An event called if the button is tapped. */
   @Output()
   tap = new EventEmitter<void>();
@@ -20,7 +22,6 @@ export class ButtonComponent {
   animate = false;
 
   click(event: { offsetX: number, offsetY: number}) {
-    console.log(event);
     const waveSpan = this.waveSpan();
     if(waveSpan) {
       waveSpan.nativeElement.style.left = event.offsetX + 'px';
@@ -28,6 +29,7 @@ export class ButtonComponent {
     }
     this.animate = true;
     timer(800).subscribe(() => this.animate = false);
+    this.tap.next();
   }
 
 }
