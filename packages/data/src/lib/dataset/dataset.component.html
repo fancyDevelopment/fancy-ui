@@ -20,7 +20,7 @@
 
     <table class="w-full hidden md:table">
         <thead>
-            <tr>
+            <tr class="border-b">
                 @for(item of _datasetTableItems(); track $index) {
                     <th class="text-left">{{ item.label() }}</th>
                 }
@@ -39,9 +39,9 @@
                         </td>
                     }
                     @if(moreTap.observers.length) {
-                        <td class="flex justify-end">
-                            <a (click)="onMoreTap(rowData)" class=" w-hover flex justify-center items-center">
-                                <div class="absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover"></div>
+                        <td class="flex justify-end min-h-hover">
+                            <a (click)="onMoreTap(rowData)" class="w-hover flex justify-center items-center">
+                                <div class="absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover"></div>
                                 <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />
                             </a>
                         </td>
