@@ -1,0 +1,20 @@
+<div class="text-base text-outline ">{{label()}}</div>
+<div class="flex items-center pt-1">
+  <div class="text-2xl font-bold">{{value()}}</div>
+  @if(changePositive() === true) {
+    <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-on-primary bg-success rounded-full">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <span>{{changeValue()}}</span>
+    </span>
+  }
+  @if(changePositive() === false) {
+    <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-on-primary bg-error rounded-full">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <span>{{changeValue()}}</span>
+    </span>
+  }
+</div>

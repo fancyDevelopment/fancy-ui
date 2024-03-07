@@ -4,7 +4,7 @@
             <fui-card>
                 @if(_datasetCardHeader(); as cardHeader) {
                     <ng-container [ngTemplateOutlet]="cardHeader._template() ?? null"
-                                  [ngTemplateOutletContext]="{ $implicit: cardData }"/>
+                                  [ngTemplateOutletContext]="{ $implicit: cardData, more: onMoreTap}"/>
                 }
                 <fui-card-content>
                     <div class="grid grid-cols-12">
@@ -24,6 +24,9 @@
                 @for(item of _datasetTableItems(); track $index) {
                     <th class="text-left">{{ item.label() }}</th>
                 }
+                @if(moreTap.observers.length) {
+                    <th class="text-left"></th> 
+                }
             </tr>
         </thead>
         <tbody>
@@ -33,6 +36,14 @@
                         <td>
                             <ng-container [ngTemplateOutlet]="item.tableTemplate ?? null"
                                           [ngTemplateOutletContext]="{ $implicit: rowData }" />
+                        </td>
+                    }
+                    @if(moreTap.observers.length) {
+                        <td class="flex justify-end">
+                            <a (click)="onMoreTap(rowData)" class=" w-hover flex justify-center items-center">
+                                <div class="absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover"></div>
+                                <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />
+                            </a>
                         </td>
                     }
                 </tr>

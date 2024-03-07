@@ -1,4 +1,4 @@
-import { Component, contentChildren } from '@angular/core';
+import { Component, contentChildren, model } from '@angular/core';
 import { TabsItemComponent } from './tabs-item.component';
 
 @Component({
@@ -9,9 +9,9 @@ import { TabsItemComponent } from './tabs-item.component';
 })
 export class TabsComponent {
   _items = contentChildren(TabsItemComponent);
-  activeTabIndex = 0;
+  activeTabIndex = model(0);
+
   activateTab(index: number) {
-    console.log('Tab click', index);
-    this.activeTabIndex = index;
+    this.activeTabIndex.set(index);
   }
 }

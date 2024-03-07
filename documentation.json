@@ -593,7 +593,7 @@
         },
         {
             "name": "CardHeaderComponent",
-            "id": "component-CardHeaderComponent-c9c54a9bd6a6dc6fc3aa280653e05d989a5bd62165de2e714bcb739c34a555ff6e2f67674494cd4d3f3c2f1e1b4b69ca66301e8e5ad73f4ed98a56488565d375",
+            "id": "component-CardHeaderComponent-14167448479add0a2e71d93502747c5507cdc8b18c9a4b7cf821d86035c0a32ff7a9fe8699f2d6a9f652a157ba6c558e7004aab4346a5a9677bcae2643130f87",
             "file": "packages/content/src/lib/card/card-header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -603,7 +603,7 @@
             "selector": "fui-card-header",
             "styleUrls": [],
             "styles": [],
-            "template": "<div class=\"flex\">\n  @if(imageSrc()) {\n    <div class=\"pr-element\">\n      <img class=\"object-cover rounded-element\n                  h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                  w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n    </div>\n  }\n  <div class=\"flex-1\">\n    <div class=\"flex items-center\">\n      <div class=\"flex-1\">\n        <div class=\"text-title font-light\">\n          @if(titleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n          }\n          @if(!titleTemplateRef() && title()) {\n            <span>{{title()}}</span>\n          }\n        </div>\n      </div>\n      @if(moreTap.observers.length) {\n        <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n        <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n        </div>\n        <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n      </a>\n      }\n    </div>\n    @if(subtitleTemplateRef() || subtitle()) {\n      <div class=\"text-subtitle\">\n        @if(subtitleTemplateRef()) {\n          <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n        }\n        @if(!subtitleTemplateRef()) {\n          <span>{{subtitle()}}</span>\n        }\n      </div>\n    }\n  </div>\n</div>\n",
+            "template": "<div class=\"flex\">\n  @if(imageSrc()) {\n    <div class=\"pr-element\">\n      <img class=\"object-cover rounded-element\n                  h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                  w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n    </div>\n  }\n  <div class=\"flex-1\">\n    <div class=\"flex items-center\">\n      <div class=\"flex-1\">\n        <div class=\"text-title font-light\">\n          @if(titleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n          }\n          @if(!titleTemplateRef() && title()) {\n            <span>{{title()}}</span>\n          }\n        </div>\n      </div>\n      @if(_showMore()) {\n        <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n          <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n          </div>\n          <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n        </a>\n      }\n    </div>\n    @if(subtitleTemplateRef() || subtitle()) {\n      <div class=\"text-subtitle\">\n        @if(subtitleTemplateRef()) {\n          <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n        }\n        @if(!subtitleTemplateRef()) {\n          <span>{{subtitle()}}</span>\n        }\n      </div>\n    }\n  </div>\n</div>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -614,11 +614,21 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 63,
+                    "line": 67,
                     "type": "EventEmitter"
                 }
             ],
             "propertiesClass": [
+                {
+                    "name": "_showMore",
+                    "defaultValue": "computed(() => this.showMore() !== null ? this.showMore() : this.moreTap.observers.length)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 64
+                },
                 {
                     "name": "imageSrc",
                     "defaultValue": "input<string | null>(null)",
@@ -628,6 +638,16 @@
                     "optional": false,
                     "description": "",
                     "line": 60
+                },
+                {
+                    "name": "showMore",
+                    "defaultValue": "input<boolean | null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 62
                 },
                 {
                     "name": "subtitle",
@@ -688,7 +708,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-card-header',\n  standalone: true,\n  imports: [NgTemplateOutlet, IconComponent],\n  template: `\n  <div class=\"flex\">\n    @if(imageSrc()) {\n      <div class=\"pr-element\">\n        <img class=\"object-cover rounded-element \n                    h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                    w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n      </div>\n    }\n    <div class=\"flex-1\">\n      <div class=\"flex items-center\">\n        <div class=\"flex-1\">\n          <div class=\"text-title font-light\">\n            @if(titleTemplateRef()) {\n              <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n            }\n            @if(!titleTemplateRef() && title()) {\n              <span>{{title()}}</span>\n            }\n          </div>\n        </div>\n        @if(moreTap.observers.length) {\n          <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n          <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n          </div>\n          <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n        </a>\n        }\n      </div>\n      @if(subtitleTemplateRef() || subtitle()) {\n        <div class=\"text-subtitle\">\n          @if(subtitleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n          }\n          @if(!subtitleTemplateRef()) {\n            <span>{{subtitle()}}</span>\n          }\n        </div>\n      }\n    </div>\n  </div>\n  `\n})\nexport class CardHeaderComponent {\n\n  titleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  title = input('');\n\n  subtitleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  subtitle = input('');\n\n  imageSrc = input<string | null>(null);\n  \n  @Output()\n  moreTap = new EventEmitter();\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, computed, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-card-header',\n  standalone: true,\n  imports: [NgTemplateOutlet, IconComponent],\n  template: `\n  <div class=\"flex\">\n    @if(imageSrc()) {\n      <div class=\"pr-element\">\n        <img class=\"object-cover rounded-element \n                    h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                    w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n      </div>\n    }\n    <div class=\"flex-1\">\n      <div class=\"flex items-center\">\n        <div class=\"flex-1\">\n          <div class=\"text-title font-light\">\n            @if(titleTemplateRef()) {\n              <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n            }\n            @if(!titleTemplateRef() && title()) {\n              <span>{{title()}}</span>\n            }\n          </div>\n        </div>\n        @if(_showMore()) {\n          <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n            <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n            </div>\n            <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n          </a>\n        }\n      </div>\n      @if(subtitleTemplateRef() || subtitle()) {\n        <div class=\"text-subtitle\">\n          @if(subtitleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n          }\n          @if(!subtitleTemplateRef()) {\n            <span>{{subtitle()}}</span>\n          }\n        </div>\n      }\n    </div>\n  </div>\n  `\n})\nexport class CardHeaderComponent {\n\n  titleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  title = input('');\n\n  subtitleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  subtitle = input('');\n\n  imageSrc = input<string | null>(null);\n\n  showMore = input<boolean | null>(null);\n\n  _showMore = computed(() => this.showMore() !== null ? this.showMore() : this.moreTap.observers.length)\n  \n  @Output()\n  moreTap = new EventEmitter();\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -805,7 +825,7 @@
         },
         {
             "name": "DatasetCardheaderComponent",
-            "id": "component-DatasetCardheaderComponent-f18aa4e65868dcffd2cae1af261166e7920ac4a36f43520f50693d3a5f99e9df87f27b900c13023df408e51f144099c174727400dc07c9b37d4e9d2f42811ab2",
+            "id": "component-DatasetCardheaderComponent-4d96662c9234b4273fc85e54c552d443b8b24b225814725a555a3f3e79b63bdfd4766b1e4be675b54ad6cbe1a8075b2eb4c045021e66ce4d2fdc02ee43c7678e",
             "file": "packages/data/src/lib/dataset/dataset-cardheader.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -815,7 +835,7 @@
             "selector": "fui-dataset-cardheader",
             "styleUrls": [],
             "styles": [],
-            "template": "<ng-template #template let-data>\n  <fui-card-header [titleTemplateRef]=\"titleTemplateWrapper\" [subtitleTemplateRef]=\"subtitleTemplateWrapper\" [imageSrc]=\"getImageSrc(data)\">\n    <ng-template #titleTemplateWrapper>\n      <ng-container *ngTemplateOutlet=\"_titleTemplate() ?? null; context: { $implicit: data }\" />\n    </ng-template>\n    <ng-template #subtitleTemplateWrapper>\n      <ng-container *ngTemplateOutlet=\"_subtitleTemplate() ?? null; context: { $implicit: data }\" />\n    </ng-template>\n  </fui-card-header>\n</ng-template>\n",
+            "template": "<ng-template #template let-data let-onMoreTap=\"more\">\n  <fui-card-header [titleTemplateRef]=\"titleTemplateWrapper\" [subtitleTemplateRef]=\"subtitleTemplateWrapper\" [imageSrc]=\"getImageSrc(data)\" [showMore]=\"onMoreTap\" (moreTap)=\"onMoreTap(data)\">\n    <ng-template #titleTemplateWrapper>\n      <ng-container *ngTemplateOutlet=\"_titleTemplate() ?? null; context: { $implicit: data }\" />\n    </ng-template>\n    <ng-template #subtitleTemplateWrapper>\n      <ng-container *ngTemplateOutlet=\"_subtitleTemplate() ?? null; context: { $implicit: data }\" />\n    </ng-template>\n  </fui-card-header>\n</ng-template>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -910,7 +930,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, TemplateRef, input, viewChild, contentChild } from '@angular/core';\nimport { CardHeaderComponent } from 'fancy-ui-content';\nimport { DatasetHelpers } from './dataset.helpers';\nimport { NgTemplateOutlet } from '@angular/common';\n\n@Component({\n  selector: 'fui-dataset-cardheader',\n  standalone: true,\n  imports: [NgTemplateOutlet, CardHeaderComponent],\n  template: `\n    <ng-template #template let-data>\n      <fui-card-header [titleTemplateRef]=\"titleTemplateWrapper\" [subtitleTemplateRef]=\"subtitleTemplateWrapper\" [imageSrc]=\"getImageSrc(data)\">\n        <ng-template #titleTemplateWrapper>\n          <ng-container *ngTemplateOutlet=\"_titleTemplate() ?? null; context: { $implicit: data }\" />\n        </ng-template>\n        <ng-template #subtitleTemplateWrapper>\n          <ng-container *ngTemplateOutlet=\"_subtitleTemplate() ?? null; context: { $implicit: data }\" />\n        </ng-template>\n      </fui-card-header>\n    </ng-template>\n  `\n})\nexport class DatasetCardheaderComponent {\n  imageSrcKeyPath = input<string | null>(null);\n\n  _template = viewChild<TemplateRef<unknown>>('template');\n\n  _titleTemplate = contentChild<TemplateRef<unknown>>('titleTemplate');\n  _subtitleTemplate = contentChild<TemplateRef<unknown>>('subtitleTemplate');\n\n  getImageSrc(data: unknown): string | null {\n    const keyPath = this.imageSrcKeyPath();\n    if(!keyPath) return null;\n    return DatasetHelpers.getKeyPathValue(data, keyPath);\n  }\n}\n",
+            "sourceCode": "import { Component, TemplateRef, input, viewChild, contentChild } from '@angular/core';\nimport { CardHeaderComponent } from 'fancy-ui-content';\nimport { DatasetHelpers } from './dataset.helpers';\nimport { NgTemplateOutlet } from '@angular/common';\n\n@Component({\n  selector: 'fui-dataset-cardheader',\n  standalone: true,\n  imports: [NgTemplateOutlet, CardHeaderComponent],\n  template: `\n    <ng-template #template let-data let-onMoreTap=\"more\">\n      <fui-card-header [titleTemplateRef]=\"titleTemplateWrapper\" [subtitleTemplateRef]=\"subtitleTemplateWrapper\" [imageSrc]=\"getImageSrc(data)\" [showMore]=\"onMoreTap\" (moreTap)=\"onMoreTap(data)\">\n        <ng-template #titleTemplateWrapper>\n          <ng-container *ngTemplateOutlet=\"_titleTemplate() ?? null; context: { $implicit: data }\" />\n        </ng-template>\n        <ng-template #subtitleTemplateWrapper>\n          <ng-container *ngTemplateOutlet=\"_subtitleTemplate() ?? null; context: { $implicit: data }\" />\n        </ng-template>\n      </fui-card-header>\n    </ng-template>\n  `\n})\nexport class DatasetCardheaderComponent {\n  imageSrcKeyPath = input<string | null>(null);\n\n  _template = viewChild<TemplateRef<unknown>>('template');\n\n  _titleTemplate = contentChild<TemplateRef<unknown>>('titleTemplate');\n  _subtitleTemplate = contentChild<TemplateRef<unknown>>('subtitleTemplate');\n\n  getImageSrc(data: unknown): string | null {\n    const keyPath = this.imageSrcKeyPath();\n    if(!keyPath) return null;\n    return DatasetHelpers.getKeyPathValue(data, keyPath);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -918,7 +938,7 @@
         },
         {
             "name": "DatasetComponent",
-            "id": "component-DatasetComponent-dd96be106544236d4f956ce44e66a094419ebdb08262aabb4af9c9d52808ba63656a13249e3ae28eeaced2eb575317298a46c994c3195463b70ef08823afbdd4",
+            "id": "component-DatasetComponent-8f5fdab2955c5915d28968c5c4f046db4949c9c3a3937d3098495ccd8c66d9db3d3b1ec7bbe8095574fb8794fa863cccfd249160809c95216d9577cdd790cb90",
             "file": "packages/data/src/lib/dataset/dataset.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -934,7 +954,16 @@
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [],
-            "outputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "moreTap",
+                    "defaultValue": "new EventEmitter<unknown>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "EventEmitter"
+                }
+            ],
             "propertiesClass": [
                 {
                     "name": "_datasetCardHeader",
@@ -944,7 +973,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 18
+                    "line": 24
                 },
                 {
                     "name": "_datasetCardItems",
@@ -954,7 +983,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 21
+                    "line": 27
                 },
                 {
                     "name": "_datasetItems",
@@ -964,7 +993,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 17
+                    "line": 23
                 },
                 {
                     "name": "_datasetTableItems",
@@ -974,7 +1003,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 20
+                    "line": 26
                 },
                 {
                     "name": "dataSource",
@@ -984,10 +1013,48 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 15
+                    "line": 16
+                },
+                {
+                    "name": "onMoreTap",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
                 }
             ],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "onMoreTapInternal",
+                    "args": [
+                        {
+                            "name": "data",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "data",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -1004,12 +1071,16 @@
                 {
                     "name": "CardContentComponent",
                     "type": "component"
+                },
+                {
+                    "name": "IconComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, computed, contentChild, contentChildren, effect, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { DatasetItemBase } from './dataset-item.base';\nimport { DatasetCardheaderComponent } from './dataset-cardheader.component';\n\nimport { CardComponent, CardContentComponent } from 'fancy-ui-content';\n\n@Component({\n  selector: 'fui-dataset',\n  standalone: true,\n  imports: [NgTemplateOutlet,  CardComponent, CardContentComponent],\n  templateUrl: './dataset.component.html'\n})\nexport class DatasetComponent {\n  dataSource = input<Array<unknown>>([]);\n\n  _datasetItems = contentChildren(DatasetItemBase);\n  _datasetCardHeader = contentChild(DatasetCardheaderComponent);\n\n  _datasetTableItems = computed(() => this._datasetItems().filter(item => item.target() === 'Table' || item.target() === 'TableAndCard'));\n  _datasetCardItems = computed(() => this._datasetItems().filter(item => item.target() === 'Card'|| item.target() === 'TableAndCard'));\n\n  constructor() {\n    effect(() => console.log('Datasource: ', this.dataSource()));\n  }\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Output, computed, contentChild, contentChildren, effect, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { DatasetItemBase } from './dataset-item.base';\nimport { DatasetCardheaderComponent } from './dataset-cardheader.component';\n\nimport { CardComponent, CardContentComponent } from 'fancy-ui-content';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-dataset',\n  standalone: true,\n  imports: [NgTemplateOutlet,  CardComponent, CardContentComponent, IconComponent],\n  templateUrl: './dataset.component.html'\n})\nexport class DatasetComponent {\n  dataSource = input<Array<unknown>>([]);\n\n  @Output()\n  moreTap = new EventEmitter<unknown>();\n\n  onMoreTap: (value: unknown) => void;\n\n  _datasetItems = contentChildren(DatasetItemBase);\n  _datasetCardHeader = contentChild(DatasetCardheaderComponent);\n\n  _datasetTableItems = computed(() => this._datasetItems().filter(item => item.target() === 'Table' || item.target() === 'TableAndCard'));\n  _datasetCardItems = computed(() => this._datasetItems().filter(item => item.target() === 'Card'|| item.target() === 'TableAndCard'));\n\n  constructor() {\n    this.onMoreTap = this.onMoreTapInternal.bind(this);\n  }\n\n  onMoreTapInternal(data: unknown) {\n    this.moreTap.emit(data);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1019,10 +1090,10 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 21
+                "line": 27
             },
             "extends": [],
-            "templateData": "@if(dataSource(); as data) {\n    <div class=\"md:hidden grid gap-component\">\n        @for(cardData of data; track $index) {\n            <fui-card>\n                @if(_datasetCardHeader(); as cardHeader) {\n                    <ng-container [ngTemplateOutlet]=\"cardHeader._template() ?? null\"\n                                  [ngTemplateOutletContext]=\"{ $implicit: cardData }\"/>\n                }\n                <fui-card-content>\n                    <div class=\"grid grid-cols-12\">\n                        @for(item of _datasetCardItems(); track $index) {\n                            <ng-container [ngTemplateOutlet]=\"item.cardTemplate ?? null\"\n                                          [ngTemplateOutletContext]=\"{ $implicit: cardData }\" />\n                        }\n                    </div>\n                </fui-card-content>\n            </fui-card>\n        }\n    </div>\n\n    <table class=\"w-full hidden md:table\">\n        <thead>\n            <tr>\n                @for(item of _datasetTableItems(); track $index) {\n                    <th class=\"text-left\">{{ item.label() }}</th>\n                }\n            </tr>\n        </thead>\n        <tbody>\n            @for(rowData of data; track $index) {\n                <tr>\n                    @for(item of _datasetTableItems(); track $index) {\n                        <td>\n                            <ng-container [ngTemplateOutlet]=\"item.tableTemplate ?? null\"\n                                          [ngTemplateOutletContext]=\"{ $implicit: rowData }\" />\n                        </td>\n                    }\n                </tr>\n            }\n        </tbody>\n    </table>\n}\n"
+            "templateData": "@if(dataSource(); as data) {\n    <div class=\"md:hidden grid gap-component\">\n        @for(cardData of data; track $index) {\n            <fui-card>\n                @if(_datasetCardHeader(); as cardHeader) {\n                    <ng-container [ngTemplateOutlet]=\"cardHeader._template() ?? null\"\n                                  [ngTemplateOutletContext]=\"{ $implicit: cardData, more: onMoreTap}\"/>\n                }\n                <fui-card-content>\n                    <div class=\"grid grid-cols-12\">\n                        @for(item of _datasetCardItems(); track $index) {\n                            <ng-container [ngTemplateOutlet]=\"item.cardTemplate ?? null\"\n                                          [ngTemplateOutletContext]=\"{ $implicit: cardData }\" />\n                        }\n                    </div>\n                </fui-card-content>\n            </fui-card>\n        }\n    </div>\n\n    <table class=\"w-full hidden md:table\">\n        <thead>\n            <tr>\n                @for(item of _datasetTableItems(); track $index) {\n                    <th class=\"text-left\">{{ item.label() }}</th>\n                }\n                @if(moreTap.observers.length) {\n                    <th class=\"text-left\"></th> \n                }\n            </tr>\n        </thead>\n        <tbody>\n            @for(rowData of data; track $index) {\n                <tr>\n                    @for(item of _datasetTableItems(); track $index) {\n                        <td>\n                            <ng-container [ngTemplateOutlet]=\"item.tableTemplate ?? null\"\n                                          [ngTemplateOutletContext]=\"{ $implicit: rowData }\" />\n                        </td>\n                    }\n                    @if(moreTap.observers.length) {\n                        <td class=\"flex justify-end\">\n                            <a (click)=\"onMoreTap(rowData)\" class=\" w-hover flex justify-center items-center\">\n                                <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\n                                <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n                            </a>\n                        </td>\n                    }\n                </tr>\n            }\n        </tbody>\n    </table>\n}\n"
         },
         {
             "name": "DatasetItemImageComponent",
@@ -1410,6 +1481,84 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": []
+        },
+        {
+            "name": "MetricComponent",
+            "id": "component-MetricComponent-d49a608fa742cba1466e8b1c06540e0616f98b266fe8556453cc700ab09e22f5e0b3a8bb13c8618609db70276033ffeee1c0b1349b01ed0e382c27b80117592a",
+            "file": "packages/content/src/lib/metric/metric.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-metric",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./metric.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "changePositive",
+                    "defaultValue": "input<boolean | null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "changeValue",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, input } from '@angular/core';\n\n@Component({\n  selector: 'fui-metric',\n  standalone: true,\n  templateUrl: './metric.component.html'\n})\nexport class MetricComponent {\n  label = input('');\n  value = input('');\n  changeValue = input('');\n  changePositive = input<boolean | null>(null);\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"text-base text-outline \">{{label()}}</div>\n<div class=\"flex items-center pt-1\">\n  <div class=\"text-2xl font-bold\">{{value()}}</div>\n  @if(changePositive() === true) {\n    <span class=\"flex items-center px-2 py-0.5 mx-2 text-sm text-on-primary bg-success rounded-full\">\n      <svg class=\"w-4 h-4\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M18 15L12 9L6 15\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n      </svg>\n      <span>{{changeValue()}}</span>\n    </span>\n  }\n  @if(changePositive() === false) {\n    <span class=\"flex items-center px-2 py-0.5 mx-2 text-sm text-on-primary bg-error rounded-full\">\n      <svg class=\"w-4 h-4\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M6 9L12 15L18 9\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n      </svg>\n      <span>{{changeValue()}}</span>\n    </span>\n  }\n</div>\n"
         },
         {
             "name": "NavBarComponent",
@@ -2075,6 +2224,449 @@
             "templateData": "<div class=\"mui-slider w-full\">\n\n    <div class=\"flex justify-between\">\n      @if(label()) {\n        <label *ngIf=\"label\">{{label()}}</label>\n      }      \n    </div>\n  \n    <input class=\"w-full h-1 bg-outline accent-secondary appearance-none outline-none\" type=\"range\" [min]=\"rangeMin()\" [max]=\"rangeMax()\" (input)=\"_onInput()\" [(ngModel)]=\"_currentValue\">\n  \n  </div>\n"
         },
         {
+            "name": "SwipeableTabsBladeComponent",
+            "id": "component-SwipeableTabsBladeComponent-293ca3c6d1384ca23713846f26405087b6882a0366dfb2119e731b6320c36bf41d98efa0cd874342229fedcea3830ae986a39391484eab96219256352b4aa623",
+            "file": "packages/content/src/lib/swipeable-tabs/swipeable-tabs-blade.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-swipeable-tabs-blade",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<ng-template #template>\n  <ng-content/>\n</ng-template>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_template",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('template')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, TemplateRef, input, viewChild } from '@angular/core';\n\n@Component({\n  selector: 'fui-swipeable-tabs-blade',\n  standalone: true,\n  template: `\n    <ng-template #template>\n      <ng-content/>\n    </ng-template>\n  `\n})\nexport class SwipeableTabsBladeComponent {\n  label = input('');\n  _template = viewChild<TemplateRef<unknown>>('template');\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "SwipeableTabsComponent",
+            "id": "component-SwipeableTabsComponent-b4f6c2b71a9e86cef9c851e0b5ff66bbff246e28ba9d78019d796f8e82b4239e7d8877d4eae6cfe1f52cdde80b9a272c2d8e3528f30549da9130cf23fd9a8f9e",
+            "file": "packages/content/src/lib/swipeable-tabs/swipeable-tabs.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-swipeable-tabs",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./swipeable-tabs.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_blades",
+                    "defaultValue": "contentChildren(SwipeableTabsBladeComponent)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                },
+                {
+                    "name": "activeBlade",
+                    "defaultValue": "model(0)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "TabsComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "TabsItemComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "SwiperComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "SwiperBladeComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "NgTemplateOutlet"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, contentChildren, model } from '@angular/core';\nimport { TabsComponent } from '../tabs/tabs.component';\nimport { TabsItemComponent } from '../tabs/tabs-item.component';\nimport { SwiperComponent } from '../swiper/swiper.component';\nimport { SwiperBladeComponent } from '../swiper/swiper-blade.component';\nimport { SwipeableTabsBladeComponent } from './swipeable-tabs-blade.component';\nimport { NgTemplateOutlet } from '@angular/common';\n\n@Component({\n  selector: 'fui-swipeable-tabs',\n  standalone: true,\n  imports: [\n    TabsComponent,\n    TabsItemComponent,\n    SwiperComponent, \n    SwiperBladeComponent,\n    NgTemplateOutlet\n  ],\n  templateUrl: './swipeable-tabs.component.html'\n})\nexport class SwipeableTabsComponent {\n  activeBlade = model(0);\n  _blades = contentChildren(SwipeableTabsBladeComponent);\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bg-primary-container rounded-component p-element\">\n  <fui-tabs [(activeTabIndex)]=\"activeBlade\">\n    @for(blade of _blades(); track $index) {\n      <fui-tabs-item [label]=\"blade.label()\" />\n    }\n  </fui-tabs>\n  <fui-swiper [(_i)]=\"activeBlade\">\n    @for(blade of _blades(); track $index) {\n      <fui-swiper-blade>\n        <ng-container [ngTemplateOutlet]=\"blade._template() ?? null\" />\n      </fui-swiper-blade>\n    }\n  </fui-swiper>\n</div>\n"
+        },
+        {
+            "name": "SwiperBladeComponent",
+            "id": "component-SwiperBladeComponent-1320ba3df1bbb55c222aaab0e5f73169e82885b010a0de7373d3b1db34353babca03473105a3436e232540fb95c9c1b238e4afc38accdf420c72fe61d7c4e864",
+            "file": "packages/content/src/lib/swiper/swiper-blade.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-swiper-blade",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<ng-content/>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "class",
+                    "defaultValue": "'w-[calc(100%/var(--n))]'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'class'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [
+                {
+                    "name": "class",
+                    "defaultValue": "'w-[calc(100%/var(--n))]'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, HostBinding } from '@angular/core';\n\n@Component({\n  selector: 'fui-swiper-blade',\n  standalone: true,\n  template: `\n  <ng-content/>\n  `\n})\nexport class SwiperBladeComponent {\n\n  @HostBinding('class')\n  class = 'w-[calc(100%/var(--n))]';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "SwiperComponent",
+            "id": "component-SwiperComponent-f9ced1993f41aadbb2f9870bf6e8c1451a9dfdfb1d90873f34dfe4921e2353bb40534d2d5fd670f0ae5e20a647e98ba8f0b92e528c611ecf669308bc84b9aa3e",
+            "file": "packages/content/src/lib/swiper/swiper.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-swiper",
+            "styleUrls": [
+                "./swiper.component.css"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./swiper.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_blades",
+                    "defaultValue": "contentChildren(SwiperBladeComponent, { read: ElementRef })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "_container",
+                    "defaultValue": "viewChild<ElementRef>('container')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "_enableAnimations",
+                    "defaultValue": "signal(false)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "_height",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Signal<number> | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "_i",
+                    "defaultValue": "model(0)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "_n",
+                    "defaultValue": "computed(() => this._container()?.nativeElement.children?.length)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "x0",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "lock",
+                    "args": [
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 27,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "move",
+                    "args": [
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 32,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onTouchmove",
+                    "args": [
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 46,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "unify",
+                    "args": [
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 50,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { AfterViewChecked, AfterViewInit, Component, ElementRef, Signal, computed, contentChildren, effect, model, signal, viewChild } from '@angular/core';\nimport { SwiperBladeComponent } from './swiper-blade.component';\n\n@Component({\n  selector: 'fui-swiper',\n  standalone: true,\n  templateUrl: './swiper.component.html',\n  styleUrls: ['./swiper.component.css']\n})\nexport class SwiperComponent implements AfterViewInit {\n  _container = viewChild<ElementRef>('container');\n  _blades = contentChildren(SwiperBladeComponent, { read: ElementRef });\n\n  _n = computed(() => this._container()?.nativeElement.children?.length)\n  _i = model(0);\n  _enableAnimations = signal(false);\n  _height: Signal<number> | null = null; // = signal(0);// computed(() => this._blades()[this._i()].nativeElement.offsetHeight);\n\n  x0: any = null;\n\n  ngAfterViewInit(): void {\n    this._height = computed(() => this._blades()[this._i()].nativeElement.offsetHeight);\n    // Enable animations for next rendering\n    setTimeout(() => this._enableAnimations.set(true), 0);\n  }\n\n  lock(e: any) { \n    console.log('lock', e);\n    this.x0 = this.unify(e).clientX;\n  }\n\n  move(e: any) {\n    console.log('move', e);\n\t  if(this.x0 || this.x0 === 0) {\n\t\t  const dx = this.unify(e).clientX - this.x0;\n      const s = Math.sign(dx);\n\n      const i = this._i();\n\t\t  if((i > 0 || s < 0) && (i < this._n() - 1 || s > 0)) {\n        this._i.set(i - s);\n      }\n\t\t  this.x0 = null;\n\t}\n}\n\nonTouchmove(e: any) {\n  e.preventDefault();\n}\n\n  private unify(e: any) {\n    return e.changedTouches ? e.changedTouches[0] : e \n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./swiper.component.css"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "AfterViewInit"
+            ],
+            "templateData": "<div class=\"overflow-x-hidden\">\n  <div [style.--n]=\"_n()\" [style.--i]=\"_i()\" [style.--heigt]=\"_height ? _height() : 0\" [class.duration-0]=\"_enableAnimations() === false\" [class.duration-500]=\"_enableAnimations() === true\" (touchstart)=\"lock($event)\" (touchmove)=\"onTouchmove($event)\" (touchend)=\"move($event)\" class='w-[calc(var(--n)*100%)] h-[calc(var(--heigt)*1px)] max-h-96 flex items-center overflow-y-hidden translate-x-[calc(var(--i,0)/var(--n)*-100%)] transition-all ease-out' #container>\n    <ng-content />\n  </div>\n</div>\n"
+        },
+        {
             "name": "SwitchComponent",
             "id": "component-SwitchComponent-c3ace2fb925e87d1067e09a9a5c02ab13099a2211025dc4bf31d1ddc3037d690b2481ac97da2bd12a408832fc65bcee233331bd4f9b78f1f41e571bd2ce8a339",
             "file": "packages/forms/src/lib/switch/switch.component.ts",
@@ -2193,7 +2785,7 @@
         },
         {
             "name": "TabsComponent",
-            "id": "component-TabsComponent-3362cc065a104d3faa98608a1b7d9be74c036a565c20f4ececa2403e0473eea874fe5b9cae028b3e7b72f3a82dadbf52940b45599b97412a23c2e49b04213468",
+            "id": "component-TabsComponent-1d9dfde7730b7ad7c036e74ce77c00a30418f36216ce96c46f21fb3209eedadda3a9d21e437dfeee232456c120188ec3d7731ec8d268a76bfb8f2cbb884ed107",
             "file": "packages/content/src/lib/tabs/tabs.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2223,10 +2815,10 @@
                 },
                 {
                     "name": "activeTabIndex",
-                    "defaultValue": "0",
+                    "defaultValue": "model(0)",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "number",
+                    "type": "",
                     "optional": false,
                     "description": "",
                     "line": 12
@@ -2246,7 +2838,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 13,
+                    "line": 14,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2271,12 +2863,12 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, contentChildren } from '@angular/core';\nimport { TabsItemComponent } from './tabs-item.component';\n\n@Component({\n  selector: 'fui-tabs',\n  standalone: true,\n  imports: [],\n  templateUrl: './tabs.component.html'\n})\nexport class TabsComponent {\n  _items = contentChildren(TabsItemComponent);\n  activeTabIndex = 0;\n  activateTab(index: number) {\n    console.log('Tab click', index);\n    this.activeTabIndex = index;\n  }\n}\n",
+            "sourceCode": "import { Component, contentChildren, model } from '@angular/core';\nimport { TabsItemComponent } from './tabs-item.component';\n\n@Component({\n  selector: 'fui-tabs',\n  standalone: true,\n  imports: [],\n  templateUrl: './tabs.component.html'\n})\nexport class TabsComponent {\n  _items = contentChildren(TabsItemComponent);\n  activeTabIndex = model(0);\n\n  activateTab(index: number) {\n    this.activeTabIndex.set(index);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"flex\" [style.--activeTabIndex]=\"activeTabIndex\">\n    @for(item of _items(); track $index) {\n        <div class=\"relative basis-0 grow hover:bg-hover text-center\" (click)=\"activateTab($index)\">\n            {{item.label()}}\n            @if($index === 0) {\n                <div class=\"absolute w-full transition-all duration-700 border-b-2 left-[calc(100%*var(--activeTabIndex))]\"></div>\n            }\n        </div>\n    }\n</div>\n"
+            "templateData": "<div class=\"flex\" [style.--activeTabIndex]=\"activeTabIndex()\">\n    @for(item of _items(); track $index) {\n        <div class=\"relative basis-0 grow hover:bg-hover text-center cursor-pointer\" (click)=\"activateTab($index)\">\n            {{item.label()}}\n            @if($index === 0) {\n                <div class=\"absolute w-full transition-all duration-700 border-b-2 border-primary left-[calc(100%*var(--activeTabIndex))]\"></div>\n            }\n        </div>\n    }\n</div>\n"
         },
         {
             "name": "TabsItemComponent",
@@ -2637,6 +3229,16 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "packages/content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    activeBlade: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swipeable-tabs [activeBlade]=\"activeBlade\">\r\n        <fui-swipeable-tabs-blade label=\"First\">\r\n          <div class=\"m-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"m-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"m-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-3 m-component\">\r\n            <fui-metric label=\"First Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n            <fui-metric label=\"Second Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"false\" />\r\n            <fui-metric label=\"Third Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Second\">\r\n          <div class=\"m-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-6 gap-component m-component\">\r\n            <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n            <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Third\">\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swipeable-tabs-blade>\r\n      </fui-swipeable-tabs>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "packages/content/src/lib/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -2647,11 +3249,31 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "packages/content/src/lib/metric/metric.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    label: \"Label\" as any,\r\n    value: \"$9850.90\" as any,\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-metric [label]=\"label\" [value]=\"value\">\r\n      </fui-metric>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/content/src/lib/swiper/swiper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    _i: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swiper [_i]=\"_i\">\r\n        <fui-swiper-blade>\r\n          <p class=\"text-title\">First Blade</p>\r\n        </fui-swiper-blade>\r\n        <fui-swiper-blade>\r\n          <p class=\"text-title\">Second Blade</p>\r\n          <p>A larger blade</p>\r\n        </fui-swiper-blade>\r\n        <fui-swiper-blade>\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swiper-blade>\r\n      </fui-swiper>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "packages/content/src/lib/tabs/tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  parameters: {\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-tabs>\r\n        <fui-tabs-item label=\"Foo\" />\r\n        <fui-tabs-item label=\"Bar\" />\r\n        <fui-tabs-item label=\"Baz\" />\r\n        <fui-tabs-item label=\"Foz\" />\r\n      </fui-tabs>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    activeTabIndex: 1 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-tabs [(activeTabIndex)]=\"activeTabIndex\">\r\n        <fui-tabs-item label=\"First\" />\r\n        <fui-tabs-item label=\"Second\" />\r\n        <fui-tabs-item label=\"Third\" />\r\n        <fui-tabs-item label=\"Fourth\" />\r\n      </fui-tabs>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -2661,7 +3283,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n  },\r\n  parameters: {\r\n    lab: 'foo',\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
             },
             {
                 "name": "Basic",
@@ -2671,7 +3293,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -2831,7 +3453,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n  },\r\n  parameters: {\r\n    lab: 'foo',\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n    disabled: true as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" [disabled]=\"disabled\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
             },
             {
                 "name": "FormCards",
@@ -2917,11 +3539,41 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "packages/content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<SwipeableTabsComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Content/SwipeableTabs',\r\n  component: SwipeableTabsComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwipeableTabsComponent, SwipeableTabsBladeComponent, MetricComponent, TextBoxComponent, SwitchComponent, SliderComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "packages/content/src/lib/card/card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<CardComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Content/Card',\r\n  component: CardComponent,\r\n  subcomponents: { CardHeaderComponent, CardImageComponent, CardContentComponent, CardActionsComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [CardComponent, CardHeaderComponent, CardImageComponent, CardContentComponent, CardActionsComponent, ButtonComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/content/src/lib/metric/metric.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<MetricComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Content/Metric',\r\n  component: MetricComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MetricComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/content/src/lib/swiper/swiper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<SwiperComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Content/Swiper',\r\n  component: SwiperComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwiperComponent, SwiperBladeComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -2951,7 +3603,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<DatasetComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  subcomponents: { DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent]\r\n    })\r\n  ],\r\n}"
+                "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -3134,6 +3786,16 @@
                 "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
             },
             {
+                "name": "WithChange",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/content/src/lib/metric/metric.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    label: \"Label\" as any,\r\n    value: \"$9850.90\" as any,\r\n    changePositive: true as any,\r\n    changeValue: \"+1,8%\" as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-metric [label]=\"label\" [value]=\"value\" [changePositive]=\"changePositive\" [changeValue]=\"changeValue\">\r\n      </fui-metric>\r\n    `\r\n  })\r\n}"
+            },
+            {
                 "name": "WithHints",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -3142,6 +3804,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    label: 'Switch' as any,\r\n    hintOff: 'Off' as any,\r\n    hintOn: 'On' as any\r\n  },\r\n  parameters: {\r\n    model: false,\r\n    onModelChange: jest.fn(action('Switched'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-switch [label]=\"label\" [hintOff]=\"hintOff\" [hintOn]=\"hintOn\" [ngModel]=\"model\" (ngModelChange)=\"onModelChange($event)\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "WithMoreButton",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    onMoreTapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\" (moreTap)=\"onMoreTapped($event)\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
             }
         ],
         "functions": [
@@ -3194,8 +3866,41 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<SwipeableTabsComponent>",
+                "file": "packages/content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<CardComponent>",
                 "file": "packages/content/src/lib/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<MetricComponent>",
+                "file": "packages/content/src/lib/metric/metric.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<SwiperComponent>",
+                "file": "packages/content/src/lib/swiper/swiper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3336,6 +4041,28 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "packages/content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    activeBlade: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swipeable-tabs [activeBlade]=\"activeBlade\">\r\n        <fui-swipeable-tabs-blade label=\"First\">\r\n          <div class=\"m-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"m-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"m-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-3 m-component\">\r\n            <fui-metric label=\"First Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n            <fui-metric label=\"Second Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"false\" />\r\n            <fui-metric label=\"Third Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Second\">\r\n          <div class=\"m-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-6 gap-component m-component\">\r\n            <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n            <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Third\">\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swipeable-tabs-blade>\r\n      </fui-swipeable-tabs>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<SwipeableTabsComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Content/SwipeableTabs',\r\n  component: SwipeableTabsComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwipeableTabsComponent, SwipeableTabsBladeComponent, MetricComponent, TextBoxComponent, SwitchComponent, SliderComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
             "packages/content/src/lib/card/card.stories.ts": [
                 {
                     "name": "Basic",
@@ -3398,6 +4125,60 @@
                     "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
                 }
             ],
+            "packages/content/src/lib/metric/metric.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/content/src/lib/metric/metric.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: \"Label\" as any,\r\n    value: \"$9850.90\" as any,\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-metric [label]=\"label\" [value]=\"value\">\r\n      </fui-metric>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/content/src/lib/metric/metric.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<MetricComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Content/Metric',\r\n  component: MetricComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MetricComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                },
+                {
+                    "name": "WithChange",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/content/src/lib/metric/metric.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: \"Label\" as any,\r\n    value: \"$9850.90\" as any,\r\n    changePositive: true as any,\r\n    changeValue: \"+1,8%\" as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-metric [label]=\"label\" [value]=\"value\" [changePositive]=\"changePositive\" [changeValue]=\"changeValue\">\r\n      </fui-metric>\r\n    `\r\n  })\r\n}"
+                }
+            ],
+            "packages/content/src/lib/swiper/swiper.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/content/src/lib/swiper/swiper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    _i: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swiper [_i]=\"_i\">\r\n        <fui-swiper-blade>\r\n          <p class=\"text-title\">First Blade</p>\r\n        </fui-swiper-blade>\r\n        <fui-swiper-blade>\r\n          <p class=\"text-title\">Second Blade</p>\r\n          <p>A larger blade</p>\r\n        </fui-swiper-blade>\r\n        <fui-swiper-blade>\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swiper-blade>\r\n      </fui-swiper>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/content/src/lib/swiper/swiper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<SwiperComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Content/Swiper',\r\n  component: SwiperComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwiperComponent, SwiperBladeComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
             "packages/content/src/lib/tabs/tabs.stories.ts": [
                 {
                     "name": "Basic",
@@ -3407,7 +4188,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  parameters: {\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-tabs>\r\n        <fui-tabs-item label=\"Foo\" />\r\n        <fui-tabs-item label=\"Bar\" />\r\n        <fui-tabs-item label=\"Baz\" />\r\n        <fui-tabs-item label=\"Foz\" />\r\n      </fui-tabs>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    activeTabIndex: 1 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-tabs [(activeTabIndex)]=\"activeTabIndex\">\r\n        <fui-tabs-item label=\"First\" />\r\n        <fui-tabs-item label=\"Second\" />\r\n        <fui-tabs-item label=\"Third\" />\r\n        <fui-tabs-item label=\"Fourth\" />\r\n      </fui-tabs>\r\n    `\r\n  })\r\n}"
                 },
                 {
                     "name": "meta",
@@ -3429,7 +4210,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n  },\r\n  parameters: {\r\n    lab: 'foo',\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
                 },
                 {
                     "name": "Disabled",
@@ -3439,7 +4220,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n  },\r\n  parameters: {\r\n    lab: 'foo',\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n    disabled: true as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" [disabled]=\"disabled\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
                 },
                 {
                     "name": "meta",
@@ -3461,7 +4242,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
                 },
                 {
                     "name": "dataSource",
@@ -3481,7 +4262,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<DatasetComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  subcomponents: { DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent]\r\n    })\r\n  ],\r\n}"
+                    "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                },
+                {
+                    "name": "WithMoreButton",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    onMoreTapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\" (moreTap)=\"onMoreTapped($event)\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
                 }
             ],
             "packages/forms/src/lib/radio-button/radio-button.stories.ts": [
@@ -3938,6 +4729,19 @@
                     "kind": 183
                 }
             ],
+            "packages/content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<SwipeableTabsComponent>",
+                    "file": "packages/content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "packages/content/src/lib/card/card.stories.ts": [
                 {
                     "name": "Story",
@@ -3945,6 +4749,32 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<CardComponent>",
                     "file": "packages/content/src/lib/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/content/src/lib/metric/metric.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MetricComponent>",
+                    "file": "packages/content/src/lib/metric/metric.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/content/src/lib/swiper/swiper.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<SwiperComponent>",
+                    "file": "packages/content/src/lib/swiper/swiper.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -4287,7 +5117,7 @@
                 "linktype": "component",
                 "name": "CardHeaderComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
@@ -4364,6 +5194,121 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "WithActions",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/metric/metric.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "MetricComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/metric/metric.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/metric/metric.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/metric/metric.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithChange",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/swipeable-tabs/swipeable-tabs-blade.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SwipeableTabsBladeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/swipeable-tabs/swipeable-tabs.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SwipeableTabsComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/swiper/swiper-blade.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SwiperBladeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/swiper/swiper.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SwiperComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/13",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/swiper/swiper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/content/src/lib/swiper/swiper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -4496,7 +5441,7 @@
                 "linktype": "component",
                 "name": "DatasetComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -4525,6 +5470,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/data/src/lib/dataset/dataset.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithMoreButton",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

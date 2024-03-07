@@ -8,8 +8,8 @@ import { NgTemplateOutlet } from '@angular/common';
   standalone: true,
   imports: [NgTemplateOutlet, CardHeaderComponent],
   template: `
-    <ng-template #template let-data>
-      <fui-card-header [titleTemplateRef]="titleTemplateWrapper" [subtitleTemplateRef]="subtitleTemplateWrapper" [imageSrc]="getImageSrc(data)">
+    <ng-template #template let-data let-onMoreTap="more">
+      <fui-card-header [titleTemplateRef]="titleTemplateWrapper" [subtitleTemplateRef]="subtitleTemplateWrapper" [imageSrc]="getImageSrc(data)" [showMore]="onMoreTap" (moreTap)="onMoreTap(data)">
         <ng-template #titleTemplateWrapper>
           <ng-container *ngTemplateOutlet="_titleTemplate() ?? null; context: { $implicit: data }" />
         </ng-template>

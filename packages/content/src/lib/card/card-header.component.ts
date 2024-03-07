@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, TemplateRef, input } from '@angular/core';
+import { Component, EventEmitter, Output, TemplateRef, computed, input } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { IconComponent } from 'fancy-ui-core';
 
@@ -27,12 +27,12 @@ import { IconComponent } from 'fancy-ui-core';
             }
           </div>
         </div>
-        @if(moreTap.observers.length) {
+        @if(_showMore()) {
           <a (click)="moreTap.emit()" class=" w-hover flex justify-center items-center">
-          <div class="absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover">
-          </div>
-          <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />
-        </a>
+            <div class="absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover">
+            </div>
+            <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />
+          </a>
         }
       </div>
       @if(subtitleTemplateRef() || subtitle()) {
@@ -58,6 +58,10 @@ export class CardHeaderComponent {
   subtitle = input('');
 
   imageSrc = input<string | null>(null);
+
+  showMore = input<boolean | null>(null);
+
+  _showMore = computed(() => this.showMore() !== null ? this.showMore() : this.moreTap.observers.length)
   
   @Output()
   moreTap = new EventEmitter();

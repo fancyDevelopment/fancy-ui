@@ -1,4 +1,4 @@
-import { TemplateRef, input } from '@angular/core';
+import { Directive, TemplateRef, input } from '@angular/core';
 
 export type DatasetTarget = 'Table' | 'Card' | 'TableAndCard';
 
@@ -14,6 +14,7 @@ export type DatasetResponsive =
 
 export type DatasetCardLineWidth = 'Full' | 'Half' | 'Quarter';
 
+@Directive()
 export abstract class DatasetItemBase {
 
     label = input('');

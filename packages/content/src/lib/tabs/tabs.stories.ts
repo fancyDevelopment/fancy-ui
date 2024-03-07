@@ -22,16 +22,17 @@ export default meta;
 type Story = StoryObj<TabsComponent>;
 
 export const Basic: Story = {
-  parameters: {
+  args: {
+    activeTabIndex: 1 as any
   },
-  render: (args, context) => ({
-    props: { ...args, ...context.parameters },
+  render: (args) => ({
+    props: { ...args },
     template: `
-      <fui-tabs>
-        <fui-tabs-item label="Foo" />
-        <fui-tabs-item label="Bar" />
-        <fui-tabs-item label="Baz" />
-        <fui-tabs-item label="Foz" />
+      <fui-tabs [(activeTabIndex)]="activeTabIndex">
+        <fui-tabs-item label="First" />
+        <fui-tabs-item label="Second" />
+        <fui-tabs-item label="Third" />
+        <fui-tabs-item label="Fourth" />
       </fui-tabs>
     `
   })
