@@ -45,3 +45,5 @@ Thumbs.db
 storybook-static
 
 tailwind.preset.private.js
+
+publish-local.ps1

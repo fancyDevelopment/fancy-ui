@@ -6,10 +6,7 @@ import { CardBundle } from 'fancy-ui-content';
 import { provideFancyUi } from 'fancy-ui-core';
 import { provideIcons } from '@ng-icons/core';
 import { matHomeOutline, matSettingsOutline, matArchiveOutline } from '@ng-icons/material-icons/outline';
-import { TextBoxComponent } from 'packages/forms/src/lib/text-box/text-box.component';
-import { SliderComponent } from 'packages/forms/src/lib/slider/slider.component';
-import { RadioButtonComponent } from 'packages/forms/src/lib/radio-button/radio-button.component';
-import { SwitchComponent } from 'packages/forms/src/lib/switch/switch.component';
+import { RadioButtonComponent, SliderComponent, SwitchComponent, TextBoxComponent } from 'fancy-ui-forms';
 import { DatasetBundle } from 'fancy-ui-data';
 
 const meta: Meta<ShellComponent> = {

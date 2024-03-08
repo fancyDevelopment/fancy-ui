@@ -1,0 +1,26 @@
+{
+  "name": "fancy-ui-data",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/fancy-ui-data/src",
+  "prefix": "lib",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/fancy-ui-data/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/fancy-ui-data/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/fancy-ui-data/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  }
+}

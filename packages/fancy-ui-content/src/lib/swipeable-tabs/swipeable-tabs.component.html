@@ -1,0 +1,14 @@
+<div class="bg-primary-container rounded p-element">
+  <fui-tabs [(activeTabIndex)]="activeBlade">
+    @for(blade of _blades(); track $index) {
+      <fui-tabs-item [label]="blade.label()" />
+    }
+  </fui-tabs>
+  <fui-swiper #swiper [(activatedBladeIndex)]="activeBlade">
+    @for(blade of _blades(); track $index) {
+      <fui-swiper-blade>
+        <ng-container [ngTemplateOutlet]="blade._template() ?? null" />
+      </fui-swiper-blade>
+    }
+  </fui-swiper>
+</div>

@@ -1,0 +1,5 @@
+<div class="overflow-x-hidden">
+  <div [style.--n]="_childCount()" [style.--i]="activatedBladeIndex()" [style.--heigt]="_height()" [class.duration-0]="_enableAnimation() === false" [class.duration-500]="_enableAnimation() === true" (touchstart)="lock($event)" (touchmove)="onTouchmove($event)" (touchend)="move($event)" class='w-[calc(var(--n)*100%)] h-[calc(var(--heigt)*1px)] max-h-96 flex items-center overflow-y-hidden translate-x-[calc(var(--i,0)/var(--n)*-100%)] transition-all ease-out' #container>
+    <ng-content />
+  </div>
+</div>

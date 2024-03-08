@@ -15,11 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "fancy-ui-content": ["packages/content/src/index.ts"],
-      "fancy-ui-core": ["packages/core/src/index.ts"],
-      "fancy-ui-data": ["packages/data/src/index.ts"],
-      "fancy-ui-forms": ["packages/forms/src/index.ts"],
-      "fancy-ui-shell": ["packages/shell/src/index.ts"]
+      "fancy-ui-content": ["packages/fancy-ui-content/src/index.ts"],
+      "fancy-ui-core": ["packages/fancy-ui-core/src/index.ts"],
+      "fancy-ui-data": ["packages/fancy-ui-data/src/index.ts"],
+      "fancy-ui-forms": ["packages/fancy-ui-forms/src/index.ts"],
+      "fancy-ui-shell": ["packages/fancy-ui-shell/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

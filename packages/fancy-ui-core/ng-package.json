@@ -1,0 +1,10 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/packages/fancy-ui-core",
+  "assets": [
+    "./tailwind.preset.js"
+  ],
+  "lib": {
+    "entryFile": "src/index.ts"
+  }
+}

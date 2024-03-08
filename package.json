@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "playground": "nx serve playground",
-    "storybook": "nx storybook storybook-host"
+    "storybook": "nx storybook storybook-host",
+    "build": "nx run-many -t build -p fancy-ui-core fancy-ui-shell fancy-ui-content fancy-ui-data fancy-ui-forms"
   },
   "private": true,
   "dependencies": {
