@@ -1,4 +1,6 @@
 import { ShellComponent } from "./lib/shell/shell.component";
+import { AppHeaderComponent } from "./lib/app-header/app-header.component";
+import { AppHeaderActionComponent } from "./lib/app-header/app-header-action.component";
 import { AppBarActionComponent } from "./lib/app-bar/app-bar-action.component";
 import { AppBarComponent } from "./lib/app-bar/app-bar.component";
 import { NavRailItemComponent } from "./lib/nav-rail/nav-rail-item.component";
@@ -12,6 +14,9 @@ import { ViewFooterComponent } from "./lib/view/view-footer.component";
 
 export { ShellComponent }
 export const ShellBundle = [ ShellComponent ];
+
+export { AppHeaderComponent, AppHeaderActionComponent };
+export const AppHeaderBundle = [ AppHeaderComponent, AppHeaderActionComponent];
 
 export { AppBarComponent, AppBarActionComponent };
 export const AppBarBundle = [ AppBarComponent, AppBarActionComponent];

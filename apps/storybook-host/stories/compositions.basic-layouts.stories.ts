@@ -1,9 +1,9 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
-import { ShellComponent, ShellBundle, NavBarBundle, NavRailBundle, ViewBundle, AppBarBundle } from 'fancy-ui-shell';
+import { ShellComponent, ShellBundle, NavBarBundle, NavRailBundle, ViewBundle, AppBarBundle, AppHeaderBundle } from 'fancy-ui-shell';
 import { provideFancyUi } from 'fancy-ui-core';
 import { provideIcons } from '@ng-icons/core';
-import { matHomeOutline, matSettingsOutline, matArchiveOutline } from '@ng-icons/material-icons/outline';
+import { matHomeOutline, matSettingsOutline, matArchiveOutline, matLogoutOutline } from '@ng-icons/material-icons/outline';
 
 const meta: Meta<ShellComponent> = {
   title: 'Compositions/Basic Layouts',
@@ -11,10 +11,10 @@ const meta: Meta<ShellComponent> = {
   parameters: { layout: 'fullscreen'},
   decorators: [
     moduleMetadata({
-      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle],
+      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppHeaderBundle, AppBarBundle, ViewBundle],
       providers: [
         provideFancyUi(),
-        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})
+        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline, matLogoutOutline})
       ]
     })
   ],
@@ -152,6 +152,59 @@ export const ResponsiveNavs: Story = {
       </fui-view>
 
       </ng-template>
+      <ng-template #bottomTemplate>
+        <div class="md:hidden">
+          <fui-nav-bar>
+            <fui-nav-bar-item iconName="matHomeOutline" [isActive]="true" label="Test1" />
+            <fui-nav-bar-item iconName="matSettingsOutline" label="Test2" />
+            <fui-nav-bar-item iconName="matArchiveOutline" label="Test3" />
+          </fui-nav-bar>
+        </div>
+      </ng-template>
+    </fui-shell>
+    `
+  })
+};
+
+export const ResponsiveNavsWithAppHeader: Story = {
+  args: {
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <fui-shell>
+      <ng-template #topTemplate>
+        <fui-app-header  iconName="matHomeOutline" title="App Title" userDisplayName="John Doe" userId="john.doe@domain.com">
+          <fui-app-header-action iconName="matLogoutOutline" label="Logout" />
+        </fui-app-header>
+      </ng-template>
+      <ng-template #leftTemplate>
+        <div class="hidden md:block h-full">
+          <fui-nav-rail>
+            <fui-nav-rail-item iconName="matHomeOutline" [isActive]="true" label="Test1" />
+            <fui-nav-rail-item iconName="matSettingsOutline" label="Test2" />
+            <fui-nav-rail-item iconName="matArchiveOutline" label="Test3" />
+          </fui-nav-rail>
+        </div>
+      </ng-template>
+
+      <ng-template #mainContentTemplate>
+
+        <fui-view>
+          <fui-view-header>
+            <fui-app-bar title="Card View">
+              <fui-app-bar-action iconName="matHomeOutline" label="Action 1" />
+              <fui-app-bar-action iconName="matSettingsOutline" label="Action 2" />
+              <fui-app-bar-action iconName="matArchiveOutline" label="Action 3" />
+            </fui-app-bar>
+          </fui-view-header>
+          <fui-view-main-content>
+            Main content here!
+          </fui-view-main-content>
+        </fui-view>
+
+      </ng-template>
+
       <ng-template #bottomTemplate>
         <div class="md:hidden">
           <fui-nav-bar>

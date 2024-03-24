@@ -1,6 +1,6 @@
 const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
 const { join } = require('path');
-const fuiTailwindConfig = require('../../packages/fancy-ui-core/tailwind.preset.private');
+const fuiTailwindConfig = require('../../packages/fancy-ui-core/tailwind.preset');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

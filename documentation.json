@@ -114,7 +114,7 @@
         },
         {
             "name": "AppBarComponent",
-            "id": "component-AppBarComponent-5034a86af463ca7e5d4e79daca0122c73c2fa3d2cf03ea09a916871e7353a09419ef8812ba853b6574e5701ff458ce2e0f04583d5d1f8f65d58165b3aa05573e",
+            "id": "component-AppBarComponent-5580938cb39aaff83f820c42b87014da87cdbe979458046414553a5ec9a31374e25f651b0ad381db93117a24131013d790c0786cceeefeaaf691aa5cd55d186c",
             "file": "packages/fancy-ui-shell/src/lib/app-bar/app-bar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -132,6 +132,16 @@
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
+                {
+                    "name": "_appBarActions",
+                    "defaultValue": "contentChildren(AppBarActionComponent)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 25
+                },
                 {
                     "name": "_documentClickSubscription",
                     "defaultValue": "null",
@@ -170,16 +180,6 @@
                     "modifierKind": [
                         125
                     ]
-                },
-                {
-                    "name": "_viewHeaderActions",
-                    "defaultValue": "contentChildren(AppBarActionComponent)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 25
                 },
                 {
                     "name": "showBackButton",
@@ -257,16 +257,268 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, contentChildren, inject, input } from '@angular/core';\r\nimport { Location, NgTemplateOutlet, SlicePipe } from '@angular/common';\r\nimport { fromEvent, skip, Subscription } from 'rxjs';\r\nimport { AppBarActionComponent } from './app-bar-action.component';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-bar',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, IconComponent, SlicePipe],\r\n  templateUrl: './app-bar.component.html'\r\n})\r\nexport class AppBarComponent {\r\n  /**\r\n   * Title within the AppBar.\r\n   */\r\n  title = input('View Title');\r\n\r\n  /**\r\n   * Flag to indicate weather the back button shall be shown.\r\n   */\r\n  showBackButton = input(false);\r\n\r\n  // The view header actions\r\n  _viewHeaderActions = contentChildren(AppBarActionComponent)\r\n\r\n  private _location = inject(Location);\r\n\r\n  // State to save if actions dropdown is open\r\n  public _viewActionsDropdownIsOpen = false;\r\n  private _documentClickSubscription: Subscription | null = null;\r\n\r\n  _openActionsDropdown(): void {\r\n    this._viewActionsDropdownIsOpen = true;\r\n    if(!this._documentClickSubscription) {\r\n      this._documentClickSubscription = fromEvent(document, 'click').pipe(skip(1)).subscribe(() => this._closeActionsDropdown() );\r\n    }\r\n  }\r\n\r\n  _closeActionsDropdown(): void {\r\n    this._viewActionsDropdownIsOpen = false;\r\n    this._documentClickSubscription?.unsubscribe();\r\n    this._documentClickSubscription = null;\r\n  }\r\n\r\n  _navigateBack(): void {\r\n    this._location.back();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, contentChildren, inject, input } from '@angular/core';\r\nimport { Location, NgTemplateOutlet, SlicePipe } from '@angular/common';\r\nimport { fromEvent, skip, Subscription } from 'rxjs';\r\nimport { AppBarActionComponent } from './app-bar-action.component';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-bar',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, IconComponent, SlicePipe],\r\n  templateUrl: './app-bar.component.html'\r\n})\r\nexport class AppBarComponent {\r\n  /**\r\n   * Title within the AppBar.\r\n   */\r\n  title = input('View Title');\r\n\r\n  /**\r\n   * Flag to indicate weather the back button shall be shown.\r\n   */\r\n  showBackButton = input(false);\r\n\r\n  // The app bar actions\r\n  _appBarActions = contentChildren(AppBarActionComponent)\r\n\r\n  private _location = inject(Location);\r\n\r\n  // State to save if actions dropdown is open\r\n  public _viewActionsDropdownIsOpen = false;\r\n  private _documentClickSubscription: Subscription | null = null;\r\n\r\n  _openActionsDropdown(): void {\r\n    this._viewActionsDropdownIsOpen = true;\r\n    if(!this._documentClickSubscription) {\r\n      this._documentClickSubscription = fromEvent(document, 'click').pipe(skip(1)).subscribe(() => this._closeActionsDropdown() );\r\n    }\r\n  }\r\n\r\n  _closeActionsDropdown(): void {\r\n    this._viewActionsDropdownIsOpen = false;\r\n    this._documentClickSubscription?.unsubscribe();\r\n    this._documentClickSubscription = null;\r\n  }\r\n\r\n  _navigateBack(): void {\r\n    this._location.back();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"h-16 z-10 flex justify-between bg-background\">\r\n  <div class=\"flex items-center min-w-0\">\r\n    <!-- Back navigation button -->\r\n    @if(showBackButton()) {\r\n      <a class=\"w-hover h-hover flex flex-none justify-center items-center\" (click)=\"_navigateBack()\">\r\n        <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n        <fui-icon class=\"h-icon w-icon\" name=\"heroArrowLeft\" />\r\n      </a>\r\n    }\r\n    <!-- View title -->\r\n    <div class=\"mb-1 text-xl min-w-0 truncate\">{{ title() }}</div>\r\n  </div>\r\n\r\n  <!-- Global View Actions as icons in header -->\r\n  <div class=\"hidden flex-none sm:flex items-center h-full group-[.shell]:-mr-3\">\r\n    @for(action of _viewHeaderActions(); track $index) {\r\n      <ng-container [ngTemplateOutlet]=\"action._template() ?? null\" />\r\n    }\r\n  </div>\r\n\r\n  @if(_viewHeaderActions(); as actions) {\r\n    <!-- Global View Actions within dropdown -->\r\n    <div class=\"sm:hidden flex-none flex items-center h-full group-[.shell]:-mr-3\">\r\n      @if(actions.length >= 1) {\r\n        <!-- Always show first icon -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[0]._template() ?? null\" />\r\n      }\r\n      @if(actions.length >= 2) {\r\n        <!-- Always show second icon -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[1]._template() ?? null\" />\r\n      }\r\n      @if(actions.length === 3) {\r\n        <!-- Show econd third button only if not more -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[2]._template() ?? null\" />\r\n      }\r\n      <!-- Show more button in case of more than 3 actions-->\r\n      @if(actions.length > 3) {\r\n        <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_openActionsDropdown()\">\r\n          <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n          <fui-icon class=\"h-6 w-6 self-center\" name=\"matMoreVertOutline\"></fui-icon>\r\n        </a>\r\n      }\r\n\r\n      <!-- Dropdown Menu -->\r\n      @if(actions.length > 3 && _viewActionsDropdownIsOpen) {\r\n        <div class=\"absolute right-2 top-20 rounded bg-background shadow animate-fadeIn\">\r\n          <div>\r\n            @for(action of actions | slice : 2; track $index) {\r\n              <ng-container [ngTemplateOutlet]=\"action._mobileTemplate() ?? null\" />\r\n            }\r\n          </div>\r\n        </div>\r\n      }\r\n    </div>\r\n  }\r\n</div>\r\n"
+            "templateData": "<div class=\"h-16 z-10 flex justify-between bg-background\">\r\n  <div class=\"flex items-center min-w-0\">\r\n    <!-- Back navigation button -->\r\n    @if(showBackButton()) {\r\n      <a class=\"w-hover h-hover flex flex-none justify-center items-center\" (click)=\"_navigateBack()\">\r\n        <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n        <fui-icon class=\"h-icon w-icon\" name=\"heroArrowLeft\" />\r\n      </a>\r\n    }\r\n    <!-- View title -->\r\n    <div class=\"mb-1 text-xl min-w-0 truncate\">{{ title() }}</div>\r\n  </div>\r\n\r\n  <!-- App Bar Actions as icons in header -->\r\n  <div class=\"hidden flex-none sm:flex items-center h-full group-[.shell]:-mr-3\">\r\n    @for(action of _appBarActions(); track $index) {\r\n      <ng-container [ngTemplateOutlet]=\"action._template() ?? null\" />\r\n    }\r\n  </div>\r\n\r\n  @if(_appBarActions(); as actions) {\r\n    <!-- App Bar Actions within dropdown -->\r\n    <div class=\"sm:hidden flex-none flex items-center h-full group-[.shell]:-mr-3\">\r\n      @if(actions.length >= 1) {\r\n        <!-- Always show first icon -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[0]._template() ?? null\" />\r\n      }\r\n      @if(actions.length >= 2) {\r\n        <!-- Always show second icon -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[1]._template() ?? null\" />\r\n      }\r\n      @if(actions.length === 3) {\r\n        <!-- Show econd third button only if not more -->\r\n        <ng-container [ngTemplateOutlet]=\"actions[2]._template() ?? null\" />\r\n      }\r\n      <!-- Show more button in case of more than 3 actions-->\r\n      @if(actions.length > 3) {\r\n        <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_openActionsDropdown()\">\r\n          <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n          <fui-icon class=\"h-6 w-6 self-center\" name=\"matMoreVertOutline\"></fui-icon>\r\n        </a>\r\n      }\r\n\r\n      <!-- Dropdown Menu -->\r\n      @if(actions.length > 3 && _viewActionsDropdownIsOpen) {\r\n        <div class=\"absolute right-2 top-20 rounded bg-background shadow animate-fadeIn\">\r\n          <div>\r\n            @for(action of actions | slice : 2; track $index) {\r\n              <ng-container [ngTemplateOutlet]=\"action._mobileTemplate() ?? null\" />\r\n            }\r\n          </div>\r\n        </div>\r\n      }\r\n    </div>\r\n  }\r\n</div>\r\n"
+        },
+        {
+            "name": "AppHeaderActionComponent",
+            "id": "component-AppHeaderActionComponent-f7daa1c5724c8ad1d5bbded22786b37289f952e17dfeacbc1fb5e516afd61a62837c9d62fcd9f728d447f45b7eda2a5e9eb96f2149d011cbfe71796bbff751e3",
+            "file": "packages/fancy-ui-shell/src/lib/app-header/app-header-action.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-app-header-action",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<ng-template #template>\n  <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label()\">\n    <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\n    <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName()\"></fui-icon>\n  </a>\n</ng-template>\n<ng-template #mobileTemplate>\n  <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label()\">\n    <div class=\"h-6 w-6\">\n        <fui-icon [name]=\"iconName()\"></fui-icon>\n    </div>\n    <div class=\"self-center text-xs font-semibold px-2\">{{label()}}</div>\n  </a>\n</ng-template>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "tap",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nAn event called if the action is tapped.",
+                    "description": "<p>An event called if the action is tapped.</p>\n",
+                    "line": 33,
+                    "type": "EventEmitter<void>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "_mobileTemplate",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('mobileTemplate')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 37
+                },
+                {
+                    "name": "_template",
+                    "defaultValue": "viewChild<TemplateRef<unknown>>('template')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 36
+                },
+                {
+                    "name": "iconName",
+                    "defaultValue": "input('default')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>The name of the icon to show for this action in the app bar.</p>\n",
+                    "line": 27,
+                    "rawdescription": "\nThe name of the icon to show for this action in the app bar."
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>The label of the action to show in the action dropdown in case of mobile screen layout.</p>\n",
+                    "line": 30,
+                    "rawdescription": "\nThe label of the action to show in the action dropdown in case of mobile screen layout."
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "_onClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "IconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, input, viewChild } from '@angular/core';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-header-action',\r\n  standalone: true,\r\n  imports: [IconComponent],\r\n  template: `\r\n    <ng-template #template>\r\n      <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label()\">\r\n        <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n        <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName()\"></fui-icon>\r\n      </a>\r\n    </ng-template>\r\n    <ng-template #mobileTemplate>\r\n      <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label()\">\r\n        <div class=\"h-6 w-6\">\r\n            <fui-icon [name]=\"iconName()\"></fui-icon> \r\n        </div>\r\n        <div class=\"self-center text-xs font-semibold px-2\">{{label()}}</div>\r\n      </a>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class AppHeaderActionComponent {\r\n  /** The name of the icon to show for this action in the app bar. */\r\n  iconName = input('default');\r\n\r\n  /** The label of the action to show in the action dropdown in case of mobile screen layout. */\r\n  label = input('');\r\n\r\n  /** An event called if the action is tapped. */\r\n  @Output() tap: EventEmitter<void> = new EventEmitter<void>();\r\n\r\n  // The templates used by the app bar to render this action\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n  _mobileTemplate = viewChild<TemplateRef<unknown>>('mobileTemplate');\r\n\r\n  _onClick() {\r\n    this.tap.next();\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "AppHeaderComponent",
+            "id": "component-AppHeaderComponent-3eb9f3ebeddbb9a33d590d6f14425cbc799d56b3df5f25cef7d28c20ea4ef2b83aa8b163353321b95578c660f1b5886ceef9ac8be1fb97dd95d613f5fa2f8d49",
+            "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "fui-app-header",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./app-header.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_actionsDropdownIsOpen",
+                    "defaultValue": "signal(false)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 38,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "_appHeaderActions",
+                    "defaultValue": "contentChildren(AppHeaderActionComponent)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 35
+                },
+                {
+                    "name": "_documentClickSubscription",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Subscription | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 39,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "iconName",
+                    "defaultValue": "input<string|null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Icon name the AppHeader.</p>\n",
+                    "line": 17,
+                    "rawdescription": "\n\nIcon name the AppHeader.\n"
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "input('App Title')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Title within the AppHeader.</p>\n",
+                    "line": 22,
+                    "rawdescription": "\n\nTitle within the AppHeader.\n"
+                },
+                {
+                    "name": "userDisplayName",
+                    "defaultValue": "input<string|null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>Username within the AppHeader.</p>\n",
+                    "line": 27,
+                    "rawdescription": "\n\nUsername within the AppHeader.\n"
+                },
+                {
+                    "name": "userId",
+                    "defaultValue": "input<string|null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "<p>User Id within the AppHeader.</p>\n",
+                    "line": 32,
+                    "rawdescription": "\n\nUser Id within the AppHeader.\n"
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "_closeActionsDropdown",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 48,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "_openActionsDropdown",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 41,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "NgTemplateOutlet"
+                },
+                {
+                    "name": "IconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, contentChildren, signal, input } from '@angular/core';\r\nimport { NgTemplateOutlet } from '@angular/common';\r\nimport { fromEvent, skip, Subscription } from 'rxjs';\r\nimport { AppHeaderActionComponent } from './app-header-action.component';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-header',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, IconComponent],\r\n  templateUrl: './app-header.component.html'\r\n})\r\nexport class AppHeaderComponent {\r\n  /**\r\n   * Icon name the AppHeader.\r\n   */\r\n  iconName = input<string|null>(null)\r\n\r\n  /**\r\n   * Title within the AppHeader.\r\n   */\r\n  title = input('App Title');\r\n\r\n  /**\r\n   * Username within the AppHeader.\r\n   */\r\n  userDisplayName = input<string|null>(null);\r\n\r\n  /**\r\n   * User Id within the AppHeader.\r\n   */\r\n  userId = input<string|null>(null);\r\n\r\n  // The view header actions\r\n  _appHeaderActions = contentChildren(AppHeaderActionComponent)\r\n\r\n  // State to save if actions dropdown is open\r\n  public _actionsDropdownIsOpen = signal(false);\r\n  private _documentClickSubscription: Subscription | null = null;\r\n\r\n  _openActionsDropdown(): void {\r\n    this._actionsDropdownIsOpen.set(true);\r\n    if(!this._documentClickSubscription) {\r\n      this._documentClickSubscription = fromEvent(document, 'click').pipe(skip(1)).subscribe(() => this._closeActionsDropdown() );\r\n    }\r\n  }\r\n\r\n  _closeActionsDropdown(): void {\r\n    this._actionsDropdownIsOpen.set(false);\r\n    this._documentClickSubscription?.unsubscribe();\r\n    this._documentClickSubscription = null;\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"h-10 z-20 flex justify-between text-on-primary bg-primary px-rim\">\r\n  <div class=\"flex items-center min-w-0\">\r\n    <!-- Back navigation button -->\r\n    @if(iconName(); as iconName) {\r\n      <div class=\"grid justify-items-center md:group-[.fui-shell.with-left-template]:w-20 md:group-[.fui-shell.with-left-template]:pl-0\">\r\n        <div class=\"h-6 w-6\">\r\n          <fui-icon [name]=\"iconName\"></fui-icon>\r\n        </div>\r\n      </div>\r\n    }\r\n    <!-- App title -->\r\n    <div class=\"text-base font-semibold min-w-12 truncate\">{{ title() }}</div>\r\n  </div>\r\n\r\n  <!-- Global View Actions within dropdown -->\r\n  <div class=\"flex-none flex items-center h-full relative\">\r\n    <a class=\"h-10 flex cursor-pointer max-w-48 relative\" (click)=\"_openActionsDropdown()\">\r\n      <div class=\"absolute z-0 w-full h-10 rounded transition-all duration-500 hover:bg-hover\"></div>\r\n      <div class=\"min-w-0 self-center mx-2\">\r\n        @if(userDisplayName(); as userDisplayName) {\r\n          <div class=\"text-xs truncate\">{{userDisplayName}}</div>\r\n        }\r\n        @if(userId(); as userId) {\r\n          <div class=\"text-xs truncate\">{{userId}}</div>\r\n        }\r\n      </div>\r\n      <fui-icon class=\"h-8 w-8 self-center mr-2\" name=\"heroUser\"></fui-icon>\r\n    </a>\r\n    <!-- Dropdown Menu -->\r\n    @if(_actionsDropdownIsOpen()) {\r\n      <div class=\"absolute z-20 right-0 top-10 rounded bg-primary-container text-on-primary-container shadow animate-fadeIn\">\r\n        <div class=\"p-component\">\r\n          <div class=\"flex\">\r\n              <fui-icon class=\"w-14 h-14 self-center\" name=\"heroUser\"></fui-icon>\r\n            <div class=\"flex flex-col self-center\">\r\n              @if(userDisplayName(); as userDisplayName) {\r\n                <div class=\"text-base\">{{userDisplayName}}</div>\r\n              }\r\n              @if(userId(); as userId) {\r\n                <div class=\"text-base\">{{userId}}</div>\r\n              }\r\n            </div>\r\n          </div>\r\n          <hr class=\"my-element\">\r\n          @for(action of _appHeaderActions(); track $index) {\r\n            <ng-container [ngTemplateOutlet]=\"action._mobileTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n      </div>\r\n    }\r\n  </div>\r\n\r\n</div>\r\n"
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-b1aa618fd6c7d7323069de1e644c59f1e791464444d7704d2d7e7241193fc4370f60767b7ad224968805b2cb365c5891f9494a482adf58d97bdc0a99b37aa901",
+            "id": "component-ButtonComponent-af435e6492c3a1928b5d4ac88b1b1f640b660956e51f625930e842544a66b458cfe8c8440730bf8072043cbcb9f1418c87eded7571558f1ba9316d82a571fbb1",
             "file": "packages/fancy-ui-core/src/lib/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -382,16 +634,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, ElementRef, EventEmitter, Output, input, viewChild } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { timer } from 'rxjs';\n\n@Component({\n  selector: 'fui-button',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './button.component.html'\n})\nexport class ButtonComponent {\n  /** The label of the Button. */\n  label = input('');\n  /** Flag to show the butto in a disabled state. */\n  disabled = input(false);\n  /** An event called if the button is tapped. */\n  @Output()\n  tap = new EventEmitter<void>();\n\n  waveSpan = viewChild<ElementRef>('wave');\n\n  animate = false;\n\n  click(event: { offsetX: number, offsetY: number}) {\n    const waveSpan = this.waveSpan();\n    if(waveSpan) {\n      waveSpan.nativeElement.style.left = event.offsetX + 'px';\n      waveSpan.nativeElement.style.top = event.offsetY + 'px';\n    }\n    this.animate = true;\n    timer(800).subscribe(() => this.animate = false);\n    this.tap.next();\n  }\n\n}\n",
+            "sourceCode": "import { Component, ElementRef, EventEmitter, Output, input, viewChild } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { timer } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'fui-button',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './button.component.html'\r\n})\r\nexport class ButtonComponent {\r\n  /** The label of the Button. */\r\n  label = input('');\r\n  /** Flag to show the butto in a disabled state. */\r\n  disabled = input(false);\r\n  /** An event called if the button is tapped. */\r\n  @Output()\r\n  tap = new EventEmitter<void>();\r\n\r\n  waveSpan = viewChild<ElementRef>('wave');\r\n\r\n  animate = false;\r\n\r\n  click(event: { offsetX: number, offsetY: number}) {\r\n    const waveSpan = this.waveSpan();\r\n    if(waveSpan) {\r\n      waveSpan.nativeElement.style.left = event.offsetX + 'px';\r\n      waveSpan.nativeElement.style.top = event.offsetY + 'px';\r\n    }\r\n    this.animate = true;\r\n    timer(800).subscribe(() => this.animate = false);\r\n    this.tap.next();\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<button (click)=\"tap.next()\" [disabled]=\"disabled()\" class=\"bg-primary rounded overflow-hidden group relative hover:shadow\" >\n    <div class=\"text-on-primary p-component rounded\" [ngClass]=\"{'group-hover:bg-hover': !animate, 'bg-primary': animate}\" (click)=\"click($event)\">{{label()}}</div>\n    <span #wave class=\"absolute w-full h-full rounded-[50%] bg-tint animate-ripple\" [ngClass]=\"{'hidden': !animate}\"></span>\n</button>\n"
+            "templateData": "<button (click)=\"tap.next()\" [disabled]=\"disabled()\" class=\"bg-primary rounded overflow-hidden group relative hover:shadow\" >\r\n    <div class=\"text-on-primary p-component rounded\" [ngClass]=\"{'group-hover:bg-hover': !animate, 'bg-primary': animate}\" (click)=\"click($event)\">{{label()}}</div>\r\n    <span #wave class=\"absolute w-full h-full rounded-[50%] bg-tint animate-ripple\" [ngClass]=\"{'hidden': !animate}\"></span>\r\n</button>\r\n"
         },
         {
             "name": "CardActionsComponent",
-            "id": "component-CardActionsComponent-dcf7880f4016518e9f8d290afb440638513a062b1bdb9df6da82900277c841cd8a14268c7b65717195a91dae42da1fee0885e2b81035a7579e59fb021ee14ffd",
+            "id": "component-CardActionsComponent-e1e1a450dae679504a7fa2abf8f135f4c59febdce8105a2f72bb5663dd47e3acbd4bbef7afb51a749f1e49c82a180c50345318949aba51577d56490af4943bde",
             "file": "packages/fancy-ui-content/src/lib/card/card-actions.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -418,7 +670,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'fui-card-actions',\n  standalone: true,\n  template:`\n    <div class=\"border-t border-shade h-component\"></div>\n    <ng-content />\n  `\n})\nexport class CardActionsComponent {}\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-card-actions',\r\n  standalone: true,\r\n  template:`\r\n    <div class=\"border-t border-shade h-component\"></div>\r\n    <ng-content />\r\n  `\r\n})\r\nexport class CardActionsComponent {}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -426,7 +678,7 @@
         },
         {
             "name": "CardComponent",
-            "id": "component-CardComponent-c941810449ef41a1a590e5ef9f3717f6a990b4b320908219aaf5121b45987f28047d069f9ca1e48fff9bb242eed4ec072d37ae1823a77bb23a206b52221ecce0",
+            "id": "component-CardComponent-47f836114fd6020961008fa5a0ddc3e3ef8fd09db6f13b7841c6d5785d30a8446e1b44d4b99ff54dec86d7bc26a6668c369f150b81a39cf7dd5c3f7725ac1ce3",
             "file": "packages/fancy-ui-content/src/lib/card/card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -484,16 +736,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, HostBinding } from '@angular/core';\n\n@Component({\n  selector: 'fui-card',\n  standalone: true,\n  templateUrl: './card.component.html'\n})\nexport class CardComponent {\n  @HostBinding('class')\n  classes = 'flex flex-col';\n}\n",
+            "sourceCode": "import { Component, HostBinding } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-card',\r\n  standalone: true,\r\n  templateUrl: './card.component.html'\r\n})\r\nexport class CardComponent {\r\n  @HostBinding('class')\r\n  classes = 'flex flex-col';\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"rounded bg-primary-container text-on-primary-container p-element grow flex flex-col\">\n    <ng-content></ng-content>\n</div>\n"
+            "templateData": "<div class=\"rounded bg-primary-container text-on-primary-container p-element grow flex flex-col\">\r\n    <ng-content></ng-content>\r\n</div>\r\n"
         },
         {
             "name": "CardContentComponent",
-            "id": "component-CardContentComponent-cf45f53bd75e80305cfcd87dd9f19ec7f4204107bb968b1ae3f0da3ce6b482cfc581cdc551327c3c26a5b5283fb8f5ed371849339fb34e39415147df116fccfb",
+            "id": "component-CardContentComponent-062aeffef80a21f686d55df145d70bf0bea2dcfe7c5a7ab056811702046b0df605a325ac77f7dbb53b34fe965bd805cdd1f5276d9c6b210ee73e31d4c998eda4",
             "file": "packages/fancy-ui-content/src/lib/card/card-content.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -520,7 +772,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'fui-card-content',\n  standalone: true,\n  template: `\n    <div class=\"py-element\">\n      <ng-content />\n    </div>\n  `\n})\nexport class CardContentComponent {}\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-card-content',\r\n  standalone: true,\r\n  template: `\r\n    <div class=\"py-element\">\r\n      <ng-content />\r\n    </div>\r\n  `\r\n})\r\nexport class CardContentComponent {}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -528,7 +780,7 @@
         },
         {
             "name": "CardGrowComponent",
-            "id": "component-CardGrowComponent-334bd2bd76985c24a4a3007bfff0680cb7cecbd970804270e6a04d9bd11f36ed3d943ea763c457378492970d6a45aa1578317b4cc8b13a4eb77337b1c119e055",
+            "id": "component-CardGrowComponent-c6e66b7cd866fa3bd569a28bf943b37e990f504aadef682323b1437142f023e151afe0acfeb25537189d71e9d2a3cb1913e8e740d5ed33c45be1c4bfd8b2918b",
             "file": "packages/fancy-ui-content/src/lib/card/card-grow.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -585,7 +837,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, HostBinding } from '@angular/core';\n\n@Component({\n  selector: 'fui-card-grow',\n  standalone: true,\n  template: ``\n})\nexport class CardGrowComponent {\n  @HostBinding('class')\n  classes = 'grow';\n}\n",
+            "sourceCode": "import { Component, HostBinding } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-card-grow',\r\n  standalone: true,\r\n  template: ``\r\n})\r\nexport class CardGrowComponent {\r\n  @HostBinding('class')\r\n  classes = 'grow';\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -593,7 +845,7 @@
         },
         {
             "name": "CardHeaderComponent",
-            "id": "component-CardHeaderComponent-14167448479add0a2e71d93502747c5507cdc8b18c9a4b7cf821d86035c0a32ff7a9fe8699f2d6a9f652a157ba6c558e7004aab4346a5a9677bcae2643130f87",
+            "id": "component-CardHeaderComponent-96d068b3436f28b8634fa8aaf60ba247b4c1d0c834d583ddebc8f2cbbf4d7862449d47f80f3c89e461fe574cf808dd386d2f51e939729d46212a3a8acbafb129",
             "file": "packages/fancy-ui-content/src/lib/card/card-header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -708,7 +960,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, computed, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-card-header',\n  standalone: true,\n  imports: [NgTemplateOutlet, IconComponent],\n  template: `\n  <div class=\"flex\">\n    @if(imageSrc()) {\n      <div class=\"pr-element\">\n        <img class=\"object-cover rounded-element \n                    h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                    w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n      </div>\n    }\n    <div class=\"flex-1\">\n      <div class=\"flex items-center\">\n        <div class=\"flex-1\">\n          <div class=\"text-title font-light\">\n            @if(titleTemplateRef()) {\n              <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n            }\n            @if(!titleTemplateRef() && title()) {\n              <span>{{title()}}</span>\n            }\n          </div>\n        </div>\n        @if(_showMore()) {\n          <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n            <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n            </div>\n            <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n          </a>\n        }\n      </div>\n      @if(subtitleTemplateRef() || subtitle()) {\n        <div class=\"text-subtitle\">\n          @if(subtitleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n          }\n          @if(!subtitleTemplateRef()) {\n            <span>{{subtitle()}}</span>\n          }\n        </div>\n      }\n    </div>\n  </div>\n  `\n})\nexport class CardHeaderComponent {\n\n  titleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  title = input('');\n\n  subtitleTemplateRef = input<TemplateRef<unknown> | null>(null);\n  subtitle = input('');\n\n  imageSrc = input<string | null>(null);\n\n  showMore = input<boolean | null>(null);\n\n  _showMore = computed(() => this.showMore() !== null ? this.showMore() : this.moreTap.observers.length)\n  \n  @Output()\n  moreTap = new EventEmitter();\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, computed, input } from '@angular/core';\r\nimport { NgTemplateOutlet } from '@angular/common';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-card-header',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, IconComponent],\r\n  template: `\r\n  <div class=\"flex\">\r\n    @if(imageSrc()) {\r\n      <div class=\"pr-element\">\r\n        <img class=\"object-cover rounded-element \r\n                    h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\r\n                    w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\r\n      </div>\r\n    }\r\n    <div class=\"flex-1\">\r\n      <div class=\"flex items-center\">\r\n        <div class=\"flex-1\">\r\n          <div class=\"text-title font-light\">\r\n            @if(titleTemplateRef()) {\r\n              <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\r\n            }\r\n            @if(!titleTemplateRef() && title()) {\r\n              <span>{{title()}}</span>\r\n            }\r\n          </div>\r\n        </div>\r\n        @if(_showMore()) {\r\n          <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\r\n            <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\r\n            </div>\r\n            <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\r\n          </a>\r\n        }\r\n      </div>\r\n      @if(subtitleTemplateRef() || subtitle()) {\r\n        <div class=\"text-subtitle\">\r\n          @if(subtitleTemplateRef()) {\r\n            <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\r\n          }\r\n          @if(!subtitleTemplateRef()) {\r\n            <span>{{subtitle()}}</span>\r\n          }\r\n        </div>\r\n      }\r\n    </div>\r\n  </div>\r\n  `\r\n})\r\nexport class CardHeaderComponent {\r\n\r\n  titleTemplateRef = input<TemplateRef<unknown> | null>(null);\r\n  title = input('');\r\n\r\n  subtitleTemplateRef = input<TemplateRef<unknown> | null>(null);\r\n  subtitle = input('');\r\n\r\n  imageSrc = input<string | null>(null);\r\n\r\n  showMore = input<boolean | null>(null);\r\n\r\n  _showMore = computed(() => this.showMore() !== null ? this.showMore() : this.moreTap.observers.length)\r\n  \r\n  @Output()\r\n  moreTap = new EventEmitter();\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -716,7 +968,7 @@
         },
         {
             "name": "CardImageComponent",
-            "id": "component-CardImageComponent-ba88471139cc2d5bd4d52d8ead66c23430918e530111acb9ac4e176f4186826853b276440466ff102473e7b791bbc336b4f4948b27b1747d8cce106462b71166",
+            "id": "component-CardImageComponent-ca1cd5c3d4784c64320eb4dc9f7b690ee3a6001f2750ed01e378d26ec0fd84fc4ac67f469c8be059989f16eca486e87983a07047ad9d47545b30bbebeebebd8c",
             "file": "packages/fancy-ui-content/src/lib/card/card-image.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -817,7 +1069,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, HostBinding, Output, input } from '@angular/core';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-card-image',\n  standalone: true,\n  imports: [IconComponent],\n  template:`\n    \t<div class=\"group-first:-mt-element group-first:-ml-element group-first:-mr-element group-last:-mb-element relative group-last:-ml-element group-last:-mr-element\">\n        <img class=\"object-cover w-full h-full rounded-component [:not(:first-child)]:px-element group-first:rounded-t group-last:rounded-b\" [src]=\"src()\">\n          <div class=\"absolute top-0 left-0 right-0 p-element\">\n            <div class=\"flex items-center\">\n              <div class=\"flex-1\">\n                <div class=\"text-title font-light\">{{title()}}</div>\n              </div>\n              @if(moreTap.observers.length) {\n                <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n                  <div class=\"absolute w-hover h-hover rounded transition-all duration-500 hover:bg-hover\"></div>\n                  <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n                </a>\n              }\n            </div>\n            @if(subtitle()) {\n              <div class=\"text-subtitle\">{{subtitle()}}</div>\n            }\n          </div>\n      </div>\n  `\n})\nexport class CardImageComponent {\n  src = input('');\n  title = input('');\n  subtitle = input('');\n  @Output()\n  moreTap = new EventEmitter();\n  @HostBinding('class')\n  classes = 'group'\n}\n",
+            "sourceCode": "import { Component, EventEmitter, HostBinding, Output, input } from '@angular/core';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-card-image',\r\n  standalone: true,\r\n  imports: [IconComponent],\r\n  template:`\r\n    \t<div class=\"group-first:-mt-element group-first:-ml-element group-first:-mr-element group-last:-mb-element relative group-last:-ml-element group-last:-mr-element\">\r\n        <img class=\"object-cover w-full h-full rounded-component [:not(:first-child)]:px-element group-first:rounded-t group-last:rounded-b\" [src]=\"src()\">\r\n          <div class=\"absolute top-0 left-0 right-0 p-element\">\r\n            <div class=\"flex items-center\">\r\n              <div class=\"flex-1\">\r\n                <div class=\"text-title font-light\">{{title()}}</div>\r\n              </div>\r\n              @if(moreTap.observers.length) {\r\n                <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\r\n                  <div class=\"absolute w-hover h-hover rounded transition-all duration-500 hover:bg-hover\"></div>\r\n                  <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\r\n                </a>\r\n              }\r\n            </div>\r\n            @if(subtitle()) {\r\n              <div class=\"text-subtitle\">{{subtitle()}}</div>\r\n            }\r\n          </div>\r\n      </div>\r\n  `\r\n})\r\nexport class CardImageComponent {\r\n  src = input('');\r\n  title = input('');\r\n  subtitle = input('');\r\n  @Output()\r\n  moreTap = new EventEmitter();\r\n  @HostBinding('class')\r\n  classes = 'group'\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -825,7 +1077,7 @@
         },
         {
             "name": "DatasetCardheaderComponent",
-            "id": "component-DatasetCardheaderComponent-4d96662c9234b4273fc85e54c552d443b8b24b225814725a555a3f3e79b63bdfd4766b1e4be675b54ad6cbe1a8075b2eb4c045021e66ce4d2fdc02ee43c7678e",
+            "id": "component-DatasetCardheaderComponent-9d144ea4228f21ad14f5c3db8608255f8408b71c93eadd2a17f26bcc0bba590ff3432d29f4d4a49a5ca06f61cd2b2b4bec5d3cbd2db9a7fce80eff4181c0d4c9",
             "file": "packages/fancy-ui-data/src/lib/dataset/dataset-cardheader.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -930,7 +1182,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, TemplateRef, input, viewChild, contentChild } from '@angular/core';\nimport { CardHeaderComponent } from 'fancy-ui-content';\nimport { DatasetHelpers } from './dataset.helpers';\nimport { NgTemplateOutlet } from '@angular/common';\n\n@Component({\n  selector: 'fui-dataset-cardheader',\n  standalone: true,\n  imports: [NgTemplateOutlet, CardHeaderComponent],\n  template: `\n    <ng-template #template let-data let-onMoreTap=\"more\">\n      <fui-card-header [titleTemplateRef]=\"titleTemplateWrapper\" [subtitleTemplateRef]=\"subtitleTemplateWrapper\" [imageSrc]=\"getImageSrc(data)\" [showMore]=\"onMoreTap\" (moreTap)=\"onMoreTap(data)\">\n        <ng-template #titleTemplateWrapper>\n          <ng-container *ngTemplateOutlet=\"_titleTemplate() ?? null; context: { $implicit: data }\" />\n        </ng-template>\n        <ng-template #subtitleTemplateWrapper>\n          <ng-container *ngTemplateOutlet=\"_subtitleTemplate() ?? null; context: { $implicit: data }\" />\n        </ng-template>\n      </fui-card-header>\n    </ng-template>\n  `\n})\nexport class DatasetCardheaderComponent {\n  imageSrcKeyPath = input<string | null>(null);\n\n  _template = viewChild<TemplateRef<unknown>>('template');\n\n  _titleTemplate = contentChild<TemplateRef<unknown>>('titleTemplate');\n  _subtitleTemplate = contentChild<TemplateRef<unknown>>('subtitleTemplate');\n\n  getImageSrc(data: unknown): string | null {\n    const keyPath = this.imageSrcKeyPath();\n    if(!keyPath) return null;\n    return DatasetHelpers.getKeyPathValue(data, keyPath);\n  }\n}\n",
+            "sourceCode": "import { Component, TemplateRef, input, viewChild, contentChild } from '@angular/core';\r\nimport { CardHeaderComponent } from 'fancy-ui-content';\r\nimport { DatasetHelpers } from './dataset.helpers';\r\nimport { NgTemplateOutlet } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'fui-dataset-cardheader',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, CardHeaderComponent],\r\n  template: `\r\n    <ng-template #template let-data let-onMoreTap=\"more\">\r\n      <fui-card-header [titleTemplateRef]=\"titleTemplateWrapper\" [subtitleTemplateRef]=\"subtitleTemplateWrapper\" [imageSrc]=\"getImageSrc(data)\" [showMore]=\"onMoreTap\" (moreTap)=\"onMoreTap(data)\">\r\n        <ng-template #titleTemplateWrapper>\r\n          <ng-container *ngTemplateOutlet=\"_titleTemplate() ?? null; context: { $implicit: data }\" />\r\n        </ng-template>\r\n        <ng-template #subtitleTemplateWrapper>\r\n          <ng-container *ngTemplateOutlet=\"_subtitleTemplate() ?? null; context: { $implicit: data }\" />\r\n        </ng-template>\r\n      </fui-card-header>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class DatasetCardheaderComponent {\r\n  imageSrcKeyPath = input<string | null>(null);\r\n\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n\r\n  _titleTemplate = contentChild<TemplateRef<unknown>>('titleTemplate');\r\n  _subtitleTemplate = contentChild<TemplateRef<unknown>>('subtitleTemplate');\r\n\r\n  getImageSrc(data: unknown): string | null {\r\n    const keyPath = this.imageSrcKeyPath();\r\n    if(!keyPath) return null;\r\n    return DatasetHelpers.getKeyPathValue(data, keyPath);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -938,7 +1190,7 @@
         },
         {
             "name": "DatasetComponent",
-            "id": "component-DatasetComponent-8f5fdab2955c5915d28968c5c4f046db4949c9c3a3937d3098495ccd8c66d9db3d3b1ec7bbe8095574fb8794fa863cccfd249160809c95216d9577cdd790cb90",
+            "id": "component-DatasetComponent-d9423510f80e72241e6c595dd43bff4db4ad1126358c4d6f9614e34b440e3cb30a0022ea71d347a714570d22836056082c0cd04d4d3470faf027e9bdf4859e2d",
             "file": "packages/fancy-ui-data/src/lib/dataset/dataset.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1080,7 +1332,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Output, computed, contentChild, contentChildren, effect, input } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { DatasetItemBase } from './dataset-item.base';\nimport { DatasetCardheaderComponent } from './dataset-cardheader.component';\n\nimport { CardComponent, CardContentComponent } from 'fancy-ui-content';\nimport { IconComponent } from 'fancy-ui-core';\n\n@Component({\n  selector: 'fui-dataset',\n  standalone: true,\n  imports: [NgTemplateOutlet,  CardComponent, CardContentComponent, IconComponent],\n  templateUrl: './dataset.component.html'\n})\nexport class DatasetComponent {\n  dataSource = input<Array<unknown>>([]);\n\n  @Output()\n  moreTap = new EventEmitter<unknown>();\n\n  onMoreTap: (value: unknown) => void;\n\n  _datasetItems = contentChildren(DatasetItemBase);\n  _datasetCardHeader = contentChild(DatasetCardheaderComponent);\n\n  _datasetTableItems = computed(() => this._datasetItems().filter(item => item.target() === 'Table' || item.target() === 'TableAndCard'));\n  _datasetCardItems = computed(() => this._datasetItems().filter(item => item.target() === 'Card'|| item.target() === 'TableAndCard'));\n\n  constructor() {\n    this.onMoreTap = this.onMoreTapInternal.bind(this);\n  }\n\n  onMoreTapInternal(data: unknown) {\n    this.moreTap.emit(data);\n  }\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Output, computed, contentChild, contentChildren, effect, input } from '@angular/core';\r\nimport { NgTemplateOutlet } from '@angular/common';\r\nimport { DatasetItemBase } from './dataset-item.base';\r\nimport { DatasetCardheaderComponent } from './dataset-cardheader.component';\r\n\r\nimport { CardComponent, CardContentComponent } from 'fancy-ui-content';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-dataset',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet,  CardComponent, CardContentComponent, IconComponent],\r\n  templateUrl: './dataset.component.html'\r\n})\r\nexport class DatasetComponent {\r\n  dataSource = input<Array<unknown>>([]);\r\n\r\n  @Output()\r\n  moreTap = new EventEmitter<unknown>();\r\n\r\n  onMoreTap: (value: unknown) => void;\r\n\r\n  _datasetItems = contentChildren(DatasetItemBase);\r\n  _datasetCardHeader = contentChild(DatasetCardheaderComponent);\r\n\r\n  _datasetTableItems = computed(() => this._datasetItems().filter(item => item.target() === 'Table' || item.target() === 'TableAndCard'));\r\n  _datasetCardItems = computed(() => this._datasetItems().filter(item => item.target() === 'Card'|| item.target() === 'TableAndCard'));\r\n\r\n  constructor() {\r\n    this.onMoreTap = this.onMoreTapInternal.bind(this);\r\n  }\r\n\r\n  onMoreTapInternal(data: unknown) {\r\n    this.moreTap.emit(data);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1093,11 +1345,11 @@
                 "line": 27
             },
             "extends": [],
-            "templateData": "@if(dataSource(); as data) {\n    <div class=\"md:hidden grid gap-component\">\n        @for(cardData of data; track $index) {\n            <fui-card>\n                @if(_datasetCardHeader(); as cardHeader) {\n                    <ng-container [ngTemplateOutlet]=\"cardHeader._template() ?? null\"\n                                  [ngTemplateOutletContext]=\"{ $implicit: cardData, more: onMoreTap}\"/>\n                }\n                <fui-card-content>\n                    <div class=\"grid grid-cols-12\">\n                        @for(item of _datasetCardItems(); track $index) {\n                            <ng-container [ngTemplateOutlet]=\"item.cardTemplate ?? null\"\n                                          [ngTemplateOutletContext]=\"{ $implicit: cardData }\" />\n                        }\n                    </div>\n                </fui-card-content>\n            </fui-card>\n        }\n    </div>\n\n    <table class=\"w-full hidden md:table\">\n        <thead>\n            <tr class=\"border-b\">\n                @for(item of _datasetTableItems(); track $index) {\n                    <th class=\"text-left\">{{ item.label() }}</th>\n                }\n                @if(moreTap.observers.length) {\n                    <th class=\"text-left\"></th> \n                }\n            </tr>\n        </thead>\n        <tbody>\n            @for(rowData of data; track $index) {\n                <tr>\n                    @for(item of _datasetTableItems(); track $index) {\n                        <td>\n                            <ng-container [ngTemplateOutlet]=\"item.tableTemplate ?? null\"\n                                          [ngTemplateOutletContext]=\"{ $implicit: rowData }\" />\n                        </td>\n                    }\n                    @if(moreTap.observers.length) {\n                        <td class=\"flex justify-end min-h-hover\">\n                            <a (click)=\"onMoreTap(rowData)\" class=\"w-hover flex justify-center items-center\">\n                                <div class=\"absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\n                                <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n                            </a>\n                        </td>\n                    }\n                </tr>\n            }\n        </tbody>\n    </table>\n}\n"
+            "templateData": "@if(dataSource(); as data) {\r\n    <div class=\"md:hidden grid gap-component\">\r\n        @for(cardData of data; track $index) {\r\n            <fui-card>\r\n                @if(_datasetCardHeader(); as cardHeader) {\r\n                    <ng-container [ngTemplateOutlet]=\"cardHeader._template() ?? null\"\r\n                                  [ngTemplateOutletContext]=\"{ $implicit: cardData, more: onMoreTap}\"/>\r\n                }\r\n                <fui-card-content>\r\n                    <div class=\"grid grid-cols-12\">\r\n                        @for(item of _datasetCardItems(); track $index) {\r\n                            <ng-container [ngTemplateOutlet]=\"item.cardTemplate ?? null\"\r\n                                          [ngTemplateOutletContext]=\"{ $implicit: cardData }\" />\r\n                        }\r\n                    </div>\r\n                </fui-card-content>\r\n            </fui-card>\r\n        }\r\n    </div>\r\n\r\n    <table class=\"w-full hidden md:table\">\r\n        <thead>\r\n            <tr class=\"border-b\">\r\n                @for(item of _datasetTableItems(); track $index) {\r\n                    <th class=\"text-left\">{{ item.label() }}</th>\r\n                }\r\n                @if(moreTap.observers.length) {\r\n                    <th class=\"text-left\"></th> \r\n                }\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            @for(rowData of data; track $index) {\r\n                <tr>\r\n                    @for(item of _datasetTableItems(); track $index) {\r\n                        <td>\r\n                            <ng-container [ngTemplateOutlet]=\"item.tableTemplate ?? null\"\r\n                                          [ngTemplateOutletContext]=\"{ $implicit: rowData }\" />\r\n                        </td>\r\n                    }\r\n                    @if(moreTap.observers.length) {\r\n                        <td class=\"flex justify-end min-h-hover\">\r\n                            <a (click)=\"onMoreTap(rowData)\" class=\"w-hover flex justify-center items-center\">\r\n                                <div class=\"absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n                                <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\r\n                            </a>\r\n                        </td>\r\n                    }\r\n                </tr>\r\n            }\r\n        </tbody>\r\n    </table>\r\n}\r\n"
         },
         {
             "name": "DatasetItemImageComponent",
-            "id": "component-DatasetItemImageComponent-feef9cdab7839fe6d3616f8d9eb852ecfeae011e4135c3f7422dc9ab27e92cf2c6356349a41c5be8c56df7717e05c9d93edc5dde31c898f80725b4479ad47276",
+            "id": "component-DatasetItemImageComponent-c8fb02bdd6cfb5e0d2920e72d5ece736be9717f81a7bcf7016ee2e69f7e7205525cbc3e98405e23a4ba7fd0dbb0e10b72e134de633ccb5a7dcf6a8b092ff9775",
             "file": "packages/fancy-ui-data/src/lib/dataset/dataset-item-image.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1206,7 +1458,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { NgClass, NgTemplateOutlet } from '@angular/common';\nimport { Component, TemplateRef, input, contentChild, viewChild } from '@angular/core';\nimport { DatasetItemBase } from './dataset-item.base';\nimport { DatasetHelpers } from './dataset.helpers';\n\n\n@Component({\n  selector: 'fui-dataset-item-image',\n  standalone: true,\n  imports: [NgClass, NgTemplateOutlet],\n  template: `\n    <ng-template #cardTemplate let-rowData>\n      <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\n                        'col-span-6': cardLineWidth() === 'Half',\n                        'col-span-12': cardLineWidth() === 'Full'}\">\n        <label class=\"text-label font-label\">{{label()}}</label>\n        <div class=\"flex\">\n          <img class=\"rounded\" [src]=\"getImageSrc(rowData)\">\n          <span class=\"self-center ml-component\">\n            <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\n          </span>\n        </div>\n      </span>\n    </ng-template>\n    <ng-template #tableTemplate let-rowData>\n      <div class=\"flex\">\n        <img [src]=\"getImageSrc(rowData)\">\n        <span class=\"self-center ml-component\">\n          <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\n        </span>\n      </div>\n    </ng-template>\n  `,\n  providers: [\n    { provide: DatasetItemBase, useExisting: DatasetItemImageComponent }\n  ],\n})\nexport class DatasetItemImageComponent extends DatasetItemBase {\n\n  imageSrcKeyPath = input('');\n\n  _valueTemplate = contentChild<TemplateRef<unknown>>(TemplateRef);\n\n  _cardTemplate = viewChild<TemplateRef<unknown>>('cardTemplate');\n  _tableTemplate = viewChild<TemplateRef<unknown>>('tableTemplate');\n\n  get cardTemplate(): TemplateRef<unknown> | undefined{\n    return this._cardTemplate();\n  }\n\n  get tableTemplate(): TemplateRef<unknown> | undefined {\n    return this._tableTemplate();\n  }\n\n  getImageSrc(data: unknown): string | null {\n    if(!this.imageSrcKeyPath) return null;\n    return DatasetHelpers.getKeyPathValue(data, this.imageSrcKeyPath());\n  }\n\n}\n",
+            "sourceCode": "import { NgClass, NgTemplateOutlet } from '@angular/common';\r\nimport { Component, TemplateRef, input, contentChild, viewChild } from '@angular/core';\r\nimport { DatasetItemBase } from './dataset-item.base';\r\nimport { DatasetHelpers } from './dataset.helpers';\r\n\r\n\r\n@Component({\r\n  selector: 'fui-dataset-item-image',\r\n  standalone: true,\r\n  imports: [NgClass, NgTemplateOutlet],\r\n  template: `\r\n    <ng-template #cardTemplate let-rowData>\r\n      <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\r\n                        'col-span-6': cardLineWidth() === 'Half',\r\n                        'col-span-12': cardLineWidth() === 'Full'}\">\r\n        <label class=\"text-label font-label\">{{label()}}</label>\r\n        <div class=\"flex\">\r\n          <img class=\"rounded\" [src]=\"getImageSrc(rowData)\">\r\n          <span class=\"self-center ml-component\">\r\n            <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\r\n          </span>\r\n        </div>\r\n      </span>\r\n    </ng-template>\r\n    <ng-template #tableTemplate let-rowData>\r\n      <div class=\"flex\">\r\n        <img [src]=\"getImageSrc(rowData)\">\r\n        <span class=\"self-center ml-component\">\r\n          <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\r\n        </span>\r\n      </div>\r\n    </ng-template>\r\n  `,\r\n  providers: [\r\n    { provide: DatasetItemBase, useExisting: DatasetItemImageComponent }\r\n  ],\r\n})\r\nexport class DatasetItemImageComponent extends DatasetItemBase {\r\n\r\n  imageSrcKeyPath = input('');\r\n\r\n  _valueTemplate = contentChild<TemplateRef<unknown>>(TemplateRef);\r\n\r\n  _cardTemplate = viewChild<TemplateRef<unknown>>('cardTemplate');\r\n  _tableTemplate = viewChild<TemplateRef<unknown>>('tableTemplate');\r\n\r\n  get cardTemplate(): TemplateRef<unknown> | undefined{\r\n    return this._cardTemplate();\r\n  }\r\n\r\n  get tableTemplate(): TemplateRef<unknown> | undefined {\r\n    return this._tableTemplate();\r\n  }\r\n\r\n  getImageSrc(data: unknown): string | null {\r\n    if(!this.imageSrcKeyPath) return null;\r\n    return DatasetHelpers.getKeyPathValue(data, this.imageSrcKeyPath());\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1236,7 +1488,7 @@
         },
         {
             "name": "DatasetItemTemplateComponent",
-            "id": "component-DatasetItemTemplateComponent-ad64dde2d260eb4fb6fc80210dfa80fbcc18c386e965883993fb72ca835369a3a0a9222f012c364ef31e457cbd5dcde8cf892af026b867a2bb16fafdc89734c4",
+            "id": "component-DatasetItemTemplateComponent-4918b69fcd80cfe4444e0e14f50914029e9c57e8e97c9e23c85201b96a18a08529eb9732d4321948c634e23906b7674b6df4d067a922016397231f9a054b52f0",
             "file": "packages/fancy-ui-data/src/lib/dataset/dataset-item-template.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1306,7 +1558,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { NgClass, NgTemplateOutlet } from '@angular/common';\nimport { Component, TemplateRef, viewChild, contentChild } from '@angular/core';\nimport { DatasetItemBase } from './dataset-item.base';\n\n\n@Component({\n  selector: 'fui-dataset-item-template',\n  standalone: true,\n  imports: [NgTemplateOutlet, NgClass],\n  template: `\n    <ng-template #cardTemplate let-rowData>\n      <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\n                        'col-span-6': cardLineWidth() === 'Half',\n                        'col-span-12': cardLineWidth() === 'Full'}\">\n        <label class=\"text-label font-label\">{{label()}}</label>\n        <div><ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" /></div>\n      </span>\n    </ng-template>\n    <ng-template #tableTemplate let-rowData>\n      <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\n    </ng-template>\n  `,\n  providers: [\n    { provide: DatasetItemBase, useExisting: DatasetItemTemplateComponent }\n  ],\n})\nexport class DatasetItemTemplateComponent extends DatasetItemBase {\n\n  _valueTemplate = contentChild<TemplateRef<unknown>>(TemplateRef)\n\n  _cardTemplate = viewChild<TemplateRef<unknown>>('cardTemplate');\n  _tableTemplate = viewChild<TemplateRef<unknown>>('tableTemplate');\n\n  get cardTemplate(): TemplateRef<unknown> | undefined{\n    return this._cardTemplate();\n  }\n\n  get tableTemplate(): TemplateRef<unknown> | undefined {\n    return this._tableTemplate();\n  }\n}\n",
+            "sourceCode": "import { NgClass, NgTemplateOutlet } from '@angular/common';\r\nimport { Component, TemplateRef, viewChild, contentChild } from '@angular/core';\r\nimport { DatasetItemBase } from './dataset-item.base';\r\n\r\n\r\n@Component({\r\n  selector: 'fui-dataset-item-template',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, NgClass],\r\n  template: `\r\n    <ng-template #cardTemplate let-rowData>\r\n      <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\r\n                        'col-span-6': cardLineWidth() === 'Half',\r\n                        'col-span-12': cardLineWidth() === 'Full'}\">\r\n        <label class=\"text-label font-label\">{{label()}}</label>\r\n        <div><ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" /></div>\r\n      </span>\r\n    </ng-template>\r\n    <ng-template #tableTemplate let-rowData>\r\n      <ng-container *ngTemplateOutlet=\"_valueTemplate() ?? null; context: { $implicit: rowData }\" />\r\n    </ng-template>\r\n  `,\r\n  providers: [\r\n    { provide: DatasetItemBase, useExisting: DatasetItemTemplateComponent }\r\n  ],\r\n})\r\nexport class DatasetItemTemplateComponent extends DatasetItemBase {\r\n\r\n  _valueTemplate = contentChild<TemplateRef<unknown>>(TemplateRef)\r\n\r\n  _cardTemplate = viewChild<TemplateRef<unknown>>('cardTemplate');\r\n  _tableTemplate = viewChild<TemplateRef<unknown>>('tableTemplate');\r\n\r\n  get cardTemplate(): TemplateRef<unknown> | undefined{\r\n    return this._cardTemplate();\r\n  }\r\n\r\n  get tableTemplate(): TemplateRef<unknown> | undefined {\r\n    return this._tableTemplate();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1336,7 +1588,7 @@
         },
         {
             "name": "DatasetItemValueComponent",
-            "id": "component-DatasetItemValueComponent-0b1c3296b49e53f621d9c2e7dff0c98f43660dec9b134322c52bc2dfab5c0b9207b9a794c4f86b85a5cf9a59906f4dd33c890157680dbe3ebd97ae9304eac98e",
+            "id": "component-DatasetItemValueComponent-f8d38818f908fa2c700216c147fc6947eaf7bd235b546c4b1aaf8fc45d7abd93ccca65b32c037f76553cef92a3282827117a864aaf8c2d4ca9e1600c5431760a",
             "file": "packages/fancy-ui-data/src/lib/dataset/dataset-item-value.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1403,7 +1655,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { NgClass } from '@angular/common';\nimport { Component, TemplateRef, input, viewChild } from '@angular/core';\n\nimport { DatasetItemBase } from './dataset-item.base'\n\n@Component({\n  selector: 'fui-dataset-item-value',\n  standalone: true,\n  imports: [NgClass],\n  template: `\n    <ng-template #cardTemplate let-rowData>\n      <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\n                        'col-span-6': cardLineWidth() === 'Half',\n                        'col-span-12': cardLineWidth() === 'Full'}\">\n        <label class=\"text-label font-label\">{{label()}}</label>\n        <div>{{ rowData[key()] }}</div>\n      </span>\n    </ng-template>\n    <ng-template #tableTemplate let-rowData>{{ rowData[key()] }}</ng-template>\n  `,\n  providers: [\n    { provide: DatasetItemBase, useExisting: DatasetItemValueComponent }\n  ],\n})\nexport class DatasetItemValueComponent extends DatasetItemBase {\n\n  key = input('');\n\n  _cardTemplate = viewChild<TemplateRef<unknown>>('cardTemplate');\n  _tableTemplate = viewChild<TemplateRef<unknown>>('tableTemplate');\n\n  get cardTemplate(): TemplateRef<unknown> | undefined{\n    return this._cardTemplate();\n  }\n\n  get tableTemplate(): TemplateRef<unknown> | undefined {\n    return this._tableTemplate();\n  }\n\n}\n",
+            "sourceCode": "import { NgClass } from '@angular/common';\r\nimport { Component, TemplateRef, input, viewChild } from '@angular/core';\r\n\r\nimport { DatasetItemBase } from './dataset-item.base'\r\n\r\n@Component({\r\n  selector: 'fui-dataset-item-value',\r\n  standalone: true,\r\n  imports: [NgClass],\r\n  template: `\r\n    <ng-template #cardTemplate let-rowData>\r\n      <span [ngClass]=\"{'col-span-3': cardLineWidth() === 'Quarter',\r\n                        'col-span-6': cardLineWidth() === 'Half',\r\n                        'col-span-12': cardLineWidth() === 'Full'}\">\r\n        <label class=\"text-label font-label\">{{label()}}</label>\r\n        <div>{{ rowData[key()] }}</div>\r\n      </span>\r\n    </ng-template>\r\n    <ng-template #tableTemplate let-rowData>{{ rowData[key()] }}</ng-template>\r\n  `,\r\n  providers: [\r\n    { provide: DatasetItemBase, useExisting: DatasetItemValueComponent }\r\n  ],\r\n})\r\nexport class DatasetItemValueComponent extends DatasetItemBase {\r\n\r\n  key = input('');\r\n\r\n  _cardTemplate = viewChild<TemplateRef<unknown>>('cardTemplate');\r\n  _tableTemplate = viewChild<TemplateRef<unknown>>('tableTemplate');\r\n\r\n  get cardTemplate(): TemplateRef<unknown> | undefined{\r\n    return this._cardTemplate();\r\n  }\r\n\r\n  get tableTemplate(): TemplateRef<unknown> | undefined {\r\n    return this._tableTemplate();\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1433,7 +1685,7 @@
         },
         {
             "name": "IconComponent",
-            "id": "component-IconComponent-ae6cb612d97f983eea5b32bdfc8445fad5fd174cd6c00a344b04afa58b87239416a81cc7f40a053f93442411b29330ac0e4376a119c753fd6406d382b00f48ba",
+            "id": "component-IconComponent-39418e2ab6425e730bb9aff44bd8283403d7bb2e6213bed1d8417e5ee164c7e251c84310932dd0723cce1c13cef833595569e8707282ed59e8615e8283e83ca9",
             "file": "packages/fancy-ui-core/src/lib/icon/icon.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1476,7 +1728,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, input } from '@angular/core';\nimport { NgIconComponent } from '@ng-icons/core';\n\n@Component({\n  selector: 'fui-icon',\n  standalone: true,\n  imports: [NgIconComponent],\n  template: `<ng-icon [name]=\"name()\"></ng-icon>`\n})\nexport class IconComponent {\n  name = input.required<string>();\n}\n",
+            "sourceCode": "import { Component, input } from '@angular/core';\r\nimport { NgIconComponent } from '@ng-icons/core';\r\n\r\n@Component({\r\n  selector: 'fui-icon',\r\n  standalone: true,\r\n  imports: [NgIconComponent],\r\n  template: `<ng-icon [name]=\"name()\"></ng-icon>`\r\n})\r\nexport class IconComponent {\r\n  name = input.required<string>();\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1484,7 +1736,7 @@
         },
         {
             "name": "MetricComponent",
-            "id": "component-MetricComponent-d49a608fa742cba1466e8b1c06540e0616f98b266fe8556453cc700ab09e22f5e0b3a8bb13c8618609db70276033ffeee1c0b1349b01ed0e382c27b80117592a",
+            "id": "component-MetricComponent-aee1d36ddfed24c9ef90f622be1b0af42e6666ff38c9a7e490e581ede5766d9e32bfd37f1a1507a2c95d83b75dd939da83b21266801ac0a1a229a299277e601e",
             "file": "packages/fancy-ui-content/src/lib/metric/metric.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1553,16 +1805,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, input } from '@angular/core';\n\n@Component({\n  selector: 'fui-metric',\n  standalone: true,\n  templateUrl: './metric.component.html'\n})\nexport class MetricComponent {\n  label = input('');\n  value = input('');\n  changeValue = input('');\n  changePositive = input<boolean | null>(null);\n}\n",
+            "sourceCode": "import { Component, input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-metric',\r\n  standalone: true,\r\n  templateUrl: './metric.component.html'\r\n})\r\nexport class MetricComponent {\r\n  label = input('');\r\n  value = input('');\r\n  changeValue = input('');\r\n  changePositive = input<boolean | null>(null);\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"text-base text-outline \">{{label()}}</div>\n<div class=\"flex items-center pt-1\">\n  <div class=\"text-2xl font-bold\">{{value()}}</div>\n  @if(changePositive() === true) {\n    <span class=\"flex items-center px-2 py-0.5 mx-2 text-sm text-on-primary bg-success rounded-full\">\n      <svg class=\"w-4 h-4\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M18 15L12 9L6 15\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n      </svg>\n      <span>{{changeValue()}}</span>\n    </span>\n  }\n  @if(changePositive() === false) {\n    <span class=\"flex items-center px-2 py-0.5 mx-2 text-sm text-on-primary bg-error rounded-full\">\n      <svg class=\"w-4 h-4\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M6 9L12 15L18 9\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n      </svg>\n      <span>{{changeValue()}}</span>\n    </span>\n  }\n</div>\n"
+            "templateData": "<div class=\"text-base text-outline \">{{label()}}</div>\r\n<div class=\"flex items-center pt-1\">\r\n  <div class=\"text-2xl font-bold\">{{value()}}</div>\r\n  @if(changePositive() === true) {\r\n    <span class=\"flex items-center px-2 py-0.5 mx-2 text-sm text-on-primary bg-success rounded-full\">\r\n      <svg class=\"w-4 h-4\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n          <path d=\"M18 15L12 9L6 15\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\r\n      </svg>\r\n      <span>{{changeValue()}}</span>\r\n    </span>\r\n  }\r\n  @if(changePositive() === false) {\r\n    <span class=\"flex items-center px-2 py-0.5 mx-2 text-sm text-on-primary bg-error rounded-full\">\r\n      <svg class=\"w-4 h-4\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n        <path d=\"M6 9L12 15L18 9\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\r\n      </svg>\r\n      <span>{{changeValue()}}</span>\r\n    </span>\r\n  }\r\n</div>\r\n"
         },
         {
             "name": "NavBarComponent",
-            "id": "component-NavBarComponent-6ae928b6c3896f9cb9a6d1645f469becf498ba0b1e24be4555e2bd9723cf545a8f4c87cde14fdec217b78139919cbdbc026583fef1288f3f84435d701f96088c",
+            "id": "component-NavBarComponent-7851eeccea48e003ef56c9661a01019e6e7777d52727f780994b0f2735e000388d66db10f0e3cd91e799807cc30c5842b2c0f096c4644ba00b61f9cf2983f3c2",
             "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1605,16 +1857,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, contentChildren } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { NavBarItemComponent } from './nav-bar-item.component';\n\n@Component({\n  selector: 'fui-nav-bar',\n  standalone: true,\n  imports: [NgTemplateOutlet],\n  templateUrl: './nav-bar.component.html'\n})\nexport class NavBarComponent {\n  _navBarItems = contentChildren(NavBarItemComponent);\n}\n",
+            "sourceCode": "import { Component, contentChildren } from '@angular/core';\r\nimport { NgTemplateOutlet } from '@angular/common';\r\nimport { NavBarItemComponent } from './nav-bar-item.component';\r\n\r\n@Component({\r\n  selector: 'fui-nav-bar',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet],\r\n  templateUrl: './nav-bar.component.html'\r\n})\r\nexport class NavBarComponent {\r\n  _navBarItems = contentChildren(NavBarItemComponent);\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"flex justify-around pt-3 pb-rim bg-background-variant\">\n    @for(item of _navBarItems(); track $index) {\n        <div>\n            <ng-contianer [ngTemplateOutlet]=\"item._template() ?? null\" />\n        </div>\n    }\n</div>\n"
+            "templateData": "<div class=\"flex justify-around pt-3 pb-rim bg-background-variant\">\r\n    @for(item of _navBarItems(); track $index) {\r\n        <div>\r\n            <ng-contianer [ngTemplateOutlet]=\"item._template() ?? null\" />\r\n        </div>\r\n    }\r\n</div>\r\n"
         },
         {
             "name": "NavBarItemComponent",
-            "id": "component-NavBarItemComponent-02385dfe5844799a69f36435b6dea2e3fbf10a2fab0ce272c130acf6c80e207adee1430f4ef6327d4d65fee1942ca1d9395a11fa5a14580dfd3a9fbf60d9c186",
+            "id": "component-NavBarItemComponent-3c555507e5fb8587cf1db71bfdb622f6d0ce0ed61532fc88eaf51018f35ddfa3aabfd3eaf0a2c581d45b786f4c45d5d3d174b86e8f37179e991172257abdbde4",
             "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar-item.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1751,7 +2003,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnDestroy, OnInit, TemplateRef, inject, input, model, viewChild } from '@angular/core';\nimport { NgClass } from '@angular/common';\nimport { IconComponent } from 'fancy-ui-core';\nimport { Router } from '@angular/router';\nimport { NavService } from '../nav.service';\n\n@Component({\n  selector: 'fui-nav-bar-item',\n  standalone: true,\n  imports: [NgClass, IconComponent],\n  template: `\n    <ng-template #template>\n      <div class=\"group/navitem flex flex-col justify-center\" (click)=\"onTap()\">\n        <div class=\"relative grid justify-items-center items-center\">\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] rounded-full transition-all duration-500\" [ngClass]=\"{ 'w-0': !isActive(), 'w-[calc(theme(spacing.hover)*1.1)] bg-shade': isActive() }\">\n          </div>\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] w-[calc(theme(spacing.hover)*1.1)] rounded-full transition-all duration-500  group-hover/navitem:bg-hover\">\n          </div>\n          <div class=\"h-icon w-icon z-10\">\n            <fui-icon [name]=\"iconName()\" [ngClass]=\"{ 'text-gray': !isActive() }\"/>\n          </div>\n        </div>\n        <div class=\"text-center text-xs font-semibold mt-element transition-all duration-500\" [ngClass]=\"{ 'text-gray': !isActive() }\">{{label()}}</div>\n      </div>\n    </ng-template>\n  `\n})\nexport class NavBarItemComponent implements OnInit, OnDestroy {\n\n  iconName = input('');\n\n  label = input('');\n\n  routerLink = input<string | string[] | null>(null);\n\n  isActive = model(false);\n\n  _template = viewChild<TemplateRef<unknown>>('template');\n\n  router = inject(Router);\n  navService = inject(NavService);\n\n  ngOnInit(): void {\n    this.navService.registerNavBarItem(this);\n  }\n\n  ngOnDestroy(): void {\n    this.navService.unregisterNavBarItem(this);\n  }\n\n  onTap() {\n    this.isActive.set(!this.isActive())\n    const routerLink = this.routerLink();\n    if(routerLink != null) {\n      if(typeof routerLink === 'string') {\n        this.router.navigate([routerLink]);\n      } else {\n        this.router.navigate(routerLink);\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import { Component, OnDestroy, OnInit, TemplateRef, inject, input, model, viewChild } from '@angular/core';\r\nimport { NgClass } from '@angular/common';\r\nimport { IconComponent } from 'fancy-ui-core';\r\nimport { Router } from '@angular/router';\r\nimport { NavService } from '../nav.service';\r\n\r\n@Component({\r\n  selector: 'fui-nav-bar-item',\r\n  standalone: true,\r\n  imports: [NgClass, IconComponent],\r\n  template: `\r\n    <ng-template #template>\r\n      <div class=\"group/navitem flex flex-col justify-center\" (click)=\"onTap()\">\r\n        <div class=\"relative grid justify-items-center items-center\">\r\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] rounded-full transition-all duration-500\" [ngClass]=\"{ 'w-0': !isActive(), 'w-[calc(theme(spacing.hover)*1.1)] bg-shade': isActive() }\">\r\n          </div>\r\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] w-[calc(theme(spacing.hover)*1.1)] rounded-full transition-all duration-500  group-hover/navitem:bg-hover\">\r\n          </div>\r\n          <div class=\"h-icon w-icon z-10\">\r\n            <fui-icon [name]=\"iconName()\" [ngClass]=\"{ 'text-gray': !isActive() }\"/>\r\n          </div>\r\n        </div>\r\n        <div class=\"text-center text-xs font-semibold mt-element transition-all duration-500\" [ngClass]=\"{ 'text-gray': !isActive() }\">{{label()}}</div>\r\n      </div>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class NavBarItemComponent implements OnInit, OnDestroy {\r\n\r\n  iconName = input('');\r\n\r\n  label = input('');\r\n\r\n  routerLink = input<string | string[] | null>(null);\r\n\r\n  isActive = model(false);\r\n\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n\r\n  router = inject(Router);\r\n  navService = inject(NavService);\r\n\r\n  ngOnInit(): void {\r\n    this.navService.registerNavBarItem(this);\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.navService.unregisterNavBarItem(this);\r\n  }\r\n\r\n  onTap() {\r\n    this.isActive.set(!this.isActive())\r\n    const routerLink = this.routerLink();\r\n    if(routerLink != null) {\r\n      if(typeof routerLink === 'string') {\r\n        this.router.navigate([routerLink]);\r\n      } else {\r\n        this.router.navigate(routerLink);\r\n      }\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1763,7 +2015,7 @@
         },
         {
             "name": "NavRailComponent",
-            "id": "component-NavRailComponent-334122fd5b123465e62dfbf3c18260fdac2d52af6190511f4762f56069007d55d41b8d388f5de6f74da51dad8a47558a7c714c551bfcc3ff169405aa87e173b4",
+            "id": "component-NavRailComponent-0d5c41746dbb8647d366361afad9c892a57785cb7f66274db3c57d8351f2096b62dea0f4d9b578744158a409d842706b6a5a08cc6411ae3b8929df039d80eeeb",
             "file": "packages/fancy-ui-shell/src/lib/nav-rail/nav-rail.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1806,16 +2058,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, contentChildren } from '@angular/core';\nimport { NgTemplateOutlet } from '@angular/common';\nimport { NavRailItemComponent } from './nav-rail-item.component';\n\n@Component({\n  selector: 'fui-nav-rail',\n  standalone: true,\n  imports: [NgTemplateOutlet],\n  templateUrl: './nav-rail.component.html'\n})\nexport class NavRailComponent {\n  _navrailItems = contentChildren(NavRailItemComponent);\n}\n",
+            "sourceCode": "import { Component, contentChildren } from '@angular/core';\r\nimport { NgTemplateOutlet } from '@angular/common';\r\nimport { NavRailItemComponent } from './nav-rail-item.component';\r\n\r\n@Component({\r\n  selector: 'fui-nav-rail',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet],\r\n  templateUrl: './nav-rail.component.html'\r\n})\r\nexport class NavRailComponent {\r\n  _navrailItems = contentChildren(NavRailItemComponent);\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"flex flex-col h-full w-20\">\n    <div class=\"grow\">\n        <!-- Navrail top -->\n    </div>\n    <div class=\"flex flex-col\">\n        <!-- Navrail center -->\n        @for(item of _navrailItems(); track $index) {\n            <div class=\"my-[calc(theme(spacing.element)*2)]\">\n                <ng-contianer [ngTemplateOutlet]=\"item._template() ?? null\" />\n            </div>\n        }\n    </div>\n    <div class=\"grow\">\n        <!-- Navrail bottom -->\n    </div>\n</div>\n"
+            "templateData": "<div class=\"flex flex-col h-full w-20\">\r\n    <div class=\"grow\">\r\n        <!-- Navrail top -->\r\n    </div>\r\n    <div class=\"flex flex-col\">\r\n        <!-- Navrail center -->\r\n        @for(item of _navrailItems(); track $index) {\r\n            <div class=\"my-[calc(theme(spacing.element)*2)]\">\r\n                <ng-contianer [ngTemplateOutlet]=\"item._template() ?? null\" />\r\n            </div>\r\n        }\r\n    </div>\r\n    <div class=\"grow\">\r\n        <!-- Navrail bottom -->\r\n    </div>\r\n</div>\r\n"
         },
         {
             "name": "NavRailItemComponent",
-            "id": "component-NavRailItemComponent-f29ccefe5f2bc03ff53eba73832dd93a645cf03017a9d5350c11aef041e94376c1d9d2126c4bb11e4c80ec2c1c91cdab512940982b0ef6dac7b0df5713c3ecd4",
+            "id": "component-NavRailItemComponent-f1193a230a71d8b6f649d1d1e6433897ed0cc2cdc4a724ab275adc581a07cd75d254bf79299574c33e2a2c04c94d6d240a16366cfbb442e443fc2530aad02468",
             "file": "packages/fancy-ui-shell/src/lib/nav-rail/nav-rail-item.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1952,7 +2204,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnDestroy, OnInit, TemplateRef, inject, input, model, viewChild } from '@angular/core';\nimport { IconComponent } from 'fancy-ui-core';\nimport { Router } from '@angular/router';\nimport { NgClass } from '@angular/common';\nimport { NavService } from '../nav.service';\n\n@Component({\n  selector: 'fui-nav-rail-item',\n  standalone: true,\n  imports: [NgClass, IconComponent],\n  template: `\n    <ng-template #template>\n      <div class=\"group/navitem flex flex-col justify-center\" (click)=\"onTap()\">\n        <div class=\"relative grid justify-items-center items-center\">\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] rounded-full transition-all duration-500\" [ngClass]=\"{ 'w-0': !isActive(), 'w-[calc(theme(spacing.hover)*1.1)] bg-background-variant': isActive() }\">\n          </div>\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] w-[calc(theme(spacing.hover)*1.1)] rounded-full transition-all duration-500  group-hover/navitem:bg-hover\">\n          </div>\n          <div class=\"h-icon w-icon z-10\">\n            <fui-icon [name]=\"iconName()\" [ngClass]=\"{ 'text-gray': !isActive() }\"/>\n          </div>\n        </div>\n        <div class=\"text-center text-xs font-semibold mt-element transition-all duration-500\" [ngClass]=\"{ 'text-gray': !isActive() }\">{{label()}}</div>\n      </div>\n    </ng-template>\n  `\n})\nexport class NavRailItemComponent implements OnInit, OnDestroy {\n  iconName = input('');\n  label = input('');\n  routerLink = input<string | string[] | null>(null);\n\n  isActive = model(false);\n\n  _template = viewChild<TemplateRef<unknown>>('template');\n\n  router = inject(Router);\n  navService = inject(NavService);\n\n  ngOnInit(): void {\n    this.navService.registerNavRailItem(this);\n  }\n\n  ngOnDestroy(): void {\n    this.navService.unregisterNavRailItem(this);\n  }\n\n  onTap() {\n    this.isActive.set(!this.isActive())\n    const routerLink = this.routerLink();\n    if(routerLink != null) {\n      if(typeof routerLink === 'string') {\n        this.router.navigate([routerLink]);\n      } else {\n        this.router.navigate(routerLink);\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import { Component, OnDestroy, OnInit, TemplateRef, inject, input, model, viewChild } from '@angular/core';\r\nimport { IconComponent } from 'fancy-ui-core';\r\nimport { Router } from '@angular/router';\r\nimport { NgClass } from '@angular/common';\r\nimport { NavService } from '../nav.service';\r\n\r\n@Component({\r\n  selector: 'fui-nav-rail-item',\r\n  standalone: true,\r\n  imports: [NgClass, IconComponent],\r\n  template: `\r\n    <ng-template #template>\r\n      <div class=\"group/navitem flex flex-col justify-center\" (click)=\"onTap()\">\r\n        <div class=\"relative grid justify-items-center items-center\">\r\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] rounded-full transition-all duration-500\" [ngClass]=\"{ 'w-0': !isActive(), 'w-[calc(theme(spacing.hover)*1.1)] bg-background-variant': isActive() }\">\r\n          </div>\r\n          <div class=\"absolute z-0 h-[calc(theme(spacing.hover)*0.6)] w-[calc(theme(spacing.hover)*1.1)] rounded-full transition-all duration-500  group-hover/navitem:bg-hover\">\r\n          </div>\r\n          <div class=\"h-icon w-icon z-10\">\r\n            <fui-icon [name]=\"iconName()\" [ngClass]=\"{ 'text-gray': !isActive() }\"/>\r\n          </div>\r\n        </div>\r\n        <div class=\"text-center text-xs font-semibold mt-element transition-all duration-500\" [ngClass]=\"{ 'text-gray': !isActive() }\">{{label()}}</div>\r\n      </div>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class NavRailItemComponent implements OnInit, OnDestroy {\r\n  iconName = input('');\r\n  label = input('');\r\n  routerLink = input<string | string[] | null>(null);\r\n\r\n  isActive = model(false);\r\n\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n\r\n  router = inject(Router);\r\n  navService = inject(NavService);\r\n\r\n  ngOnInit(): void {\r\n    this.navService.registerNavRailItem(this);\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.navService.unregisterNavRailItem(this);\r\n  }\r\n\r\n  onTap() {\r\n    this.isActive.set(!this.isActive())\r\n    const routerLink = this.routerLink();\r\n    if(routerLink != null) {\r\n      if(typeof routerLink === 'string') {\r\n        this.router.navigate([routerLink]);\r\n      } else {\r\n        this.router.navigate(routerLink);\r\n      }\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1964,7 +2216,7 @@
         },
         {
             "name": "RadioButtonComponent",
-            "id": "component-RadioButtonComponent-f06cbe70fab4d5d95d9fb7108e9650cf1859fcee834291994da88acf803834145f911c9722bd685b4eb67f4267a4c3a1597575fec24d562b5f7f401ba08995c2",
+            "id": "component-RadioButtonComponent-ff3d7461dd81e6151d45c726c2b385406d80bb3aae2d95ca64df1929083a797e4960c409b8263fbdf82fbbf1856562b999558b61b60cd686b08327bb9b7040e7",
             "file": "packages/fancy-ui-forms/src/lib/radio-button/radio-button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2044,18 +2296,18 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, input } from '@angular/core';\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\nimport { FormControlBase } from '../form-control.base';\n\n@Component({\n  selector: 'fui-radio-button',\n  standalone: true,\n  imports: [FormsModule],\n  templateUrl: './radio-button.component.html',\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: RadioButtonComponent,\n      multi: true\n    }\n  ]\n})\nexport class RadioButtonComponent extends FormControlBase<string> {\n\n  label = input('');\n\n  name = input('');\n\n  value = input('');\n\n  _onChange() {\n    this.onChanged();\n    this.onTouched();\n  }\n\n}\n",
+            "sourceCode": "import { Component, input } from '@angular/core';\r\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\r\nimport { FormControlBase } from '../form-control.base';\r\n\r\n@Component({\r\n  selector: 'fui-radio-button',\r\n  standalone: true,\r\n  imports: [FormsModule],\r\n  templateUrl: './radio-button.component.html',\r\n  providers: [\r\n    {\r\n      provide: NG_VALUE_ACCESSOR,\r\n      useExisting: RadioButtonComponent,\r\n      multi: true\r\n    }\r\n  ]\r\n})\r\nexport class RadioButtonComponent extends FormControlBase<string> {\r\n\r\n  label = input('');\r\n\r\n  name = input('');\r\n\r\n  value = input('');\r\n\r\n  _onChange() {\r\n    this.onChanged();\r\n    this.onTouched();\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [
                 "FormControlBase"
             ],
-            "templateData": "<div class=\"flex items-center mt-layout my-layout\">\n\n    <label class=\"flex items-center cursor-pointer text-gray select-none\" [for]=\"name() + value()\">\n  \n        <input class=\"hidden overflow-hidden peer\" [name]=\"name()\" [id]=\"name() + value()\" [value]=\"value()\" type=\"radio\" (change)=\"_onChange()\" [(ngModel)]=\"_currentValue\">\n  \n        <!-- dot -->\n        <span class=\"inline-block mr-2 w-5 h-5 rounded-full border border-outline transition-all duration-500 peer-checked:bg-secondary peer-checked:border-secondary peer-checked:shadow-[0px_0px_0px_2px_white_inset]\"></span>\n        {{label()}}\n  \n    </label>\n  \n  </div>\n"
+            "templateData": "<div class=\"flex items-center mt-layout my-layout\">\r\n\r\n    <label class=\"flex items-center cursor-pointer text-gray select-none\" [for]=\"name() + value()\">\r\n  \r\n        <input class=\"hidden overflow-hidden peer\" [name]=\"name()\" [id]=\"name() + value()\" [value]=\"value()\" type=\"radio\" (change)=\"_onChange()\" [(ngModel)]=\"_currentValue\">\r\n  \r\n        <!-- dot -->\r\n        <span class=\"inline-block mr-2 w-5 h-5 rounded-full border border-outline transition-all duration-500 peer-checked:bg-secondary peer-checked:border-secondary peer-checked:shadow-[0px_0px_0px_2px_white_inset]\"></span>\r\n        {{label()}}\r\n  \r\n    </label>\r\n  \r\n  </div>\r\n"
         },
         {
             "name": "ShellComponent",
-            "id": "component-ShellComponent-719e49d243ce9c38f2178cba2e7f6b0d865be677b2a7e515c8f6b5d2c20f78d75b8759b4f7d40d86a675bdc503ae6d37f40872bc23b753c0a4b7307f44a8a92c",
+            "id": "component-ShellComponent-6a666cbb083e39a85c0d227e4bcff0de14f0b28553b7afcb38c96f5473daa5b25f72c98c53db5571245dc88baa90cee11547a0e03b04074dabeb5effae2f3c3e",
             "file": "packages/fancy-ui-shell/src/lib/shell/shell.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2081,7 +2333,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 13
+                    "line": 14
                 },
                 {
                     "name": "_leftTemplate",
@@ -2091,7 +2343,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 11
+                    "line": 12
                 },
                 {
                     "name": "_mainContentTemplate",
@@ -2101,7 +2353,17 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 12
+                    "line": 13
+                },
+                {
+                    "name": "_topTemplate",
+                    "defaultValue": "contentChild<TemplateRef<unknown>>('topTemplate')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
                 }
             ],
             "methodsClass": [],
@@ -2121,16 +2383,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, TemplateRef, contentChild } from '@angular/core';\nimport { NgClass, NgTemplateOutlet } from '@angular/common';\n\n@Component({\n  selector: 'fui-shell',\n  standalone: true,\n  imports: [NgTemplateOutlet, NgClass],\n  templateUrl: './shell.component.html'\n})\nexport class ShellComponent {\n  _leftTemplate = contentChild<TemplateRef<unknown>>('leftTemplate');\n  _mainContentTemplate = contentChild<TemplateRef<unknown>>('mainContentTemplate');\n  _bottomTemplate = contentChild<TemplateRef<unknown>>('bottomTemplate');\n}\n",
+            "sourceCode": "import { Component, TemplateRef, contentChild } from '@angular/core';\r\nimport { NgClass, NgTemplateOutlet } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'fui-shell',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, NgClass],\r\n  templateUrl: './shell.component.html'\r\n})\r\nexport class ShellComponent {\r\n  _topTemplate = contentChild<TemplateRef<unknown>>('topTemplate');\r\n  _leftTemplate = contentChild<TemplateRef<unknown>>('leftTemplate');\r\n  _mainContentTemplate = contentChild<TemplateRef<unknown>>('mainContentTemplate');\r\n  _bottomTemplate = contentChild<TemplateRef<unknown>>('bottomTemplate');\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"flex bg-background absolute inset-0 group fui-shell group\" [ngClass]=\"{ 'with-left-template': _leftTemplate() }\">\n  <div>\n    @if(_leftTemplate()) {\n      <ng-container [ngTemplateOutlet]=\"_leftTemplate() ?? null\" />\n    }\n  </div>\n  <div class=\"flex-1 min-w-0\">\n    <div class=\"flex flex-col h-full\">\n      <div class=\"flex-grow overflow-hidden md:pl-0\">\n        @if(_mainContentTemplate()) {\n          <ng-container [ngTemplateOutlet]=\"_mainContentTemplate() ?? null\" />\n        }\n      </div>\n      <div>\n        @if(_bottomTemplate()) {\n          <ng-container [ngTemplateOutlet]=\"_bottomTemplate() ?? null\" />\n        }\n      </div>\n    </div>\n  </div>\n</div>\n"
+            "templateData": "\r\n  <div class=\"flex flex-col bg-background absolute inset-0 group fui-shell group\" [ngClass]=\"{ 'with-left-template': _leftTemplate() }\">\r\n    <div>\r\n      @if(_topTemplate()) {\r\n        <ng-container [ngTemplateOutlet]=\"_topTemplate() ?? null\" />\r\n      }\r\n    </div>\r\n    <div class=\"flex h-full\">\r\n    <div>\r\n      @if(_leftTemplate()) {\r\n        <ng-container [ngTemplateOutlet]=\"_leftTemplate() ?? null\" />\r\n      }\r\n    </div>\r\n    <div class=\"flex-1 min-w-0\">\r\n      <div class=\"flex flex-col h-full\">\r\n        <div class=\"flex-grow overflow-hidden md:pl-0\">\r\n          @if(_mainContentTemplate()) {\r\n            <ng-container [ngTemplateOutlet]=\"_mainContentTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n        <div>\r\n          @if(_bottomTemplate()) {\r\n            <ng-container [ngTemplateOutlet]=\"_bottomTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  </div>\r\n"
         },
         {
             "name": "SliderComponent",
-            "id": "component-SliderComponent-1fadd02f1a0a71215a1c2759ea36971df5c2400f9336c84ceab249df1566307881719493542107a09de569fefffca6e1cd3d557805bcf8d72655a12d988e2f18",
+            "id": "component-SliderComponent-a810ffeeaba192e5aad537c55af54be282992357884f552692704ad2c5dddd0fe072cfb661c5e37e90ffe27fc34045113406876b3ebeca85700c817e088bc227",
             "file": "packages/fancy-ui-forms/src/lib/slider/slider.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2214,18 +2476,18 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\nimport { FormControlBase } from '../form-control.base';\n\n@Component({\n  selector: 'fui-slider',\n  standalone: true,\n  imports: [CommonModule, FormsModule],\n  templateUrl: './slider.component.html',\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: SliderComponent,\n      multi: true\n    }\n  ]\n})\nexport class SliderComponent extends FormControlBase<number> {\n  label = input('');\n  rangeMin = input(0);\n  rangeMax = input(100);\n\n  _onInput() {\n    this.onChanged();\n    this.onTouched();\n  }\n}\n",
+            "sourceCode": "import { Component, input } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\r\nimport { FormControlBase } from '../form-control.base';\r\n\r\n@Component({\r\n  selector: 'fui-slider',\r\n  standalone: true,\r\n  imports: [CommonModule, FormsModule],\r\n  templateUrl: './slider.component.html',\r\n  providers: [\r\n    {\r\n      provide: NG_VALUE_ACCESSOR,\r\n      useExisting: SliderComponent,\r\n      multi: true\r\n    }\r\n  ]\r\n})\r\nexport class SliderComponent extends FormControlBase<number> {\r\n  label = input('');\r\n  rangeMin = input(0);\r\n  rangeMax = input(100);\r\n\r\n  _onInput() {\r\n    this.onChanged();\r\n    this.onTouched();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [
                 "FormControlBase"
             ],
-            "templateData": "<div class=\"mui-slider w-full\">\n\n    <div class=\"flex justify-between\">\n      @if(label()) {\n        <label *ngIf=\"label\">{{label()}}</label>\n      }      \n    </div>\n  \n    <input class=\"w-full h-1 bg-outline accent-secondary appearance-none outline-none\" type=\"range\" [min]=\"rangeMin()\" [max]=\"rangeMax()\" (input)=\"_onInput()\" [(ngModel)]=\"_currentValue\">\n  \n  </div>\n"
+            "templateData": "<div class=\"mui-slider w-full\">\r\n\r\n    <div class=\"flex justify-between\">\r\n      @if(label()) {\r\n        <label *ngIf=\"label\">{{label()}}</label>\r\n      }      \r\n    </div>\r\n  \r\n    <input class=\"w-full h-1 bg-outline accent-secondary appearance-none outline-none\" type=\"range\" [min]=\"rangeMin()\" [max]=\"rangeMax()\" (input)=\"_onInput()\" [(ngModel)]=\"_currentValue\">\r\n  \r\n  </div>\r\n"
         },
         {
             "name": "SwipeableTabsBladeComponent",
-            "id": "component-SwipeableTabsBladeComponent-293ca3c6d1384ca23713846f26405087b6882a0366dfb2119e731b6320c36bf41d98efa0cd874342229fedcea3830ae986a39391484eab96219256352b4aa623",
+            "id": "component-SwipeableTabsBladeComponent-c4d862fef35b815d373c805b61d36cfb45aeb7bfaea3bcb3e6c86f27471edef3e9d2271e1251ed0ec19a67271fac37b0be72781d98807a9530aa262ea76d46c4",
             "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs-blade.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2273,7 +2535,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, TemplateRef, input, viewChild } from '@angular/core';\n\n@Component({\n  selector: 'fui-swipeable-tabs-blade',\n  standalone: true,\n  template: `\n    <ng-template #template>\n      <ng-content/>\n    </ng-template>\n  `\n})\nexport class SwipeableTabsBladeComponent {\n  label = input('');\n  _template = viewChild<TemplateRef<unknown>>('template');\n}\n",
+            "sourceCode": "import { Component, TemplateRef, input, viewChild } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-swipeable-tabs-blade',\r\n  standalone: true,\r\n  template: `\r\n    <ng-template #template>\r\n      <ng-content/>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class SwipeableTabsBladeComponent {\r\n  label = input('');\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -2281,7 +2543,7 @@
         },
         {
             "name": "SwipeableTabsComponent",
-            "id": "component-SwipeableTabsComponent-eb63cfc7784de45f63019f37e2fe012b0890662c0192606a0fd0bc1aa5720377dc5831b9d2956c2132d4b323bd16bb9c6a55d6f80951344ad535b39df92bee16",
+            "id": "component-SwipeableTabsComponent-cc19891732be45d281eb1621d4673ba9b15a7527a01f529ce366e9389c5b7c398f3b0a059dd0c939a1bbe09cac511bc4349cbdfb5c18b7cfd8a5cbc60f346303",
             "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2307,7 +2569,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 24
+                    "line": 25
                 },
                 {
                     "name": "activeBlade",
@@ -2321,7 +2583,17 @@
                 },
                 {
                     "name": "isInitialized",
-                    "defaultValue": "computed(() => viewChild<SwiperComponent>('swiper')()?.isInitialized())",
+                    "defaultValue": "computed(() => this.swiper()?.isInitialized() )",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
+                },
+                {
+                    "name": "swiper",
+                    "defaultValue": "viewChild<SwiperComponent>('swiper')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -2360,16 +2632,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, computed, contentChildren, model, viewChild } from '@angular/core';\nimport { TabsComponent } from '../tabs/tabs.component';\nimport { TabsItemComponent } from '../tabs/tabs-item.component';\nimport { SwiperComponent } from '../swiper/swiper.component';\nimport { SwiperBladeComponent } from '../swiper/swiper-blade.component';\nimport { SwipeableTabsBladeComponent } from './swipeable-tabs-blade.component';\nimport { NgTemplateOutlet } from '@angular/common';\n\n@Component({\n  selector: 'fui-swipeable-tabs',\n  standalone: true,\n  imports: [\n    TabsComponent,\n    TabsItemComponent,\n    SwiperComponent, \n    SwiperBladeComponent,\n    NgTemplateOutlet\n  ],\n  templateUrl: './swipeable-tabs.component.html'\n})\nexport class SwipeableTabsComponent {\n  activeBlade = model(0);\n  isInitialized = computed(() => viewChild<SwiperComponent>('swiper')()?.isInitialized());\n  _blades = contentChildren(SwipeableTabsBladeComponent);\n}\n",
+            "sourceCode": "import { Component, computed, contentChildren, model, viewChild } from '@angular/core';\r\nimport { TabsComponent } from '../tabs/tabs.component';\r\nimport { TabsItemComponent } from '../tabs/tabs-item.component';\r\nimport { SwiperComponent } from '../swiper/swiper.component';\r\nimport { SwiperBladeComponent } from '../swiper/swiper-blade.component';\r\nimport { SwipeableTabsBladeComponent } from './swipeable-tabs-blade.component';\r\nimport { NgTemplateOutlet } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'fui-swipeable-tabs',\r\n  standalone: true,\r\n  imports: [\r\n    TabsComponent,\r\n    TabsItemComponent,\r\n    SwiperComponent, \r\n    SwiperBladeComponent,\r\n    NgTemplateOutlet\r\n  ],\r\n  templateUrl: './swipeable-tabs.component.html'\r\n})\r\nexport class SwipeableTabsComponent {\r\n  activeBlade = model(0);\r\n  swiper = viewChild<SwiperComponent>('swiper');\r\n  isInitialized = computed(() => this.swiper()?.isInitialized() );\r\n  _blades = contentChildren(SwipeableTabsBladeComponent);\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bg-primary-container rounded p-element\">\n  <fui-tabs [(activeTabIndex)]=\"activeBlade\">\n    @for(blade of _blades(); track $index) {\n      <fui-tabs-item [label]=\"blade.label()\" />\n    }\n  </fui-tabs>\n  <fui-swiper #swiper [(activatedBladeIndex)]=\"activeBlade\">\n    @for(blade of _blades(); track $index) {\n      <fui-swiper-blade>\n        <ng-container [ngTemplateOutlet]=\"blade._template() ?? null\" />\n      </fui-swiper-blade>\n    }\n  </fui-swiper>\n</div>\n"
+            "templateData": "<div class=\"bg-primary-container rounded p-element\">\r\n  <fui-tabs [(activeTabIndex)]=\"activeBlade\">\r\n    @for(blade of _blades(); track $index) {\r\n      <fui-tabs-item [label]=\"blade.label()\" />\r\n    }\r\n  </fui-tabs>\r\n  <fui-swiper #swiper [(activatedBladeIndex)]=\"activeBlade\">\r\n    @for(blade of _blades(); track $index) {\r\n      <fui-swiper-blade>\r\n        <ng-container [ngTemplateOutlet]=\"blade._template() ?? null\" />\r\n      </fui-swiper-blade>\r\n    }\r\n  </fui-swiper>\r\n</div>\r\n"
         },
         {
             "name": "SwiperBladeComponent",
-            "id": "component-SwiperBladeComponent-1320ba3df1bbb55c222aaab0e5f73169e82885b010a0de7373d3b1db34353babca03473105a3436e232540fb95c9c1b238e4afc38accdf420c72fe61d7c4e864",
+            "id": "component-SwiperBladeComponent-7697b8f329f39842227e8d47490aae32df31da80d640db4c8f93116d7f83b30e779c83d469a0199505980e57699c8e75a62f8d5ef9b64f91deb81170b69571b9",
             "file": "packages/fancy-ui-content/src/lib/swiper/swiper-blade.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2426,7 +2698,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, HostBinding } from '@angular/core';\n\n@Component({\n  selector: 'fui-swiper-blade',\n  standalone: true,\n  template: `\n  <ng-content/>\n  `\n})\nexport class SwiperBladeComponent {\n\n  @HostBinding('class')\n  class = 'w-[calc(100%/var(--n))]';\n}\n",
+            "sourceCode": "import { Component, HostBinding } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-swiper-blade',\r\n  standalone: true,\r\n  template: `\r\n  <ng-content/>\r\n  `\r\n})\r\nexport class SwiperBladeComponent {\r\n\r\n  @HostBinding('class')\r\n  class = 'w-[calc(100%/var(--n))]';\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -2434,7 +2706,7 @@
         },
         {
             "name": "SwiperComponent",
-            "id": "component-SwiperComponent-3afc4857171bd9fe2cad536c54166680864e76b8ce84d8a69919e913984c0fd4b7c9d84cd88925205b23a9851ccceaec88ee0ba8b0b5d432b3c00ecd9dd334c4",
+            "id": "component-SwiperComponent-35a3725dd27a601b572d4bc5f08edbf4014bea6b7fdc08df17b2157f6216c7f3e471a7998938fbb63f300e29e66177fe9b42d8a2fa7e2a1cbbec8a19ca82faea",
             "file": "packages/fancy-ui-content/src/lib/swiper/swiper.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2503,6 +2775,16 @@
                     "line": 19
                 },
                 {
+                    "name": "_isInitialized",
+                    "defaultValue": "signal(false)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
                     "name": "activatedBladeIndex",
                     "defaultValue": "model(0)",
                     "deprecated": false,
@@ -2514,13 +2796,13 @@
                 },
                 {
                     "name": "isInitialized",
-                    "defaultValue": "signal(false)",
+                    "defaultValue": "this._isInitialized.asReadonly()",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 17
+                    "line": 21
                 },
                 {
                     "name": "x0",
@@ -2530,7 +2812,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 22,
+                    "line": 23,
                     "modifierKind": [
                         123
                     ]
@@ -2550,7 +2832,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 34,
+                    "line": 35,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2578,7 +2860,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 38,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2599,7 +2881,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 24,
+                    "line": 25,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -2616,7 +2898,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 51,
+                    "line": 52,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2644,7 +2926,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 55,
+                    "line": 56,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -2672,7 +2954,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { AfterViewInit, Component, ElementRef, computed, contentChildren, model, signal, viewChild } from '@angular/core';\nimport { SwiperBladeComponent } from './swiper-blade.component';\n\n@Component({\n  selector: 'fui-swiper',\n  standalone: true,\n  templateUrl: './swiper.component.html'\n})\nexport class SwiperComponent implements AfterViewInit {\n  \n  activatedBladeIndex = model(0);\n\n  _container = viewChild<ElementRef>('container');\n  _blades = contentChildren(SwiperBladeComponent, { read: ElementRef });\n\n  _childCount = computed(() => this._container()?.nativeElement.children?.length);\n  isInitialized = signal(false);\n  _enableAnimation = signal(false);\n  _height = computed(() => this.isInitialized() ? this._blades()[this.activatedBladeIndex()].nativeElement.offsetHeight : 0);\n  \n  \n  private x0: any = null;\n\n  ngAfterViewInit(): void {\n    // Set initialized after next rendering and enable animation also later\n    setTimeout(() => {\n      this.isInitialized.set(true)\n      setTimeout(() => {\n        this._enableAnimation.set(true)\n      }, 50);\n    }, 0);\n  }\n\n  lock(e: any) { \n    this.x0 = this.unify(e).clientX;\n  }\n\n  move(e: any) {\n\t  if(this.x0 || this.x0 === 0) {\n\t\t  const dx = this.unify(e).clientX - this.x0;\n      const s = Math.sign(dx);\n\n      const i = this.activatedBladeIndex();\n\t\t  if((i > 0 || s < 0) && (i < this._childCount() - 1 || s > 0)) {\n        this.activatedBladeIndex.set(i - s);\n      }\n\t\t  this.x0 = null;\n\t}\n}\n\nonTouchmove(e: any) {\n  e.preventDefault();\n}\n\n  private unify(e: any) {\n    return e.changedTouches ? e.changedTouches[0] : e \n  }\n\n}\n",
+            "sourceCode": "import { AfterViewInit, Component, ElementRef, computed, contentChildren, model, signal, viewChild } from '@angular/core';\r\nimport { SwiperBladeComponent } from './swiper-blade.component';\r\n\r\n@Component({\r\n  selector: 'fui-swiper',\r\n  standalone: true,\r\n  templateUrl: './swiper.component.html'\r\n})\r\nexport class SwiperComponent implements AfterViewInit {\r\n  \r\n  activatedBladeIndex = model(0);\r\n\r\n  _container = viewChild<ElementRef>('container');\r\n  _blades = contentChildren(SwiperBladeComponent, { read: ElementRef });\r\n\r\n  _childCount = computed(() => this._container()?.nativeElement.children?.length);\r\n  _isInitialized = signal(false);\r\n  _enableAnimation = signal(false);\r\n  _height = computed(() => this.isInitialized() ? this._blades()[this.activatedBladeIndex()].nativeElement.offsetHeight : 0);\r\n  \r\n  isInitialized = this._isInitialized.asReadonly();\r\n  \r\n  private x0: any = null;\r\n\r\n  ngAfterViewInit(): void {\r\n    // Set initialized after next rendering and enable animation also later\r\n    setTimeout(() => {\r\n      this._isInitialized.set(true)\r\n      setTimeout(() => {\r\n        this._enableAnimation.set(true)\r\n      }, 50);\r\n    }, 0);\r\n  }\r\n\r\n  lock(e: any) { \r\n    this.x0 = this.unify(e).clientX;\r\n  }\r\n\r\n  move(e: any) {\r\n\t  if(this.x0 || this.x0 === 0) {\r\n\t\t  const dx = this.unify(e).clientX - this.x0;\r\n      const s = Math.sign(dx);\r\n\r\n      const i = this.activatedBladeIndex();\r\n\t\t  if((i > 0 || s < 0) && (i < this._childCount() - 1 || s > 0)) {\r\n        this.activatedBladeIndex.set(i - s);\r\n      }\r\n\t\t  this.x0 = null;\r\n\t}\r\n}\r\n\r\nonTouchmove(e: any) {\r\n  e.preventDefault();\r\n}\r\n\r\n  private unify(e: any) {\r\n    return e.changedTouches ? e.changedTouches[0] : e \r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -2680,11 +2962,11 @@
             "implements": [
                 "AfterViewInit"
             ],
-            "templateData": "<div class=\"overflow-x-hidden\">\n  <div [style.--n]=\"_childCount()\" [style.--i]=\"activatedBladeIndex()\" [style.--heigt]=\"_height()\" [class.duration-0]=\"_enableAnimation() === false\" [class.duration-500]=\"_enableAnimation() === true\" (touchstart)=\"lock($event)\" (touchmove)=\"onTouchmove($event)\" (touchend)=\"move($event)\" class='w-[calc(var(--n)*100%)] h-[calc(var(--heigt)*1px)] max-h-96 flex items-center overflow-y-hidden translate-x-[calc(var(--i,0)/var(--n)*-100%)] transition-all ease-out' #container>\n    <ng-content />\n  </div>\n</div>\n"
+            "templateData": "<div class=\"overflow-x-hidden\">\r\n  <div [style.--n]=\"_childCount()\" [style.--i]=\"activatedBladeIndex()\" [style.--heigt]=\"_height()\" [class.duration-0]=\"_enableAnimation() === false\" [class.duration-500]=\"_enableAnimation() === true\" (touchstart)=\"lock($event)\" (touchmove)=\"onTouchmove($event)\" (touchend)=\"move($event)\" class='w-[calc(var(--n)*100%)] h-[calc(var(--heigt)*1px)] max-h-96 flex items-center overflow-y-hidden translate-x-[calc(var(--i,0)/var(--n)*-100%)] transition-all ease-out' #container>\r\n    <ng-content />\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "SwitchComponent",
-            "id": "component-SwitchComponent-c3ace2fb925e87d1067e09a9a5c02ab13099a2211025dc4bf31d1ddc3037d690b2481ac97da2bd12a408832fc65bcee233331bd4f9b78f1f41e571bd2ce8a339",
+            "id": "component-SwitchComponent-623f110f77b5e714d1f4c85f42a7e80c1a69535a05e39649881399bc2c730bd0875fb821712e9f8d33c293abc3318690a1ecdeb5c0ce284d7b565bc12bdf3c67",
             "file": "packages/fancy-ui-forms/src/lib/switch/switch.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2782,7 +3064,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, input } from '@angular/core';\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\nimport { FormControlBase } from '../form-control.base';\n\n@Component({\n  selector: 'fui-switch',\n  standalone: true,\n  imports: [FormsModule],\n  templateUrl: './switch.component.html',\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: SwitchComponent,\n      multi: true\n    }\n  ]\n})\nexport class SwitchComponent extends FormControlBase<boolean> {\n  label = input('');\n\n  hintOff = input('');\n\n  hintOn = input('');\n\n  constructor() {\n    super();\n    this._currentValue = false;\n  }\n\n  _onSwitch(event: boolean) {\n    this._currentValue = event;\n    this.onTouched();\n    this.onChanged();\n  }\n}\n",
+            "sourceCode": "import { Component, input } from '@angular/core';\r\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\r\nimport { FormControlBase } from '../form-control.base';\r\n\r\n@Component({\r\n  selector: 'fui-switch',\r\n  standalone: true,\r\n  imports: [FormsModule],\r\n  templateUrl: './switch.component.html',\r\n  providers: [\r\n    {\r\n      provide: NG_VALUE_ACCESSOR,\r\n      useExisting: SwitchComponent,\r\n      multi: true\r\n    }\r\n  ]\r\n})\r\nexport class SwitchComponent extends FormControlBase<boolean> {\r\n  label = input('');\r\n\r\n  hintOff = input('');\r\n\r\n  hintOn = input('');\r\n\r\n  constructor() {\r\n    super();\r\n    this._currentValue = false;\r\n  }\r\n\r\n  _onSwitch(event: boolean) {\r\n    this._currentValue = event;\r\n    this.onTouched();\r\n    this.onChanged();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -2797,11 +3079,11 @@
             "extends": [
                 "FormControlBase"
             ],
-            "templateData": "<label class=\"flex items-center\">\n\n    @if(label()) {\n      <!-- label -->\n      <label class=\"mr-element flex-grow\">{{label()}}</label>\n    }\n  \n    <div class=\"flex cursor-pointer\">\n  \n      @if(hintOff()) {\n        <!-- hint off -->\n        <div class=\"mr-element self-center text-xs\">{{hintOff()}}</div>\n      }\n  \n      <!-- toggle -->\n      <div class=\"relative py-2\">\n        <!-- input -->\n        <input class=\"sr-only peer\" type=\"checkbox\" [ngModel]=\"_currentValue\" (ngModelChange)=\"_onSwitch($event)\" />\n        <!-- line -->\n        <div class=\"w-iconX2 h-4 rounded-full shadow-inner transition bg-on-secondary peer-checked:bg-outline\"></div>\n        <!-- dot -->\n        <div class=\"absolute w-icon h-icon bg-outline rounded-full oritin-top-left top-1 shadow transition peer-checked:bg-secondary peer-checked:translate-x-full\"></div>\n      </div>\n  \n      @if(hintOn()) {\n        <!-- hint on -->\n        <div class=\"ml-element self-center text-xs\">{{hintOn()}}</div>\n      }\n      \n    </div>\n</label>\n"
+            "templateData": "<label class=\"flex items-center\">\r\n\r\n    @if(label()) {\r\n      <!-- label -->\r\n      <label class=\"mr-element flex-grow\">{{label()}}</label>\r\n    }\r\n  \r\n    <div class=\"flex cursor-pointer\">\r\n  \r\n      @if(hintOff()) {\r\n        <!-- hint off -->\r\n        <div class=\"mr-element self-center text-xs\">{{hintOff()}}</div>\r\n      }\r\n  \r\n      <!-- toggle -->\r\n      <div class=\"relative py-2\">\r\n        <!-- input -->\r\n        <input class=\"sr-only peer\" type=\"checkbox\" [ngModel]=\"_currentValue\" (ngModelChange)=\"_onSwitch($event)\" />\r\n        <!-- line -->\r\n        <div class=\"w-iconX2 h-4 rounded-full shadow-inner transition bg-on-secondary peer-checked:bg-outline\"></div>\r\n        <!-- dot -->\r\n        <div class=\"absolute w-icon h-icon bg-outline rounded-full oritin-top-left top-1 shadow transition peer-checked:bg-secondary peer-checked:translate-x-full\"></div>\r\n      </div>\r\n  \r\n      @if(hintOn()) {\r\n        <!-- hint on -->\r\n        <div class=\"ml-element self-center text-xs\">{{hintOn()}}</div>\r\n      }\r\n      \r\n    </div>\r\n</label>\r\n"
         },
         {
             "name": "TabsComponent",
-            "id": "component-TabsComponent-1d9dfde7730b7ad7c036e74ce77c00a30418f36216ce96c46f21fb3209eedadda3a9d21e437dfeee232456c120188ec3d7731ec8d268a76bfb8f2cbb884ed107",
+            "id": "component-TabsComponent-e1f51bb15da8d8c5f308b367403398abbc392cf20000d2ed1a0725568eac4d2a71a13f09b6ce26c761f1b3df42993bee81202c574d73e9ff08f64a7586e68594",
             "file": "packages/fancy-ui-content/src/lib/tabs/tabs.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2879,16 +3161,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, contentChildren, model } from '@angular/core';\nimport { TabsItemComponent } from './tabs-item.component';\n\n@Component({\n  selector: 'fui-tabs',\n  standalone: true,\n  imports: [],\n  templateUrl: './tabs.component.html'\n})\nexport class TabsComponent {\n  _items = contentChildren(TabsItemComponent);\n  activeTabIndex = model(0);\n\n  activateTab(index: number) {\n    this.activeTabIndex.set(index);\n  }\n}\n",
+            "sourceCode": "import { Component, contentChildren, model } from '@angular/core';\r\nimport { TabsItemComponent } from './tabs-item.component';\r\n\r\n@Component({\r\n  selector: 'fui-tabs',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './tabs.component.html'\r\n})\r\nexport class TabsComponent {\r\n  _items = contentChildren(TabsItemComponent);\r\n  activeTabIndex = model(0);\r\n\r\n  activateTab(index: number) {\r\n    this.activeTabIndex.set(index);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"flex\" [style.--activeTabIndex]=\"activeTabIndex()\">\n    @for(item of _items(); track $index) {\n        <div class=\"relative basis-0 grow hover:bg-hover text-center cursor-pointer\" (click)=\"activateTab($index)\">\n            {{item.label()}}\n            @if($index === 0) {\n                <div class=\"absolute w-full transition-all duration-700 border-b-2 border-primary left-[calc(100%*var(--activeTabIndex))]\"></div>\n            }\n        </div>\n    }\n</div>\n"
+            "templateData": "<div class=\"flex\" [style.--activeTabIndex]=\"activeTabIndex()\">\r\n    @for(item of _items(); track $index) {\r\n        <div class=\"relative basis-0 grow hover:bg-hover text-center cursor-pointer\" (click)=\"activateTab($index)\">\r\n            {{item.label()}}\r\n            @if($index === 0) {\r\n                <div class=\"absolute w-full transition-all duration-700 border-b-2 border-primary left-[calc(100%*var(--activeTabIndex))]\"></div>\r\n            }\r\n        </div>\r\n    }\r\n</div>\r\n"
         },
         {
             "name": "TabsItemComponent",
-            "id": "component-TabsItemComponent-9094238b3dc9d9e33b816b2282e3d5743a73781353b9f62450fa98a688580f9cf41c01f2fffd85dedb680acf2d999b4969bb6061fec7d7f88197f8d0cb4f00d8",
+            "id": "component-TabsItemComponent-befa9e266a399d3592c659adbc099416c091655ddee8153166d136fc2ea9936de6adc3fda10bc6cf0506882376b65c2f6f3baa971b6cec67ae19056565e7867b",
             "file": "packages/fancy-ui-content/src/lib/tabs/tabs-item.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2926,7 +3208,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, input } from '@angular/core';\n\n@Component({\n  selector: 'fui-tabs-item',\n  standalone: true,\n  template: `\n  `\n})\nexport class TabsItemComponent {\n  label = input('');\n}\n",
+            "sourceCode": "import { Component, input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-tabs-item',\r\n  standalone: true,\r\n  template: `\r\n  `\r\n})\r\nexport class TabsItemComponent {\r\n  label = input('');\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -2934,7 +3216,7 @@
         },
         {
             "name": "TextBoxComponent",
-            "id": "component-TextBoxComponent-60c41b32c01912fe1f0d7727d1041fcd922ed1c81a49036b6eb0f4882af67aadd0f5e441ba7b1572db9cbc057e19c0eded407c0cd580d9ccc644419fb59f844b",
+            "id": "component-TextBoxComponent-64754c3f4b66a7c4a1cdea76978d14f408b34f6f5a1b506190e793ca08d28907f4c2f5df268c832f2379f796cba61c000a6ebbbce47edd534d220449ca69f20c",
             "file": "packages/fancy-ui-forms/src/lib/text-box/text-box.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3018,18 +3300,18 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControlBase } from '../form-control.base';\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\n\n@Component({\n  selector: 'fui-text-box',\n  standalone: true,\n  imports: [CommonModule, FormsModule],\n  templateUrl: './text-box.component.html',\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: TextBoxComponent,\n      multi: true\n    }\n  ]\n})\nexport class TextBoxComponent extends FormControlBase<string>{\n  label = input('');\n\n  hint = input('');\n\n  _id = uuidv4();\n\n  _onInput() {\n    this.onChanged();\n    this.onTouched();\n  }\n}\nfunction uuidv4() {\n  return 'id'+ Math.random();\n}\n\n",
+            "sourceCode": "import { Component, input } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormControlBase } from '../form-control.base';\r\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'fui-text-box',\r\n  standalone: true,\r\n  imports: [CommonModule, FormsModule],\r\n  templateUrl: './text-box.component.html',\r\n  providers: [\r\n    {\r\n      provide: NG_VALUE_ACCESSOR,\r\n      useExisting: TextBoxComponent,\r\n      multi: true\r\n    }\r\n  ]\r\n})\r\nexport class TextBoxComponent extends FormControlBase<string>{\r\n  label = input('');\r\n\r\n  hint = input('');\r\n\r\n  _id = uuidv4();\r\n\r\n  _onInput() {\r\n    this.onChanged();\r\n    this.onTouched();\r\n  }\r\n}\r\nfunction uuidv4() {\r\n  return 'id'+ Math.random();\r\n}\r\n\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [
                 "FormControlBase"
             ],
-            "templateData": "<div class=\"relative pt-[calc(theme(fontSize.label)*theme(lineHeight.normal))]\">\n  <input\n    class=\"block w-full border border-transparent appearance-none focus:outline-none bg-transparent peer\"\n    [id]=\"_id\"\n    type=\"text\"\n    placeholder=\" \"\n    (input)=\"_onInput()\"\n    [(ngModel)]=\"_currentValue\"\n  />\n  <label\n    class=\"absolute top-0 origin-top-left cursor-text text-label\n    transform duration-300 \n    peer-focus:text-primary \n    peer-focus:cursor-default \n    peer-[:not(:focus):placeholder-shown]:scale-[1.45]\n    peer-[:not(:focus):placeholder-shown]:translate-y-[calc(theme(fontSize.label)*theme(lineHeight.normal))]\n    peer-[:not(:placeholder-shown)]:cursor-default\"\n    [for]=\"_id\">{{ label() }}</label\n  >\n  <div\n    class=\"border-t border-b border-t-outline border-b-transparent \n    transition duration-500 \n    [fui-text-box.ng-touched.ng-valid_&]:border-t-success \n    [fui-text-box.ng-touched.ng-invalid_&]:border-t-error \n    peer-focus:!border-t-primary \n    peer-focus:!border-b-primary \n    peer-focus:shadow\"\n  ></div>\n  <p class=\"text-xs pt-1 [fui-text-box.ng-touched.ng-valid_&]:text-success [fui-text-box.ng-touched.ng-invalid_&]:text-error\">\n    {{ hint() }}\n  </p>\n</div>\n"
+            "templateData": "<div class=\"relative pt-[calc(theme(fontSize.label)*theme(lineHeight.normal))]\">\r\n  <input\r\n    class=\"block w-full border border-transparent appearance-none focus:outline-none bg-transparent peer\"\r\n    [id]=\"_id\"\r\n    type=\"text\"\r\n    placeholder=\" \"\r\n    (input)=\"_onInput()\"\r\n    [(ngModel)]=\"_currentValue\"\r\n  />\r\n  <label\r\n    class=\"absolute top-0 origin-top-left cursor-text text-label\r\n    transform duration-300 \r\n    peer-focus:text-primary \r\n    peer-focus:cursor-default \r\n    peer-[:not(:focus):placeholder-shown]:scale-[1.45]\r\n    peer-[:not(:focus):placeholder-shown]:translate-y-[calc(theme(fontSize.label)*theme(lineHeight.normal))]\r\n    peer-[:not(:placeholder-shown)]:cursor-default\"\r\n    [for]=\"_id\">{{ label() }}</label\r\n  >\r\n  <div\r\n    class=\"border-t border-b border-t-outline border-b-transparent \r\n    transition duration-500 \r\n    [fui-text-box.ng-touched.ng-valid_&]:border-t-success \r\n    [fui-text-box.ng-touched.ng-invalid_&]:border-t-error \r\n    peer-focus:!border-t-primary \r\n    peer-focus:!border-b-primary \r\n    peer-focus:shadow\"\r\n  ></div>\r\n  <p class=\"text-xs pt-1 [fui-text-box.ng-touched.ng-valid_&]:text-success [fui-text-box.ng-touched.ng-invalid_&]:text-error\">\r\n    {{ hint() }}\r\n  </p>\r\n</div>\r\n"
         },
         {
             "name": "ViewComponent",
-            "id": "component-ViewComponent-e434e5b19cec8736a2ba5b2acfab8926eac8e8ee4016df33706ac9350922613339a4099de0db8579cc7b7562061bc4d5d755a91db6bb74dd2d93fa7453e9ac09",
+            "id": "component-ViewComponent-80c0a5dd2982d863989c136573801d7909e03e300a814ef72ca7122d11e4ee1adba9dbf0f2f85a1a13ded346c46d957fd8bb8b546da9851004e8fec56c851075",
             "file": "packages/fancy-ui-shell/src/lib/view/view.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3092,16 +3374,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { NgTemplateOutlet } from '@angular/common';\nimport { Component, contentChild } from '@angular/core';\nimport { ViewMainContentComponent } from './view-content.component';\nimport { ViewFooterComponent } from './view-footer.component';\nimport { ViewHeaderComponent } from './view-header.component';\n\n@Component({\n  selector: 'fui-view',\n  standalone: true,\n  imports: [ NgTemplateOutlet ],\n  templateUrl: './view.component.html',\n})\nexport class ViewComponent {\n  _viewHeaderComponent = contentChild(ViewHeaderComponent);\n  _viewMainContentComponent = contentChild(ViewMainContentComponent);\n  _viewFooterComponent = contentChild(ViewFooterComponent);\n}\n",
+            "sourceCode": "import { NgTemplateOutlet } from '@angular/common';\r\nimport { Component, contentChild } from '@angular/core';\r\nimport { ViewMainContentComponent } from './view-content.component';\r\nimport { ViewFooterComponent } from './view-footer.component';\r\nimport { ViewHeaderComponent } from './view-header.component';\r\n\r\n@Component({\r\n  selector: 'fui-view',\r\n  standalone: true,\r\n  imports: [ NgTemplateOutlet ],\r\n  templateUrl: './view.component.html',\r\n})\r\nexport class ViewComponent {\r\n  _viewHeaderComponent = contentChild(ViewHeaderComponent);\r\n  _viewMainContentComponent = contentChild(ViewMainContentComponent);\r\n  _viewFooterComponent = contentChild(ViewFooterComponent);\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"flex flex-col h-full\">\r\n  @if(_viewHeaderComponent()) {\r\n    <div class=\"px-rim md:group-[.shell.with-left-template]:pl-0\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewHeaderComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n  <div class=\"flex-1 overflow-y-auto fui-scroll px-rim md:group-[.shell.with-left-template]:pl-0\">\r\n    <div class=\"pb-component\">\r\n      @if(_viewMainContentComponent()) {\r\n        <ng-container [ngTemplateOutlet]=\"_viewMainContentComponent()?._template() ?? null\" />\r\n      }\r\n    </div>\r\n  </div>\r\n  @if(_viewFooterComponent()) {\r\n    <div class=\"px-rim md:group-[.shell.with-left-template]:pl-0\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewFooterComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n</div>\r\n"
+            "templateData": "<div class=\"flex flex-col h-full\">\r\n  @if(_viewHeaderComponent()) {\r\n    <div class=\"px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewHeaderComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n  <div class=\"flex-1 overflow-y-auto fui-scroll px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n    <div class=\"pb-component\">\r\n      @if(_viewMainContentComponent()) {\r\n        <ng-container [ngTemplateOutlet]=\"_viewMainContentComponent()?._template() ?? null\" />\r\n      }\r\n    </div>\r\n  </div>\r\n  @if(_viewFooterComponent()) {\r\n    <div class=\"px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewFooterComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n</div>\r\n"
         },
         {
             "name": "ViewFooterComponent",
-            "id": "component-ViewFooterComponent-5c79a789bc2c2b1984a043046377993956d94d7e10c47c934dbe5feffb3dca42ee7b24c520c3c9f168260c06264f6b9665e5123d75fffff709c1591463f4124e",
+            "id": "component-ViewFooterComponent-75469bf19ca3b6c1d960511c242fd87c7a7fcc966270db4b55f32c983ce85d908884504af2f4750317f07776ea0f89f5f10cef05815892c0939aeb955e616ab8",
             "file": "packages/fancy-ui-shell/src/lib/view/view-footer.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3139,7 +3421,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, TemplateRef, viewChild } from '@angular/core';\n\n@Component({\n  selector: 'fui-view-footer',\n  standalone: true,\n  template: `\n    <ng-template #template>\n      <ng-content/>\n    </ng-template>\n  `\n})\nexport class ViewFooterComponent {\n  _template = viewChild<TemplateRef<unknown>>('template');\n}\n",
+            "sourceCode": "import { Component, TemplateRef, viewChild } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-view-footer',\r\n  standalone: true,\r\n  template: `\r\n    <ng-template #template>\r\n      <ng-content/>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class ViewFooterComponent {\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -3147,7 +3429,7 @@
         },
         {
             "name": "ViewHeaderComponent",
-            "id": "component-ViewHeaderComponent-fdb69bddd7a683dfd94670f7cbda1c4b28ff7b093fd481e32373e88a9b477bf00a0357bf98ee4f545e032f7f1bd39eed2e6a1db03d726bd595c88348a899f080",
+            "id": "component-ViewHeaderComponent-cf7364f0894d4cf8e81b770f48e2ccc6f475488d4996b512e307bb874e39bc17d1fde5b226708ae2a0de6d774dd3b34bb0406b323863aa6a7e31b56fd38f8d3d",
             "file": "packages/fancy-ui-shell/src/lib/view/view-header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3185,7 +3467,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, TemplateRef, viewChild } from '@angular/core';\n\n@Component({\n  selector: 'fui-view-header',\n  standalone: true,\n  template: `\n    <ng-template #template>\n      <ng-content/>\n    </ng-template>\n  `\n})\nexport class ViewHeaderComponent {\n  _template = viewChild<TemplateRef<unknown>>('template');\n}\n",
+            "sourceCode": "import { Component, TemplateRef, viewChild } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-view-header',\r\n  standalone: true,\r\n  template: `\r\n    <ng-template #template>\r\n      <ng-content/>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class ViewHeaderComponent {\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -3193,7 +3475,7 @@
         },
         {
             "name": "ViewMainContentComponent",
-            "id": "component-ViewMainContentComponent-99423f4b26d482817de2cb6c1fa2dfe5d3bf4370642e1cdb47f48be5715e863ead522637675602ed659be4a52038ce158f0522485c69c518711200f3007c8a09",
+            "id": "component-ViewMainContentComponent-8714d7dcf6c77f4ee78b3a52dab01d65d8a181852c64996e5510b72d6274d137579f7dd58ff3c1b845726597fcc512b2e83875bdfa266dc8220f79ccff5005b4",
             "file": "packages/fancy-ui-shell/src/lib/view/view-content.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3231,7 +3513,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, TemplateRef, viewChild } from '@angular/core';\n\n@Component({\n  selector: 'fui-view-main-content',\n  standalone: true,\n  template: `\n    <ng-template #template>\n      <ng-content/>\n    </ng-template>\n  `\n})\nexport class ViewMainContentComponent {\n  _template = viewChild<TemplateRef<unknown>>('template');\n}\n",
+            "sourceCode": "import { Component, TemplateRef, viewChild } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-view-main-content',\r\n  standalone: true,\r\n  template: `\r\n    <ng-template #template>\r\n      <ng-content/>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class ViewMainContentComponent {\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -3375,6 +3657,16 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    iconName: 'matHomeOutline' as any,\r\n    title: 'App Title' as any,\r\n    userDisplayName: 'John Doe' as any,\r\n    userId: 'john.doe@domain.com' as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-header  [iconName]=\"iconName\" [title]=\"title\" [userDisplayName]=\"userDisplayName\" [userId]=\"userId\">\r\n        <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n      </fui-app-header>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "packages/fancy-ui-shell/src/lib/nav-rail/nav-rail.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -3429,7 +3721,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "StorybookConfig",
-                "defaultValue": "{\n  stories: ['../../../packages/*/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)', '../../../packages/*/src/lib/**/*.mdx', '../stories/**/*.stories.ts', '../doc/**/*.mdx'],\n  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
+                "defaultValue": "{\r\n  stories: ['../../../packages/*/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)', '../../../packages/*/src/lib/**/*.mdx', '../stories/**/*.stories.ts', '../doc/**/*.mdx'],\r\n  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],\r\n  framework: {\r\n    name: '@storybook/angular',\r\n    options: {},\r\n  },\r\n}"
             },
             {
                 "name": "DatasetOnly",
@@ -3529,7 +3821,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<ShellComponent>",
-                "defaultValue": "{\r\n  title: 'Compositions/Basic Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "defaultValue": "{\r\n  title: 'Compositions/Basic Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppHeaderBundle, AppBarBundle, ViewBundle],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline, matLogoutOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -3685,6 +3977,16 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<AppHeaderComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Shell/App Header',\r\n  component: AppHeaderComponent,\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppHeaderComponent, AppHeaderActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matLogoutOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "packages/fancy-ui-shell/src/lib/nav-rail/nav-rail.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -3780,6 +4082,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "ResponsiveNavsWithAppHeader",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #topTemplate>\r\n        <fui-app-header  iconName=\"matHomeOutline\" title=\"App Title\" userDisplayName=\"John Doe\" userId=\"john.doe@domain.com\">\r\n          <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n        </fui-app-header>\r\n      </ng-template>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n\r\n      <ng-template #mainContentTemplate>\r\n\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            Main content here!\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n\r\n      </ng-template>\r\n\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "UpToThreeActions",
@@ -4016,6 +4328,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<NavBarComponent>",
                 "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<AppHeaderComponent>",
+                "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4463,6 +4786,28 @@
                     "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
+            "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    iconName: 'matHomeOutline' as any,\r\n    title: 'App Title' as any,\r\n    userDisplayName: 'John Doe' as any,\r\n    userId: 'john.doe@domain.com' as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-header  [iconName]=\"iconName\" [title]=\"title\" [userDisplayName]=\"userDisplayName\" [userId]=\"userId\">\r\n        <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n      </fui-app-header>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<AppHeaderComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Shell/App Header',\r\n  component: AppHeaderComponent,\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppHeaderComponent, AppHeaderActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matLogoutOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
             "packages/fancy-ui-shell/src/lib/nav-rail/nav-rail.stories.ts": [
                 {
                     "name": "Basic",
@@ -4590,7 +4935,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "StorybookConfig",
-                    "defaultValue": "{\n  stories: ['../../../packages/*/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)', '../../../packages/*/src/lib/**/*.mdx', '../stories/**/*.stories.ts', '../doc/**/*.mdx'],\n  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
+                    "defaultValue": "{\r\n  stories: ['../../../packages/*/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)', '../../../packages/*/src/lib/**/*.mdx', '../stories/**/*.stories.ts', '../doc/**/*.mdx'],\r\n  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],\r\n  framework: {\r\n    name: '@storybook/angular',\r\n    options: {},\r\n  },\r\n}"
                 }
             ],
             "apps/storybook-host/stories/compositions.dataset-layouts.stories.ts": [
@@ -4634,7 +4979,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<ShellComponent>",
-                    "defaultValue": "{\r\n  title: 'Compositions/Basic Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                    "defaultValue": "{\r\n  title: 'Compositions/Basic Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppHeaderBundle, AppBarBundle, ViewBundle],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline, matLogoutOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 },
                 {
                     "name": "NavBarOnly",
@@ -4675,6 +5020,16 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        \r\n\r\n      <fui-view>\r\n        <fui-view-header>\r\n          <fui-app-bar title=\"Card View\">\r\n            <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n            <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n            <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n          </fui-app-bar>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          Main content here!\r\n        </fui-view-main-content>\r\n      </fui-view>\r\n\r\n      </ng-template>\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "ResponsiveNavsWithAppHeader",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #topTemplate>\r\n        <fui-app-header  iconName=\"matHomeOutline\" title=\"App Title\" userDisplayName=\"John Doe\" userId=\"john.doe@domain.com\">\r\n          <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n        </fui-app-header>\r\n      </ng-template>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n\r\n      <ng-template #mainContentTemplate>\r\n\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            Main content here!\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n\r\n      </ng-template>\r\n\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
                 }
             ],
             "apps/storybook-host/.storybook/preview.ts": [
@@ -4914,6 +5269,19 @@
                     "kind": 183
                 }
             ],
+            "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<AppHeaderComponent>",
+                    "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "packages/fancy-ui-shell/src/lib/nav-rail/nav-rail.stories.ts": [
                 {
                     "name": "Story",
@@ -5026,6 +5394,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "ResponsiveNavs",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "apps/storybook-host/stories/compositions.basic-layouts.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ResponsiveNavsWithAppHeader",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -5268,7 +5646,7 @@
                 "linktype": "component",
                 "name": "SwipeableTabsComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -5306,7 +5684,7 @@
                 "linktype": "component",
                 "name": "SwiperComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/14",
+                "coverageCount": "0/15",
                 "status": "low"
             },
             {
@@ -5705,6 +6083,44 @@
                 "status": "low"
             },
             {
+                "filePath": "packages/fancy-ui-shell/src/lib/app-header/app-header-action.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppHeaderActionComponent",
+                "coveragePercent": 42,
+                "coverageCount": "3/7",
+                "status": "medium"
+            },
+            {
+                "filePath": "packages/fancy-ui-shell/src/lib/app-header/app-header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppHeaderComponent",
+                "coveragePercent": 40,
+                "coverageCount": "4/10",
+                "status": "medium"
+            },
+            {
+                "filePath": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar-item.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -5786,7 +6202,7 @@
                 "linktype": "component",
                 "name": "ShellComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {

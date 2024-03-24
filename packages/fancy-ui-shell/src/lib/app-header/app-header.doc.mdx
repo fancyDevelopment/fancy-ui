@@ -1,0 +1,18 @@
+
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/blocks';
+
+import { AppHeaderComponent } from './app-header.component';
+
+import * as AppHeaderStories from './app-header.stories';
+
+<Meta of={AppHeaderStories} />
+
+# App Header
+
+The App Header is intended to show the application title and global actions which are independet of the current view.
+
+<Canvas>
+<Story of={AppHeaderStories.Basic} />
+</Canvas>
+
+<ArgsTable of={AppHeaderComponent} exclude="_" />

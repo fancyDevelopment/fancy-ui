@@ -1,10 +1,10 @@
 <div class="flex flex-col h-full">
   @if(_viewHeaderComponent()) {
-    <div class="px-rim md:group-[.shell.with-left-template]:pl-0">
+    <div class="px-rim md:group-[.fui-shell.with-left-template]:pl-0">
       <ng-container [ngTemplateOutlet]="_viewHeaderComponent()?._template() ?? null" />
     </div>
   }
-  <div class="flex-1 overflow-y-auto fui-scroll px-rim md:group-[.shell.with-left-template]:pl-0">
+  <div class="flex-1 overflow-y-auto fui-scroll px-rim md:group-[.fui-shell.with-left-template]:pl-0">
     <div class="pb-component">
       @if(_viewMainContentComponent()) {
         <ng-container [ngTemplateOutlet]="_viewMainContentComponent()?._template() ?? null" />
@@ -12,7 +12,7 @@
     </div>
   </div>
   @if(_viewFooterComponent()) {
-    <div class="px-rim md:group-[.shell.with-left-template]:pl-0">
+    <div class="px-rim md:group-[.fui-shell.with-left-template]:pl-0">
       <ng-container [ngTemplateOutlet]="_viewFooterComponent()?._template() ?? null" />
     </div>
   }

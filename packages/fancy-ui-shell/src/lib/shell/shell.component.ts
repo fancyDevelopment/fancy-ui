@@ -8,6 +8,7 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
   templateUrl: './shell.component.html'
 })
 export class ShellComponent {
+  _topTemplate = contentChild<TemplateRef<unknown>>('topTemplate');
   _leftTemplate = contentChild<TemplateRef<unknown>>('leftTemplate');
   _mainContentTemplate = contentChild<TemplateRef<unknown>>('mainContentTemplate');
   _bottomTemplate = contentChild<TemplateRef<unknown>>('bottomTemplate');

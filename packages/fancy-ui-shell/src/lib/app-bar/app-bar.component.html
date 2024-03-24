@@ -11,15 +11,15 @@
     <div class="mb-1 text-xl min-w-0 truncate">{{ title() }}</div>
   </div>
 
-  <!-- Global View Actions as icons in header -->
+  <!-- App Bar Actions as icons in header -->
   <div class="hidden flex-none sm:flex items-center h-full group-[.shell]:-mr-3">
-    @for(action of _viewHeaderActions(); track $index) {
+    @for(action of _appBarActions(); track $index) {
       <ng-container [ngTemplateOutlet]="action._template() ?? null" />
     }
   </div>
 
-  @if(_viewHeaderActions(); as actions) {
-    <!-- Global View Actions within dropdown -->
+  @if(_appBarActions(); as actions) {
+    <!-- App Bar Actions within dropdown -->
     <div class="sm:hidden flex-none flex items-center h-full group-[.shell]:-mr-3">
       @if(actions.length >= 1) {
         <!-- Always show first icon -->

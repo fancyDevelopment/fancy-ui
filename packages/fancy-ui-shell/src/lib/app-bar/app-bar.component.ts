@@ -21,8 +21,8 @@ export class AppBarComponent {
    */
   showBackButton = input(false);
 
-  // The view header actions
-  _viewHeaderActions = contentChildren(AppBarActionComponent)
+  // The app bar actions
+  _appBarActions = contentChildren(AppBarActionComponent)
 
   private _location = inject(Location);
 

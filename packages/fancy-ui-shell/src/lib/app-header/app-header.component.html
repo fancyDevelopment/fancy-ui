@@ -1,0 +1,53 @@
+<div class="h-10 z-20 flex justify-between text-on-primary bg-primary px-rim md:group-[.fui-shell.with-left-template]:pl-0">
+  <div class="flex items-center min-w-0">
+    <!-- Back navigation button -->
+    @if(iconName(); as iconName) {
+      <div class="grid justify-items-center md:group-[.fui-shell.with-left-template]:w-20 pr-element">
+        <div class="h-6 w-6">
+          <fui-icon [name]="iconName"></fui-icon>
+        </div>
+      </div>
+    }
+    <!-- App title -->
+    <div class="text-base font-semibold min-w-12 truncate">{{ title() }}</div>
+  </div>
+
+  <!-- Global View Actions within dropdown -->
+  <div class="flex-none flex items-center h-full relative">
+    <a class="h-10 flex cursor-pointer max-w-48 relative" (click)="_openActionsDropdown()">
+      <div class="absolute z-0 w-full h-10 rounded transition-all duration-500 hover:bg-hover"></div>
+      <div class="min-w-0 self-center mx-2">
+        @if(userDisplayName(); as userDisplayName) {
+          <div class="text-xs truncate">{{userDisplayName}}</div>
+        }
+        @if(userId(); as userId) {
+          <div class="text-xs truncate">{{userId}}</div>
+        }
+      </div>
+      <fui-icon class="h-8 w-8 self-center mr-2" name="heroUser"></fui-icon>
+    </a>
+    <!-- Dropdown Menu -->
+    @if(_actionsDropdownIsOpen()) {
+      <div class="absolute z-20 right-0 top-10 rounded bg-primary-container text-on-primary-container shadow animate-fadeIn">
+        <div class="p-component">
+          <div class="flex">
+              <fui-icon class="w-14 h-14 self-center" name="heroUser"></fui-icon>
+            <div class="flex flex-col self-center">
+              @if(userDisplayName(); as userDisplayName) {
+                <div class="text-base">{{userDisplayName}}</div>
+              }
+              @if(userId(); as userId) {
+                <div class="text-base">{{userId}}</div>
+              }
+            </div>
+          </div>
+          <hr class="my-element">
+          @for(action of _appHeaderActions(); track $index) {
+            <ng-container [ngTemplateOutlet]="action._mobileTemplate() ?? null" />
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+</div>
