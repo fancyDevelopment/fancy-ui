@@ -173,8 +173,8 @@ export const ResponsiveNavsWithAppHeader: Story = {
     props: args,
     template: `
     <fui-shell>
-      <ng-template #topTemplate>
-        <fui-app-header  iconName="matHomeOutline" title="App Title" userDisplayName="John Doe" userId="john.doe@domain.com">
+      <ng-template #headerTemplate>
+        <fui-app-header  iconName="matHomeOutline" title="App Title" userDisplayName="John Doe" userId="john.doe@domain-very-very-long-domain.com">
           <fui-app-header-action iconName="matLogoutOutline" label="Logout" />
         </fui-app-header>
       </ng-template>

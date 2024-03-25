@@ -31,7 +31,7 @@
         </thead>
         <tbody>
             @for(rowData of data; track $index) {
-                <tr>
+                <tr class="even:bg-shade">
                     @for(item of _datasetTableItems(); track $index) {
                         <td>
                             <ng-container [ngTemplateOutlet]="item.tableTemplate ?? null"
@@ -40,7 +40,7 @@
                     }
                     @if(moreTap.observers.length) {
                         <td class="flex justify-end min-h-hover">
-                            <a (click)="onMoreTap(rowData)" class="w-hover flex justify-center items-center">
+                            <a (click)="onMoreTap(rowData)" class="w-hover flex justify-center items-center relative">
                                 <div class="absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover"></div>
                                 <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />
                             </a>

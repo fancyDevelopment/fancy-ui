@@ -1,7 +1,7 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { ButtonComponent } from 'fancy-ui-core';
-import { ShellComponent, ShellBundle, NavBarBundle, NavRailBundle, ViewBundle, AppBarBundle } from 'fancy-ui-shell';
+import { ShellComponent, ShellBundle, NavBarBundle, NavRailBundle, ViewBundle, AppBarBundle, AppHeaderBundle } from 'fancy-ui-shell';
 import { CardBundle } from 'fancy-ui-content';
 import { provideFancyUi } from 'fancy-ui-core';
 import { provideIcons } from '@ng-icons/core';
@@ -14,7 +14,7 @@ const meta: Meta<ShellComponent> = {
   parameters: { layout: 'fullscreen'},
   decorators: [
     moduleMetadata({
-      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent],
+      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, AppHeaderBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent],
       providers: [
         provideFancyUi(),
         provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})
@@ -33,6 +33,73 @@ export const CardGrid: Story = {
     props: args,
     template: `
     <fui-shell>
+      <ng-template #mainContentTemplate>
+        <fui-view>
+          <fui-view-header>
+            <fui-app-bar title="Card Grid">
+              <fui-app-bar-action iconName="matHomeOutline" label="Action 1" />
+              <fui-app-bar-action iconName="matSettingsOutline" label="Action 2" />
+              <fui-app-bar-action iconName="matArchiveOutline" label="Action 3" />
+            </fui-app-bar>
+          </fui-view-header>
+          <fui-view-main-content>
+            <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-component">
+              <fui-card>
+                <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+                <fui-card-content>Some Content</fui-card-content>
+                <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+              </fui-card>
+              <fui-card>
+                <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+                <fui-card-content>Some Content</fui-card-content>
+                <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+              </fui-card>
+              <fui-card>
+                <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+                <fui-card-content>Some Content</fui-card-content>
+                <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+              </fui-card>
+              <fui-card>
+                <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+                <fui-card-content>Some Content</fui-card-content>
+                <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+              </fui-card>
+              <fui-card>
+                <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+                <fui-card-content>Some Content</fui-card-content>
+                <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+              </fui-card>
+              <fui-card>
+                <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+                <fui-card-content>Some Content</fui-card-content>
+                <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+              </fui-card>
+              <fui-card>
+                <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+                <fui-card-content>Some Content</fui-card-content>
+                <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+              </fui-card>
+            </div>
+          </fui-view-main-content>
+        </fui-view>
+      </ng-template>
+    </fui-shell>
+    `
+  })
+};
+
+export const CardGridWithAppHeader: Story = {
+  args: {
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+    <fui-shell>
+      <ng-template #headerTemplate>
+        <fui-app-header  iconName="matHomeOutline" title="App Title" userDisplayName="John Doe" userId="john.doe@domain-very-very-long-domain.com">
+          <fui-app-header-action iconName="matLogoutOutline" label="Logout" />
+        </fui-app-header>
+      </ng-template>
       <ng-template #mainContentTemplate>
         <fui-view>
           <fui-view-header>

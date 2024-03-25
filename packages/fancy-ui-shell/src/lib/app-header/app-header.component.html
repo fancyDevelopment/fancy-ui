@@ -28,16 +28,16 @@
     </a>
     <!-- Dropdown Menu -->
     @if(_actionsDropdownIsOpen()) {
-      <div class="absolute z-20 right-0 top-10 rounded bg-primary-container text-on-primary-container shadow animate-fadeIn">
+      <div class="absolute z-20 right-0 top-10 rounded bg-primary-container ml-rim text-on-primary-container shadow animate-fadeIn max-sm:w-[calc(100vw-(theme(spacing.rim)*2))]">
         <div class="p-component">
           <div class="flex">
-              <fui-icon class="w-14 h-14 self-center" name="heroUser"></fui-icon>
-            <div class="flex flex-col self-center">
+            <fui-icon class="w-14 h-14 self-center" name="heroUser"></fui-icon>
+            <div class="flex flex-col self-center min-w-0">
               @if(userDisplayName(); as userDisplayName) {
                 <div class="text-base">{{userDisplayName}}</div>
               }
               @if(userId(); as userId) {
-                <div class="text-base">{{userId}}</div>
+                <div class="text-base truncate">{{userId}}</div>
               }
             </div>
           </div>

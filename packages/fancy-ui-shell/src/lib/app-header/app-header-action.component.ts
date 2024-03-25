@@ -7,13 +7,9 @@ import { IconComponent } from 'fancy-ui-core';
   imports: [IconComponent],
   template: `
     <ng-template #template>
-      <a class="w-12 h-12 flex justify-center relative" (click)="_onClick()" role="nonMobileAppBarAction" [attr.aria-label]="label()">
-        <div class="absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover"></div>
-        <fui-icon class="h-6 w-6 self-center" [name]="iconName()"></fui-icon>
-      </a>
     </ng-template>
     <ng-template #mobileTemplate>
-      <a class="px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded" [attr.data-testid]="label()">
+      <a class="px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded" (click)="_onClick()" [attr.data-testid]="label()">
         <div class="h-6 w-6">
             <fui-icon [name]="iconName()"></fui-icon> 
         </div>

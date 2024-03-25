@@ -1,11 +1,13 @@
 
+
+
   <div class="flex flex-col bg-background absolute inset-0 group fui-shell group" [ngClass]="{ 'with-left-template': _leftTemplate() }">
     <div>
-      @if(_topTemplate()) {
-        <ng-container [ngTemplateOutlet]="_topTemplate() ?? null" />
-      }
-    </div>
-    <div class="flex h-full">
+  @if(_headerTemplate()) {
+    <ng-container [ngTemplateOutlet]="_headerTemplate() ?? null" />
+  }
+</div>
+    <div class="flex flex-1 min-h-0">
     <div>
       @if(_leftTemplate()) {
         <ng-container [ngTemplateOutlet]="_leftTemplate() ?? null" />

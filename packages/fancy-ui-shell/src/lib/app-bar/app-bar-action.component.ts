@@ -13,7 +13,7 @@ import { IconComponent } from 'fancy-ui-core';
       </a>
     </ng-template>
     <ng-template #mobileTemplate>
-      <a class="px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded" [attr.data-testid]="label()">
+      <a class="px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded" (click)="_onClick()" [attr.data-testid]="label()">
         <div class="self-center text-xs font-semibold px-2">{{label()}}</div>
         <div class="h-6 w-6">
             <fui-icon [name]="iconName()"></fui-icon> 

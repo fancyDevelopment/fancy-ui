@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "AppBarActionComponent",
-            "id": "component-AppBarActionComponent-a93a9294245030f77ed152e93ccdd532d27aa0ddf0017ec5ba6bffcbfce77fe267076f1e0c5b06b3c8449d3cdc60fd49807c7232febe8efbfb3c53b7ac1ec21b",
+            "id": "component-AppBarActionComponent-a8aa6bcbcca7368e3b4933f363144ec2e9d7389698b9d58b9ab5059b7bcf9782441eba53ab195df011a7800043ce9a314ec4c3e8cbbb37c00d373dcf505bf4f8",
             "file": "packages/fancy-ui-shell/src/lib/app-bar/app-bar-action.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -19,7 +19,7 @@
             "selector": "fui-app-bar-action",
             "styleUrls": [],
             "styles": [],
-            "template": "<ng-template #template>\n  <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label()\">\n    <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\n    <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName()\"></fui-icon>\n  </a>\n</ng-template>\n<ng-template #mobileTemplate>\n  <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label()\">\n    <div class=\"self-center text-xs font-semibold px-2\">{{label()}}</div>\n    <div class=\"h-6 w-6\">\n        <fui-icon [name]=\"iconName()\"></fui-icon>\n    </div>\n  </a>\n</ng-template>\n",
+            "template": "<ng-template #template>\n  <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label()\">\n    <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\n    <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName()\"></fui-icon>\n  </a>\n</ng-template>\n<ng-template #mobileTemplate>\n  <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" (click)=\"_onClick()\" [attr.data-testid]=\"label()\">\n    <div class=\"self-center text-xs font-semibold px-2\">{{label()}}</div>\n    <div class=\"h-6 w-6\">\n        <fui-icon [name]=\"iconName()\"></fui-icon>\n    </div>\n  </a>\n</ng-template>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -106,7 +106,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, input, viewChild } from '@angular/core';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-bar-action',\r\n  standalone: true,\r\n  imports: [IconComponent],\r\n  template: `\r\n    <ng-template #template>\r\n      <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label()\">\r\n        <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n        <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName()\"></fui-icon>\r\n      </a>\r\n    </ng-template>\r\n    <ng-template #mobileTemplate>\r\n      <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label()\">\r\n        <div class=\"self-center text-xs font-semibold px-2\">{{label()}}</div>\r\n        <div class=\"h-6 w-6\">\r\n            <fui-icon [name]=\"iconName()\"></fui-icon> \r\n        </div>\r\n      </a>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class AppBarActionComponent {\r\n  /** The name of the icon to show for this action in the app bar. */\r\n  iconName = input('default');\r\n\r\n  /** The label of the action to show in the action dropdown in case of mobile screen layout. */\r\n  label = input('');\r\n\r\n  /** An event called if the action is tapped. */\r\n  @Output() tap: EventEmitter<void> = new EventEmitter<void>();\r\n\r\n  // The templates used by the app bar to render this action\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n  _mobileTemplate = viewChild<TemplateRef<unknown>>('mobileTemplate');\r\n\r\n  _onClick() {\r\n    this.tap.next();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, input, viewChild } from '@angular/core';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-bar-action',\r\n  standalone: true,\r\n  imports: [IconComponent],\r\n  template: `\r\n    <ng-template #template>\r\n      <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label()\">\r\n        <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n        <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName()\"></fui-icon>\r\n      </a>\r\n    </ng-template>\r\n    <ng-template #mobileTemplate>\r\n      <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" (click)=\"_onClick()\" [attr.data-testid]=\"label()\">\r\n        <div class=\"self-center text-xs font-semibold px-2\">{{label()}}</div>\r\n        <div class=\"h-6 w-6\">\r\n            <fui-icon [name]=\"iconName()\"></fui-icon> \r\n        </div>\r\n      </a>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class AppBarActionComponent {\r\n  /** The name of the icon to show for this action in the app bar. */\r\n  iconName = input('default');\r\n\r\n  /** The label of the action to show in the action dropdown in case of mobile screen layout. */\r\n  label = input('');\r\n\r\n  /** An event called if the action is tapped. */\r\n  @Output() tap: EventEmitter<void> = new EventEmitter<void>();\r\n\r\n  // The templates used by the app bar to render this action\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n  _mobileTemplate = viewChild<TemplateRef<unknown>>('mobileTemplate');\r\n\r\n  _onClick() {\r\n    this.tap.next();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -266,7 +266,7 @@
         },
         {
             "name": "AppHeaderActionComponent",
-            "id": "component-AppHeaderActionComponent-f7daa1c5724c8ad1d5bbded22786b37289f952e17dfeacbc1fb5e516afd61a62837c9d62fcd9f728d447f45b7eda2a5e9eb96f2149d011cbfe71796bbff751e3",
+            "id": "component-AppHeaderActionComponent-a0092e627f966472f8d7d6a429740109ba2a2f9a3100547cebec2ec7fb98dab6e17a3e6283a1aa890953709810ec00fe6e37787d6a43a600c62c7c71973dd815",
             "file": "packages/fancy-ui-shell/src/lib/app-header/app-header-action.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -276,7 +276,7 @@
             "selector": "fui-app-header-action",
             "styleUrls": [],
             "styles": [],
-            "template": "<ng-template #template>\n  <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label()\">\n    <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\n    <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName()\"></fui-icon>\n  </a>\n</ng-template>\n<ng-template #mobileTemplate>\n  <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label()\">\n    <div class=\"h-6 w-6\">\n        <fui-icon [name]=\"iconName()\"></fui-icon>\n    </div>\n    <div class=\"self-center text-xs font-semibold px-2\">{{label()}}</div>\n  </a>\n</ng-template>\n",
+            "template": "<ng-template #template>\n</ng-template>\n<ng-template #mobileTemplate>\n  <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" (click)=\"_onClick()\" [attr.data-testid]=\"label()\">\n    <div class=\"h-6 w-6\">\n        <fui-icon [name]=\"iconName()\"></fui-icon>\n    </div>\n    <div class=\"self-center text-xs font-semibold px-2\">{{label()}}</div>\n  </a>\n</ng-template>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -289,7 +289,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nAn event called if the action is tapped.",
                     "description": "<p>An event called if the action is tapped.</p>\n",
-                    "line": 33,
+                    "line": 29,
                     "type": "EventEmitter<void>"
                 }
             ],
@@ -302,7 +302,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 37
+                    "line": 33
                 },
                 {
                     "name": "_template",
@@ -312,7 +312,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 36
+                    "line": 32
                 },
                 {
                     "name": "iconName",
@@ -322,7 +322,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>The name of the icon to show for this action in the app bar.</p>\n",
-                    "line": 27,
+                    "line": 23,
                     "rawdescription": "\nThe name of the icon to show for this action in the app bar."
                 },
                 {
@@ -333,7 +333,7 @@
                     "type": "",
                     "optional": false,
                     "description": "<p>The label of the action to show in the action dropdown in case of mobile screen layout.</p>\n",
-                    "line": 30,
+                    "line": 26,
                     "rawdescription": "\nThe label of the action to show in the action dropdown in case of mobile screen layout."
                 }
             ],
@@ -344,7 +344,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 35,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -363,7 +363,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, input, viewChild } from '@angular/core';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-header-action',\r\n  standalone: true,\r\n  imports: [IconComponent],\r\n  template: `\r\n    <ng-template #template>\r\n      <a class=\"w-12 h-12 flex justify-center relative\" (click)=\"_onClick()\" role=\"nonMobileAppBarAction\" [attr.aria-label]=\"label()\">\r\n        <div class=\"absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n        <fui-icon class=\"h-6 w-6 self-center\" [name]=\"iconName()\"></fui-icon>\r\n      </a>\r\n    </ng-template>\r\n    <ng-template #mobileTemplate>\r\n      <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" [attr.data-testid]=\"label()\">\r\n        <div class=\"h-6 w-6\">\r\n            <fui-icon [name]=\"iconName()\"></fui-icon> \r\n        </div>\r\n        <div class=\"self-center text-xs font-semibold px-2\">{{label()}}</div>\r\n      </a>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class AppHeaderActionComponent {\r\n  /** The name of the icon to show for this action in the app bar. */\r\n  iconName = input('default');\r\n\r\n  /** The label of the action to show in the action dropdown in case of mobile screen layout. */\r\n  label = input('');\r\n\r\n  /** An event called if the action is tapped. */\r\n  @Output() tap: EventEmitter<void> = new EventEmitter<void>();\r\n\r\n  // The templates used by the app bar to render this action\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n  _mobileTemplate = viewChild<TemplateRef<unknown>>('mobileTemplate');\r\n\r\n  _onClick() {\r\n    this.tap.next();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, input, viewChild } from '@angular/core';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-app-header-action',\r\n  standalone: true,\r\n  imports: [IconComponent],\r\n  template: `\r\n    <ng-template #template>\r\n    </ng-template>\r\n    <ng-template #mobileTemplate>\r\n      <a class=\"px-2 py-2 flex cursor-pointer text-gray font-light hover:bg-hover rounded\" (click)=\"_onClick()\" [attr.data-testid]=\"label()\">\r\n        <div class=\"h-6 w-6\">\r\n            <fui-icon [name]=\"iconName()\"></fui-icon> \r\n        </div>\r\n        <div class=\"self-center text-xs font-semibold px-2\">{{label()}}</div>\r\n      </a>\r\n    </ng-template>\r\n  `\r\n})\r\nexport class AppHeaderActionComponent {\r\n  /** The name of the icon to show for this action in the app bar. */\r\n  iconName = input('default');\r\n\r\n  /** The label of the action to show in the action dropdown in case of mobile screen layout. */\r\n  label = input('');\r\n\r\n  /** An event called if the action is tapped. */\r\n  @Output() tap: EventEmitter<void> = new EventEmitter<void>();\r\n\r\n  // The templates used by the app bar to render this action\r\n  _template = viewChild<TemplateRef<unknown>>('template');\r\n  _mobileTemplate = viewChild<TemplateRef<unknown>>('mobileTemplate');\r\n\r\n  _onClick() {\r\n    this.tap.next();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -514,7 +514,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"h-10 z-20 flex justify-between text-on-primary bg-primary px-rim\">\r\n  <div class=\"flex items-center min-w-0\">\r\n    <!-- Back navigation button -->\r\n    @if(iconName(); as iconName) {\r\n      <div class=\"grid justify-items-center md:group-[.fui-shell.with-left-template]:w-20 md:group-[.fui-shell.with-left-template]:pl-0\">\r\n        <div class=\"h-6 w-6\">\r\n          <fui-icon [name]=\"iconName\"></fui-icon>\r\n        </div>\r\n      </div>\r\n    }\r\n    <!-- App title -->\r\n    <div class=\"text-base font-semibold min-w-12 truncate\">{{ title() }}</div>\r\n  </div>\r\n\r\n  <!-- Global View Actions within dropdown -->\r\n  <div class=\"flex-none flex items-center h-full relative\">\r\n    <a class=\"h-10 flex cursor-pointer max-w-48 relative\" (click)=\"_openActionsDropdown()\">\r\n      <div class=\"absolute z-0 w-full h-10 rounded transition-all duration-500 hover:bg-hover\"></div>\r\n      <div class=\"min-w-0 self-center mx-2\">\r\n        @if(userDisplayName(); as userDisplayName) {\r\n          <div class=\"text-xs truncate\">{{userDisplayName}}</div>\r\n        }\r\n        @if(userId(); as userId) {\r\n          <div class=\"text-xs truncate\">{{userId}}</div>\r\n        }\r\n      </div>\r\n      <fui-icon class=\"h-8 w-8 self-center mr-2\" name=\"heroUser\"></fui-icon>\r\n    </a>\r\n    <!-- Dropdown Menu -->\r\n    @if(_actionsDropdownIsOpen()) {\r\n      <div class=\"absolute z-20 right-0 top-10 rounded bg-primary-container text-on-primary-container shadow animate-fadeIn\">\r\n        <div class=\"p-component\">\r\n          <div class=\"flex\">\r\n              <fui-icon class=\"w-14 h-14 self-center\" name=\"heroUser\"></fui-icon>\r\n            <div class=\"flex flex-col self-center\">\r\n              @if(userDisplayName(); as userDisplayName) {\r\n                <div class=\"text-base\">{{userDisplayName}}</div>\r\n              }\r\n              @if(userId(); as userId) {\r\n                <div class=\"text-base\">{{userId}}</div>\r\n              }\r\n            </div>\r\n          </div>\r\n          <hr class=\"my-element\">\r\n          @for(action of _appHeaderActions(); track $index) {\r\n            <ng-container [ngTemplateOutlet]=\"action._mobileTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n      </div>\r\n    }\r\n  </div>\r\n\r\n</div>\r\n"
+            "templateData": "<div class=\"h-10 z-20 flex justify-between text-on-primary bg-primary px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n  <div class=\"flex items-center min-w-0\">\r\n    <!-- Back navigation button -->\r\n    @if(iconName(); as iconName) {\r\n      <div class=\"grid justify-items-center md:group-[.fui-shell.with-left-template]:w-20 pr-element\">\r\n        <div class=\"h-6 w-6\">\r\n          <fui-icon [name]=\"iconName\"></fui-icon>\r\n        </div>\r\n      </div>\r\n    }\r\n    <!-- App title -->\r\n    <div class=\"text-base font-semibold min-w-12 truncate\">{{ title() }}</div>\r\n  </div>\r\n\r\n  <!-- Global View Actions within dropdown -->\r\n  <div class=\"flex-none flex items-center h-full relative\">\r\n    <a class=\"h-10 flex cursor-pointer max-w-48 relative\" (click)=\"_openActionsDropdown()\">\r\n      <div class=\"absolute z-0 w-full h-10 rounded transition-all duration-500 hover:bg-hover\"></div>\r\n      <div class=\"min-w-0 self-center mx-2\">\r\n        @if(userDisplayName(); as userDisplayName) {\r\n          <div class=\"text-xs truncate\">{{userDisplayName}}</div>\r\n        }\r\n        @if(userId(); as userId) {\r\n          <div class=\"text-xs truncate\">{{userId}}</div>\r\n        }\r\n      </div>\r\n      <fui-icon class=\"h-8 w-8 self-center mr-2\" name=\"heroUser\"></fui-icon>\r\n    </a>\r\n    <!-- Dropdown Menu -->\r\n    @if(_actionsDropdownIsOpen()) {\r\n      <div class=\"absolute z-20 right-0 top-10 rounded bg-primary-container ml-rim text-on-primary-container shadow animate-fadeIn max-sm:w-[calc(100vw-(theme(spacing.rim)*2))]\">\r\n        <div class=\"p-component\">\r\n          <div class=\"flex\">\r\n            <fui-icon class=\"w-14 h-14 self-center\" name=\"heroUser\"></fui-icon>\r\n            <div class=\"flex flex-col self-center min-w-0\">\r\n              @if(userDisplayName(); as userDisplayName) {\r\n                <div class=\"text-base\">{{userDisplayName}}</div>\r\n              }\r\n              @if(userId(); as userId) {\r\n                <div class=\"text-base truncate\">{{userId}}</div>\r\n              }\r\n            </div>\r\n          </div>\r\n          <hr class=\"my-element\">\r\n          @for(action of _appHeaderActions(); track $index) {\r\n            <ng-container [ngTemplateOutlet]=\"action._mobileTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n      </div>\r\n    }\r\n  </div>\r\n\r\n</div>\r\n"
         },
         {
             "name": "ButtonComponent",
@@ -845,7 +845,7 @@
         },
         {
             "name": "CardHeaderComponent",
-            "id": "component-CardHeaderComponent-96d068b3436f28b8634fa8aaf60ba247b4c1d0c834d583ddebc8f2cbbf4d7862449d47f80f3c89e461fe574cf808dd386d2f51e939729d46212a3a8acbafb129",
+            "id": "component-CardHeaderComponent-33e52187f8587c253e6ff08e074aad208671cd16692a3f12aa085fe1ac53c2cd048963f40558532d0d8ffb5485c05e99a46a008f54cf73c7d619c4e90c642545",
             "file": "packages/fancy-ui-content/src/lib/card/card-header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -855,7 +855,7 @@
             "selector": "fui-card-header",
             "styleUrls": [],
             "styles": [],
-            "template": "<div class=\"flex\">\n  @if(imageSrc()) {\n    <div class=\"pr-element\">\n      <img class=\"object-cover rounded-element\n                  h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                  w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n    </div>\n  }\n  <div class=\"flex-1\">\n    <div class=\"flex items-center\">\n      <div class=\"flex-1\">\n        <div class=\"text-title font-light\">\n          @if(titleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n          }\n          @if(!titleTemplateRef() && title()) {\n            <span>{{title()}}</span>\n          }\n        </div>\n      </div>\n      @if(_showMore()) {\n        <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\n          <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n          </div>\n          <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n        </a>\n      }\n    </div>\n    @if(subtitleTemplateRef() || subtitle()) {\n      <div class=\"text-subtitle\">\n        @if(subtitleTemplateRef()) {\n          <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n        }\n        @if(!subtitleTemplateRef()) {\n          <span>{{subtitle()}}</span>\n        }\n      </div>\n    }\n  </div>\n</div>\n",
+            "template": "<div class=\"flex\">\n  @if(imageSrc()) {\n    <div class=\"pr-element\">\n      <img class=\"object-cover rounded-element\n                  h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\n                  w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\n    </div>\n  }\n  <div class=\"flex-1\">\n    <div class=\"flex items-center\">\n      <div class=\"flex-1\">\n        <div class=\"text-title font-light\">\n          @if(titleTemplateRef()) {\n            <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\n          }\n          @if(!titleTemplateRef() && title()) {\n            <span>{{title()}}</span>\n          }\n        </div>\n      </div>\n      @if(_showMore()) {\n        <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center relative\">\n          <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\n          </div>\n          <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\n        </a>\n      }\n    </div>\n    @if(subtitleTemplateRef() || subtitle()) {\n      <div class=\"text-subtitle\">\n        @if(subtitleTemplateRef()) {\n          <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\n        }\n        @if(!subtitleTemplateRef()) {\n          <span>{{subtitle()}}</span>\n        }\n      </div>\n    }\n  </div>\n</div>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -960,7 +960,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, computed, input } from '@angular/core';\r\nimport { NgTemplateOutlet } from '@angular/common';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-card-header',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, IconComponent],\r\n  template: `\r\n  <div class=\"flex\">\r\n    @if(imageSrc()) {\r\n      <div class=\"pr-element\">\r\n        <img class=\"object-cover rounded-element \r\n                    h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\r\n                    w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\r\n      </div>\r\n    }\r\n    <div class=\"flex-1\">\r\n      <div class=\"flex items-center\">\r\n        <div class=\"flex-1\">\r\n          <div class=\"text-title font-light\">\r\n            @if(titleTemplateRef()) {\r\n              <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\r\n            }\r\n            @if(!titleTemplateRef() && title()) {\r\n              <span>{{title()}}</span>\r\n            }\r\n          </div>\r\n        </div>\r\n        @if(_showMore()) {\r\n          <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center\">\r\n            <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\r\n            </div>\r\n            <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\r\n          </a>\r\n        }\r\n      </div>\r\n      @if(subtitleTemplateRef() || subtitle()) {\r\n        <div class=\"text-subtitle\">\r\n          @if(subtitleTemplateRef()) {\r\n            <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\r\n          }\r\n          @if(!subtitleTemplateRef()) {\r\n            <span>{{subtitle()}}</span>\r\n          }\r\n        </div>\r\n      }\r\n    </div>\r\n  </div>\r\n  `\r\n})\r\nexport class CardHeaderComponent {\r\n\r\n  titleTemplateRef = input<TemplateRef<unknown> | null>(null);\r\n  title = input('');\r\n\r\n  subtitleTemplateRef = input<TemplateRef<unknown> | null>(null);\r\n  subtitle = input('');\r\n\r\n  imageSrc = input<string | null>(null);\r\n\r\n  showMore = input<boolean | null>(null);\r\n\r\n  _showMore = computed(() => this.showMore() !== null ? this.showMore() : this.moreTap.observers.length)\r\n  \r\n  @Output()\r\n  moreTap = new EventEmitter();\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Output, TemplateRef, computed, input } from '@angular/core';\r\nimport { NgTemplateOutlet } from '@angular/common';\r\nimport { IconComponent } from 'fancy-ui-core';\r\n\r\n@Component({\r\n  selector: 'fui-card-header',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, IconComponent],\r\n  template: `\r\n  <div class=\"flex\">\r\n    @if(imageSrc()) {\r\n      <div class=\"pr-element\">\r\n        <img class=\"object-cover rounded-element \r\n                    h-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\r\n                    w-[calc((theme(fontSize.title)+theme(fontSize.subtitle))*theme(lineHeight.normal))]\" [src]=\"imageSrc()\">\r\n      </div>\r\n    }\r\n    <div class=\"flex-1\">\r\n      <div class=\"flex items-center\">\r\n        <div class=\"flex-1\">\r\n          <div class=\"text-title font-light\">\r\n            @if(titleTemplateRef()) {\r\n              <ng-container [ngTemplateOutlet]=\"titleTemplateRef()\"/>\r\n            }\r\n            @if(!titleTemplateRef() && title()) {\r\n              <span>{{title()}}</span>\r\n            }\r\n          </div>\r\n        </div>\r\n        @if(_showMore()) {\r\n          <a (click)=\"moreTap.emit()\" class=\" w-hover flex justify-center items-center relative\">\r\n            <div class=\"absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\">\r\n            </div>\r\n            <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\r\n          </a>\r\n        }\r\n      </div>\r\n      @if(subtitleTemplateRef() || subtitle()) {\r\n        <div class=\"text-subtitle\">\r\n          @if(subtitleTemplateRef()) {\r\n            <ng-container [ngTemplateOutlet]=\"subtitleTemplateRef()\"/>\r\n          }\r\n          @if(!subtitleTemplateRef()) {\r\n            <span>{{subtitle()}}</span>\r\n          }\r\n        </div>\r\n      }\r\n    </div>\r\n  </div>\r\n  `\r\n})\r\nexport class CardHeaderComponent {\r\n\r\n  titleTemplateRef = input<TemplateRef<unknown> | null>(null);\r\n  title = input('');\r\n\r\n  subtitleTemplateRef = input<TemplateRef<unknown> | null>(null);\r\n  subtitle = input('');\r\n\r\n  imageSrc = input<string | null>(null);\r\n\r\n  showMore = input<boolean | null>(null);\r\n\r\n  _showMore = computed(() => this.showMore() !== null ? this.showMore() : this.moreTap.observers.length)\r\n  \r\n  @Output()\r\n  moreTap = new EventEmitter();\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1345,7 +1345,7 @@
                 "line": 27
             },
             "extends": [],
-            "templateData": "@if(dataSource(); as data) {\r\n    <div class=\"md:hidden grid gap-component\">\r\n        @for(cardData of data; track $index) {\r\n            <fui-card>\r\n                @if(_datasetCardHeader(); as cardHeader) {\r\n                    <ng-container [ngTemplateOutlet]=\"cardHeader._template() ?? null\"\r\n                                  [ngTemplateOutletContext]=\"{ $implicit: cardData, more: onMoreTap}\"/>\r\n                }\r\n                <fui-card-content>\r\n                    <div class=\"grid grid-cols-12\">\r\n                        @for(item of _datasetCardItems(); track $index) {\r\n                            <ng-container [ngTemplateOutlet]=\"item.cardTemplate ?? null\"\r\n                                          [ngTemplateOutletContext]=\"{ $implicit: cardData }\" />\r\n                        }\r\n                    </div>\r\n                </fui-card-content>\r\n            </fui-card>\r\n        }\r\n    </div>\r\n\r\n    <table class=\"w-full hidden md:table\">\r\n        <thead>\r\n            <tr class=\"border-b\">\r\n                @for(item of _datasetTableItems(); track $index) {\r\n                    <th class=\"text-left\">{{ item.label() }}</th>\r\n                }\r\n                @if(moreTap.observers.length) {\r\n                    <th class=\"text-left\"></th> \r\n                }\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            @for(rowData of data; track $index) {\r\n                <tr>\r\n                    @for(item of _datasetTableItems(); track $index) {\r\n                        <td>\r\n                            <ng-container [ngTemplateOutlet]=\"item.tableTemplate ?? null\"\r\n                                          [ngTemplateOutletContext]=\"{ $implicit: rowData }\" />\r\n                        </td>\r\n                    }\r\n                    @if(moreTap.observers.length) {\r\n                        <td class=\"flex justify-end min-h-hover\">\r\n                            <a (click)=\"onMoreTap(rowData)\" class=\"w-hover flex justify-center items-center\">\r\n                                <div class=\"absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n                                <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\r\n                            </a>\r\n                        </td>\r\n                    }\r\n                </tr>\r\n            }\r\n        </tbody>\r\n    </table>\r\n}\r\n"
+            "templateData": "@if(dataSource(); as data) {\r\n    <div class=\"md:hidden grid gap-component\">\r\n        @for(cardData of data; track $index) {\r\n            <fui-card>\r\n                @if(_datasetCardHeader(); as cardHeader) {\r\n                    <ng-container [ngTemplateOutlet]=\"cardHeader._template() ?? null\"\r\n                                  [ngTemplateOutletContext]=\"{ $implicit: cardData, more: onMoreTap}\"/>\r\n                }\r\n                <fui-card-content>\r\n                    <div class=\"grid grid-cols-12\">\r\n                        @for(item of _datasetCardItems(); track $index) {\r\n                            <ng-container [ngTemplateOutlet]=\"item.cardTemplate ?? null\"\r\n                                          [ngTemplateOutletContext]=\"{ $implicit: cardData }\" />\r\n                        }\r\n                    </div>\r\n                </fui-card-content>\r\n            </fui-card>\r\n        }\r\n    </div>\r\n\r\n    <table class=\"w-full hidden md:table\">\r\n        <thead>\r\n            <tr class=\"border-b\">\r\n                @for(item of _datasetTableItems(); track $index) {\r\n                    <th class=\"text-left\">{{ item.label() }}</th>\r\n                }\r\n                @if(moreTap.observers.length) {\r\n                    <th class=\"text-left\"></th> \r\n                }\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            @for(rowData of data; track $index) {\r\n                <tr class=\"even:bg-shade\">\r\n                    @for(item of _datasetTableItems(); track $index) {\r\n                        <td>\r\n                            <ng-container [ngTemplateOutlet]=\"item.tableTemplate ?? null\"\r\n                                          [ngTemplateOutletContext]=\"{ $implicit: rowData }\" />\r\n                        </td>\r\n                    }\r\n                    @if(moreTap.observers.length) {\r\n                        <td class=\"flex justify-end min-h-hover\">\r\n                            <a (click)=\"onMoreTap(rowData)\" class=\"w-hover flex justify-center items-center\">\r\n                                <div class=\"absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n                                <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\r\n                            </a>\r\n                        </td>\r\n                    }\r\n                </tr>\r\n            }\r\n        </tbody>\r\n    </table>\r\n}\r\n"
         },
         {
             "name": "DatasetItemImageComponent",
@@ -2307,7 +2307,7 @@
         },
         {
             "name": "ShellComponent",
-            "id": "component-ShellComponent-6a666cbb083e39a85c0d227e4bcff0de14f0b28553b7afcb38c96f5473daa5b25f72c98c53db5571245dc88baa90cee11547a0e03b04074dabeb5effae2f3c3e",
+            "id": "component-ShellComponent-631a0e9a9b8b1fe560461efe21adf6b14c12f2828f5460d7aa82834fcfc78a0f8821a1fb61485627bdeef25f2a41e62614f223bde82c04ae453a56e411ffe61a",
             "file": "packages/fancy-ui-shell/src/lib/shell/shell.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2336,6 +2336,16 @@
                     "line": 14
                 },
                 {
+                    "name": "_headerTemplate",
+                    "defaultValue": "contentChild<TemplateRef<unknown>>('headerTemplate')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
                     "name": "_leftTemplate",
                     "defaultValue": "contentChild<TemplateRef<unknown>>('leftTemplate')",
                     "deprecated": false,
@@ -2354,16 +2364,6 @@
                     "optional": false,
                     "description": "",
                     "line": 13
-                },
-                {
-                    "name": "_topTemplate",
-                    "defaultValue": "contentChild<TemplateRef<unknown>>('topTemplate')",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 11
                 }
             ],
             "methodsClass": [],
@@ -2383,12 +2383,12 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, TemplateRef, contentChild } from '@angular/core';\r\nimport { NgClass, NgTemplateOutlet } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'fui-shell',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, NgClass],\r\n  templateUrl: './shell.component.html'\r\n})\r\nexport class ShellComponent {\r\n  _topTemplate = contentChild<TemplateRef<unknown>>('topTemplate');\r\n  _leftTemplate = contentChild<TemplateRef<unknown>>('leftTemplate');\r\n  _mainContentTemplate = contentChild<TemplateRef<unknown>>('mainContentTemplate');\r\n  _bottomTemplate = contentChild<TemplateRef<unknown>>('bottomTemplate');\r\n}\r\n",
+            "sourceCode": "import { Component, TemplateRef, contentChild } from '@angular/core';\r\nimport { NgClass, NgTemplateOutlet } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'fui-shell',\r\n  standalone: true,\r\n  imports: [NgTemplateOutlet, NgClass],\r\n  templateUrl: './shell.component.html'\r\n})\r\nexport class ShellComponent {\r\n  _headerTemplate = contentChild<TemplateRef<unknown>>('headerTemplate');\r\n  _leftTemplate = contentChild<TemplateRef<unknown>>('leftTemplate');\r\n  _mainContentTemplate = contentChild<TemplateRef<unknown>>('mainContentTemplate');\r\n  _bottomTemplate = contentChild<TemplateRef<unknown>>('bottomTemplate');\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "\r\n  <div class=\"flex flex-col bg-background absolute inset-0 group fui-shell group\" [ngClass]=\"{ 'with-left-template': _leftTemplate() }\">\r\n    <div>\r\n      @if(_topTemplate()) {\r\n        <ng-container [ngTemplateOutlet]=\"_topTemplate() ?? null\" />\r\n      }\r\n    </div>\r\n    <div class=\"flex h-full\">\r\n    <div>\r\n      @if(_leftTemplate()) {\r\n        <ng-container [ngTemplateOutlet]=\"_leftTemplate() ?? null\" />\r\n      }\r\n    </div>\r\n    <div class=\"flex-1 min-w-0\">\r\n      <div class=\"flex flex-col h-full\">\r\n        <div class=\"flex-grow overflow-hidden md:pl-0\">\r\n          @if(_mainContentTemplate()) {\r\n            <ng-container [ngTemplateOutlet]=\"_mainContentTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n        <div>\r\n          @if(_bottomTemplate()) {\r\n            <ng-container [ngTemplateOutlet]=\"_bottomTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  </div>\r\n"
+            "templateData": "<!-- <div>\r\n  @if(_headerTemplate()) {\r\n    <ng-container [ngTemplateOutlet]=\"_headerTemplate() ?? null\" />\r\n  }\r\n</div> -->\r\n<div class=\"relative\">\r\n  <div>Header</div>\r\n\r\n\r\n  <div class=\"flex flex-col bg-background fixed group fui-shell group\" [ngClass]=\"{ 'with-left-template': _leftTemplate() }\">\r\n    <div class=\"flex h-full\">\r\n    <div>\r\n      @if(_leftTemplate()) {\r\n        <ng-container [ngTemplateOutlet]=\"_leftTemplate() ?? null\" />\r\n      }\r\n    </div>\r\n    <div class=\"flex-1 min-w-0\">\r\n      <div class=\"flex flex-col h-full\">\r\n        <div class=\"flex-grow overflow-hidden md:pl-0\">\r\n          @if(_mainContentTemplate()) {\r\n            <ng-container [ngTemplateOutlet]=\"_mainContentTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n        <div>\r\n          @if(_bottomTemplate()) {\r\n            <ng-container [ngTemplateOutlet]=\"_bottomTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "SliderComponent",
@@ -3379,7 +3379,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"flex flex-col h-full\">\r\n  @if(_viewHeaderComponent()) {\r\n    <div class=\"px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewHeaderComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n  <div class=\"flex-1 overflow-y-auto fui-scroll px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n    <div class=\"pb-component\">\r\n      @if(_viewMainContentComponent()) {\r\n        <ng-container [ngTemplateOutlet]=\"_viewMainContentComponent()?._template() ?? null\" />\r\n      }\r\n    </div>\r\n  </div>\r\n  @if(_viewFooterComponent()) {\r\n    <div class=\"px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewFooterComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n</div>\r\n"
+            "templateData": "<div class=\"flex flex-col h-full\">\r\n  @if(_viewHeaderComponent()) {\r\n    <div class=\"px-rim md:group-[.fui-shell.with-left-template]:pl-0 mb-component\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewHeaderComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n  <div class=\"flex-1 overflow-y-auto fui-scroll px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n    <div>\r\n      @if(_viewMainContentComponent()) {\r\n        <ng-container [ngTemplateOutlet]=\"_viewMainContentComponent()?._template() ?? null\" />\r\n      }\r\n    </div>\r\n  </div>\r\n  @if(_viewFooterComponent()) {\r\n    <div class=\"px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewFooterComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n</div>\r\n"
         },
         {
             "name": "ViewFooterComponent",
@@ -3577,21 +3577,21 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
             },
             {
                 "name": "Basic",
@@ -3647,21 +3647,21 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    iconName: 'matHomeOutline' as any,\r\n    title: 'App Title' as any,\r\n    userDisplayName: 'John Doe' as any,\r\n    userId: 'john.doe@domain.com' as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-header  [iconName]=\"iconName\" [title]=\"title\" [userDisplayName]=\"userDisplayName\" [userId]=\"userId\">\r\n        <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n      </fui-app-header>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -3702,6 +3702,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-3 lg:grid-cols-6 gap-component\">\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "CardGridWithAppHeader",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #headerTemplate>\r\n        <fui-app-header  iconName=\"matHomeOutline\" title=\"App Title\" userDisplayName=\"John Doe\" userId=\"john.doe@domain-very-very-long-domain.com\">\r\n          <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n        </fui-app-header>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-3 lg:grid-cols-6 gap-component\">\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "CardInContent",
@@ -3831,7 +3841,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<ShellComponent>",
-                "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, AppHeaderBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -3897,21 +3907,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<ButtonComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Core/Button',\r\n  component: ButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ButtonComponent]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<DatasetComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ButtonComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Core/Button',\r\n  component: ButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ButtonComponent]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -3967,21 +3977,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<NavBarComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<AppHeaderComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Shell/App Header',\r\n  component: AppHeaderComponent,\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppHeaderComponent, AppHeaderActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matLogoutOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<NavBarComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -4091,7 +4101,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #topTemplate>\r\n        <fui-app-header  iconName=\"matHomeOutline\" title=\"App Title\" userDisplayName=\"John Doe\" userId=\"john.doe@domain.com\">\r\n          <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n        </fui-app-header>\r\n      </ng-template>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n\r\n      <ng-template #mainContentTemplate>\r\n\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            Main content here!\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n\r\n      </ng-template>\r\n\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #headerTemplate>\r\n        <fui-app-header  iconName=\"matHomeOutline\" title=\"App Title\" userDisplayName=\"John Doe\" userId=\"john.doe@domain-very-very-long-domain.com\">\r\n          <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n        </fui-app-header>\r\n      </ng-template>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n\r\n      <ng-template #mainContentTemplate>\r\n\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            Main content here!\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n\r\n      </ng-template>\r\n\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "UpToThreeActions",
@@ -4249,8 +4259,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<ButtonComponent>",
-                "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
+                "rawtype": "StoryObj<DatasetComponent>",
+                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4260,8 +4270,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<DatasetComponent>",
-                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                "rawtype": "StoryObj<ButtonComponent>",
+                "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4326,8 +4336,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<NavBarComponent>",
-                "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
+                "rawtype": "StoryObj<AppHeaderComponent>",
+                "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4337,8 +4347,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<AppHeaderComponent>",
-                "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                "rawtype": "StoryObj<NavBarComponent>",
+                "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4540,38 +4550,6 @@
                     "defaultValue": "{\r\n  title: 'Components/Content/Tabs',\r\n  component: TabsComponent,\r\n  subcomponents: { TabsItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TabsComponent, TabsItemComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
-            "packages/fancy-ui-core/src/lib/button/button.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
-                },
-                {
-                    "name": "Disabled",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n    disabled: true as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" [disabled]=\"disabled\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<ButtonComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Core/Button',\r\n  component: ButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ButtonComponent]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
             "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts": [
                 {
                     "name": "Basic",
@@ -4612,6 +4590,38 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    onMoreTapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\" (moreTap)=\"onMoreTapped($event)\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+                }
+            ],
+            "packages/fancy-ui-core/src/lib/button/button.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
+                },
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n    disabled: true as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" [disabled]=\"disabled\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ButtonComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Core/Button',\r\n  component: ButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ButtonComponent]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/fancy-ui-forms/src/lib/radio-button/radio-button.stories.ts": [
@@ -4764,28 +4774,6 @@
                     "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"matHomeOutline\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"heroUsers\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"matSettingsOutline\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    // const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    // userEvent.click(action2);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    // const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    // userEvent.click(action3);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
                 }
             ],
-            "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<NavBarComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
             "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts": [
                 {
                     "name": "Basic",
@@ -4806,6 +4794,28 @@
                     "deprecationMessage": "",
                     "type": "Meta<AppHeaderComponent>",
                     "defaultValue": "{\r\n  title: 'Components/Shell/App Header',\r\n  component: AppHeaderComponent,\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppHeaderComponent, AppHeaderActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matLogoutOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
+            "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-nav-bar>\r\n        <fui-nav-bar-item iconName=\"matHomeOutline\" label=\"Test1\" />\r\n        <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n        <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n    </fui-nav-bar>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<NavBarComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Shell/Nav Bar',\r\n  component: NavBarComponent,\r\n  subcomponents: { NavBarItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [NavBarComponent, NavBarItemComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/fancy-ui-shell/src/lib/nav-rail/nav-rail.stories.ts": [
@@ -4896,6 +4906,16 @@
                     "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-3 lg:grid-cols-6 gap-component\">\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
                 },
                 {
+                    "name": "CardGridWithAppHeader",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #headerTemplate>\r\n        <fui-app-header  iconName=\"matHomeOutline\" title=\"App Title\" userDisplayName=\"John Doe\" userId=\"john.doe@domain-very-very-long-domain.com\">\r\n          <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n        </fui-app-header>\r\n      </ng-template>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card Grid\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-3 lg:grid-cols-6 gap-component\">\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-image src=\"https://placehold.co/300x150?text=Your+Image\" title=\"Card Title\" subtitle=\"Subtitle\"/>\r\n                <fui-card-content>Some Content</fui-card-content>\r\n                <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                },
+                {
                     "name": "CardInContent",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -4923,7 +4943,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<ShellComponent>",
-                    "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                    "defaultValue": "{\r\n  title: 'Compositions/Card Layouts',\r\n  component: ShellComponent,\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, AppHeaderBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "apps/storybook-host/.storybook/main.ts": [
@@ -5029,7 +5049,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #topTemplate>\r\n        <fui-app-header  iconName=\"matHomeOutline\" title=\"App Title\" userDisplayName=\"John Doe\" userId=\"john.doe@domain.com\">\r\n          <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n        </fui-app-header>\r\n      </ng-template>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n\r\n      <ng-template #mainContentTemplate>\r\n\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            Main content here!\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n\r\n      </ng-template>\r\n\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #headerTemplate>\r\n        <fui-app-header  iconName=\"matHomeOutline\" title=\"App Title\" userDisplayName=\"John Doe\" userId=\"john.doe@domain-very-very-long-domain.com\">\r\n          <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n        </fui-app-header>\r\n      </ng-template>\r\n      <ng-template #leftTemplate>\r\n        <div class=\"hidden md:block h-full\">\r\n          <fui-nav-rail>\r\n            <fui-nav-rail-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-rail-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-rail-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-rail>\r\n        </div>\r\n      </ng-template>\r\n\r\n      <ng-template #mainContentTemplate>\r\n\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Card View\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            Main content here!\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n\r\n      </ng-template>\r\n\r\n      <ng-template #bottomTemplate>\r\n        <div class=\"md:hidden\">\r\n          <fui-nav-bar>\r\n            <fui-nav-bar-item iconName=\"matHomeOutline\" [isActive]=\"true\" label=\"Test1\" />\r\n            <fui-nav-bar-item iconName=\"matSettingsOutline\" label=\"Test2\" />\r\n            <fui-nav-bar-item iconName=\"matArchiveOutline\" label=\"Test3\" />\r\n          </fui-nav-bar>\r\n        </div>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
                 }
             ],
             "apps/storybook-host/.storybook/preview.ts": [
@@ -5165,19 +5185,6 @@
                     "kind": 183
                 }
             ],
-            "packages/fancy-ui-core/src/lib/button/button.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<ButtonComponent>",
-                    "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts": [
                 {
                     "name": "Story",
@@ -5185,6 +5192,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<DatasetComponent>",
                     "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/fancy-ui-core/src/lib/button/button.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ButtonComponent>",
+                    "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5256,19 +5276,6 @@
                     "kind": 183
                 }
             ],
-            "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<NavBarComponent>",
-                    "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts": [
                 {
                     "name": "Story",
@@ -5276,6 +5283,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<AppHeaderComponent>",
                     "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<NavBarComponent>",
+                    "file": "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5414,6 +5434,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "CardGrid",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "apps/storybook-host/stories/compositions.card-layouts.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CardGridWithAppHeader",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

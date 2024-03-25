@@ -28,7 +28,7 @@ import { IconComponent } from 'fancy-ui-core';
           </div>
         </div>
         @if(_showMore()) {
-          <a (click)="moreTap.emit()" class=" w-hover flex justify-center items-center">
+          <a (click)="moreTap.emit()" class=" w-hover flex justify-center items-center relative">
             <div class="absolute w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover">
             </div>
             <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />

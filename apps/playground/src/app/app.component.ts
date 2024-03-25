@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IconComponent } from 'fancy-ui-core';
-import { AppBarActionComponent, AppBarComponent } from 'fancy-ui-shell';
+import { ButtonComponent, IconComponent } from 'fancy-ui-core';
+import { AppBarBundle, AppHeaderBundle, ShellBundle, ViewBundle } from 'fancy-ui-shell';
+import { CardBundle } from 'fancy-ui-content';
 
 @Component({
-  standalone: true,
-  imports: [RouterModule, IconComponent, AppBarComponent, AppBarActionComponent],
-  selector: 'org-root',
-  templateUrl: './app.component.html',
+    standalone: true,
+    selector: 'org-root',
+    templateUrl: './app.component.html',
+    imports: [RouterModule, IconComponent, ButtonComponent, ShellBundle, AppHeaderBundle, AppBarBundle, ViewBundle, CardBundle]
 })
 export class AppComponent {
   title = 'playground';

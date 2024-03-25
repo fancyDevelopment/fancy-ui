@@ -1,5 +1,57 @@
-<fui-app-bar title="Card View">
-  <fui-app-bar-action iconName="heroUsers" label="Action 1" />
-  <fui-app-bar-action iconName="heroUsers" label="Action 2" />
-  <fui-app-bar-action iconName="heroUsers" label="Action 3" />
-</fui-app-bar>
+<fui-shell>
+  <ng-template #headerTemplate>
+    <fui-app-header  iconName="matHomeOutline" title="App Title" userDisplayName="John Doe" userId="john.doe@domain-very-very-long-domain.com">
+      <fui-app-header-action iconName="matLogoutOutline" label="Logout" />
+    </fui-app-header>
+  </ng-template>
+  <ng-template #mainContentTemplate>
+    <fui-view>
+      <fui-view-header>
+        <fui-app-bar title="Card Grid">
+          <fui-app-bar-action iconName="matHomeOutline" label="Action 1" />
+          <fui-app-bar-action iconName="matSettingsOutline" label="Action 2" />
+          <fui-app-bar-action iconName="matArchiveOutline" label="Action 3" />
+        </fui-app-bar>
+      </fui-view-header>
+      <fui-view-main-content>
+        <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-component">
+          <fui-card>
+            <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+            <fui-card-content>Some Content</fui-card-content>
+            <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+          </fui-card>
+          <fui-card>
+            <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+            <fui-card-content>Some Content</fui-card-content>
+            <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+          </fui-card>
+          <fui-card>
+            <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+            <fui-card-content>Some Content</fui-card-content>
+            <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+          </fui-card>
+          <fui-card>
+            <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+            <fui-card-content>Some Content</fui-card-content>
+            <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+          </fui-card>
+          <fui-card>
+            <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+            <fui-card-content>Some Content</fui-card-content>
+            <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+          </fui-card>
+          <fui-card>
+            <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+            <fui-card-content>Some Content</fui-card-content>
+            <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+          </fui-card>
+          <fui-card>
+            <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
+            <fui-card-content>Some Content</fui-card-content>
+            <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+          </fui-card>
+        </div>
+      </fui-view-main-content>
+    </fui-view>
+  </ng-template>
+</fui-shell>

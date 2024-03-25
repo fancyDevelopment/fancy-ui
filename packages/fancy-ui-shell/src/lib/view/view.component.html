@@ -4,8 +4,8 @@
       <ng-container [ngTemplateOutlet]="_viewHeaderComponent()?._template() ?? null" />
     </div>
   }
-  <div class="flex-1 overflow-y-auto fui-scroll px-rim md:group-[.fui-shell.with-left-template]:pl-0">
-    <div class="pb-component">
+  <div class="flex-1 overflow-y-auto fui-scroll px-rim md:group-[.fui-shell.with-left-template]:pl-0 py-component">
+    <div>
       @if(_viewMainContentComponent()) {
         <ng-container [ngTemplateOutlet]="_viewMainContentComponent()?._template() ?? null" />
       }
