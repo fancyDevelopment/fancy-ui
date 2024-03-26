@@ -12,4 +12,8 @@ import { CardBundle } from 'fancy-ui-content';
 })
 export class AppComponent {
   title = 'playground';
+
+  onButtonTap() {
+    console.log('Button tapped!');
+  }
 }

@@ -1345,7 +1345,7 @@
                 "line": 27
             },
             "extends": [],
-            "templateData": "@if(dataSource(); as data) {\r\n    <div class=\"md:hidden grid gap-component\">\r\n        @for(cardData of data; track $index) {\r\n            <fui-card>\r\n                @if(_datasetCardHeader(); as cardHeader) {\r\n                    <ng-container [ngTemplateOutlet]=\"cardHeader._template() ?? null\"\r\n                                  [ngTemplateOutletContext]=\"{ $implicit: cardData, more: onMoreTap}\"/>\r\n                }\r\n                <fui-card-content>\r\n                    <div class=\"grid grid-cols-12\">\r\n                        @for(item of _datasetCardItems(); track $index) {\r\n                            <ng-container [ngTemplateOutlet]=\"item.cardTemplate ?? null\"\r\n                                          [ngTemplateOutletContext]=\"{ $implicit: cardData }\" />\r\n                        }\r\n                    </div>\r\n                </fui-card-content>\r\n            </fui-card>\r\n        }\r\n    </div>\r\n\r\n    <table class=\"w-full hidden md:table\">\r\n        <thead>\r\n            <tr class=\"border-b\">\r\n                @for(item of _datasetTableItems(); track $index) {\r\n                    <th class=\"text-left\">{{ item.label() }}</th>\r\n                }\r\n                @if(moreTap.observers.length) {\r\n                    <th class=\"text-left\"></th> \r\n                }\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            @for(rowData of data; track $index) {\r\n                <tr class=\"even:bg-shade\">\r\n                    @for(item of _datasetTableItems(); track $index) {\r\n                        <td>\r\n                            <ng-container [ngTemplateOutlet]=\"item.tableTemplate ?? null\"\r\n                                          [ngTemplateOutletContext]=\"{ $implicit: rowData }\" />\r\n                        </td>\r\n                    }\r\n                    @if(moreTap.observers.length) {\r\n                        <td class=\"flex justify-end min-h-hover\">\r\n                            <a (click)=\"onMoreTap(rowData)\" class=\"w-hover flex justify-center items-center\">\r\n                                <div class=\"absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n                                <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\r\n                            </a>\r\n                        </td>\r\n                    }\r\n                </tr>\r\n            }\r\n        </tbody>\r\n    </table>\r\n}\r\n"
+            "templateData": "@if(dataSource(); as data) {\r\n    <div class=\"md:hidden grid gap-component\">\r\n        @for(cardData of data; track $index) {\r\n            <fui-card>\r\n                @if(_datasetCardHeader(); as cardHeader) {\r\n                    <ng-container [ngTemplateOutlet]=\"cardHeader._template() ?? null\"\r\n                                  [ngTemplateOutletContext]=\"{ $implicit: cardData, more: onMoreTap}\"/>\r\n                }\r\n                <fui-card-content>\r\n                    <div class=\"grid grid-cols-12\">\r\n                        @for(item of _datasetCardItems(); track $index) {\r\n                            <ng-container [ngTemplateOutlet]=\"item.cardTemplate ?? null\"\r\n                                          [ngTemplateOutletContext]=\"{ $implicit: cardData }\" />\r\n                        }\r\n                    </div>\r\n                </fui-card-content>\r\n            </fui-card>\r\n        }\r\n    </div>\r\n\r\n    <table class=\"w-full hidden md:table\">\r\n        <thead>\r\n            <tr class=\"border-b\">\r\n                @for(item of _datasetTableItems(); track $index) {\r\n                    <th class=\"text-left\">{{ item.label() }}</th>\r\n                }\r\n                @if(moreTap.observers.length) {\r\n                    <th class=\"text-left\"></th> \r\n                }\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            @for(rowData of data; track $index) {\r\n                <tr class=\"even:bg-shade\">\r\n                    @for(item of _datasetTableItems(); track $index) {\r\n                        <td>\r\n                            <ng-container [ngTemplateOutlet]=\"item.tableTemplate ?? null\"\r\n                                          [ngTemplateOutletContext]=\"{ $implicit: rowData }\" />\r\n                        </td>\r\n                    }\r\n                    @if(moreTap.observers.length) {\r\n                        <td class=\"flex justify-end min-h-hover\">\r\n                            <a (click)=\"onMoreTap(rowData)\" class=\"w-hover flex justify-center items-center relative\">\r\n                                <div class=\"absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover\"></div>\r\n                                <fui-icon class=\"h-icon w-icon\" name=\"matMoreVertOutline\" />\r\n                            </a>\r\n                        </td>\r\n                    }\r\n                </tr>\r\n            }\r\n        </tbody>\r\n    </table>\r\n}\r\n"
         },
         {
             "name": "DatasetItemImageComponent",
@@ -2388,7 +2388,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<!-- <div>\r\n  @if(_headerTemplate()) {\r\n    <ng-container [ngTemplateOutlet]=\"_headerTemplate() ?? null\" />\r\n  }\r\n</div> -->\r\n<div class=\"relative\">\r\n  <div>Header</div>\r\n\r\n\r\n  <div class=\"flex flex-col bg-background fixed group fui-shell group\" [ngClass]=\"{ 'with-left-template': _leftTemplate() }\">\r\n    <div class=\"flex h-full\">\r\n    <div>\r\n      @if(_leftTemplate()) {\r\n        <ng-container [ngTemplateOutlet]=\"_leftTemplate() ?? null\" />\r\n      }\r\n    </div>\r\n    <div class=\"flex-1 min-w-0\">\r\n      <div class=\"flex flex-col h-full\">\r\n        <div class=\"flex-grow overflow-hidden md:pl-0\">\r\n          @if(_mainContentTemplate()) {\r\n            <ng-container [ngTemplateOutlet]=\"_mainContentTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n        <div>\r\n          @if(_bottomTemplate()) {\r\n            <ng-container [ngTemplateOutlet]=\"_bottomTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "\r\n\r\n\r\n  <div class=\"flex flex-col bg-background absolute inset-0 group fui-shell group\" [ngClass]=\"{ 'with-left-template': _leftTemplate() }\">\r\n    <div>\r\n  @if(_headerTemplate()) {\r\n    <ng-container [ngTemplateOutlet]=\"_headerTemplate() ?? null\" />\r\n  }\r\n</div>\r\n    <div class=\"flex flex-1 min-h-0\">\r\n    <div>\r\n      @if(_leftTemplate()) {\r\n        <ng-container [ngTemplateOutlet]=\"_leftTemplate() ?? null\" />\r\n      }\r\n    </div>\r\n    <div class=\"flex-1 min-w-0\">\r\n      <div class=\"flex flex-col h-full\">\r\n        <div class=\"flex-grow overflow-hidden md:pl-0\">\r\n          @if(_mainContentTemplate()) {\r\n            <ng-container [ngTemplateOutlet]=\"_mainContentTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n        <div>\r\n          @if(_bottomTemplate()) {\r\n            <ng-container [ngTemplateOutlet]=\"_bottomTemplate() ?? null\" />\r\n          }\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  </div>\r\n"
         },
         {
             "name": "SliderComponent",
@@ -3379,7 +3379,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"flex flex-col h-full\">\r\n  @if(_viewHeaderComponent()) {\r\n    <div class=\"px-rim md:group-[.fui-shell.with-left-template]:pl-0 mb-component\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewHeaderComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n  <div class=\"flex-1 overflow-y-auto fui-scroll px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n    <div>\r\n      @if(_viewMainContentComponent()) {\r\n        <ng-container [ngTemplateOutlet]=\"_viewMainContentComponent()?._template() ?? null\" />\r\n      }\r\n    </div>\r\n  </div>\r\n  @if(_viewFooterComponent()) {\r\n    <div class=\"px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewFooterComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n</div>\r\n"
+            "templateData": "<div class=\"flex flex-col h-full\">\r\n  @if(_viewHeaderComponent()) {\r\n    <div class=\"px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewHeaderComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n  <div class=\"flex-1 overflow-y-auto fui-scroll px-rim md:group-[.fui-shell.with-left-template]:pl-0 py-component\">\r\n    <div>\r\n      @if(_viewMainContentComponent()) {\r\n        <ng-container [ngTemplateOutlet]=\"_viewMainContentComponent()?._template() ?? null\" />\r\n      }\r\n    </div>\r\n  </div>\r\n  @if(_viewFooterComponent()) {\r\n    <div class=\"px-rim md:group-[.fui-shell.with-left-template]:pl-0\">\r\n      <ng-container [ngTemplateOutlet]=\"_viewFooterComponent()?._template() ?? null\" />\r\n    </div>\r\n  }\r\n</div>\r\n"
         },
         {
             "name": "ViewFooterComponent",
@@ -3547,16 +3547,6 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    activeBlade: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swipeable-tabs [activeBlade]=\"activeBlade\">\r\n        <fui-swipeable-tabs-blade label=\"First\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-3 my-component\">\r\n            <fui-metric label=\"First Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n            <fui-metric label=\"Second Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"false\" />\r\n            <fui-metric label=\"Third Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Second\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">Second Blade</p>\r\n            <p>With form elements</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-6 gap-component my-component\">\r\n            <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n            <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Third\">\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swipeable-tabs-blade>\r\n      </fui-swipeable-tabs>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/fancy-ui-content/src/lib/swiper/swiper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -3567,21 +3557,11 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
+                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    activeTabIndex: 1 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-tabs [(activeTabIndex)]=\"activeTabIndex\">\r\n        <fui-tabs-item label=\"First\" />\r\n        <fui-tabs-item label=\"Second\" />\r\n        <fui-tabs-item label=\"Third\" />\r\n        <fui-tabs-item label=\"Fourth\" />\r\n      </fui-tabs>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    activeBlade: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swipeable-tabs [activeBlade]=\"activeBlade\">\r\n        <fui-swipeable-tabs-blade label=\"First\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-3 my-component\">\r\n            <fui-metric label=\"First Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n            <fui-metric label=\"Second Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"false\" />\r\n            <fui-metric label=\"Third Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Second\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">Second Blade</p>\r\n            <p>With form elements</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-6 gap-component my-component\">\r\n            <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n            <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Third\">\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swipeable-tabs-blade>\r\n      </fui-swipeable-tabs>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -3592,6 +3572,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any,\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    activeTabIndex: 1 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-tabs [(activeTabIndex)]=\"activeTabIndex\">\r\n        <fui-tabs-item label=\"First\" />\r\n        <fui-tabs-item label=\"Second\" />\r\n        <fui-tabs-item label=\"Third\" />\r\n        <fui-tabs-item label=\"Fourth\" />\r\n      </fui-tabs>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -3692,6 +3682,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-view class=\"block h-screen\">\r\n        <fui-view-header>\r\n          <div class=\"bg-secondary text-on-secondary h-full flex justify-around p-5\">\r\n            Header\r\n          </div>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          <div class=\"bg-primary text-on-primary h-full flex justify-around p-5\">\r\n            Main Content\r\n          </div>\r\n        </fui-view-main-content>\r\n        <fui-view-footer>\r\n          <div class=\"bg-accent text-on-accent flex justify-around p-5\">\r\n            Footer\r\n          </div>\r\n        </fui-view-footer>\r\n      </fui-view>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "CardGrid",
@@ -3877,16 +3877,6 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<SwipeableTabsComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Content/SwipeableTabs',\r\n  component: SwipeableTabsComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwipeableTabsComponent, SwipeableTabsBladeComponent, MetricComponent, TextBoxComponent, SwitchComponent, SliderComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "packages/fancy-ui-content/src/lib/swiper/swiper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -3897,21 +3887,11 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
+                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<TabsComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Content/Tabs',\r\n  component: TabsComponent,\r\n  subcomponents: { TabsItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TabsComponent, TabsItemComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<DatasetComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "type": "Meta<SwipeableTabsComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Content/SwipeableTabs',\r\n  component: SwipeableTabsComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwipeableTabsComponent, SwipeableTabsBladeComponent, MetricComponent, TextBoxComponent, SwitchComponent, SliderComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -3922,6 +3902,16 @@
                 "deprecationMessage": "",
                 "type": "Meta<ButtonComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Core/Button',\r\n  component: ButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ButtonComponent]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<TabsComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Content/Tabs',\r\n  component: TabsComponent,\r\n  subcomponents: { TabsItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TabsComponent, TabsItemComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -4022,6 +4012,16 @@
                 "deprecationMessage": "",
                 "type": "Meta<ViewComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<DatasetComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "MoreThanThreeActions",
@@ -4226,17 +4226,6 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<SwipeableTabsComponent>",
-                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<SwiperComponent>",
                 "file": "packages/fancy-ui-content/src/lib/swiper/swiper.stories.ts",
                 "deprecated": false,
@@ -4248,19 +4237,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<TabsComponent>",
-                "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<DatasetComponent>",
-                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                "rawtype": "StoryObj<SwipeableTabsComponent>",
+                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4272,6 +4250,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<ButtonComponent>",
                 "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<TabsComponent>",
+                "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4386,6 +4375,17 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<DatasetComponent>",
+                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
             }
         ],
         "enumerations": [],
@@ -4484,28 +4484,6 @@
                     "defaultValue": "{\r\n  args: {\r\n    label: \"Label\" as any,\r\n    value: \"$9850.90\" as any,\r\n    changePositive: true as any,\r\n    changeValue: \"+1,8%\" as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-metric [label]=\"label\" [value]=\"value\" [changePositive]=\"changePositive\" [changeValue]=\"changeValue\">\r\n      </fui-metric>\r\n    `\r\n  })\r\n}"
                 }
             ],
-            "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    activeBlade: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swipeable-tabs [activeBlade]=\"activeBlade\">\r\n        <fui-swipeable-tabs-blade label=\"First\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-3 my-component\">\r\n            <fui-metric label=\"First Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n            <fui-metric label=\"Second Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"false\" />\r\n            <fui-metric label=\"Third Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Second\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">Second Blade</p>\r\n            <p>With form elements</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-6 gap-component my-component\">\r\n            <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n            <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Third\">\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swipeable-tabs-blade>\r\n      </fui-swipeable-tabs>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<SwipeableTabsComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Content/SwipeableTabs',\r\n  component: SwipeableTabsComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwipeableTabsComponent, SwipeableTabsBladeComponent, MetricComponent, TextBoxComponent, SwitchComponent, SliderComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
             "packages/fancy-ui-content/src/lib/swiper/swiper.stories.ts": [
                 {
                     "name": "Basic",
@@ -4528,68 +4506,26 @@
                     "defaultValue": "{\r\n  title: 'Components/Content/Swiper',\r\n  component: SwiperComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwiperComponent, SwiperBladeComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
-            "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts": [
+            "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts": [
                 {
                     "name": "Basic",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
+                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    activeTabIndex: 1 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-tabs [(activeTabIndex)]=\"activeTabIndex\">\r\n        <fui-tabs-item label=\"First\" />\r\n        <fui-tabs-item label=\"Second\" />\r\n        <fui-tabs-item label=\"Third\" />\r\n        <fui-tabs-item label=\"Fourth\" />\r\n      </fui-tabs>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    activeBlade: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swipeable-tabs [activeBlade]=\"activeBlade\">\r\n        <fui-swipeable-tabs-blade label=\"First\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-3 my-component\">\r\n            <fui-metric label=\"First Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n            <fui-metric label=\"Second Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"false\" />\r\n            <fui-metric label=\"Third Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Second\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">Second Blade</p>\r\n            <p>With form elements</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-6 gap-component my-component\">\r\n            <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n            <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Third\">\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swipeable-tabs-blade>\r\n      </fui-swipeable-tabs>\r\n    `\r\n  })\r\n}"
                 },
                 {
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
+                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Meta<TabsComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Content/Tabs',\r\n  component: TabsComponent,\r\n  subcomponents: { TabsItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TabsComponent, TabsItemComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
-            "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "dataSource",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "[]",
-                    "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<DatasetComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-                },
-                {
-                    "name": "WithMoreButton",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    onMoreTapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\" (moreTap)=\"onMoreTapped($event)\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+                    "type": "Meta<SwipeableTabsComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Content/SwipeableTabs',\r\n  component: SwipeableTabsComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwipeableTabsComponent, SwipeableTabsBladeComponent, MetricComponent, TextBoxComponent, SwitchComponent, SliderComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/fancy-ui-core/src/lib/button/button.stories.ts": [
@@ -4622,6 +4558,28 @@
                     "deprecationMessage": "",
                     "type": "Meta<ButtonComponent>",
                     "defaultValue": "{\r\n  title: 'Components/Core/Button',\r\n  component: ButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ButtonComponent]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
+            "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    activeTabIndex: 1 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-tabs [(activeTabIndex)]=\"activeTabIndex\">\r\n        <fui-tabs-item label=\"First\" />\r\n        <fui-tabs-item label=\"Second\" />\r\n        <fui-tabs-item label=\"Third\" />\r\n        <fui-tabs-item label=\"Fourth\" />\r\n      </fui-tabs>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<TabsComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Content/Tabs',\r\n  component: TabsComponent,\r\n  subcomponents: { TabsItemComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TabsComponent, TabsItemComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/fancy-ui-forms/src/lib/radio-button/radio-button.stories.ts": [
@@ -4894,6 +4852,48 @@
                     "defaultValue": "{\r\n  title: 'Components/Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
+            "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "dataSource",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<DatasetComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                },
+                {
+                    "name": "WithMoreButton",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    onMoreTapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\" (moreTap)=\"onMoreTapped($event)\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+                }
+            ],
             "apps/storybook-host/stories/compositions.card-layouts.stories.ts": [
                 {
                     "name": "CardGrid",
@@ -5146,19 +5146,6 @@
                     "kind": 183
                 }
             ],
-            "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<SwipeableTabsComponent>",
-                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "packages/fancy-ui-content/src/lib/swiper/swiper.stories.ts": [
                 {
                     "name": "Story",
@@ -5172,26 +5159,13 @@
                     "kind": 183
                 }
             ],
-            "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts": [
+            "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<TabsComponent>",
-                    "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<DatasetComponent>",
-                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                    "rawtype": "StoryObj<SwipeableTabsComponent>",
+                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5205,6 +5179,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<ButtonComponent>",
                     "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<TabsComponent>",
+                    "file": "packages/fancy-ui-content/src/lib/tabs/tabs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5335,6 +5322,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<ViewComponent>",
                     "file": "packages/fancy-ui-shell/src/lib/view/view.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<DatasetComponent>",
+                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",

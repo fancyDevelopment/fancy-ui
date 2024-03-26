@@ -1,4 +1,4 @@
-<button (click)="tap.next()" [disabled]="disabled()" class="bg-primary rounded overflow-hidden group relative hover:shadow" >
-    <div class="text-on-primary p-component rounded" [ngClass]="{'group-hover:bg-hover': !animate, 'bg-primary': animate}" (click)="click($event)">{{label()}}</div>
+<button (click)="click($event)" [disabled]="disabled()" class="bg-primary rounded overflow-hidden group relative hover:shadow" >
+    <div class="text-on-primary p-component rounded" [ngClass]="{'group-hover:bg-hover': !animate, 'bg-primary': animate}">{{label()}}</div>
     <span #wave class="absolute w-full h-full rounded-[50%] bg-tint animate-ripple" [ngClass]="{'hidden': !animate}"></span>
 </button>
