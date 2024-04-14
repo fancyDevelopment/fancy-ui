@@ -5,3 +5,5 @@ export * from './lib/switch/switch.component';
 export * from './lib/slider/slider.component';
 
 export * from './lib/radio-button/radio-button.component';
+
+export * from './lib/text-area/text-area.component';

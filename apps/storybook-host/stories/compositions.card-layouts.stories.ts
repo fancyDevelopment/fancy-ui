@@ -6,7 +6,7 @@ import { CardBundle } from 'fancy-ui-content';
 import { provideFancyUi } from 'fancy-ui-core';
 import { provideIcons } from '@ng-icons/core';
 import { matHomeOutline, matSettingsOutline, matArchiveOutline } from '@ng-icons/material-icons/outline';
-import { RadioButtonComponent, SliderComponent, SwitchComponent, TextBoxComponent } from 'fancy-ui-forms';
+import { RadioButtonComponent, SliderComponent, SwitchComponent, TextAreaComponent, TextBoxComponent } from 'fancy-ui-forms';
 
 const meta: Meta<ShellComponent> = {
   title: 'Compositions/Card Layouts',
@@ -14,7 +14,7 @@ const meta: Meta<ShellComponent> = {
   parameters: { layout: 'fullscreen'},
   decorators: [
     moduleMetadata({
-      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, AppHeaderBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent],
+      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, AppHeaderBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent, TextAreaComponent],
       providers: [
         provideFancyUi(),
         provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})
@@ -203,7 +203,7 @@ export const FormCards: Story = {
       <ng-template #mainContentTemplate>
         <fui-view>
           <fui-view-header>
-            <fui-app-bar title="Card Grid">
+            <fui-app-bar title="Form Cards">
               <fui-app-bar-action iconName="matHomeOutline" label="Action 1" />
               <fui-app-bar-action iconName="matSettingsOutline" label="Action 2" />
               <fui-app-bar-action iconName="matArchiveOutline" label="Action 3" />
@@ -220,6 +220,7 @@ export const FormCards: Story = {
                     <fui-switch class="col-span-3" label="Switch" />
                     <fui-switch class="col-span-3" label="Switch" />
                     <fui-slider class="col-span-6" label="Slider" />
+                    <fui-text-area class="col-span-6" label="Textarea" />
                   </div>
                 </fui-card-content>
                 <fui-card-grow />

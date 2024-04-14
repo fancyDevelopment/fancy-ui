@@ -1,12 +1,11 @@
 import { Component, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlBase } from '../form-control.base';
 
 @Component({
   selector: 'fui-slider',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   templateUrl: './slider.component.html',
   providers: [
     {

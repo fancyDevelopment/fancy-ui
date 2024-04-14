@@ -2,17 +2,17 @@ import { provideFancyUi } from 'fancy-ui-core';
 import { componentWrapperDecorator, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
 
-import { TextBoxComponent } from './text-box.component';
+import { TextAreaComponent } from './text-area.component';
 
 import { jest } from '@storybook/jest';
 import { FormsModule } from '@angular/forms';
 
-const meta: Meta<TextBoxComponent> = {
-  title: 'Components/Forms/Text Box',
-  component: TextBoxComponent,
+const meta: Meta<TextAreaComponent> = {
+  title: 'Components/Forms/Text Area',
+  component: TextAreaComponent,
   decorators: [
     moduleMetadata({
-      imports: [TextBoxComponent, FormsModule],
+      imports: [TextAreaComponent, FormsModule],
       providers: [
         provideFancyUi()
       ]
@@ -22,7 +22,7 @@ const meta: Meta<TextBoxComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<TextBoxComponent>;
+type Story = StoryObj<TextAreaComponent>;
 
 export const Basic: Story = {
   args: {
@@ -36,7 +36,7 @@ export const Basic: Story = {
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
     template:`
-      <fui-text-box [label]="label" [hint]="hint" minlength="3" [ngModel]="value" (ngModelChange)="onModelChange($event)" />
+      <fui-text-area [label]="label" [hint]="hint" minlength="3" [ngModel]="value" (ngModelChange)="onModelChange($event)" />
     `
   })
 };

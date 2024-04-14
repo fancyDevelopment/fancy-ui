@@ -3,22 +3,24 @@ import { FormControlBase } from '../form-control.base';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'fui-text-box',
+  selector: 'fui-text-area',
   standalone: true,
-  imports: [FormsModule],
-  templateUrl: './text-box.component.html',
+  imports: [ FormsModule],
+  templateUrl: './text-area.component.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: TextBoxComponent,
+      useExisting: TextAreaComponent,
       multi: true
     }
   ]
 })
-export class TextBoxComponent extends FormControlBase<string>{
+export class TextAreaComponent extends FormControlBase<string>{
   label = input('');
 
   hint = input('');
+
+  rows = input(4);
 
   _id = uuidv4();
 
@@ -27,6 +29,7 @@ export class TextBoxComponent extends FormControlBase<string>{
     this.onTouched();
   }
 }
+
 function uuidv4() {
   return 'id'+ Math.random();
 }
