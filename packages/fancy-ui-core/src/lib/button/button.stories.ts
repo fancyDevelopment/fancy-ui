@@ -21,7 +21,7 @@ type Story = StoryObj<ButtonComponent>;
 
 export const Basic: Story = {
   args: {
-    label: 'Primary Button' as any,
+    label: 'Primary Button' as any
   },
   parameters: {
     tapped: jest.fn(action('tapped'))

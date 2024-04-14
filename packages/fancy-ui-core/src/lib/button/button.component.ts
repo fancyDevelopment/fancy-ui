@@ -1,11 +1,11 @@
 import { Component, ElementRef, EventEmitter, Output, input, viewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { timer } from 'rxjs';
 
 @Component({
   selector: 'fui-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgClass],
   templateUrl: './button.component.html'
 })
 export class ButtonComponent {
@@ -22,14 +22,17 @@ export class ButtonComponent {
   animate = false;
 
   click(event: { offsetX: number, offsetY: number}) {
-    const waveSpan = this.waveSpan();
-    if(waveSpan) {
-      waveSpan.nativeElement.style.left = event.offsetX + 'px';
-      waveSpan.nativeElement.style.top = event.offsetY + 'px';
+    if(!this.disabled())
+    {
+      const waveSpan = this.waveSpan();
+      if(waveSpan) {
+        waveSpan.nativeElement.style.left = event.offsetX + 'px';
+        waveSpan.nativeElement.style.top = event.offsetY + 'px';
+      }
+      this.animate = true;
+      timer(800).subscribe(() => this.animate = false);
+      this.tap.next();
     }
-    this.animate = true;
-    timer(800).subscribe(() => this.animate = false);
-    this.tap.next();
   }
 
 }
