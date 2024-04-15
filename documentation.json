@@ -642,7 +642,7 @@
         },
         {
             "name": "CardActionsComponent",
-            "id": "component-CardActionsComponent-e1e1a450dae679504a7fa2abf8f135f4c59febdce8105a2f72bb5663dd47e3acbd4bbef7afb51a749f1e49c82a180c50345318949aba51577d56490af4943bde",
+            "id": "component-CardActionsComponent-902bd01d600b6e44783887492cf26e52a821b4da85b485675615bd8c0ba0125a9f9d6d4c1e9f35545b88289fa0205d718604aeafb3c878b9026aa28125558cbc",
             "file": "packages/fancy-ui-content/src/lib/card/card-actions.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -652,24 +652,93 @@
             "selector": "fui-card-actions",
             "styleUrls": [],
             "styles": [],
-            "template": "<div class=\"border-t border-shade h-component\"></div>\n<ng-content />\n",
+            "template": "<div class=\"border-t border-shade h-component\"></div>\n<div class=\"relative\">\n  <ng-content />\n  <div class=\"absolute flex p-component items-center text-on-primary -inset-x-element -top-element rounded overflow-hidden transition-all duration-1000\"\n       [ngClass]=\"{ 'opacity-0 h-0': (!showMessageOverlay()), 'opacity-100 h-[calc(100%+(theme(spacing.component)*2))]': showMessageOverlay(), 'bg-success': message().type === 'success', 'bg-error': message().type === 'error' }\">\n    <div>{{ message().text }}</div>\n  </div>\n</div>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "message",
+                    "defaultValue": "signal<{ text: string, type: string }>({ text: '', type: ''})",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                },
+                {
+                    "name": "showMessageOverlay",
+                    "defaultValue": "signal(false)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "showMessage",
+                    "args": [
+                        {
+                            "name": "text",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "type",
+                            "type": "\"success\" | \"error\"",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "text",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "type",
+                            "type": "\"success\" | \"error\"",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
             "standalone": true,
-            "imports": [],
+            "imports": [
+                {
+                    "name": "NgClass"
+                }
+            ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'fui-card-actions',\r\n  standalone: true,\r\n  template:`\r\n    <div class=\"border-t border-shade h-component\"></div>\r\n    <ng-content />\r\n  `\r\n})\r\nexport class CardActionsComponent {}\r\n",
+            "sourceCode": "import { NgClass } from '@angular/common';\r\nimport { Component, signal } from '@angular/core';\r\nimport { timer } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'fui-card-actions',\r\n  standalone: true,\r\n  imports: [NgClass],\r\n  template:`\r\n    <div class=\"border-t border-shade h-component\"></div>\r\n    <div class=\"relative\">\r\n      <ng-content />\r\n      <div class=\"absolute flex p-component items-center text-on-primary -inset-x-element -top-element rounded overflow-hidden transition-all duration-1000\" \r\n           [ngClass]=\"{ 'opacity-0 h-0': (!showMessageOverlay()), 'opacity-100 h-[calc(100%+(theme(spacing.component)*2))]': showMessageOverlay(), 'bg-success': message().type === 'success', 'bg-error': message().type === 'error' }\">\r\n        <div>{{ message().text }}</div>\r\n      </div>\r\n    </div>\r\n  `\r\n})\r\nexport class CardActionsComponent {\r\n  message = signal<{ text: string, type: string }>({ text: '', type: ''});\r\n  showMessageOverlay = signal(false);\r\n  showMessage(text: string, type: 'success' | 'error') {\r\n    this.message.set({ text, type});\r\n    this.showMessageOverlay.set(true);\r\n    timer(3000).subscribe(_ => this.showMessageOverlay.set(false));\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -2215,7 +2284,7 @@
         },
         {
             "name": "PagerComponent",
-            "id": "component-PagerComponent-be510db021b96041fa4953caa73cc7b37cdf1a04c95215afce4b2503409b63a9aebb5a997b26ec70aa1c3247f73b336e8cc9fd1288dc795a9f9755425f4354fc",
+            "id": "component-PagerComponent-a30cc7cee355f664d441ff2c5441b1b5272550350b81fab964e66645256c50846f9d27f77c83f9987289df56a8f3db5ecbc90fc16c78e0a900ff932e87b140e5",
             "file": "packages/fancy-ui-data/src/lib/pager/pager.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2245,7 +2314,7 @@
                 },
                 {
                     "name": "nextPageRouterLink",
-                    "defaultValue": "input<[] | null>(null)",
+                    "defaultValue": "input<any[] | string | null>(null)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -2265,7 +2334,7 @@
                 },
                 {
                     "name": "prevPageRouterLink",
-                    "defaultValue": "input<[] | null>(null)",
+                    "defaultValue": "input<any[] | string | null>(null)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -2288,7 +2357,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, input } from '@angular/core';\nimport { RouterLink } from '@angular/router';\n\n@Component({\n  selector: 'fui-pager',\n  standalone: true,\n  imports: [RouterLink],\n  templateUrl: './pager.component.html'\n})\nexport class PagerComponent {\n  prevPageRouterLink = input<[] | null>(null);\n  nextPageRouterLink = input<[] | null>(null);\n  currentPage = input(0);\n  pageCount = input(0);\n}\n",
+            "sourceCode": "import { Component, input } from '@angular/core';\nimport { RouterLink } from '@angular/router';\n\n@Component({\n  selector: 'fui-pager',\n  standalone: true,\n  imports: [RouterLink],\n  templateUrl: './pager.component.html'\n})\nexport class PagerComponent {\n  prevPageRouterLink = input<any[] | string | null>(null);\n  nextPageRouterLink = input<any[] | string | null>(null);\n  currentPage = input(0);\n  pageCount = input(0);\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -3293,7 +3362,7 @@
         },
         {
             "name": "TextAreaComponent",
-            "id": "component-TextAreaComponent-7b2584a51d08dc7cda7d95d8441facd10934389dcb5414ed24d44c1354bc67761734bf9b7331c598c7f66078d359cfc446359a1b9f975c7801e36619e08d7bd9",
+            "id": "component-TextAreaComponent-a94228ea0de3545bce9984a68b65c38ba733d3b3d52e3e57c778d06e99e45603afc207e93daf1e716181afb589476358f5cf038d9cdbe14790a307561d65c0ae",
             "file": "packages/fancy-ui-forms/src/lib/text-area/text-area.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3324,7 +3393,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 23
+                    "line": 25
                 },
                 {
                     "name": "hint",
@@ -3345,6 +3414,16 @@
                     "optional": false,
                     "description": "",
                     "line": 19
+                },
+                {
+                    "name": "rows",
+                    "defaultValue": "input(4)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
                 }
             ],
             "methodsClass": [
@@ -3354,7 +3433,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 25,
+                    "line": 27,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -3373,14 +3452,14 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, input } from '@angular/core';\r\nimport { FormControlBase } from '../form-control.base';\r\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'fui-text-area',\r\n  standalone: true,\r\n  imports: [ FormsModule],\r\n  templateUrl: './text-area.component.html',\r\n  providers: [\r\n    {\r\n      provide: NG_VALUE_ACCESSOR,\r\n      useExisting: TextAreaComponent,\r\n      multi: true\r\n    }\r\n  ]\r\n})\r\nexport class TextAreaComponent extends FormControlBase<string>{\r\n  label = input('');\r\n\r\n  hint = input('');\r\n\r\n  _id = uuidv4();\r\n\r\n  _onInput() {\r\n    this.onChanged();\r\n    this.onTouched();\r\n  }\r\n}\r\n\r\nfunction uuidv4() {\r\n  return 'id'+ Math.random();\r\n}\r\n\r\n",
+            "sourceCode": "import { Component, input } from '@angular/core';\r\nimport { FormControlBase } from '../form-control.base';\r\nimport { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'fui-text-area',\r\n  standalone: true,\r\n  imports: [ FormsModule],\r\n  templateUrl: './text-area.component.html',\r\n  providers: [\r\n    {\r\n      provide: NG_VALUE_ACCESSOR,\r\n      useExisting: TextAreaComponent,\r\n      multi: true\r\n    }\r\n  ]\r\n})\r\nexport class TextAreaComponent extends FormControlBase<string>{\r\n  label = input('');\r\n\r\n  hint = input('');\r\n\r\n  rows = input(4);\r\n\r\n  _id = uuidv4();\r\n\r\n  _onInput() {\r\n    this.onChanged();\r\n    this.onTouched();\r\n  }\r\n}\r\n\r\nfunction uuidv4() {\r\n  return 'id'+ Math.random();\r\n}\r\n\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [
                 "FormControlBase"
             ],
-            "templateData": "<div class=\"relative pt-[calc(theme(fontSize.label)*theme(lineHeight.normal))]\">\r\n  <textarea\r\n    class=\"block w-full h-full border-outline border bg-transparent focus:border-primary focus:shadow peer\"\r\n    [id]=\"_id\"\r\n    (input)=\"_onInput()\"\r\n    [(ngModel)]=\"_currentValue\"></textarea>\r\n  <label\r\n    class=\"absolute top-0 origin-top-left cursor-text text-label\r\n    transform duration-300 \r\n    peer-focus:text-primary\"\r\n    [for]=\"_id\">{{ label() }}</label>\r\n  <p class=\"text-xs pt-1 [fui-text-area.ng-touched.ng-valid_&]:text-success [fui-text-area.ng-touched.ng-invalid_&]:text-error\">\r\n    {{ hint() }}\r\n  </p>\r\n</div>\r\n"
+            "templateData": "<div class=\"pt-[calc(theme(fontSize.label)*theme(lineHeight.normal))]\">\r\n  <label\r\n    class=\"text-label font-label transform duration-300 peer-focus:text-primary\"\r\n    [for]=\"_id\">{{ label() }}</label>\r\n  <textarea\r\n    class=\"block w-full h-full outline-none border-outline border bg-transparent focus:border-primary focus:border-2 focus:shadow peer\"\r\n    [rows]=\"rows()\"\r\n    [id]=\"_id\"\r\n    (input)=\"_onInput()\"\r\n    [(ngModel)]=\"_currentValue\"></textarea>\r\n  <p class=\"text-xs pt-1 [fui-text-area.ng-touched.ng-valid_&]:text-success [fui-text-area.ng-touched.ng-invalid_&]:text-error\">\r\n    {{ hint() }}\r\n  </p>\r\n</div>\r\n"
         },
         {
             "name": "TextBoxComponent",
@@ -3691,6 +3770,16 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "packages/fancy-ui-content/src/lib/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card [meaning]=\"meaning\">\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" />\r\n        <fui-card-content>Some Content</fui-card-content>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "packages/fancy-ui-content/src/lib/metric/metric.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -3701,11 +3790,11 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-content/src/lib/card/card.stories.ts",
+                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card [meaning]=\"meaning\">\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" />\r\n        <fui-card-content>Some Content</fui-card-content>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    activeBlade: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swipeable-tabs [activeBlade]=\"activeBlade\">\r\n        <fui-swipeable-tabs-blade label=\"First\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-3 my-component\">\r\n            <fui-metric label=\"First Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n            <fui-metric label=\"Second Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"false\" />\r\n            <fui-metric label=\"Third Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Second\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">Second Blade</p>\r\n            <p>With form elements</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-6 gap-component my-component\">\r\n            <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n            <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Third\">\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swipeable-tabs-blade>\r\n      </fui-swipeable-tabs>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -3736,36 +3825,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button' as any\r\n  },\r\n  parameters: {\r\n    tapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-button [label]=\"label\" (onTap)=\"tapped()\"></fui-button>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters, args}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const button = canvas.getByRole('button', { name: (args.label as any) });\r\n    userEvent.click(button);\r\n\r\n    expect(parameters['tapped']).toHaveBeenCalled();\r\n  }\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    activeBlade: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swipeable-tabs [activeBlade]=\"activeBlade\">\r\n        <fui-swipeable-tabs-blade label=\"First\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-3 my-component\">\r\n            <fui-metric label=\"First Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n            <fui-metric label=\"Second Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"false\" />\r\n            <fui-metric label=\"Third Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Second\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">Second Blade</p>\r\n            <p>With form elements</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-6 gap-component my-component\">\r\n            <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n            <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Third\">\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swipeable-tabs-blade>\r\n      </fui-swipeable-tabs>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
-            },
-            {
-                "name": "Basic",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    currentPage: 1 as any,\r\n    pageCount: 2 as any,\r\n    prevPageRouterLink: null as any,\r\n    nextPageRouterLink: ['../', 'https://foo.bar/next'] as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-pager [currentPage]=\"currentPage\" [pageCount]=\"pageCount\" [prevPageRouterLink]=\"prevPageRouterLink\" [nextPageRouterLink]=\"nextPageRouterLink\" />\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -3821,21 +3880,31 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-shell/src/lib/app-bar/app-bar.stories.ts",
+                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title' as any,\r\n    showBackButton: true as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    iconName: 'matHomeOutline' as any,\r\n    title: 'App Title' as any,\r\n    userDisplayName: 'John Doe' as any,\r\n    userId: 'john.doe@domain.com' as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-header  [iconName]=\"iconName\" [title]=\"title\" [userDisplayName]=\"userDisplayName\" [userId]=\"userId\">\r\n        <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n      </fui-app-header>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    currentPage: 1 as any,\r\n    pageCount: 2 as any,\r\n    prevPageRouterLink: null as any,\r\n    nextPageRouterLink: ['../', 'https://foo.bar/next'] as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-pager [currentPage]=\"currentPage\" [pageCount]=\"pageCount\" [prevPageRouterLink]=\"prevPageRouterLink\" [nextPageRouterLink]=\"nextPageRouterLink\" />\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-shell/src/lib/app-bar/app-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    title: 'App or View Title' as any,\r\n    showBackButton: true as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\" />\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Basic",
@@ -3876,6 +3945,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-view class=\"block h-screen\">\r\n        <fui-view-header>\r\n          <div class=\"bg-secondary text-on-secondary h-full flex justify-around p-5\">\r\n            Header\r\n          </div>\r\n        </fui-view-header>\r\n        <fui-view-main-content>\r\n          <div class=\"bg-primary text-on-primary h-full flex justify-around p-5\">\r\n            Main Content\r\n          </div>\r\n        </fui-view-main-content>\r\n        <fui-view-footer>\r\n          <div class=\"bg-accent text-on-accent flex justify-around p-5\">\r\n            Footer\r\n          </div>\r\n        </fui-view-footer>\r\n      </fui-view>\r\n    `\r\n  })\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    iconName: 'matHomeOutline' as any,\r\n    title: 'App Title' as any,\r\n    userDisplayName: 'John Doe' as any,\r\n    userId: 'john.doe@domain.com' as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-header  [iconName]=\"iconName\" [title]=\"title\" [userDisplayName]=\"userDisplayName\" [userId]=\"userId\">\r\n        <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n      </fui-app-header>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "CardGrid",
@@ -3965,7 +4044,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Form Cards\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-2 lg:grid-cols-4 gap-component\">\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n                    <fui-text-area class=\"min-h-32 col-span-6\" label=\"Textarea\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                    <div>\r\n                      <label class=\"my-element\">Radios</label>\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label1\"  value=\"value1\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label2\"  value=\"value2\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label3\"  value=\"value3\" />\r\n                    </div>\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Form Cards\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-2 lg:grid-cols-4 gap-component\">\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n                    <fui-text-area class=\"col-span-6\" label=\"Textarea\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                    <div>\r\n                      <label class=\"my-element\">Radios</label>\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label1\"  value=\"value1\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label2\"  value=\"value2\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label3\"  value=\"value3\" />\r\n                    </div>\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "Group",
@@ -4041,6 +4120,16 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "packages/fancy-ui-content/src/lib/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<CardComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Content/Card',\r\n  component: CardComponent,\r\n  subcomponents: { CardHeaderComponent, CardImageComponent, CardContentComponent, CardActionsComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [CardComponent, CardHeaderComponent, CardImageComponent, CardContentComponent, CardActionsComponent, ButtonComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "packages/fancy-ui-content/src/lib/metric/metric.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -4051,11 +4140,11 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-content/src/lib/card/card.stories.ts",
+                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<CardComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Content/Card',\r\n  component: CardComponent,\r\n  subcomponents: { CardHeaderComponent, CardImageComponent, CardContentComponent, CardActionsComponent },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [CardComponent, CardHeaderComponent, CardImageComponent, CardContentComponent, CardActionsComponent, ButtonComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ],\r\n}"
+                "type": "Meta<SwipeableTabsComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Content/SwipeableTabs',\r\n  component: SwipeableTabsComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwipeableTabsComponent, SwipeableTabsBladeComponent, MetricComponent, TextBoxComponent, SwitchComponent, SliderComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -4086,36 +4175,6 @@
                 "deprecationMessage": "",
                 "type": "Meta<ButtonComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Core/Button',\r\n  component: ButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ButtonComponent]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<SwipeableTabsComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Content/SwipeableTabs',\r\n  component: SwipeableTabsComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwipeableTabsComponent, SwipeableTabsBladeComponent, MetricComponent, TextBoxComponent, SwitchComponent, SliderComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<DatasetComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<PagerComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Data/Pager',\r\n  component: PagerComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [PagerComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -4171,21 +4230,31 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-shell/src/lib/app-bar/app-bar.stories.ts",
+                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<AppBarComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "type": "Meta<DatasetComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<AppHeaderComponent>",
-                "defaultValue": "{\r\n  title: 'Components/Shell/App Header',\r\n  component: AppHeaderComponent,\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppHeaderComponent, AppHeaderActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matLogoutOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                "type": "Meta<PagerComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Data/Pager',\r\n  component: PagerComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [PagerComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-shell/src/lib/app-bar/app-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<AppBarComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Shell/App Bar',\r\n  component: AppBarComponent,\r\n  subcomponents: { AppBarActionComponent },\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppBarComponent, AppBarActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matSettingsOutline, matArchiveOutline, matCloudDoneOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -4226,6 +4295,16 @@
                 "deprecationMessage": "",
                 "type": "Meta<ViewComponent>",
                 "defaultValue": "{\r\n  title: 'Components/Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<AppHeaderComponent>",
+                "defaultValue": "{\r\n  title: 'Components/Shell/App Header',\r\n  component: AppHeaderComponent,\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppHeaderComponent, AppHeaderActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matLogoutOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
             },
             {
                 "name": "MoreThanThreeActions",
@@ -4325,7 +4404,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onSuccessTap: jest.fn((actions: CardActionsComponent) => actions.showMessage('Success Message', 'success')),\r\n    onErrorTap: jest.fn((actions: CardActionsComponent) => actions.showMessage('Error Message', 'error'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions #actions>\r\n          <div class=\"grid grid-flow-col-dense gap-element\">\r\n            <fui-button label=\"Success Action\" (tap)=\"onSuccessTap(actions)\" />\r\n            <fui-button label=\"Error Action\" (tap)=\"onErrorTap(actions)\" />\r\n          </div>\r\n        </fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
             },
             {
                 "name": "WithChange",
@@ -4418,6 +4497,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<CardComponent>",
+                "file": "packages/fancy-ui-content/src/lib/card/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<MetricComponent>",
                 "file": "packages/fancy-ui-content/src/lib/metric/metric.stories.ts",
                 "deprecated": false,
@@ -4429,8 +4519,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<CardComponent>",
-                "file": "packages/fancy-ui-content/src/lib/card/card.stories.ts",
+                "rawtype": "StoryObj<SwipeableTabsComponent>",
+                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4464,39 +4554,6 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<ButtonComponent>",
                 "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<SwipeableTabsComponent>",
-                "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<DatasetComponent>",
-                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<PagerComponent>",
-                "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4561,8 +4618,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<AppBarComponent>",
-                "file": "packages/fancy-ui-shell/src/lib/app-bar/app-bar.stories.ts",
+                "rawtype": "StoryObj<DatasetComponent>",
+                "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4572,8 +4629,19 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<AppHeaderComponent>",
-                "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                "rawtype": "StoryObj<PagerComponent>",
+                "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<AppBarComponent>",
+                "file": "packages/fancy-ui-shell/src/lib/app-bar/app-bar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4622,42 +4690,21 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<AppHeaderComponent>",
+                "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
             }
         ],
         "enumerations": [],
         "groupedVariables": {
-            "packages/fancy-ui-content/src/lib/metric/metric.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-content/src/lib/metric/metric.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    label: \"Label\" as any,\r\n    value: \"$9850.90\" as any,\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-metric [label]=\"label\" [value]=\"value\">\r\n      </fui-metric>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-content/src/lib/metric/metric.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<MetricComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Content/Metric',\r\n  component: MetricComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MetricComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-                },
-                {
-                    "name": "WithChange",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-content/src/lib/metric/metric.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    label: \"Label\" as any,\r\n    value: \"$9850.90\" as any,\r\n    changePositive: true as any,\r\n    changeValue: \"+1,8%\" as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-metric [label]=\"label\" [value]=\"value\" [changePositive]=\"changePositive\" [changeValue]=\"changeValue\">\r\n      </fui-metric>\r\n    `\r\n  })\r\n}"
-                }
-            ],
             "packages/fancy-ui-content/src/lib/card/card.stories.ts": [
                 {
                     "name": "Basic",
@@ -4717,7 +4764,61 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onMoreTap: jest.fn(action('onMoreTap'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions><fui-button label=\"Button\" /></fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  parameters: {\r\n    title: 'Title',\r\n    subtitle: 'Subtitle',\r\n    onSuccessTap: jest.fn((actions: CardActionsComponent) => actions.showMessage('Success Message', 'success')),\r\n    onErrorTap: jest.fn((actions: CardActionsComponent) => actions.showMessage('Error Message', 'error'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-card>\r\n        <fui-card-header [title]=\"title\" [subtitle]=\"subtitle\" (moreTap)=\"onMoreTap()\"/>\r\n        <fui-card-content>Some Content</fui-card-content>\r\n        <fui-card-actions #actions>\r\n          <div class=\"grid grid-flow-col-dense gap-element\">\r\n            <fui-button label=\"Success Action\" (tap)=\"onSuccessTap(actions)\" />\r\n            <fui-button label=\"Error Action\" (tap)=\"onErrorTap(actions)\" />\r\n          </div>\r\n        </fui-card-actions>\r\n      </fui-card>\r\n    `\r\n  })\r\n}"
+                }
+            ],
+            "packages/fancy-ui-content/src/lib/metric/metric.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-content/src/lib/metric/metric.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: \"Label\" as any,\r\n    value: \"$9850.90\" as any,\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-metric [label]=\"label\" [value]=\"value\">\r\n      </fui-metric>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-content/src/lib/metric/metric.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<MetricComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Content/Metric',\r\n  component: MetricComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MetricComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                },
+                {
+                    "name": "WithChange",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-content/src/lib/metric/metric.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    label: \"Label\" as any,\r\n    value: \"$9850.90\" as any,\r\n    changePositive: true as any,\r\n    changeValue: \"+1,8%\" as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-metric [label]=\"label\" [value]=\"value\" [changePositive]=\"changePositive\" [changeValue]=\"changeValue\">\r\n      </fui-metric>\r\n    `\r\n  })\r\n}"
+                }
+            ],
+            "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    activeBlade: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swipeable-tabs [activeBlade]=\"activeBlade\">\r\n        <fui-swipeable-tabs-blade label=\"First\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-3 my-component\">\r\n            <fui-metric label=\"First Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n            <fui-metric label=\"Second Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"false\" />\r\n            <fui-metric label=\"Third Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Second\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">Second Blade</p>\r\n            <p>With form elements</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-6 gap-component my-component\">\r\n            <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n            <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Third\">\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swipeable-tabs-blade>\r\n      </fui-swipeable-tabs>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<SwipeableTabsComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Content/SwipeableTabs',\r\n  component: SwipeableTabsComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwipeableTabsComponent, SwipeableTabsBladeComponent, MetricComponent, TextBoxComponent, SwitchComponent, SliderComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/fancy-ui-content/src/lib/swiper/swiper.stories.ts": [
@@ -4794,92 +4895,6 @@
                     "deprecationMessage": "",
                     "type": "Meta<ButtonComponent>",
                     "defaultValue": "{\r\n  title: 'Components/Core/Button',\r\n  component: ButtonComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ButtonComponent]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
-            "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    activeBlade: 0 as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template: `\r\n      <fui-swipeable-tabs [activeBlade]=\"activeBlade\">\r\n        <fui-swipeable-tabs-blade label=\"First\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">First Blade</p>\r\n            <p>With metrics</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-3 my-component\">\r\n            <fui-metric label=\"First Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n            <fui-metric label=\"Second Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"false\" />\r\n            <fui-metric label=\"Third Metric\" [value]=\"1234\" changeValue=\"1,8%\" [changePositive]=\"true\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Second\">\r\n          <div class=\"my-component\">  \r\n            <p class=\"text-title\">Second Blade</p>\r\n            <p>With form elements</p>\r\n          </div>\r\n          <div class=\"grid grid-cols-6 gap-component my-component\">\r\n            <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n            <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n            <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n          </div>\r\n        </fui-swipeable-tabs-blade>\r\n        <fui-swipeable-tabs-blade label=\"Third\">\r\n          <p class=\"text-title\">Third Blade</p>\r\n        </fui-swipeable-tabs-blade>\r\n      </fui-swipeable-tabs>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<SwipeableTabsComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Content/SwipeableTabs',\r\n  component: SwipeableTabsComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [SwipeableTabsComponent, SwipeableTabsBladeComponent, MetricComponent, TextBoxComponent, SwitchComponent, SliderComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-                }
-            ],
-            "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "dataSource",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "[]",
-                    "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<DatasetComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
-                },
-                {
-                    "name": "WithMoreButton",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    onMoreTapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\" (moreTap)=\"onMoreTapped($event)\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
-                }
-            ],
-            "packages/fancy-ui-data/src/lib/pager/pager.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    currentPage: 1 as any,\r\n    pageCount: 2 as any,\r\n    prevPageRouterLink: null as any,\r\n    nextPageRouterLink: ['../', 'https://foo.bar/next'] as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-pager [currentPage]=\"currentPage\" [pageCount]=\"pageCount\" [prevPageRouterLink]=\"prevPageRouterLink\" [nextPageRouterLink]=\"nextPageRouterLink\" />\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<PagerComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Data/Pager',\r\n  component: PagerComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [PagerComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/fancy-ui-forms/src/lib/radio-button/radio-button.stories.ts": [
@@ -5012,6 +5027,70 @@
                     "defaultValue": "{\r\n  title: 'Components/Forms/Text Box',\r\n  component: TextBoxComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [TextBoxComponent, FormsModule],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    }),\r\n    componentWrapperDecorator((story) => `<div class=\"max-w-[400px]\">${story}</div>`)\r\n  ]\r\n}"
                 }
             ],
+            "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "dataSource",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n  {id: 1, firstName: 'John', lastName: 'Rambo', score: 0.95, imgHref: 'https://place-hold.it/40x40?text=JR' },\r\n  {id: 2, firstName: 'Rockey', lastName: 'Balboa', score: 0.94, imgHref: 'https://place-hold.it/40x40?text=RB' },\r\n  {id: 3, firstName: 'Marty', lastName: 'McFly', score: 0.98, imgHref: 'https://place-hold.it/40x40?text=MM' },\r\n  {id: 4, firstName: 'Emmet', lastName: 'Brown', score: 0.91, imgHref: 'https://place-hold.it/40x40?text=EB' }\r\n]"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<DatasetComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Data/Dataset',\r\n  component: DatasetComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [DatasetComponent, DatasetCardheaderComponent, DatasetItemValueComponent, DatasetItemTemplateComponent, DatasetItemImageComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                },
+                {
+                    "name": "WithMoreButton",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    dataSource: dataSource as any\r\n  },\r\n  parameters: {\r\n    onMoreTapped: jest.fn(action('tapped'))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template:`\r\n      <fui-dataset [dataSource]=\"dataSource\" (moreTap)=\"onMoreTapped($event)\">\r\n        <fui-dataset-cardheader imageSrcKeyPath=\"imgHref\">\r\n          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>\r\n        </fui-dataset-cardheader>\r\n        <fui-dataset-item-value label=\"ID\" key=\"id\" />\r\n        <fui-dataset-item-image label=\"Name\" imageSrcKeyPath=\"imgHref\" target=\"Table\">\r\n          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>\r\n        </fui-dataset-item-image>\r\n        <fui-dataset-item-template label=\"Score\">\r\n          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>\r\n        </fui-dataset-item-template>\r\n      </fui-dataset>\r\n    `\r\n  })\r\n}"
+                }
+            ],
+            "packages/fancy-ui-data/src/lib/pager/pager.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    currentPage: 1 as any,\r\n    pageCount: 2 as any,\r\n    prevPageRouterLink: null as any,\r\n    nextPageRouterLink: ['../', 'https://foo.bar/next'] as any\r\n  },\r\n  render: (args) => ({\r\n    props: { ...args },\r\n    template:`\r\n      <fui-pager [currentPage]=\"currentPage\" [pageCount]=\"pageCount\" [prevPageRouterLink]=\"prevPageRouterLink\" [nextPageRouterLink]=\"nextPageRouterLink\" />\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<PagerComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Data/Pager',\r\n  component: PagerComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [PagerComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
             "packages/fancy-ui-shell/src/lib/app-bar/app-bar.stories.ts": [
                 {
                     "name": "Basic",
@@ -5052,28 +5131,6 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\r\n  args: Basic.args,\r\n  parameters: {\r\n    action1Label: 'Action 1',\r\n    action2Label: 'Action 2',\r\n    action3Label: 'Action 3',\r\n    onTap: jest.fn((value: string) => action('Action Tap')(value))\r\n  },\r\n  render: (args, context) => ({\r\n    props: { ...args, ...context.parameters },\r\n    template: `\r\n      <fui-app-bar [title]=\"title\" [showBackButton]=\"showBackButton\">\r\n        <fui-app-bar-action iconName=\"matHomeOutline\" [label]=\"action1Label\" (tap)=\"onTap(action1Label)\" />\r\n        <fui-app-bar-action iconName=\"heroUsers\" [label]=\"action2Label\" (tap)=\"onTap(action2Label)\" />\r\n        <fui-app-bar-action iconName=\"matSettingsOutline\" [label]=\"action3Label\" (tap)=\"onTap(action3Label)\" />\r\n      </fui-app-bar>\r\n    `\r\n  }),\r\n  play: async ({canvasElement, parameters}) => {\r\n    const canvas = within(canvasElement);\r\n\r\n    const action1 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action1Label']});\r\n    userEvent.click(action1);\r\n    expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action1Label']);\r\n\r\n    // const action2 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action2Label']});\r\n    // userEvent.click(action2);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action2Label']);\r\n\r\n    // const action3 = canvas.getByRole('nonMobileAppBarAction', { name: parameters['action3Label']});\r\n    // userEvent.click(action3);\r\n    // expect(parameters['onTap']).toHaveBeenCalledWith(parameters['action3Label']);\r\n  }\r\n}"
-                }
-            ],
-            "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts": [
-                {
-                    "name": "Basic",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    iconName: 'matHomeOutline' as any,\r\n    title: 'App Title' as any,\r\n    userDisplayName: 'John Doe' as any,\r\n    userId: 'john.doe@domain.com' as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-header  [iconName]=\"iconName\" [title]=\"title\" [userDisplayName]=\"userDisplayName\" [userId]=\"userId\">\r\n        <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n      </fui-app-header>\r\n    `\r\n  })\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<AppHeaderComponent>",
-                    "defaultValue": "{\r\n  title: 'Components/Shell/App Header',\r\n  component: AppHeaderComponent,\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppHeaderComponent, AppHeaderActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matLogoutOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
             "packages/fancy-ui-shell/src/lib/nav-bar/nav-bar.stories.ts": [
@@ -5174,6 +5231,28 @@
                     "defaultValue": "{\r\n  title: 'Components/Shell/View',\r\n  component: ViewComponent,\r\n  subcomponents: { ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent },\r\n  parameters: { layout: 'fullscreen'},\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [ViewComponent, ViewHeaderComponent, ViewMainContentComponent, ViewFooterComponent],\r\n      providers: [\r\n        provideFancyUi()\r\n      ]\r\n    })\r\n  ],\r\n}"
                 }
             ],
+            "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    iconName: 'matHomeOutline' as any,\r\n    title: 'App Title' as any,\r\n    userDisplayName: 'John Doe' as any,\r\n    userId: 'john.doe@domain.com' as any\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <fui-app-header  [iconName]=\"iconName\" [title]=\"title\" [userDisplayName]=\"userDisplayName\" [userId]=\"userId\">\r\n        <fui-app-header-action iconName=\"matLogoutOutline\" label=\"Logout\" />\r\n      </fui-app-header>\r\n    `\r\n  })\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<AppHeaderComponent>",
+                    "defaultValue": "{\r\n  title: 'Components/Shell/App Header',\r\n  component: AppHeaderComponent,\r\n  parameters: { \r\n    controls: {\r\n      exclude: /_.*/g\r\n    }\r\n   },\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [AppHeaderComponent, AppHeaderActionComponent],\r\n      providers: [\r\n        provideFancyUi(),\r\n        provideIcons({matHomeOutline, heroUsers, matLogoutOutline})\r\n      ]\r\n    })\r\n  ],\r\n}"
+                }
+            ],
             "apps/storybook-host/stories/compositions.card-layouts.stories.ts": [
                 {
                     "name": "CardGrid",
@@ -5213,7 +5292,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Form Cards\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-2 lg:grid-cols-4 gap-component\">\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n                    <fui-text-area class=\"min-h-32 col-span-6\" label=\"Textarea\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                    <div>\r\n                      <label class=\"my-element\">Radios</label>\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label1\"  value=\"value1\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label2\"  value=\"value2\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label3\"  value=\"value3\" />\r\n                    </div>\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n  },\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <fui-shell>\r\n      <ng-template #mainContentTemplate>\r\n        <fui-view>\r\n          <fui-view-header>\r\n            <fui-app-bar title=\"Form Cards\">\r\n              <fui-app-bar-action iconName=\"matHomeOutline\" label=\"Action 1\" />\r\n              <fui-app-bar-action iconName=\"matSettingsOutline\" label=\"Action 2\" />\r\n              <fui-app-bar-action iconName=\"matArchiveOutline\" label=\"Action 3\" />\r\n            </fui-app-bar>\r\n          </fui-view-header>\r\n          <fui-view-main-content>\r\n            <div class=\"grid md:grid-cols-2 lg:grid-cols-4 gap-component\">\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-switch class=\"col-span-3\" label=\"Switch\" />\r\n                    <fui-slider class=\"col-span-6\" label=\"Slider\" />\r\n                    <fui-text-area class=\"col-span-6\" label=\"Textarea\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                    <div>\r\n                      <label class=\"my-element\">Radios</label>\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label1\"  value=\"value1\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label2\"  value=\"value2\" />\r\n                      <fui-radio-button name=\"rbgroup1\" label=\"Label3\"  value=\"value3\" />\r\n                    </div>\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n              <fui-card>\r\n                <fui-card-header title=\"Form Title\" subtitle=\"Form Subtitle\" />\r\n                <fui-card-content>\r\n                  <div class=\"grid grid-cols-6 gap-component\">\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label1\" />\r\n                    <fui-text-box class=\"col-span-6\" label=\"Label2\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label3\" />\r\n                    <fui-text-box class=\"col-span-3\" label=\"Label4\" />\r\n                  </div>\r\n                </fui-card-content>\r\n                <fui-card-grow />\r\n                <fui-card-actions><fui-button label=\"Save\" /></fui-card-actions>\r\n              </fui-card>\r\n            </div>\r\n          </fui-view-main-content>\r\n        </fui-view>\r\n      </ng-template>\r\n    </fui-shell>\r\n    `\r\n  })\r\n}"
                 },
                 {
                     "name": "meta",
@@ -5412,6 +5491,19 @@
                     "kind": 183
                 }
             ],
+            "packages/fancy-ui-content/src/lib/card/card.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<CardComponent>",
+                    "file": "packages/fancy-ui-content/src/lib/card/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "packages/fancy-ui-content/src/lib/metric/metric.stories.ts": [
                 {
                     "name": "Story",
@@ -5425,13 +5517,13 @@
                     "kind": 183
                 }
             ],
-            "packages/fancy-ui-content/src/lib/card/card.stories.ts": [
+            "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<CardComponent>",
-                    "file": "packages/fancy-ui-content/src/lib/card/card.stories.ts",
+                    "rawtype": "StoryObj<SwipeableTabsComponent>",
+                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5471,45 +5563,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<ButtonComponent>",
                     "file": "packages/fancy-ui-core/src/lib/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<SwipeableTabsComponent>",
-                    "file": "packages/fancy-ui-content/src/lib/swipeable-tabs/swipeable-tabs.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<DatasetComponent>",
-                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "packages/fancy-ui-data/src/lib/pager/pager.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<PagerComponent>",
-                    "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5581,6 +5634,32 @@
                     "kind": 183
                 }
             ],
+            "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<DatasetComponent>",
+                    "file": "packages/fancy-ui-data/src/lib/dataset/dataset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/fancy-ui-data/src/lib/pager/pager.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<PagerComponent>",
+                    "file": "packages/fancy-ui-data/src/lib/pager/pager.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "packages/fancy-ui-shell/src/lib/app-bar/app-bar.stories.ts": [
                 {
                     "name": "Story",
@@ -5588,19 +5667,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<AppBarComponent>",
                     "file": "packages/fancy-ui-shell/src/lib/app-bar/app-bar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<AppHeaderComponent>",
-                    "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5653,6 +5719,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<ViewComponent>",
                     "file": "packages/fancy-ui-shell/src/lib/view/view.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<AppHeaderComponent>",
+                    "file": "packages/fancy-ui-shell/src/lib/app-header/app-header.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5832,7 +5911,7 @@
                 "linktype": "component",
                 "name": "CardActionsComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -6368,7 +6447,7 @@
                 "linktype": "component",
                 "name": "TextAreaComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {

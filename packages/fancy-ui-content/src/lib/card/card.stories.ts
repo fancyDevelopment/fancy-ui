@@ -48,7 +48,8 @@ export const WithActions: Story = {
   parameters: {
     title: 'Title',
     subtitle: 'Subtitle',
-    onMoreTap: jest.fn(action('onMoreTap'))
+    onSuccessTap: jest.fn((actions: CardActionsComponent) => actions.showMessage('Success Message', 'success')),
+    onErrorTap: jest.fn((actions: CardActionsComponent) => actions.showMessage('Error Message', 'error'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
@@ -56,7 +57,12 @@ export const WithActions: Story = {
       <fui-card>
         <fui-card-header [title]="title" [subtitle]="subtitle" (moreTap)="onMoreTap()"/>
         <fui-card-content>Some Content</fui-card-content>
-        <fui-card-actions><fui-button label="Button" /></fui-card-actions>
+        <fui-card-actions #actions>
+          <div class="flex gap-element">
+            <fui-button label="Success Action" (tap)="onSuccessTap(actions)" />
+            <fui-button label="Error Action" (tap)="onErrorTap(actions)" />
+          </div>
+        </fui-card-actions>
       </fui-card>
     `
   })

@@ -1,15 +1,13 @@
-<div class="relative pt-[calc(theme(fontSize.label)*theme(lineHeight.normal))]">
+<div class="pt-[calc(theme(fontSize.label)*theme(lineHeight.normal))]">
+  <label
+    class="text-label font-label transform duration-300 peer-focus:text-primary"
+    [for]="_id">{{ label() }}</label>
   <textarea
-    class="block w-full h-full border-outline border bg-transparent focus:border-primary focus:shadow peer"
+    class="block w-full h-full outline-none border-outline border bg-transparent focus:border-primary focus:border-2 focus:shadow peer"
     [rows]="rows()"
     [id]="_id"
     (input)="_onInput()"
     [(ngModel)]="_currentValue"></textarea>
-  <label
-    class="absolute top-0 origin-top-left cursor-text text-label
-    transform duration-300 
-    peer-focus:text-primary"
-    [for]="_id">{{ label() }}</label>
   <p class="text-xs pt-1 [fui-text-area.ng-touched.ng-valid_&]:text-success [fui-text-area.ng-touched.ng-invalid_&]:text-error">
     {{ hint() }}
   </p>
