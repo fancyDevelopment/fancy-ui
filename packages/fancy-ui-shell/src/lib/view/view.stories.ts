@@ -27,11 +27,12 @@ type Story = StoryObj<ViewComponent>;
 
 export const Basic: Story = {
   args: {
+    showSpinner: false as any
   },
   render: (args) => ({
     props: args,
     template: `
-      <fui-view class="block h-screen">
+      <fui-view class="block h-screen" [showSpinner]="showSpinner">
         <fui-view-header>
           <div class="bg-secondary text-on-secondary h-full flex justify-around p-5">
             Header
@@ -51,4 +52,3 @@ export const Basic: Story = {
     `
   })
 };
-

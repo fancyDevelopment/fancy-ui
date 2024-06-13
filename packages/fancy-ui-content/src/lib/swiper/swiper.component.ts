@@ -14,13 +14,15 @@ export class SwiperComponent implements AfterViewInit {
   _viewPortWidth = signal(window.innerWidth);
   _isInitialized = signal(false);
   _enableAnimation = signal(false);
+  _innerContentChangedIndex = signal(0);
 
   _childCount = computed(() => this._container()?.nativeElement.children?.length);
 
   _heightCalcParams = computed(() => ({ 
     isInitialized: this._isInitialized(), 
     viewPortWidth: this._viewPortWidth(), 
-    activatedBladeIndex: this.activatedBladeIndex() 
+    activatedBladeIndex: this.activatedBladeIndex() ,
+    innerContentChangedIndex: this._innerContentChangedIndex()
   }));
 
   _height = computed(() => this._heightCalcParams().isInitialized ? this._blades()[this._heightCalcParams().activatedBladeIndex].nativeElement.offsetHeight : 0);
@@ -36,7 +38,7 @@ export class SwiperComponent implements AfterViewInit {
       this._isInitialized.set(true)
       setTimeout(() => {
         this._enableAnimation.set(true)
-      }, 50);
+      }, 100);
     }, 0);
   }
 
@@ -52,7 +54,7 @@ export class SwiperComponent implements AfterViewInit {
     if (this._x0 || this._x0 === 0) {
       const dx = this.unify(e).clientX - this._x0;
     
-      if(dx > 90) {
+      if(Math.abs(dx) > 90) {
         const s = Math.sign(dx);
 
         const i = this.activatedBladeIndex();
@@ -68,6 +70,15 @@ export class SwiperComponent implements AfterViewInit {
   onResize(event: any) {
     const currentWidth = event.target.innerWidth;
     this._viewPortWidth.set(currentWidth);
+  }
+
+  scheduleHeightCalculation() {
+    // Disable animations for resetting the heigt
+    this._enableAnimation.set(false);
+    // Trigger a new height calculation just by changing the signal
+    this._innerContentChangedIndex.update(currentValue => currentValue + 1);
+    // Shedule a task to re-enalbe animation after view has been processed
+    setTimeout(() => this._enableAnimation.set(true), 0);
   }
 
   private unify(e: any) {

@@ -18,36 +18,38 @@
         }
     </div>
 
-    <table class="w-full hidden md:table">
-        <thead>
-            <tr class="border-b">
-                @for(item of _datasetTableItems(); track $index) {
-                    <th class="text-left">{{ item.label() }}</th>
-                }
-                @if(moreTap.observers.length) {
-                    <th class="text-left"></th> 
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @for(rowData of data; track $index) {
-                <tr class="even:bg-shade">
+    <div class="bg-primary-container p-element hidden md:block">
+        <table class="w-full">
+            <thead>
+                <tr class="border-b">
                     @for(item of _datasetTableItems(); track $index) {
-                        <td>
-                            <ng-container [ngTemplateOutlet]="item.tableTemplate ?? null"
-                                          [ngTemplateOutletContext]="{ $implicit: rowData }" />
-                        </td>
+                        <th class="text-left">{{ item.label() }}</th>
                     }
                     @if(moreTap.observers.length) {
-                        <td class="flex justify-end min-h-hover">
-                            <a (click)="onMoreTap(rowData)" class="w-hover flex justify-center items-center relative">
-                                <div class="absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover"></div>
-                                <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />
-                            </a>
-                        </td>
+                        <th class="text-left"></th> 
                     }
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @for(rowData of data; track $index) {
+                    <tr class="border-b border-b-outline last:border-0">
+                        @for(item of _datasetTableItems(); track $index) {
+                            <td>
+                                <ng-container [ngTemplateOutlet]="item.tableTemplate ?? null"
+                                            [ngTemplateOutletContext]="{ $implicit: rowData }" />
+                            </td>
+                        }
+                        @if(moreTap.observers.length) {
+                            <td class="flex justify-end min-h-hover">
+                                <a (click)="onMoreTap(rowData)" class="w-hover flex justify-center items-center relative">
+                                    <div class="absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover"></div>
+                                    <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />
+                                </a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
