@@ -1,4 +1,4 @@
-<div class="flex" [style.--activeTabIndex]="activeTabIndex()">
+<div class="flex pb-0.5" [style.--activeTabIndex]="activeTabIndex()">
     @for(item of _items(); track $index) {
         <div class="relative basis-0 grow hover:bg-hover text-center cursor-pointer" (click)="activateTab($index)">
             {{item.label()}}

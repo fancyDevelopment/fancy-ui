@@ -1,6 +1,6 @@
 <div class="flex flex-col h-full">
   @if(_viewHeaderComponent()) {
-    <div class="px-rim md:group-[.fui-shell.with-left-template]:pl-0">
+    <div class="fui-view-header px-rim md:group-[.fui-shell.with-left-template]:pl-0">
       <ng-container [ngTemplateOutlet]="_viewHeaderComponent()?._template() ?? null" />
     </div>
   }
