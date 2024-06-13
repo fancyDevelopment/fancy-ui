@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
-import { ButtonComponent } from 'fancy-ui-core';
+import { ButtonComponent, FloatingActionButtonComponent } from 'fancy-ui-core';
 import { ShellComponent, ShellBundle, NavBarBundle, NavRailBundle, ViewBundle, AppBarBundle, AppHeaderBundle } from 'fancy-ui-shell';
 import { CardBundle, SwiperBundle, TabsBundle } from 'fancy-ui-content';
 import { provideFancyUi } from 'fancy-ui-core';
@@ -15,7 +15,7 @@ const meta: Meta<ShellComponent> = {
   parameters: { layout: 'fullscreen'},
   decorators: [
     moduleMetadata({
-      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, AppHeaderBundle, TabsBundle, SwiperBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent, TextAreaComponent],
+      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, AppHeaderBundle, TabsBundle, SwiperBundle, ButtonComponent, FloatingActionButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent, TextAreaComponent],
       providers: [
         provideFancyUi(),
         provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})
@@ -90,6 +90,7 @@ export const TabbedView: Story = {
                     <fui-card-actions><fui-button label="Button" /></fui-card-actions>
                   </fui-card>
                 </div>
+                <fui-floating-action-button label="FAB Button" />
               </fui-swiper-blade>
               <fui-swiper-blade>
                 <p class="text-title">Second Blade</p>
