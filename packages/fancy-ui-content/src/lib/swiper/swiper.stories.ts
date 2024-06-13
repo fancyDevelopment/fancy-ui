@@ -18,7 +18,7 @@ const meta: Meta<SwiperComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<SwiperComponent>;
+type Story = StoryObj<SwiperComponent>; 
 
 export const Basic: Story = {
   args: {
