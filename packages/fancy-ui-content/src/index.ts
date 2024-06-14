@@ -28,4 +28,8 @@ export {
     MetricComponent 
 };
 
+export const TabsBundle = [ TabsComponent, TabsItemComponent ];
+
+export const SwiperBundle = [ SwiperComponent, SwiperBladeComponent ];
+
 export const CardBundle = [CardComponent, CardHeaderComponent, CardImageComponent, CardContentComponent, CardGrowComponent, CardActionsComponent];

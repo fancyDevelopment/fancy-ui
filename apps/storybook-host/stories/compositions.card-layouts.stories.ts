@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
-import { ButtonComponent } from 'fancy-ui-core';
+import { ButtonComponent, FloatingActionButtonComponent } from 'fancy-ui-core';
 import { ShellComponent, ShellBundle, NavBarBundle, NavRailBundle, ViewBundle, AppBarBundle, AppHeaderBundle } from 'fancy-ui-shell';
 import { CardBundle } from 'fancy-ui-content';
 import { provideFancyUi } from 'fancy-ui-core';
@@ -14,7 +14,7 @@ const meta: Meta<ShellComponent> = {
   parameters: { layout: 'fullscreen'},
   decorators: [
     moduleMetadata({
-      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, AppHeaderBundle, ButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent, TextAreaComponent],
+      imports: [ShellBundle, NavBarBundle, NavRailBundle, AppBarBundle, ViewBundle, CardBundle, AppHeaderBundle, ButtonComponent, FloatingActionButtonComponent, TextBoxComponent, SliderComponent, RadioButtonComponent, SwitchComponent, TextAreaComponent],
       providers: [
         provideFancyUi(),
         provideIcons({matHomeOutline, matSettingsOutline, matArchiveOutline})
@@ -80,6 +80,7 @@ export const CardGrid: Story = {
                 <fui-card-actions><fui-button label="Button" /></fui-card-actions>
               </fui-card>
             </div>
+            <fui-floating-action-button label="FAB Button" />
           </fui-view-main-content>
         </fui-view>
       </ng-template>

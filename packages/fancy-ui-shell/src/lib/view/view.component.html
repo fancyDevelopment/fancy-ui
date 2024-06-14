@@ -1,6 +1,18 @@
-<div class="flex flex-col h-full">
+@if(showSpinner()) {
+  @if(showSpinnerDebounced()) {
+  <div class="h-full flex items-center justify-center">
+    <div class="relative">
+      <!-- Outer Ring-->
+      <div class="w-12 h-12 rounded-full absolute border-2 border-solid border-shade"></div>
+      <!-- Inner Ring -->
+      <div class="w-12 h-12 rounded-full animate-spin absolute border-2 border-solid border-primary border-t-transparent"></div>
+    </div>
+  </div>
+  }
+} @else {
+<div class="h-full flex flex-col">
   @if(_viewHeaderComponent()) {
-    <div class="px-rim md:group-[.fui-shell.with-left-template]:pl-0">
+    <div class="fui-view-header px-rim md:group-[.fui-shell.with-left-template]:pl-0">
       <ng-container [ngTemplateOutlet]="_viewHeaderComponent()?._template() ?? null" />
     </div>
   }
@@ -17,3 +29,5 @@
     </div>
   }
 </div>
+}
+

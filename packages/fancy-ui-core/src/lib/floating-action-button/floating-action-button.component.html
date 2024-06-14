@@ -1,0 +1,8 @@
+<button (click)="click($event)" 
+        [disabled]="disabled()" 
+        [class.bg-primary]="!disabled()" 
+        [class.bg-outline]="disabled()" 
+        class="rounded-md overflow-hidden group hover:shadow-xl fixed bottom-rim right-rim z-10 shadow-md" >
+    <div class="text-on-primary p-component rounded" [ngClass]="{'group-hover:bg-hover': !animate, 'bg-primary': animate}">{{label()}}</div>
+    <span #wave class="absolute w-full h-full rounded-[50%] bg-tint animate-ripple" [ngClass]="{'hidden': !animate}"></span>
+</button>

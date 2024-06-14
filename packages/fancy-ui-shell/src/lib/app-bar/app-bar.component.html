@@ -1,4 +1,4 @@
-<div class="h-16 z-10 flex justify-between bg-background">
+<div class="h-16 z-10 flex justify-between">
   <div class="flex items-center min-w-0">
     <!-- Back navigation button -->
     @if(showBackButton()) {
@@ -43,7 +43,7 @@
 
       <!-- Dropdown Menu -->
       @if(actions.length > 3 && _viewActionsDropdownIsOpen) {
-        <div class="absolute right-2 top-20 rounded bg-background shadow animate-fadeIn">
+        <div class="absolute right-2 top-20 rounded bg-background-variant shadow animate-fadeIn">
           <div>
             @for(action of actions | slice : 2; track $index) {
               <ng-container [ngTemplateOutlet]="action._mobileTemplate() ?? null" />
