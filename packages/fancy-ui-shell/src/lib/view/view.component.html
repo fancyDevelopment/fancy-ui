@@ -1,14 +1,12 @@
 @if(showSpinner()) {
-  @if(showSpinnerDebounced()) {
-  <div class="h-full flex items-center justify-center">
-    <div class="relative">
-      <!-- Outer Ring-->
-      <div class="w-12 h-12 rounded-full absolute border-2 border-solid border-shade"></div>
-      <!-- Inner Ring -->
-      <div class="w-12 h-12 rounded-full animate-spin absolute border-2 border-solid border-primary border-t-transparent"></div>
-    </div>
+<div class="h-full flex items-center justify-center transition-opacity opacity-0 duration-1000" [class.opacity-100]="showSpinnerDebounced()">
+  <div class="relative">
+    <!-- Outer Ring-->
+    <div class="w-12 h-12 rounded-full absolute border-2 border-solid border-shade"></div>
+    <!-- Inner Ring -->
+    <div class="w-12 h-12 rounded-full animate-spin absolute border-2 border-solid border-primary border-t-transparent"></div>
   </div>
-  }
+</div>
 } @else {
 <div class="h-full flex flex-col">
   @if(_viewHeaderComponent()) {

@@ -14,7 +14,7 @@ import { delay } from 'rxjs';
 })
 export class ViewComponent {
   showSpinner = input(false);
-  showSpinnerDebounced = toSignal(toObservable(this.showSpinner).pipe(delay(1000)));
+  showSpinnerDebounced = toSignal(toObservable(this.showSpinner).pipe(delay(800)));
   _viewHeaderComponent = contentChild(ViewHeaderComponent);
   _viewMainContentComponent = contentChild(ViewMainContentComponent);
   _viewFooterComponent = contentChild(ViewFooterComponent);
