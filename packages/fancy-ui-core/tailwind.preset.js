@@ -86,10 +86,15 @@ module.exports = {
             transform: 'scale(4) translateX(-50%) translateY(-50%)',
             opacity: 0 
           },
+        },
+        'infinite-scroll': {
+          from: { transform: 'translateX(-100%)' },
+          to: { transform: 'translateX(100cqw)' },
         }
       },
       animation: {
         ripple: 'ripple 800ms linear',
+        'infinite-scroll': 'infinite-scroll 1s linear infinite',
       }
     },
     variables: {

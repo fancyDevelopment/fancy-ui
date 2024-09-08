@@ -1,4 +1,4 @@
-import { Component, contentChildren, signal, input } from '@angular/core';
+import { Component, contentChildren, signal, input, Output, EventEmitter } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { fromEvent, skip, Subscription } from 'rxjs';
 import { AppHeaderActionComponent } from './app-header-action.component';
@@ -30,6 +30,9 @@ export class AppHeaderComponent {
    * User Id within the AppHeader.
    */
   userId = input<string|null>(null);
+
+  @Output()
+  titleTap = new EventEmitter<void>();
 
   // The view header actions
   _appHeaderActions = contentChildren(AppHeaderActionComponent)

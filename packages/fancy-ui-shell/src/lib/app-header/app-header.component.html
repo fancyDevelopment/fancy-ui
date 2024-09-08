@@ -1,5 +1,5 @@
 <div class="h-10 z-20 flex justify-between text-on-primary bg-primary px-rim md:group-[.fui-shell.with-left-template]:pl-0">
-  <div class="flex items-center min-w-0">
+  <div class="flex items-center min-w-0 cursor-pointer" (click)="titleTap.emit()">
     <!-- Back navigation button -->
     @if(iconName(); as iconName) {
       <div class="grid justify-items-center md:group-[.fui-shell.with-left-template]:w-20 pr-element">
@@ -16,7 +16,7 @@
   <div class="flex-none flex items-center h-full relative">
     <a class="h-10 flex cursor-pointer max-w-48 relative" (click)="_openActionsDropdown()">
       <div class="absolute z-0 w-full h-10 rounded transition-all duration-500 hover:bg-hover"></div>
-      <div class="min-w-0 self-center mx-2">
+      <div class="min-w-0 self-center mx-2 hidden md:block">
         @if(userDisplayName(); as userDisplayName) {
           <div class="text-xs truncate">{{userDisplayName}}</div>
         }
