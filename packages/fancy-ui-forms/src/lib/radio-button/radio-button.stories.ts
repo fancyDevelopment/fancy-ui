@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 
 import { RadioButtonComponent } from './radio-button.component';
 
-import { jest } from '@storybook/jest';
+import { fn } from '@storybook/test';
 import { FormsModule } from '@angular/forms';
 
 const meta: Meta<RadioButtonComponent> = {
@@ -27,7 +27,7 @@ export const Basic: Story = {
   },
   parameters: {
     model: 'Value',
-    onModelChange: jest.fn(action('Marked'))
+    onModelChange: fn(action('Marked'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
@@ -49,7 +49,7 @@ export const Group: Story = {
     label3: 'Radio Button Label 3',
     value3: 'Value3',
     model: 'Value',
-    onModelChange: jest.fn(action('Marked'))
+    onModelChange: fn(action('Marked'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },

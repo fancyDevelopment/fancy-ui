@@ -1,10 +1,8 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
 
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, within, expect, fn } from '@storybook/test';
 import { ButtonComponent } from './button.component';
-
-import { jest, expect } from '@storybook/jest';
 
 const meta: Meta<ButtonComponent> = {
   title: 'Components/Core/Button',
@@ -24,7 +22,7 @@ export const Basic: Story = {
     label: 'Primary Button' as any
   },
   parameters: {
-    tapped: jest.fn(action('tapped'))
+    tapped: fn(action('tapped'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
@@ -48,7 +46,7 @@ export const Disabled: Story = {
     disabled: true as any
   },
   parameters: {
-    tapped: jest.fn(action('tapped'))
+    tapped: fn(action('tapped'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },

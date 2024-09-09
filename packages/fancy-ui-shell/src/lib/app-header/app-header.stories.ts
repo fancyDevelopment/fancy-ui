@@ -1,10 +1,7 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { action } from '@storybook/addon-actions';
 import { AppHeaderActionComponent } from './app-header-action.component';
 import { AppHeaderComponent } from './app-header.component';
 
-import { jest, expect } from '@storybook/jest';
-import { userEvent, within } from '@storybook/testing-library';
 import { provideIcons } from '@ng-icons/core';
 import { heroUsers } from '@ng-icons/heroicons/outline';
 import { provideFancyUi } from 'fancy-ui-core';

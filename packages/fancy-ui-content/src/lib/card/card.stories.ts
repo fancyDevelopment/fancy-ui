@@ -1,6 +1,6 @@
 import { componentWrapperDecorator, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
-import { jest } from '@storybook/jest';
+import { fn } from '@storybook/test';
 import { CardComponent } from './card.component';
 import { CardHeaderComponent } from './card-header.component';
 import { CardImageComponent } from './card-image.component';
@@ -31,7 +31,7 @@ export const Basic: Story = {
   parameters: {
     title: 'Title',
     subtitle: 'Subtitle',
-    onMoreTap: jest.fn(action('onMoreTap'))
+    onMoreTap: fn(action('onMoreTap'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
@@ -48,8 +48,8 @@ export const WithActions: Story = {
   parameters: {
     title: 'Title',
     subtitle: 'Subtitle',
-    onSuccessTap: jest.fn((actions: CardActionsComponent) => actions.showMessage('Success Message', 'success')),
-    onErrorTap: jest.fn((actions: CardActionsComponent) => actions.showMessage('Error Message', 'error'))
+    onSuccessTap: fn((actions: CardActionsComponent) => actions.showMessage('Success Message', 'success')),
+    onErrorTap: fn((actions: CardActionsComponent) => actions.showMessage('Error Message', 'error'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
@@ -72,7 +72,7 @@ export const HeaderWithImage: Story = {
   parameters: {
     title: 'Title',
     subtitle: 'Subtitle',
-    onMoreTap: jest.fn(action('onMoreTap'))
+    onMoreTap: fn(action('onMoreTap'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
@@ -89,7 +89,7 @@ export const HeadingImage: Story = {
   parameters: {
     title: 'Title',
     subtitle: 'Subtitle',
-    onMoreTap: jest.fn(action('onMoreTap'))
+    onMoreTap: fn(action('onMoreTap'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
@@ -107,7 +107,7 @@ export const ImageInBetween: Story = {
   parameters: {
     title: 'Title',
     subtitle: 'Subtitle',
-    onMoreTap: jest.fn(action('onMoreTap'))
+    onMoreTap: fn(action('onMoreTap'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },

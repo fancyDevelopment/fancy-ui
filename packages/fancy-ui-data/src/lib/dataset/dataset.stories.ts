@@ -1,7 +1,7 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
 
-import { jest } from '@storybook/jest';
+import { fn } from '@storybook/test';
 
 import { DatasetComponent } from './dataset.component';
 import { DatasetCardheaderComponent } from './dataset-cardheader.component';
@@ -62,7 +62,7 @@ export const WithMoreButton: Story = {
     dataSource: dataSource as any
   },
   parameters: {
-    onMoreTapped: jest.fn(action('tapped'))
+    onMoreTapped: fn(action('tapped'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },

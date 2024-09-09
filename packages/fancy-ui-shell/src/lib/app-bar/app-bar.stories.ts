@@ -3,8 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { AppBarActionComponent } from './app-bar-action.component';
 import { AppBarComponent } from './app-bar.component';
 
-import { jest, expect } from '@storybook/jest';
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, within, expect, fn } from '@storybook/test';
 import { provideIcons } from '@ng-icons/core';
 import { heroUsers } from '@ng-icons/heroicons/outline';
 import { provideFancyUi } from 'fancy-ui-core';
@@ -53,7 +52,7 @@ export const UpToThreeActions: Story = {
     action1Label: 'Action 1',
     action2Label: 'Action 2',
     action3Label: 'Action 3',
-    onTap: jest.fn((value: string) => action('Action Tap')(value))
+    onTap: fn((value: string) => action('Action Tap')(value))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },

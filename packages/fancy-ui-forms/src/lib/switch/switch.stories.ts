@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 
 import { SwitchComponent } from './switch.component';
 
-import { jest } from '@storybook/jest';
+import { fn } from '@storybook/test';
 import { FormsModule } from '@angular/forms';
 
 const meta: Meta<SwitchComponent> = {
@@ -26,7 +26,7 @@ export const Basic: Story = {
   },
   parameters: {
     model: false,
-    onModelChange: jest.fn(action('Switched'))
+    onModelChange: fn(action('Switched'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
@@ -44,7 +44,7 @@ export const WithHints: Story = {
   },
   parameters: {
     model: false,
-    onModelChange: jest.fn(action('Switched'))
+    onModelChange: fn(action('Switched'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },

@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 
 import { SliderComponent } from './slider.component';
 
-import { jest } from '@storybook/jest';
+import { fn } from '@storybook/test';
 import { FormsModule } from '@angular/forms';
 
 const meta: Meta<SliderComponent> = {
@@ -28,7 +28,7 @@ export const Basic: Story = {
   },
   parameters: {
     model: 'Value',
-    onModelChange: jest.fn(action('Slided'))
+    onModelChange: fn(action('Slided'))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },

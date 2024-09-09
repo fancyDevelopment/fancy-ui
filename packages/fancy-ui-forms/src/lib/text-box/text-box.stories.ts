@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import { TextBoxComponent } from './text-box.component';
 
-import { jest } from '@storybook/jest';
+import { fn } from '@storybook/test';
 import { FormsModule } from '@angular/forms';
 
 const meta: Meta<TextBoxComponent> = {
@@ -31,7 +31,7 @@ export const Basic: Story = {
   },
   parameters: {
     value: '',
-    onModelChange: jest.fn((val) => action("Value Changed")(val))
+    onModelChange: fn((val) => action("Value Changed")(val))
   },
   render: (args, context) => ({
     props: { ...args, ...context.parameters },
