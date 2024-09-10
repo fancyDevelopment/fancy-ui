@@ -11,7 +11,7 @@ const meta: Meta<ButtonComponent> = {
     moduleMetadata({
       imports: [ButtonComponent]
     })
-  ],
+  ]
 };
 
 export default meta;
@@ -19,47 +19,44 @@ type Story = StoryObj<ButtonComponent>;
 
 export const Basic: Story = {
   args: {
-    label: 'Primary Button' as any
+    label: 'Primary Button',
+    disabled: false,
+    tap: fn()
   },
-  parameters: {
-    tapped: fn(action('tapped'))
-  },
-  render: (args, context) => ({
-    props: { ...args, ...context.parameters },
+  render: (args) => ({
+    props: args,
     template:`
-      <fui-button [label]="label" (onTap)="tapped()"></fui-button>
+      <fui-button [label]="label" [disabled]="disabled" (tap)="tap()"></fui-button>
     `
   }),
-  play: async ({canvasElement, parameters, args}) => {
+  play: async ({canvasElement, args}) => {
     const canvas = within(canvasElement);
 
-    const button = canvas.getByRole('button', { name: (args.label as any) });
-    userEvent.click(button);
+    const button = canvas.getByRole('button', { name: args.label });
+    await userEvent.click(button);
 
-    expect(parameters['tapped']).toHaveBeenCalled();
+    expect(args.tap).toHaveBeenCalled();
   }
 };
 
 export const Disabled: Story = {
   args: {
-    label: 'Primary Button' as any,
-    disabled: true as any
+    label: 'Primary Button',
+    disabled: true,
+    tap: fn()
   },
-  parameters: {
-    tapped: fn(action('tapped'))
-  },
-  render: (args, context) => ({
-    props: { ...args, ...context.parameters },
+  render: (args) => ({
+    props: args,
     template:`
-      <fui-button [label]="label" [disabled]="disabled" (onTap)="tapped()"></fui-button>
+      <fui-button [label]="label" [disabled]="disabled" (tap)="tap()"></fui-button>
     `
   }),
-  play: async ({canvasElement, parameters, args}) => {
+  play: async ({canvasElement, args}) => {
     const canvas = within(canvasElement);
 
-    const button = canvas.getByRole('button', { name: (args.label as any) });
-    userEvent.click(button);
+    const button = canvas.getByRole('button', { name: args.label });
+    await userEvent.click(button);
 
-    expect(parameters['tapped']).toHaveBeenCalled();
+    expect(args.tap).not.toHaveBeenCalled();
   }
 };

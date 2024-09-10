@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, input, viewChild } from '@angular/core';
+import { Component, ElementRef, input, output, viewChild } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { timer } from 'rxjs';
 
@@ -14,24 +14,23 @@ export class ButtonComponent {
   /** Flag to show the butto in a disabled state. */
   disabled = input(false);
   /** An event called if the button is tapped. */
-  @Output()
-  tap = new EventEmitter<void>();
+  tap = output<void>();
 
-  waveSpan = viewChild<ElementRef>('wave');
+  _waveSpan = viewChild<ElementRef>('wave');
 
-  animate = false;
+  _animate = false;
 
-  click(event: { offsetX: number, offsetY: number}) {
+  _click(event: { offsetX: number, offsetY: number}) {
     if(!this.disabled())
     {
-      const waveSpan = this.waveSpan();
+      const waveSpan = this._waveSpan();
       if(waveSpan) {
         waveSpan.nativeElement.style.left = event.offsetX + 'px';
         waveSpan.nativeElement.style.top = event.offsetY + 'px';
       }
-      this.animate = true;
-      timer(800).subscribe(() => this.animate = false);
-      this.tap.next();
+      this._animate = true;
+      timer(800).subscribe(() => this._animate = false);
+      this.tap.emit();
     }
   }
 
