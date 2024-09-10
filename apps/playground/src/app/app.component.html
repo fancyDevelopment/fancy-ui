@@ -16,19 +16,24 @@
       <fui-view-main-content>
         <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-component">
           <fui-card>
+            <fui-card-header title="Form Title" subtitle="Form Subtitle" />
+            <fui-card-content>
+              <div class="grid grid-cols-6 gap-component">
+                <fui-text-box class="col-span-3" label="Label1" (keyup.enter)="onEnter()" />
+                <fui-text-box class="col-span-3" label="Label2" />
+                <fui-switch class="col-span-3" label="Switch" />
+                <fui-switch class="col-span-3" label="Switch" />
+                <fui-slider class="col-span-6" label="Slider" />
+                <fui-text-area class="col-span-6" label="Textarea" />
+              </div>
+            </fui-card-content>
+            <fui-card-grow />
+            <fui-card-actions><fui-button label="Save" /></fui-card-actions>
+          </fui-card>
+          <fui-card>
             <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
             <fui-card-content>Some Content</fui-card-content>
             <fui-card-actions><fui-button label="Button" (tap)="onButtonTap()" /></fui-card-actions>
-          </fui-card>
-          <fui-card>
-            <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
-            <fui-card-content>Some Content</fui-card-content>
-            <fui-card-actions><fui-button label="Button" /></fui-card-actions>
-          </fui-card>
-          <fui-card>
-            <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>
-            <fui-card-content>Some Content</fui-card-content>
-            <fui-card-actions><fui-button label="Button" /></fui-card-actions>
           </fui-card>
           <fui-card>
             <fui-card-image src="https://placehold.co/300x150?text=Your+Image" title="Card Title" subtitle="Subtitle"/>

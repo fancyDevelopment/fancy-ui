@@ -4,7 +4,7 @@
             <fui-card>
                 @if(_datasetCardHeader(); as cardHeader) {
                     <ng-container [ngTemplateOutlet]="cardHeader._template() ?? null"
-                                  [ngTemplateOutletContext]="{ $implicit: cardData, more: onMoreTap}"/>
+                                  [ngTemplateOutletContext]="{ $implicit: cardData, itemTapMode: itemTapMode(), onItemTap: onItemTap}"/>
                 }
                 <fui-card-content>
                     <div class="grid grid-cols-12">
@@ -23,9 +23,20 @@
             <thead>
                 <tr class="border-b">
                     @for(item of _datasetTableItems(); track $index) {
-                        <th class="text-left">{{ item.label() }}</th>
+                        <th class="text-left">
+                            <div class="flex" [class.cursor-pointer]="enableSort()" (click)="foo(item)">
+                                <div>{{ item.label() }}</div>
+                                <div class="h-icon w-icon">
+                                    @if(_currentSortItem()?.label === item.label() && _currentSortItem()?.order === 'asc') {
+                                        <fui-icon name="matArrowDropUpOutline" />
+                                    } @else if (_currentSortItem()?.label === item.label() && _currentSortItem()?.order === 'desc') {
+                                        <fui-icon name="matArrowDropDownOutline" />
+                                    }
+                                </div>
+                            </div>
+                        </th>
                     }
-                    @if(moreTap.observers.length) {
+                    @if(itemTapMode() === 'MoreIcon') {
                         <th class="text-left"></th> 
                     }
                 </tr>
@@ -39,9 +50,9 @@
                                             [ngTemplateOutletContext]="{ $implicit: rowData }" />
                             </td>
                         }
-                        @if(moreTap.observers.length) {
+                        @if(itemTapMode() === 'MoreIcon') {
                             <td class="flex justify-end min-h-hover">
-                                <a (click)="onMoreTap(rowData)" class="w-hover flex justify-center items-center relative">
+                                <a (click)="onItemTap(rowData)" class="w-hover flex justify-center items-center relative">
                                     <div class="absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover"></div>
                                     <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />
                                 </a>

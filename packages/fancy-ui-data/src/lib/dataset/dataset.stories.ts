@@ -83,3 +83,31 @@ export const WithMoreButton: Story = {
     `
   })
 };
+
+export const WithColumnSorting: Story = {
+  args: {
+    dataSource: dataSource as any
+  },
+  parameters: {
+    onItemTapped: fn(action('tapped')),
+    onSort: fn(action('sort'))
+  },
+  render: (args, context) => ({
+    props: { ...args, ...context.parameters },
+    template:`
+      <fui-dataset [dataSource]="dataSource" [enableSort]="true" (sort)="onSort($event)" itemTapMode="MoreIcon" (itemTap)="onItemTapped($event)">
+        <fui-dataset-cardheader imageSrcKeyPath="imgHref">
+          <ng-template #titleTemplate let-data>{{data.firstName}} - {{data.lastName}}</ng-template>
+          <ng-template #subtitleTemplate let-data>{{data.id}} - {{data.score | percent}}</ng-template>
+        </fui-dataset-cardheader>
+        <fui-dataset-item-value label="ID" key="id" />
+        <fui-dataset-item-image label="Name" imageSrcKeyPath="imgHref" target="Table">
+          <ng-template let-data>{{data.firstName}} - {{data.lastName}}</ng-template>
+        </fui-dataset-item-image>
+        <fui-dataset-item-template label="Score">
+          <ng-template let-data>{{ data.score | percent:'2.2' }}</ng-template>
+        </fui-dataset-item-template>
+      </fui-dataset>
+    `
+  })
+};

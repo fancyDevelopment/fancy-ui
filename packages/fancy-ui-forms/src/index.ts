@@ -1,9 +1,15 @@
-export * from './lib/text-box/text-box.component';
+import { RadioButtonComponent } from './lib/radio-button/radio-button.component';
+import { SliderComponent } from './lib/slider/slider.component';
+import { SwitchComponent } from './lib/switch/switch.component';
+import { TextAreaComponent } from './lib/text-area/text-area.component';
+import { TextBoxComponent } from './lib/text-box/text-box.component';
 
-export * from './lib/switch/switch.component';
+export {
+    TextBoxComponent,
+    SwitchComponent,
+    SliderComponent,
+    RadioButtonComponent, 
+    TextAreaComponent
+};
 
-export * from './lib/slider/slider.component';
-
-export * from './lib/radio-button/radio-button.component';
-
-export * from './lib/text-area/text-area.component';
+export const FormsBundle = [ TextBoxComponent, SwitchComponent, SliderComponent, RadioButtonComponent, TextAreaComponent ];
