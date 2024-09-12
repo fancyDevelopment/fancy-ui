@@ -1,5 +1,5 @@
 @if(dataSource(); as data) {
-    <div class="md:hidden grid gap-component">
+    <div class="grid gap-component" [class]="generateResponsiveCardsClass()">
         @for(cardData of data; track $index) {
             <fui-card>
                 @if(_datasetCardHeader(); as cardHeader) {
@@ -18,12 +18,12 @@
         }
     </div>
 
-    <div class="bg-primary-container p-element hidden md:block">
+    <div class="bg-primary-container p-element" [class]="generateResponsiveTableClass()">
         <table class="w-full">
             <thead>
                 <tr class="border-b">
                     @for(item of _datasetTableItems(); track $index) {
-                        <th class="text-left">
+                        <th class="text-left" [class]="generateResponsiveCellClass(item.tableVisibleAt())">
                             <div class="flex" [class.cursor-pointer]="enableSort()" (click)="foo(item)">
                                 <div>{{ item.label() }}</div>
                                 <div class="h-icon w-icon">
@@ -45,7 +45,7 @@
                 @for(rowData of data; track $index) {
                     <tr class="border-b border-b-outline last:border-0">
                         @for(item of _datasetTableItems(); track $index) {
-                            <td>
+                            <td [class]="generateResponsiveCellClass(item.tableVisibleAt())">
                                 <ng-container [ngTemplateOutlet]="item.tableTemplate ?? null"
                                             [ngTemplateOutletContext]="{ $implicit: rowData }" />
                             </td>

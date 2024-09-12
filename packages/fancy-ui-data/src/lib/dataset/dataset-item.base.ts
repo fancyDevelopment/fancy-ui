@@ -3,7 +3,8 @@ import { Directive, TemplateRef, input } from '@angular/core';
 export type DatasetTarget = 'Table' | 'Card' | 'TableAndCard';
 
 export type DatasetResponsive =
-      'SmAndUp'
+      'Always'
+    | 'SmAndUp'
     | 'MdAndUp'
     | 'LgAndUp'
     | 'XlAndUp'
@@ -21,7 +22,7 @@ export abstract class DatasetItemBase {
 
     target = input<DatasetTarget>('TableAndCard');
 
-    responsive = input<DatasetResponsive>('SmAndUp');
+    tableVisibleAt = input<DatasetResponsive>('Always');
 
     cardLineWidth = input<DatasetCardLineWidth>('Half');
 
