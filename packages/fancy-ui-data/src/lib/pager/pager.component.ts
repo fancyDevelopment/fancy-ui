@@ -8,8 +8,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './pager.component.html'
 })
 export class PagerComponent {
-  prevPageRouterLink = input<any[] | string | null>(null);
-  nextPageRouterLink = input<any[] | string | null>(null);
+  prevPageRouterLink = input<any[] | string | null | undefined>(null);
+  nextPageRouterLink = input<any[] | string | null | undefined>(null);
   currentPage = input(0);
   pageCount = input(0);
 }
