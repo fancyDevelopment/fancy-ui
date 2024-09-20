@@ -43,9 +43,9 @@
                 @for(rowData of data; track $index) {
                     <tr class="border-b border-b-outline last:border-0">
                         @for(item of _datasetTableItems(); track $index) {
-                            <td class="max-w-1 truncate" [class]="generateResponsiveCellClass(item)">
+                            <td class="truncate" [class]="generateResponsiveCellClass(item)">
                                 <ng-container [ngTemplateOutlet]="item.tableTemplate ?? null"
-                                            [ngTemplateOutletContext]="{ $implicit: rowData }" />
+                                              [ngTemplateOutletContext]="{ $implicit: rowData }" />
                             </td>
                         }
                         @if(itemTapMode() === 'MoreIcon') {
