@@ -10,9 +10,10 @@ import { DatasetHelpers } from './dataset.helpers';
   imports: [NgClass, NgTemplateOutlet],
   template: `
     <ng-template #cardTemplate let-rowData>
-      <span [ngClass]="{'col-span-3': cardLineWidth() === 'Quarter',
-                        'col-span-6': cardLineWidth() === 'Half',
-                        'col-span-12': cardLineWidth() === 'Full'}">
+      <span [ngClass]="{'col-span-3': itemCardWidth() === 'Sm',
+                        'col-span-4': itemCardWidth() === 'Md',
+                        'col-span-6': itemCardWidth() === 'Lg',
+                        'col-span-12': itemCardWidth() === 'Xl'}">
         <label class="text-label font-label">{{label()}}</label>
         <div class="flex">
           <img class="rounded" [src]="getImageSrc(rowData)">

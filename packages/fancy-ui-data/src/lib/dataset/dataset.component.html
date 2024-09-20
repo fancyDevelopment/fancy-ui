@@ -23,7 +23,7 @@
             <thead>
                 <tr class="border-b">
                     @for(item of _datasetTableItems(); track $index) {
-                        <th [class]="generateResponsiveCellClass(item.tableVisibleAt())">
+                        <th [class]="generateResponsiveCellClass(item)">
                             <div class="flex flex-nowrap" [class.cursor-pointer]="enableSort() && item.sortKey()" (click)="onSort(item)">
                                 <div>{{ item.label() }}</div>
                                 @if(sortItem().sortKey === item.sortKey() && sortItem().sortOrder === 'asc') {
@@ -35,7 +35,7 @@
                         </th>
                     }
                     @if(itemTapMode() === 'MoreIcon') {
-                        <td></td> 
+                        <td class="w-hover"></td> 
                     }
                 </tr>
             </thead>
@@ -43,13 +43,13 @@
                 @for(rowData of data; track $index) {
                     <tr class="border-b border-b-outline last:border-0">
                         @for(item of _datasetTableItems(); track $index) {
-                            <td class="max-w-1 truncate" [class]="generateResponsiveCellClass(item.tableVisibleAt())">
+                            <td class="max-w-1 truncate" [class]="generateResponsiveCellClass(item)">
                                 <ng-container [ngTemplateOutlet]="item.tableTemplate ?? null"
                                             [ngTemplateOutletContext]="{ $implicit: rowData }" />
                             </td>
                         }
                         @if(itemTapMode() === 'MoreIcon') {
-                            <td class="flex justify-end min-h-hover">
+                            <td class="w-hover flex justify-end min-h-hover">
                                 <a (click)="onItemTap(rowData)" class="w-hover flex justify-center items-center relative">
                                     <div class="absolute w-hover w-hover h-hover rounded-xl transition-all duration-500 hover:bg-hover"></div>
                                     <fui-icon class="h-icon w-icon" name="matMoreVertOutline" />

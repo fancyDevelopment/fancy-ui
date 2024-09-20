@@ -13,7 +13,7 @@ export type DatasetResponsive =
     | 'LgOnly'
     | 'XlOnly';
 
-export type DatasetCardLineWidth = 'Full' | 'Half' | 'Quarter';
+export type DatasetWidth = 'Xl' | 'Lg' | 'Md' | 'Sm';
 
 @Directive()
 export abstract class DatasetItemBase {
@@ -26,7 +26,9 @@ export abstract class DatasetItemBase {
 
     tableVisibleAt = input<DatasetResponsive>('Always');
 
-    cardLineWidth = input<DatasetCardLineWidth>('Half');
+    itemCardWidth = input<DatasetWidth>('Md');
+
+    itemTableWidth = input<DatasetWidth>('Md');
 
     abstract get cardTemplate(): TemplateRef<unknown> | undefined;
 

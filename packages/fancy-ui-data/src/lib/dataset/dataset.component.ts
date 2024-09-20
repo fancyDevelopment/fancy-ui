@@ -83,8 +83,8 @@ export class DatasetComponent {
         classValue = 'lg:hidden xl:block';
         break;
       case 'XlOnly':
-          classValue = 'xl:hidden 2xl:block';
-          break;
+        classValue = 'xl:hidden 2xl:block';
+        break;
     }
 
     return classValue;
@@ -119,44 +119,62 @@ export class DatasetComponent {
         classValue = 'hidden lg:block xl:hidden';
         break;
       case 'XlOnly':
-          classValue = 'hidden xl:block 2x:hidden';
-          break;
+        classValue = 'hidden xl:block 2x:hidden';
+        break;
     }
 
     return classValue;
   }
 
-  generateResponsiveCellClass(responsive: DatasetResponsive) {
-    let classValue = '';
+  generateResponsiveCellClass(item: DatasetItemBase) {
 
-    switch (responsive) {
-      case 'SmAndUp':
-        classValue = 'hidden sm:table-cell';
+    let tableWidth = '';
+
+    switch (item.itemTableWidth()) {
+      case 'Sm':
+        tableWidth = 'max-w-1';
         break;
-      case 'MdAndUp':
-        classValue = 'hidden md:table-cell';
+      case 'Md':
+        tableWidth = 'max-w-2';
         break;
-      case 'LgAndUp':
-        classValue = 'hidden lg:table-cell';
+      case 'Lg':
+        tableWidth = 'max-w-4';
         break;
-      case 'XlAndUp':
-        classValue = 'hidden xl:table-cell';
+      case 'Xl':
+        tableWidth = 'max-w-8';
         break;
-      case 'SmOnly':
-        classValue = 'hidden sm:table-cell md:hidden';
-        break;
-      case 'MdOnly':
-        classValue = 'hidden md:table-cell xl:hidden';
-        break;
-      case 'LgOnly':
-        classValue = 'hidden lg:table-cell xl:hidden';
-        break;
-      case 'XlOnly':
-          classValue = 'hidden xl:table-cell 2xl:hidden';
-          break;
     }
 
-    return classValue;
+    let responsive = '';
+
+    switch (item.tableVisibleAt()) {
+      case 'SmAndUp':
+        responsive = 'hidden sm:table-cell';
+        break;
+      case 'MdAndUp':
+        responsive = 'hidden md:table-cell';
+        break;
+      case 'LgAndUp':
+        responsive = 'hidden lg:table-cell';
+        break;
+      case 'XlAndUp':
+        responsive = 'hidden xl:table-cell';
+        break;
+      case 'SmOnly':
+        responsive = 'hidden sm:table-cell md:hidden';
+        break;
+      case 'MdOnly':
+        responsive = 'hidden md:table-cell xl:hidden';
+        break;
+      case 'LgOnly':
+        responsive = 'hidden lg:table-cell xl:hidden';
+        break;
+      case 'XlOnly':
+        responsive = 'hidden xl:table-cell 2xl:hidden';
+        break;
+    }
+
+    return tableWidth + ' ' + responsive;
   }
 
   private onItemTapInternal(data: unknown) {

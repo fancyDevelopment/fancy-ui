@@ -9,9 +9,10 @@ import { DatasetItemBase } from './dataset-item.base';
   imports: [NgTemplateOutlet, NgClass],
   template: `
     <ng-template #cardTemplate let-rowData>
-      <span [ngClass]="{'col-span-3': cardLineWidth() === 'Quarter',
-                        'col-span-6': cardLineWidth() === 'Half',
-                        'col-span-12': cardLineWidth() === 'Full'}">
+    <span [ngClass]="{'col-span-3': itemCardWidth() === 'Sm',
+                        'col-span-4': itemCardWidth() === 'Md',
+                        'col-span-6': itemCardWidth() === 'Lg',
+                        'col-span-12': itemCardWidth() === 'Xl'}">
         <label class="text-label font-label">{{label()}}</label>
         <div><ng-container *ngTemplateOutlet="_valueTemplate() ?? null; context: { $implicit: rowData }" /></div>
       </span>
