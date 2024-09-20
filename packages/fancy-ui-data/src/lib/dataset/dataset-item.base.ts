@@ -22,6 +22,8 @@ export abstract class DatasetItemBase {
 
     target = input<DatasetTarget>('TableAndCard');
 
+    sortKey = input('');
+
     tableVisibleAt = input<DatasetResponsive>('Always');
 
     cardLineWidth = input<DatasetCardLineWidth>('Half');

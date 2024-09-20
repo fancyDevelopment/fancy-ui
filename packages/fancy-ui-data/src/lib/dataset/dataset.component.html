@@ -23,21 +23,19 @@
             <thead>
                 <tr class="border-b">
                     @for(item of _datasetTableItems(); track $index) {
-                        <th class="text-left" [class]="generateResponsiveCellClass(item.tableVisibleAt())">
-                            <div class="flex" [class.cursor-pointer]="enableSort()" (click)="foo(item)">
+                        <th [class]="generateResponsiveCellClass(item.tableVisibleAt())">
+                            <div class="flex flex-nowrap" [class.cursor-pointer]="enableSort() && item.sortKey()" (click)="onSort(item)">
                                 <div>{{ item.label() }}</div>
-                                <div class="h-icon w-icon">
-                                    @if(_currentSortItem()?.label === item.label() && _currentSortItem()?.order === 'asc') {
-                                        <fui-icon name="matArrowDropUpOutline" />
-                                    } @else if (_currentSortItem()?.label === item.label() && _currentSortItem()?.order === 'desc') {
-                                        <fui-icon name="matArrowDropDownOutline" />
-                                    }
-                                </div>
+                                @if(sortItem().sortKey === item.sortKey() && sortItem().sortOrder === 'asc') {
+                                    <div class="h-icon w-icon"><fui-icon name="matArrowDropUpOutline" /></div>
+                                } @else if (sortItem().sortKey === item.sortKey() && sortItem().sortOrder === 'desc') {
+                                    <div class="h-icon w-icon"><fui-icon name="matArrowDropDownOutline" /></div>
+                                }
                             </div>
                         </th>
                     }
                     @if(itemTapMode() === 'MoreIcon') {
-                        <th class="text-left"></th> 
+                        <td></td> 
                     }
                 </tr>
             </thead>
@@ -45,7 +43,7 @@
                 @for(rowData of data; track $index) {
                     <tr class="border-b border-b-outline last:border-0">
                         @for(item of _datasetTableItems(); track $index) {
-                            <td [class]="generateResponsiveCellClass(item.tableVisibleAt())">
+                            <td class="max-w-1 truncate" [class]="generateResponsiveCellClass(item.tableVisibleAt())">
                                 <ng-container [ngTemplateOutlet]="item.tableTemplate ?? null"
                                             [ngTemplateOutletContext]="{ $implicit: rowData }" />
                             </td>

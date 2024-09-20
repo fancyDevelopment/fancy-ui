@@ -1,10 +1,14 @@
-import { Component, computed, contentChild, contentChildren, input, output, signal } from '@angular/core';
+import { Component, computed, contentChild, contentChildren, input, model, output, signal } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { DatasetItemBase, DatasetResponsive } from './dataset-item.base';
 import { DatasetCardheaderComponent } from './dataset-cardheader.component';
 
 import { CardComponent, CardContentComponent } from 'fancy-ui-content';
 import { IconComponent } from 'fancy-ui-core';
+
+export type SortItem = { sortKey: string | null, sortOrder: 'asc' | 'desc' };
+
+const defaultSortItem: SortItem = { sortKey: null, sortOrder: 'asc' };
 
 @Component({
   selector: 'fui-dataset',
@@ -21,9 +25,7 @@ export class DatasetComponent {
   itemTap = output<unknown>();
 
   enableSort = input(false);
-  sort = output<{ label: string, order: 'asc' | 'desc' }>();
-
-  _currentSortItem = signal<{ label: string, order: 'asc' | 'desc' } | null>(null);
+  sortItem = model(defaultSortItem);
 
   _datasetItems = contentChildren(DatasetItemBase);
   _datasetCardHeader = contentChild(DatasetCardheaderComponent);
@@ -33,24 +35,23 @@ export class DatasetComponent {
 
   onItemTap: (value: unknown) => void;
 
-  foo(item: DatasetItemBase) {
-    if (!this.enableSort()) return;
-    let currentSortItem = this._currentSortItem();
-    if (currentSortItem?.label === item.label()) {
-      if (currentSortItem.order === 'asc') {
-        currentSortItem.order = 'desc';
-      } else {
-        currentSortItem.order = 'asc';
-      }
-    } else {
-      currentSortItem = { label: item.label(), order: 'asc' };
-    }
-    this._currentSortItem.set({ ...currentSortItem });
-    this.sort.emit(currentSortItem);
-  }
-
   constructor() {
     this.onItemTap = this.onItemTapInternal.bind(this);
+  }
+
+  onSort(item: DatasetItemBase) {
+    if (!this.enableSort() || !item.sortKey()) return;
+    let sortItem = this.sortItem();
+    if (sortItem?.sortKey === item.sortKey()) {
+      if (sortItem.sortOrder === 'asc') {
+        sortItem.sortOrder = 'desc';
+      } else {
+        sortItem.sortOrder = 'asc';
+      }
+    } else {
+      sortItem = { sortKey: item.sortKey(), sortOrder: 'asc' };
+    }
+    this.sortItem.set({ ...sortItem });
   }
 
   generateResponsiveCardsClass() {
