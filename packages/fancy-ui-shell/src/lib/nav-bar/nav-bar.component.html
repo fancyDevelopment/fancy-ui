@@ -1,7 +1,7 @@
 <div class="flex justify-around pt-3 pb-rim bg-background-variant">
     @for(item of _navBarItems(); track $index) {
         <div>
-            <ng-contianer [ngTemplateOutlet]="item._template() ?? null" />
+            <ng-container [ngTemplateOutlet]="item._template() ?? null" />
         </div>
     }
 </div>
