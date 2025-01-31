@@ -6,7 +6,6 @@ import { CardBundle } from 'fancy-ui-content';
 import { FormsBundle } from 'fancy-ui-forms'; 
 
 @Component({
-    standalone: true,
     selector: 'org-root',
     templateUrl: './app.component.html',
     imports: [RouterModule, IconComponent, ButtonComponent, ShellBundle, AppHeaderBundle, AppBarBundle, ViewBundle, CardBundle, FormsBundle]

@@ -11,10 +11,9 @@ export type SortItem = { sortKey: string | null, sortOrder: 'asc' | 'desc' };
 const defaultSortItem: SortItem = { sortKey: null, sortOrder: 'asc' };
 
 @Component({
-  selector: 'fui-dataset',
-  standalone: true,
-  imports: [NgTemplateOutlet, CardComponent, CardContentComponent, IconComponent],
-  templateUrl: './dataset.component.html'
+    selector: 'fui-dataset',
+    imports: [NgTemplateOutlet, CardComponent, CardContentComponent, IconComponent],
+    templateUrl: './dataset.component.html'
 })
 export class DatasetComponent {
   tableVisibleAt = input<DatasetResponsive>('MdAndUp');

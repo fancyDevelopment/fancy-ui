@@ -4,10 +4,9 @@ import { DatasetHelpers } from './dataset.helpers';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  selector: 'fui-dataset-cardheader',
-  standalone: true,
-  imports: [NgTemplateOutlet, CardHeaderComponent],
-  template: `
+    selector: 'fui-dataset-cardheader',
+    imports: [NgTemplateOutlet, CardHeaderComponent],
+    template: `
     <ng-template #template let-data let-onItemTap="onItemTap" let-itemTapMode="itemTapMode">
       <fui-card-header [titleTemplateRef]="titleTemplateWrapper" [subtitleTemplateRef]="subtitleTemplateWrapper" [imageSrc]="getImageSrc(data)" [showMore]="itemTapMode === 'MoreIcon'" (moreTap)="onItemTap(data)">
         <ng-template #titleTemplateWrapper>

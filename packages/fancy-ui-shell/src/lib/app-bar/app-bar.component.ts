@@ -5,10 +5,9 @@ import { AppBarActionComponent } from './app-bar-action.component';
 import { IconComponent } from 'fancy-ui-core';
 
 @Component({
-  selector: 'fui-app-bar',
-  standalone: true,
-  imports: [NgTemplateOutlet, IconComponent, SlicePipe],
-  templateUrl: './app-bar.component.html'
+    selector: 'fui-app-bar',
+    imports: [NgTemplateOutlet, IconComponent, SlicePipe],
+    templateUrl: './app-bar.component.html'
 })
 export class AppBarComponent {
   /**

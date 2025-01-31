@@ -2,10 +2,9 @@ import { Component, contentChildren, model } from '@angular/core';
 import { TabsItemComponent } from './tabs-item.component';
 
 @Component({
-  selector: 'fui-tabs',
-  standalone: true,
-  imports: [],
-  templateUrl: './tabs.component.html'
+    selector: 'fui-tabs',
+    imports: [],
+    templateUrl: './tabs.component.html'
 })
 export class TabsComponent {
   _items = contentChildren(TabsItemComponent);

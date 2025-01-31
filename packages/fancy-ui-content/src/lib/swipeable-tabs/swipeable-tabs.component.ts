@@ -7,16 +7,15 @@ import { SwipeableTabsBladeComponent } from './swipeable-tabs-blade.component';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  selector: 'fui-swipeable-tabs',
-  standalone: true,
-  imports: [
-    TabsComponent,
-    TabsItemComponent,
-    SwiperComponent, 
-    SwiperBladeComponent,
-    NgTemplateOutlet
-  ],
-  templateUrl: './swipeable-tabs.component.html'
+    selector: 'fui-swipeable-tabs',
+    imports: [
+        TabsComponent,
+        TabsItemComponent,
+        SwiperComponent,
+        SwiperBladeComponent,
+        NgTemplateOutlet
+    ],
+    templateUrl: './swipeable-tabs.component.html'
 })
 export class SwipeableTabsComponent {
   activeBlade = model(0);

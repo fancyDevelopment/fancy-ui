@@ -3,10 +3,9 @@ import { NgClass } from '@angular/common';
 import { timer } from 'rxjs';
 
 @Component({
-  selector: 'fui-floating-action-button',
-  standalone: true,
-  imports: [NgClass],
-  templateUrl: './floating-action-button.component.html'
+    selector: 'fui-floating-action-button',
+    imports: [NgClass],
+    templateUrl: './floating-action-button.component.html'
 })
 export class FloatingActionButtonComponent {
   /** The label of the Button. */

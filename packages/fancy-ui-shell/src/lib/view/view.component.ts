@@ -7,10 +7,9 @@ import { ViewHeaderComponent } from './view-header.component';
 import { delay } from 'rxjs';
 
 @Component({
-  selector: 'fui-view',
-  standalone: true,
-  imports: [ NgTemplateOutlet ],
-  templateUrl: './view.component.html',
+    selector: 'fui-view',
+    imports: [NgTemplateOutlet],
+    templateUrl: './view.component.html'
 })
 export class ViewComponent {
   showSpinner = input(false);

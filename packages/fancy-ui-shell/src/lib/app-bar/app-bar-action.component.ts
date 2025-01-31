@@ -2,10 +2,9 @@ import { Component, EventEmitter, Output, TemplateRef, input, viewChild } from '
 import { IconComponent } from 'fancy-ui-core';
 
 @Component({
-  selector: 'fui-app-bar-action',
-  standalone: true,
-  imports: [IconComponent],
-  template: `
+    selector: 'fui-app-bar-action',
+    imports: [IconComponent],
+    template: `
     <ng-template #template>
       <a class="w-12 h-12 flex justify-center relative" (click)="_onClick()" role="nonMobileAppBarAction" [attr.aria-label]="label()">
         <div class="absolute z-0 w-12 h-12 rounded-xl transition-all duration-500 hover:bg-hover"></div>

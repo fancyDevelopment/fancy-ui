@@ -3,17 +3,16 @@ import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlBase } from '../form-control.base';
 
 @Component({
-  selector: 'fui-switch',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './switch.component.html',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: SwitchComponent,
-      multi: true
-    }
-  ]
+    selector: 'fui-switch',
+    imports: [FormsModule],
+    templateUrl: './switch.component.html',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: SwitchComponent,
+            multi: true
+        }
+    ]
 })
 export class SwitchComponent extends FormControlBase<boolean> {
   label = input('');

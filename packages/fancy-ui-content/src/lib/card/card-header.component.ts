@@ -3,10 +3,9 @@ import { NgTemplateOutlet } from '@angular/common';
 import { IconComponent } from 'fancy-ui-core';
 
 @Component({
-  selector: 'fui-card-header',
-  standalone: true,
-  imports: [NgTemplateOutlet, IconComponent],
-  template: `
+    selector: 'fui-card-header',
+    imports: [NgTemplateOutlet, IconComponent],
+    template: `
   <div class="flex">
     @if(imageSrc()) {
       <div class="pr-element">

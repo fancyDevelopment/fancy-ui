@@ -2,10 +2,9 @@ import { Component, EventEmitter, Output, TemplateRef, input, viewChild } from '
 import { IconComponent } from 'fancy-ui-core';
 
 @Component({
-  selector: 'fui-app-header-action',
-  standalone: true,
-  imports: [IconComponent],
-  template: `
+    selector: 'fui-app-header-action',
+    imports: [IconComponent],
+    template: `
     <ng-template #template>
     </ng-template>
     <ng-template #mobileTemplate>
