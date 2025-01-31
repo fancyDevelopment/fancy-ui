@@ -4,10 +4,9 @@ import { DatasetItemBase } from './dataset-item.base';
 
 
 @Component({
-  selector: 'fui-dataset-item-template',
-  standalone: true,
-  imports: [NgTemplateOutlet, NgClass],
-  template: `
+    selector: 'fui-dataset-item-template',
+    imports: [NgTemplateOutlet, NgClass],
+    template: `
     <ng-template #cardTemplate let-rowData>
     <span [ngClass]="{'col-span-3': itemCardWidth() === 'Sm',
                         'col-span-4': itemCardWidth() === 'Md',
@@ -21,9 +20,9 @@ import { DatasetItemBase } from './dataset-item.base';
       <ng-container *ngTemplateOutlet="_valueTemplate() ?? null; context: { $implicit: rowData }" />
     </ng-template>
   `,
-  providers: [
-    { provide: DatasetItemBase, useExisting: DatasetItemTemplateComponent }
-  ],
+    providers: [
+        { provide: DatasetItemBase, useExisting: DatasetItemTemplateComponent }
+    ]
 })
 export class DatasetItemTemplateComponent extends DatasetItemBase {
 

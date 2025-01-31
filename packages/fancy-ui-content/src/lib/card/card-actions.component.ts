@@ -3,10 +3,9 @@ import { Component, input, signal } from '@angular/core';
 import { timer } from 'rxjs';
 
 @Component({
-  selector: 'fui-card-actions',
-  standalone: true,
-  imports: [NgClass],
-  template:`
+    selector: 'fui-card-actions',
+    imports: [NgClass],
+    template: `
   
     <div class="border-t border-shade h-component relative overflow-hidden" style="container-type: inline-size">
       <!-- Outer Ring-->

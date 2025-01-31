@@ -5,10 +5,9 @@ import { AppHeaderActionComponent } from './app-header-action.component';
 import { IconComponent } from 'fancy-ui-core';
 
 @Component({
-  selector: 'fui-app-header',
-  standalone: true,
-  imports: [NgTemplateOutlet, IconComponent],
-  templateUrl: './app-header.component.html'
+    selector: 'fui-app-header',
+    imports: [NgTemplateOutlet, IconComponent],
+    templateUrl: './app-header.component.html'
 })
 export class AppHeaderComponent {
   /**

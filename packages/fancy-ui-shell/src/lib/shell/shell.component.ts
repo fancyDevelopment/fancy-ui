@@ -2,10 +2,9 @@ import { Component, TemplateRef, contentChild } from '@angular/core';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  selector: 'fui-shell',
-  standalone: true,
-  imports: [NgTemplateOutlet, NgClass],
-  templateUrl: './shell.component.html'
+    selector: 'fui-shell',
+    imports: [NgTemplateOutlet, NgClass],
+    templateUrl: './shell.component.html'
 })
 export class ShellComponent {
   _headerTemplate = contentChild<TemplateRef<unknown>>('headerTemplate');

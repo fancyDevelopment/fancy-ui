@@ -4,10 +4,9 @@ import { Component, TemplateRef, input, viewChild } from '@angular/core';
 import { DatasetItemBase } from './dataset-item.base'
 
 @Component({
-  selector: 'fui-dataset-item-value',
-  standalone: true,
-  imports: [NgClass],
-  template: `
+    selector: 'fui-dataset-item-value',
+    imports: [NgClass],
+    template: `
     <ng-template #cardTemplate let-rowData>
       <span [ngClass]="{'col-span-3': itemCardWidth() === 'Sm',
                         'col-span-4': itemCardWidth() === 'Md',
@@ -19,9 +18,9 @@ import { DatasetItemBase } from './dataset-item.base'
     </ng-template>
     <ng-template #tableTemplate let-rowData>{{ rowData[key()] }}</ng-template>
   `,
-  providers: [
-    { provide: DatasetItemBase, useExisting: DatasetItemValueComponent }
-  ],
+    providers: [
+        { provide: DatasetItemBase, useExisting: DatasetItemValueComponent }
+    ]
 })
 export class DatasetItemValueComponent extends DatasetItemBase {
 

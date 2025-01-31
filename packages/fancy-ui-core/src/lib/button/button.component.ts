@@ -3,10 +3,9 @@ import { NgClass } from '@angular/common';
 import { timer } from 'rxjs';
 
 @Component({
-  selector: 'fui-button',
-  standalone: true,
-  imports: [NgClass],
-  templateUrl: './button.component.html'
+    selector: 'fui-button',
+    imports: [NgClass],
+    templateUrl: './button.component.html'
 })
 export class ButtonComponent {
   /** The label of the Button. */

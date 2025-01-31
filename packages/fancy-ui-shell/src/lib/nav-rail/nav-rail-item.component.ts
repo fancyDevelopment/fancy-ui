@@ -5,10 +5,9 @@ import { NgClass } from '@angular/common';
 import { NavService } from '../nav.service';
 
 @Component({
-  selector: 'fui-nav-rail-item',
-  standalone: true,
-  imports: [NgClass, IconComponent],
-  template: `
+    selector: 'fui-nav-rail-item',
+    imports: [NgClass, IconComponent],
+    template: `
     <ng-template #template>
       <div class="group/navitem flex flex-col justify-center" (click)="onTap()">
         <div class="relative grid justify-items-center items-center">

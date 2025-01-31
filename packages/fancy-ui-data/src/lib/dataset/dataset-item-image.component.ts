@@ -5,10 +5,9 @@ import { DatasetHelpers } from './dataset.helpers';
 
 
 @Component({
-  selector: 'fui-dataset-item-image',
-  standalone: true,
-  imports: [NgClass, NgTemplateOutlet],
-  template: `
+    selector: 'fui-dataset-item-image',
+    imports: [NgClass, NgTemplateOutlet],
+    template: `
     <ng-template #cardTemplate let-rowData>
       <span [ngClass]="{'col-span-3': itemCardWidth() === 'Sm',
                         'col-span-4': itemCardWidth() === 'Md',
@@ -32,9 +31,9 @@ import { DatasetHelpers } from './dataset.helpers';
       </div>
     </ng-template>
   `,
-  providers: [
-    { provide: DatasetItemBase, useExisting: DatasetItemImageComponent }
-  ],
+    providers: [
+        { provide: DatasetItemBase, useExisting: DatasetItemImageComponent }
+    ]
 })
 export class DatasetItemImageComponent extends DatasetItemBase {
 
